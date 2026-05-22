@@ -2,21 +2,22 @@
   "name": "lean-crowd-manifest-repo",
   "private": true,
   "scripts": {
-    "dev": "npx --prefix astro astro dev --host 0.0.0.0 --root astro",
-    "start": "npx --prefix astro astro dev --host 0.0.0.0 --root astro",
-    "build": "npx --prefix astro astro build --root astro",
-    "preview": "npx --prefix astro astro preview --host 0.0.0.0 --root astro",
-    "astro": "cd astro && npx astro",
+    "dev": "cd astro && npm run dev -- --host 0.0.0.0",
+    "start": "cd astro && npm run start -- --host 0.0.0.0",
+    "build": "cd astro && npm run build",
+    "preview": "cd astro && npm run preview -- --host 0.0.0.0",
+    "astro": "cd astro && npm run astro",
     "install:astro": "npm --prefix astro install",
     "install:repo": "npm install",
-    "check-links": "linkinator . /da/ --server-root astro/dist --recurse",
+    "check-links": "linkinator . / --server-root astro/dist --recurse",
     "check-links:files": "node scripts/check-links-with-sources.mjs",
     "write-version": "printf 'Build from %s\\nRef: %s\\nCommit: %s\\n' \"${BUILD_REPO:-$(git remote get-url origin)}\" \"${BUILD_REF:-$(git branch --show-current)}\" \"${BUILD_SHA:-$(git rev-parse HEAD)}\" > astro/public/version.txt"
   },
   "devDependencies": {
     "cspell": "^6.28.0",
     "markdownlint-cli2": "^0.11.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
     "linkinator": "^7.6.1"
   }
 }

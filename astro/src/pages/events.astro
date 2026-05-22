@@ -1,0 +1,28 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Events',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Events"
+    title="Events and community activities"
+    subtitle="A lightweight events overview for the MVP."
+  />
+
+  <Features2
+    title="Upcoming"
+    columns={1}
+    items={[
+      {
+        title: 'Program to be announced',
+        description: 'This page will list upcoming events, workshops, and community sessions as we publish them.',
+      },
+    ]}
+  />
+</Layout>

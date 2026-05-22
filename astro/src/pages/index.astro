@@ -1,0 +1,84 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Mind over Machine',
+  ignoreTitleTemplate: true,
+  description: 'A foundation for regenerative software development through essays, events, and services.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Read essays',
+        href: '/essays/',
+      },
+      {
+        text: 'Explore services',
+        href: '/services',
+      },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Mind over Machine visual' }}
+  >
+    <Fragment slot="title">
+      Mind over Machine
+      <span class="text-accent dark:text-white">Regenerative software in practice</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      We are a non-profit foundation combining a think tank, a laboratory, and a community of practice. We publish
+      essays, host events, and deliver services that strengthen long-term software stewardship.
+    </Fragment>
+  </Hero>
+
+  <Features
+    id="focus"
+    tagline="What we do"
+    title="Three ways we work"
+    items={[
+      {
+        title: 'Essays and thought leadership',
+        description:
+          'We write openly about regenerative software development, system thinking, ethics, and long-term delivery practices.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Events and community',
+        description:
+          'We run events and conversations where practitioners test ideas, share learnings, and shape better software culture.',
+        icon: 'tabler:users-group',
+      },
+      {
+        title: 'Services through the laboratory',
+        description:
+          'We help organizations apply regenerative practices in real projects with practical, collaborative delivery support.',
+        icon: 'tabler:flask',
+      },
+    ]}
+  />
+
+  <BlogLatestPosts
+    title="Latest essays"
+    subtitle="Recent writing from Mind over Machine"
+    information={{ text: 'See all essays', href: '/essays/' }}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact us',
+        href: '/contact',
+      },
+    ]}
+    title="Looking for a regenerative path for your software organization?"
+    subtitle="Let us explore it together."
+  />
+</Layout>

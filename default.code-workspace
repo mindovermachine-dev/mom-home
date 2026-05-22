@@ -5,11 +5,18 @@
     },
     {
       "path": "../../localhome/GitHub/devopsdays-dk/devopsdays.dk"
+    },
+    {
+      "path": "../../localhome/GitHub/lakruzz/docs.mindovermachine"
     }
   ],
   "settings": {
     "chat.tools.terminal.autoApprove": {
       "/^gh insitu run fix-all$/": {
+        "approve": true,
+        "matchCommandLine": true
+      },
+      "/^npm --prefix /workspaces/mom-home run build$/": {
         "approve": true,
         "matchCommandLine": true
       }

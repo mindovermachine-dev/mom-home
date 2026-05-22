@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Services',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Services"
+    title="Laboratory services for regenerative software"
+    subtitle="Hands-on support for teams that want better software outcomes over the long run."
+  />
+
+  <Features2
+    title="How we can help"
+    columns={2}
+    items={[
+      {
+        title: 'Delivery practice coaching',
+        description:
+          'Coaching on trunk-based development, shift-left quality practices, and sustainable delivery flow.',
+      },
+      {
+        title: 'Architecture and systems guidance',
+        description:
+          'Collaborative guidance for socio-technical architecture decisions with long-term maintainability in mind.',
+      },
+      {
+        title: 'Facilitated workshops',
+        description:
+          'Facilitation for alignment, roadmap framing, and participatory design across product and engineering stakeholders.',
+      },
+      {
+        title: 'Experimental pilots',
+        description: 'Small pilot engagements to test new ways of working before scaling across the organization.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start a conversation',
+        href: '/contact',
+      },
+    ]}
+    title="Need practical support?"
+    subtitle="Tell us where you are and what you are trying to improve."
+  />
+</Layout>

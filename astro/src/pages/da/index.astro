@@ -1,0 +1,32 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Mind over Machine (DA)',
+  description: 'Dansk indgangsside for Mind over Machine.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Dansk"
+    title="Mind over Machine"
+    subtitle="Den danske version er under opbygning."
+  />
+
+  <Features2
+    columns={1}
+    items={[
+      {
+        title: 'Engelsk hovedsite',
+        description: 'Hovedsitet ligger på rodstien /. Du kan altid gå tilbage til engelsk indhold derfra.',
+      },
+      {
+        title: 'Dansk som tilvalg',
+        description: 'Denne /da sti er gjort klar, så dansk indhold kan tilføjes løbende uden at påvirke engelsk som standard.',
+      },
+    ]}
+  />
+</Layout>
