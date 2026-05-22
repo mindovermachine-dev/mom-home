@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../../localhome/GitHub/devopsdays-dk/devopsdays.dk"
+    }
+  ],
+  "settings": {
+    "chat.tools.terminal.autoApprove": {
+      "/^gh insitu run fix-all$/": {
+        "approve": true,
+        "matchCommandLine": true
+      }
+    }
+  }
+}

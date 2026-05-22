@@ -1,0 +1,143 @@
+# .insitu.yml – insitu self-hosting configuration
+# Run 'insitu plan' to preview  |  'insitu run' to execute
+# cspell:ignore markdownlint
+
+defaults:
+  die-on-error: true
+  timeout: 5m
+  verbose: false
+
+inventory:
+  - id: "gh-auth"
+    name: "GitHub Authentication"
+    command: "gh auth status"
+
+  - id: "install-takt"
+    name: "Install Takt"
+    command: "gh extension install devx-cafe/gh-tt"
+
+  - id: "cspell"
+    name: "Run cspell"
+    command: "cspell"
+
+  - id: "markdownlint"
+    name: "Run markdownlint"
+    command: "markdownlint-cli2"
+
+  - id: "prettier"
+    name: "Run Prettier"
+    command: "prettier --check ."
+
+  - id: "install-takt-shortcuts"
+    name: "Install Takt Shortcuts"
+    command: |
+      gh alias set workon '!gh tt workon "$@"' --clobber 
+      gh alias set wrapup '!gh tt wrapup "$@"' --clobber
+      gh alias set deliver '!gh tt deliver "$@"' --clobber
+      gh alias set semver '!gh tt semver "$@"' --clobber
+
+  - id: "safe-repo"
+    name: "Mark repository as safe for git operations"
+    command: "git config --global --add safe.directory $(pwd)"
+
+  - id: repo-gitconfig
+    name: "Use repo-root .gitconfig for consistent git settings"
+    command: |
+      git config --local --get include.path | grep -e ../.gitconfig >/dev/null 2>&1 || \
+      git config --local --add include.path ../.gitconfig
+
+  - id: astro-install
+    name: "Install Astro dependencies"
+    command: |
+      npm run install:astro
+
+  - id: repo-install
+    name: "Install repo dependencies"
+    command: |
+      npm run install:repo
+
+  - id: link-checker
+    name: "Check for broken links"
+    command: "npm run check-links"
+
+  - id: "install-lint-tools"
+    name: "Install linting and checker tools"
+    command: |
+      npm install -g cspell markdownlint-cli2 @cspell/dict-da-dk prettier
+
+  - id: "install-browser"
+    name: "Install Chromium"
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y chromium
+
+  - id: "gen-version"
+    name: "Generate version.txt for local dev"
+    command: "npm run write-version"
+
+  - id: "build"
+    name: "Build site"
+    command: "npm run build"
+
+  - id: "fix-markdown"
+    name: "Fix all fixable markdown issues"
+    command: |
+      markdownlint-cli2 --fix
+
+  - id: "fix-prettier"
+    name: "Fix all fixable prettier issues"
+    command: |
+      prettier --write .
+
+waves:
+  - id: "post-create"
+    name: "Dev Container Post Create"
+    parallel: true
+    checks:
+      - "gh-auth"
+      - "install-takt"
+      - "install-takt-shortcuts"
+      - "safe-repo"
+      - "repo-gitconfig"
+      - "astro-install"
+      - "repo-install"
+      - "install-browser"
+
+  - id: "prep-runner"
+    name: "Run to prepare GitHub runner"
+    parallel: true
+    checks:
+      - "gh-auth"
+      - "astro-install"
+      - "repo-install"
+      - "repo-gitconfig"
+      - "install-lint-tools"
+      - "install-browser"
+
+  - id: "build"
+    name: "Build site"
+    parallel: true
+    checks:
+      - "build"
+
+  - id: "trunk-worthy"
+    name: "Worthy for trunk - build"
+    parallel: true
+    checks:
+      - "cspell"
+      - "markdownlint"
+      - "build"
+      - "prettier"
+
+  - id: "link-checker"
+    name: "Worthy for trunk - post-build "
+    parallel: true
+    checks:
+      - "link-checker"
+
+  - id: "fix-all"
+    name: "Fix anything that can be fixed automatically"
+    parallel: true
+    checks:
+      - "fix-markdown"
+      - "fix-prettier"

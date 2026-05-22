@@ -1,0 +1,185 @@
+kicker,
+.kicker {
+  display: block;
+  font-weight: 700;
+}
+
+fact,
+.fact {
+  display: block;
+  background-color: #e3cd85;
+  border-style: solid;
+  border-color: #8b4513;
+  border-width: 2px;
+  text-indent: initial; /* override*/
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(#8b4513, 0.25);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 83%;
+  //font-family: $sans-serif;
+  text-align: left;
+  &.center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    clear: both;
+  }
+
+  &.right {
+    float: right;
+    margin-left: 10px;
+    clear: left;
+  }
+
+  &.left {
+    float: left;
+    margin-right: 10px;
+    clear: right;
+  }
+
+  &.full {
+    width: 100%;
+  }
+
+  &.wide {
+    width: 600px;
+  }
+
+  &.medium {
+    width: 450px;
+  }
+
+  &.small {
+    width: 250px;
+  }
+
+  &.tiny {
+    width: 140px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #8b4513;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .fact {
+    &.wide {
+      width: 100%;
+    }
+    &.left,
+    &.right {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      clear: both;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .fact {
+    &.medium {
+      width: 100%;
+    }
+    &.left,
+    &.right {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      clear: both;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .fact {
+    &.small {
+      width: 100%;
+    }
+    &.left,
+    &.right {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      clear: both;
+    }
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .fact {
+    &.tiny {
+      width: 100%;
+    }
+    &.left,
+    &.right {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0px;
+      margin-top: 0px;
+      clear: both;
+    }
+  }
+}
+
+/* Print media styles for PDF generation */
+@media print {
+  /* Page break control */
+  .page-break {
+    page-break-after: always;
+  }
+
+  /* Orphan/widow control */
+  body,
+  p,
+  li,
+  dt,
+  dd {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Prevent headings from being isolated */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.5rem; /* Reduce spacing to keep heading close to content */
+    orphans: 1;
+    widows: 1;
+  }
+
+  /* Reduce space before headings to prevent orphaning */
+  h1 + *,
+  h2 + *,
+  h3 + *,
+  h4 + *,
+  h5 + *,
+  h6 + * {
+    margin-top: 0;
+  }
+
+  /* Keep sections together when possible */
+  section,
+  article {
+    page-break-inside: avoid;
+  }
+}

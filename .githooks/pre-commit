@@ -1,0 +1,3 @@
+#!/bin/bash
+
+time gh insitu run trunk-worthy link-checker

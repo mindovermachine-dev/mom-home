@@ -1,0 +1,79 @@
+---
+title: Sådan arbejder vi
+description: Standarder er en forudsætning for arbejdet i laboratoriet
+redirect-from: /da/methodology/
+---
+
+<kicker>"_{frontmatter.description}_"</kicker>
+
+## No Estimates
+
+No Estimates er en bevægelse inden for softwareudvikling, som opfordrer til at droppe traditionelle estimeringsmetoder og i stedet fokusere på at levere værdi kontinuerligt. Det handler om at undgå de mange faldgruber ved estimering, såsom unøjagtige tidsrammer, overoptimisme og spildt tid på at gætte på fremtiden, _featureritis_, antagelser om brugerbehov, som ikke holder, og så videre.
+
+I stedet for at bruge tid på at estimere, opfordrer No Estimates til at fokusere på at levere små, inkrementelle forbedringer og funktioner, som kan udgives hurtig, automatisk og ofte. Det handler om at skabe en kultur, hvor det er acceptabelt at have en undersøgende tilgang til softwareudvikling, fremfor en planlægningsorienteret tilgang.
+
+No Estimates står på skuldrene af eXtreme Programming, pair- og mob programming, og Lean Software Development, og det er en del af den regenerative tilgang til softwareudvikling, som vi arbejder ud fra i vores laboratorium.
+
+## Trunk-based development
+
+Trunk-based development er en softwareudviklingspraksis, hvor alle udviklere arbejder dagligt på at levere deres arbejde til en fælles branch i Git, typisk `main`. Alt arbejdet kvalitetskontrolleres og testes kontinuerligt ved kilden, det vil sige på short-lived udviklingsbranches, og der er ingen langvarige parallelle feature branches.
+
+Trunk holdes altid i en tilstand som er _klar til release_ og det vil typisk ske automatisk til et staging-miljø, så fremtidige kunder og slutbrugere kan se og teste det løbende arbejde, og så vi kan få feedback fra virkeligheden så hurtigt som muligt, og bruge det til at forbedre vores forståelse og vores software.
+
+Trunk-based development er en grundlæggende forudsætning for _Continuous Delivery_ som er en vigtig del af den regenerative tilgang.
+
+## Shift Left
+
+Shift Left er en softwareudviklingspraksis, hvor kvalitetskontrol og testning sker så tidligt som muligt i udviklingsprocessen, helst direkte ved kilden. Softwareudviklere såvel som AI agenter skal have adgang til at eksekvere alle de kvalitetskontroller og testninger, som vil møde softwaren før den godkendes til produktion, direkte i deres udviklingsmiljø, og så ofte som de har brug for det, for at kunne arbejde effektivt og levere høj kvalitet software.
+
+Shift Left er en vigtig del af den regenerative tilgang, fordi det gør det muligt for os at fange og rette problemer så tidligt som muligt, før de når produktion, og det gør det også muligt for os at få feedback fra virkeligheden så hurtigt som muligt, og bruge det til at forbedre vores forståelse og vores software.
+
+Shift left er en ambitiøs tilgang som forudsætter andre discipliner som Infrastructure as Code, Stateful testing, versionering af testdata, ofte syntetisk genereret testdata og så videre, for at kunne fungere effektivt.
+
+## Participatory design
+
+Participatory design er en softwareudviklingspraksis, hvor slutbrugerne er aktivt involveret i designprocessen, og hvor deres feedback og input er en central del af udviklingsprocessen. Det handler om at skabe en kultur, hvor slutbrugerne ser sig selv som en del af udviklingsteamet, og hvor deres behov og ønsker er i centrum for alt hvad vi gør.
+
+For kunden vil det kunne opleves som en skjult mer-udgift at skulle bruge tid på at involvere sig eller blot stille sig til rådighed for udviklingsprocessen, slutbrugernes engagement vil gå fra deres øvrige hverdagsaktiviteter, men det er en investering som indenfor regenerativ softwareudvikling anses som nødvendig. Og den betaler sig mange gange igen, fordi det gør det muligt at levere software, som rammer slutbrugerbehov meget præcist meget tidligere.
+
+## Samarbejde med AI agenter
+
+Vi ser AI agenter som en vigtig del af vores laboratorium, og vi arbejder aktivt på at integrere dem i vores udviklingsproces. AI agenter kan hjælpe os med at automatisere og udføre mange af de opgaver, som er forbundet med softwareudvikling, såsom kodegenerering, testning, dokumentation, infrastruktur, research og så videre. Det gør det muligt for os at fokusere på de mere dialogbaserede og kreative aspekter af softwareudvikling, som endnu ikke kan automatiseres, og det gør det også muligt for os at levere høj kvalitet software hurtigere og mere effektivt.
+
+Vi skriver bevidst sammen "samarbejde med AI agenter" og ikke "automatisering med AI". _Samarbejde_ er vigtigt fordi vi ellers ser, som konsekvens af at AI agenter bliver hastigt mere og mere autonome, at der er en overhængende riskiko for at AI Agenter _overtager_ arbejdet.
+
+I praksis betyder det at vi i vores udviklingsmiløer skal oprette nogle meget strenge krav og standarder for hvordan AI agenter må interagere med vores software og vores udviklingsproces, vores øvrige principper som eksempelvis _shift left_ og _trunk-based development_ må ikke ofres i dette samarbejde. Tværtimod skal Agenter bidrage med kode under de samme strenge kvalitetskontroller som udviklerne benytter. Og eftersom Agenter kan generere meget store mængder kode på meget kort tid, ofte af svingende kvalitet, så betyder det at udviklernes rolle i samarbejdet med AI Agenter skifter grundlæggende karakter.
+
+Menneskerne i dette samarbejde går fra selv at være _udviklere_, til i højere grad at være en kombination af _oversættere af slutbrugernes behov_ til specifikationer som AI Agenter og umiddelbart derefter som _kvalitetskontrollører_ som skal sikre at den kode som AI Agenter genererer lever op til vores kvalitetsstandarder, og at den er i tråd med vores udviklingsprincipper. Og i det omfang at de ikke gør det, så skal menneskerne snarere end at tilrette, omskrive og færdiggøre agenternes kode i stedet tilrette og omskrive og færdiggøre den støt stigende mængde af automatiserede kvalitetskontroller som sker tættere og tættere på kilden. Altså i selve det containerized udviklingsmiljø.
+
+Det er helt nye roller for menneskerne i udviklingsprocessen.
+
+## Individuelt releasebare komponenter
+
+_Individually releasable components_ er et designprincip indenfor softwarearkitektur, hvor softwaren er opdelt i små, uafhængige komponenter, som hver især kan udvikles, testes og udgives separat. ofte er ét Git-repository lig én selvstændig komponent.
+
+Individuelt releasebare komponenter vil ofte stå i kontrast til dets modstykke, som er monolitiske applikationer, hvor alle funktioner og komponenter er tæt integreret, ofte i ét eneste Git repository som dermed ikke kan udgives separat men tilgengæld heller ikke kræver eksplicit koordinering af interne afhængigheder.
+
+Der findes fordele og ulemper ved begge tilgange, hvilket er grunde til at de begge eksistere i forskellige sammenhænge, men indenfor den regenerative tilgang, er det vores antagelse at individuelt releasebare komponenter er den mest effektive måde at arbejde på på den lange bane. Fordi den producerer de mest generiske og individuelt konfigurérbare tilgange, sikrere den højeste grad af kvalitetskontrol direkte ved kilden og samlet set tilbyder den højeste grad af genbrug og fleksibilitet.
+
+Indenfor Open Source er individuelt releasebare komponenter, det herskende paradigme som understøttes af et andet central princip - Semantic Versioning.
+
+## Open Source
+
+Open Source er en softwareudviklingspraksis, hvor kildekoden til softwaren er offentligt tilgængelig, og hvor alle har ret til at bruge, ændre og distribuere softwaren, under forskellige betingelser, som er dikteret af licensen. Det handler om at skabe en kultur, hvor software er et fælles gode som alle kan bidrage til og drage fordel af, og hvor samarbejde og deling er i centrum for alt hvad vi gør.
+
+Open Source er en vigtig del af den regenerative tilgang, fordi det gør det muligt for os at dele vores arbejde med verden, og det gør det også muligt for os at få feedback og bidrag fra andre, som kan hjælpe os med at forbedre vores software og vores forståelse. Det gør det også muligt for os at skabe et fællesskab omkring vores arbejde, hvor alle kan være med til at forme og udvikle det.
+
+Open Source er én af menneskets mest succesfulde og regenerative samarbejdsmodeller, på nogle parametre endda en langt større succes end selve demokratibegrebet og det er en vigtig del af vores vision for et regenerativt softwareudviklingsfællesskab. Vi tror på at ved at gøre vores arbejde Open Source, kan vi bidrage til at skabe en mere retfærdig, bæredygtig og innovativ softwareindustri, som er i stand til at løse de komplekse udfordringer som verden står overfor i dag.
+
+Eksempel: Anslået mere end 95% af alle "Things" (både data-centre og dit køleskab medregnet) koblet op på internettet er styret af en eller anden variant af Linux, som er et Open Source operativsystem. Vores samfund som vi kender det i dag kunne ikke eksistere uden Open Source. Det er et koncept som binder mennesker sammen stærkere end FN, menneskerettigheder, handelsaftaler, alverdens religioner, demokrati eller noget andet begreb vi kender til.
+
+Open Source vil altid være truet af kortsigtede profitinteresser, og det et centralt princip indenfor den regenerative tilgang at bidrage til Open Source.
+
+## Community of Practice
+
+Vores Community of Practice er en vigtig del af vores laboratorium, og det er et sted hvor vi kan dele vores viden, erfaringer og udfordringer med hinanden, og hvor vi kan lære af hinanden og støtte hinanden i vores arbejde. Det handler om at skabe en kultur, hvor alle føler sig velkomne og inkluderet, og hvor alle har mulighed for at bidrage og lære.
+
+Særligt er det et vigtigt redskab til at inddrage _learners_ og academia i vores arbejde, og til at indfri vores forpligtelse til at inddrage de kommende generationer af softwareudviklere.
+
+Vores Community of Practice står på skuldrene af vores princip om at bidrage til Open Source, som direkte understøtter _legitim perifær deltagelse_ gennem fuld og betingelsesøs transparens.
