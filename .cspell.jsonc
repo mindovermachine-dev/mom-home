@@ -7,6 +7,11 @@
     "**/node_modules/**",
     "**/bower_components/**",
     "**/vendor/**",
+    "**useful-resources-to-create-websites**",
+    "**markdown-elements-demo-post**",
+    "**astro/src/data/post/how-to-customize-astrowind-to-your-brand**",
+    "**get-started-website-with-astro-tailwind-css**",
+    "**astrowind-template-in-depth**",
     "**/dist/**",
     "**/.git/**",
     "**/.github/**",
@@ -68,5 +73,8 @@
     "https?://\\S+", // ignore http/https URLs
     "\\b[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:/\\S*)?", // ignore domain names and URLs like example.com or example.com/path
     "\\[\\^\\w+\\]", // ignore markdown footnotes
+    "\\!\\[\\w+\\]", // ignore markdown images
+    "^\\s*\"?[@a-zA-Z0-9_./-]+\"?\\s*:\\s", // ignore JSON/YAML keys in key-value pairs (incl. scoped npm keys)
+    "^\\s*\"?[@a-zA-Z0-9_./-]+\"?\\s*:\\s*\"?[^\"\\n]*[@/][^\"\\n]*\"?", // ignore JSON/YAML key-value pairs where the value contains '@' or
   ],
 }

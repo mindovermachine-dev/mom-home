@@ -23,4 +23,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         uses: ./.github/actions/prep-runner
         with:
-          verify: gh insitu run prep-runner
+          verify: gh insitu run trunk-worthy

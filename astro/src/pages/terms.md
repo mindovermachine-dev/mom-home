@@ -1,6 +1,7 @@
 ---
 title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
+// cspell: ignore timebombs trojan
 ---
 
 _Last updated_: January 06, 2023
