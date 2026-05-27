@@ -1,29 +1,96 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Mind over Machine (DA)',
-  description: 'Dansk indgangsside for Mind over Machine.',
+  title: 'Mind over Machine',
+  ignoreTitleTemplate: true,
+  description: 'En fond for regenerativ softwareudvikling gennem essays, events og services.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <HeroText tagline="Dansk" title="Mind over Machine" subtitle="Den danske version er under opbygning." />
+  <div class="flex justify-center pt-6 md:pt-10">
+    <img
+      src="/mom-logo-text-transparent.png"
+      alt="Mind over Machine"
+      class="h-20 w-auto md:h-28"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
 
-  <Features2
-    columns={1}
-    items={[
+  <Hero
+    actions={[
       {
-        title: 'Engelsk hovedsite',
-        description: 'Hovedsitet ligger på rodstien /. Du kan altid gå tilbage til engelsk indhold derfra.',
+        variant: 'primary',
+        text: 'Laes essays',
+        href: '/da/essays/',
       },
       {
-        title: 'Dansk som tilvalg',
-        description:
-          'Denne /da sti er gjort klar, så dansk indhold kan tilføjes løbende uden at påvirke engelsk som standard.',
+        text: 'Udforsk services',
+        href: '/da/services/',
       },
     ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Mind over Machine visual' }}
+  >
+    <Fragment slot="title">
+      Mind over Machine
+      <span class="text-accent dark:text-white">Regenerativ software i praksis</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Vi er en non-profit fond, der samler en taenketank, et laboratorium og et praksisfaellesskab. Vi udgiver essays,
+      afholder events og leverer services, der styrker langsigtet softwareforvaltning.
+    </Fragment>
+  </Hero>
+
+  <Features
+    id="fokus"
+    tagline="Hvad vi laver"
+    title="Tre maader vi arbejder pa"
+    items={[
+      {
+        title: 'Essays og faglig retning',
+        description:
+          'Vi skriver aabent om regenerativ softwareudvikling, systemtaenkning, etik og langsigtede leverancepraksisser.',
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Events og community',
+        description:
+          'Vi afholder events og samtaler, hvor praktikere afproever ideer, deler erfaringer og former en bedre softwarekultur.',
+        icon: 'tabler:users-group',
+      },
+      {
+        title: 'Services gennem laboratoriet',
+        description:
+          'Vi hjaelper organisationer med at anvende regenerative praksisser i konkrete projekter gennem samarbejdende leveranceforloeb.',
+        icon: 'tabler:flask',
+      },
+    ]}
+  />
+
+  <BlogLatestPosts
+    title="Seneste essays"
+    information="Nylige tekster fra Mind over Machine"
+    linkText="Se alle essays"
+    linkUrl="/da/essays/"
+    locale="da"
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Kontakt os',
+        href: '/da/contact/',
+      },
+    ]}
+    title="Soeger I en regenerativ vej for jeres softwareorganisation?"
+    subtitle="Lad os udforske den sammen."
   />
 </Layout>

@@ -10,19 +10,51 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  localeFallback?: 'da';
 }
 
-const { metadata } = Astro.props;
+const { metadata, localeFallback } = Astro.props;
+const originPath = Astro.originPathname;
+const isDanishRoot = originPath === '/da' || originPath === '/da/';
+const isDanishFallbackRewrite =
+  originPath.startsWith('/da/') && !Astro.url.pathname.startsWith('/da/') && !isDanishRoot;
+const showFallbackInitially = localeFallback === 'da' || isDanishFallbackRewrite;
 ---
 
 <Layout metadata={metadata}>
-  <slot name="announcement">
-    <Announcement />
-  </slot>
+  <div id="site-announcement">
+    <slot name="announcement">
+      <Announcement />
+    </slot>
+  </div>
   <slot name="header">
     <Header {...headerData} isSticky showRssFeed showToggleTheme />
   </slot>
+  <script is:inline>
+    const updateLocaleFallbackBanner = () => {
+      const fallbackBanner = document.getElementById('locale-fallback-banner');
+      const initialLocaleFallback = fallbackBanner?.getAttribute('data-initial-locale-fallback') ?? '';
+      const showFallback = initialLocaleFallback === 'da';
+
+      if (fallbackBanner) {
+        fallbackBanner.classList.toggle('hidden', !showFallback);
+      }
+    };
+
+    updateLocaleFallbackBanner();
+    document.addEventListener('astro:page-load', updateLocaleFallbackBanner);
+    document.addEventListener('astro:after-swap', updateLocaleFallbackBanner);
+  </script>
   <main>
+    <div
+      id="locale-fallback-banner"
+      data-initial-locale-fallback={showFallbackInitially ? 'da' : ''}
+      class:list={['mx-auto mt-8 px-6 sm:px-6 max-w-3xl', { hidden: !showFallbackInitially }]}
+    >
+      <p class="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+        Denne side er endnu ikke oversat til dansk. Du ser den engelske version.
+      </p>
+    </div>
     <slot />
   </main>
   <slot name="footer">

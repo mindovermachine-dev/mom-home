@@ -2,7 +2,7 @@ site:
   name: Mind over Machine
   site: 'https://www.mindovermachine.dk'
   base: '/'
-  trailingSlash: true
+  trailingSlash: ignore
 
   googleSiteVerificationId:
 

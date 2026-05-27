@@ -13,6 +13,13 @@ export const GET = async () => {
   }
 
   const posts = await fetchPosts();
+  const trailingSlashMode = SITE.trailingSlash;
+  const rssTrailingSlash =
+    trailingSlashMode === true || trailingSlashMode === 'always'
+      ? true
+      : trailingSlashMode === false || trailingSlashMode === 'never'
+        ? false
+        : undefined;
 
   const rss = await getRssString({
     title: `${SITE.name}’s Blog`,
@@ -26,7 +33,7 @@ export const GET = async () => {
       pubDate: post.publishDate,
     })),
 
-    trailingSlash: SITE.trailingSlash,
+    ...(rssTrailingSlash !== undefined ? { trailingSlash: rssTrailingSlash } : {}),
   });
 
   return new Response(rss, {

@@ -35,6 +35,13 @@ const frontmatterRedirects = collectFrontmatterRedirects({
 export default defineConfig({
   output: 'static',
   redirects: frontmatterRedirects,
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'da'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 
   integrations: [
     sitemap(),

@@ -5,6 +5,10 @@ import { getHomePermalink } from '~/utils/permalinks';
 
 interface Link {
   text?: string;
+  translations?: {
+    en?: string;
+    da?: string;
+  };
   href?: string;
   ariaLabel?: string;
   icon?: string;
@@ -24,6 +28,26 @@ export interface Props {
 }
 
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const currentPath = Astro.originPathname;
+const isDanishRoute = currentPath === '/da' || currentPath.startsWith('/da/');
+
+const localizeHref = (href?: string) => {
+  if (!href || !isDanishRoute) return href;
+
+  const isAbsoluteOrSpecial = /^(?:[a-z]+:|\/\/|#)/i.test(href);
+  if (isAbsoluteOrSpecial) return href;
+
+  if (href === '/') return '/da';
+  if (href === '/da' || href.startsWith('/da/')) return href;
+  if (href.startsWith('/')) return `/da${href}`;
+
+  return href;
+};
+
+const getLocalizedLabel = (text?: string, translations?: { en?: string; da?: string }) => {
+  if (isDanishRoute) return translations?.da ?? text;
+  return translations?.en ?? text;
+};
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -38,13 +62,13 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         </div>
         <div class="text-sm text-muted flex gap-1">
           {
-            secondaryLinks.map(({ text, href }, index) => (
+            secondaryLinks.map(({ text, translations, href }, index) => (
               <>
                 {index !== 0 ? ' · ' : ''}
                 <a
                   class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
+                  href={localizeHref(href)}
+                  set:html={getLocalizedLabel(text, translations)}
                 />
               </>
             ))
@@ -57,14 +81,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
+                {links.map(({ text, translations, href, ariaLabel }) => (
                   <li class="mb-2">
                     <a
                       class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
+                      href={localizeHref(href)}
                       aria-label={ariaLabel}
                     >
-                      <Fragment set:html={text} />
+                      <Fragment set:html={getLocalizedLabel(text, translations)} />
                     </a>
                   </li>
                 ))}

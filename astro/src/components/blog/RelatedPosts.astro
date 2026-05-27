@@ -8,9 +8,10 @@ import { getBlogPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
+  locale?: 'en' | 'da';
 }
 
-const { post } = Astro.props;
+const { post, locale = 'en' } = Astro.props;
 
 const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
 ---
@@ -24,8 +25,9 @@ const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
       }}
       title="Related Posts"
       linkText="View All Posts"
-      linkUrl={getBlogPermalink()}
+      linkUrl={locale === 'da' ? `/da${getBlogPermalink()}` : getBlogPermalink()}
       postIds={relatedPosts.map((post) => post.id)}
+      locale={locale}
     />
   ) : null
 }

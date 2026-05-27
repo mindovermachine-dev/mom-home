@@ -13,12 +13,18 @@ import { getFormattedDate } from '~/utils/utils';
 
 export interface Props {
   post: Post;
+  locale?: 'en' | 'da';
 }
 
-const { post } = Astro.props;
+const { post, locale = 'en' } = Astro.props;
 const image = (await findImage(post.image)) as ImageMetadata | undefined;
 
-const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
+const withLocalePrefix = (path: string) => {
+  if (locale !== 'da') return path;
+  return path === '/' ? '/da' : `/da${path}`;
+};
+
+const link = APP_BLOG?.post?.isEnabled ? withLocalePrefix(getPermalink(post.permalink, 'post')) : '';
 ---
 
 <article
@@ -84,7 +90,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
               <>
                 {' '}
                 ·{' '}
-                <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
+                <a class="hover:underline" href={withLocalePrefix(getPermalink(post.category.slug, 'category'))}>
                   {post.category.title}
                 </a>
               </>
@@ -112,7 +118,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
     {
       post.tags && Array.isArray(post.tags) ? (
         <footer class="mt-5">
-          <PostTags tags={post.tags} />
+          <PostTags tags={post.tags} locale={locale} />
         </footer>
       ) : (
         <Fragment />

@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'About',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="About" title="Mind over Machine" subtitle="Fonden for Regenerativ Softwareudvikling" />
+
+  <Features2
+    title="Our purpose"
+    columns={1}
+    items={[
+      {
+        title: 'A non-profit foundation',
+        description:
+          'Mind over Machine is organized as a non-profit foundation focused on long-term regenerative software practice.',
+      },
+      {
+        title: 'Think tank + laboratory',
+        description:
+          'We investigate ideas in public and test them in real delivery contexts so practice and theory improve together.',
+      },
+      {
+        title: 'Community of practice',
+        description:
+          'We build learning spaces where practitioners can share methods, challenge assumptions, and collaborate across disciplines.',
+      },
+    ]}
+  />
+</Layout>

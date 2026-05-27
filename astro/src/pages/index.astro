@@ -13,6 +13,16 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <div class="flex justify-center pt-6 md:pt-10">
+    <img
+      src="/mom-logo-text-transparent.png"
+      alt="Mind over Machine"
+      class="h-20 w-auto md:h-28"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
+
   <Hero
     actions={[
       {
@@ -22,7 +32,7 @@ const metadata = {
       },
       {
         text: 'Explore services',
-        href: '/services',
+        href: '/services/',
       },
     ]}
     image={{ src: '~/assets/images/hero-image.png', alt: 'Mind over Machine visual' }}
@@ -33,41 +43,59 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      We are a non-profit foundation combining a think tank, a laboratory, and a community of practice. We publish
-      essays, host events, and deliver services that strengthen long-term software stewardship.
+      We are a non-profit foundation combining a <b>think tank</b>, a <b>laboratory</b>, and a <b
+        >community of practice</b
+      >. Our mission is to explore and share regenerative approaches to software development that create a net positive
+      long-term value for people and the planet.
     </Fragment>
   </Hero>
 
   <Features
     id="focus"
     tagline="What we do"
-    title="Three ways we work"
+    title="Three pillars of our work"
     items={[
       {
-        title: 'Essays and thought leadership',
+        title: 'Think tank:',
+        subtitle: 'Thought leadership',
         description:
-          'We write openly about regenerative software development, system thinking, ethics, and long-term delivery practices.',
+          'We devlop, analyse, reserch and publish open end free materials about regenerative software development, system thinking, ethics, and long-term healthy development practices.',
         icon: 'tabler:book',
+        callToAction: {
+          text: 'Explore essays',
+          href: '/essays/',
+        },
       },
       {
-        title: 'Events and community',
+        title: 'Community of Practice:',
+        subtitle: 'Legitimate peripheral participation',
         description:
           'We run events and conversations where practitioners test ideas, share learnings, and shape better software culture.',
         icon: 'tabler:users-group',
+        callToAction: {
+          text: 'Explore CoP activities',
+          href: '/events/',
+        },
       },
       {
-        title: 'Services through the laboratory',
+        title: 'Laboratory:',
+        subtitle: 'Experiments and membership engagement',
         description:
-          'We help organizations apply regenerative practices in real projects with practical, collaborative delivery support.',
+          'We test assumptions and hypotheses about regenerative principles in collaborative circles with members and academia.',
         icon: 'tabler:flask',
+        callToAction: {
+          text: 'Explore laboratory services',
+          href: '/services/',
+        },
       },
     ]}
   />
 
   <BlogLatestPosts
     title="Latest essays"
-    subtitle="Recent writing from Mind over Machine"
-    information={{ text: 'See all essays', href: '/essays/' }}
+    information="Recent writing from Mind over Machine"
+    linkText="See all essays"
+    linkUrl="/essays/"
   />
 
   <CallToAction

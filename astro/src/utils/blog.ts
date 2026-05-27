@@ -5,6 +5,19 @@ import type { Post } from '~/types';
 import { APP_BLOG } from 'astrowind:config';
 import { cleanSlug, trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from './permalinks';
 
+type PostLocale = 'en' | 'da';
+const SUPPORTED_POST_LOCALES = new Set<PostLocale>(['en', 'da']);
+
+const getPostLocaleAndId = (id: string): { locale: PostLocale; localizedId: string } => {
+  const [first, ...rest] = id.split('/');
+
+  if (first && SUPPORTED_POST_LOCALES.has(first as PostLocale) && rest.length) {
+    return { locale: first as PostLocale, localizedId: rest.join('/') };
+  }
+
+  return { locale: 'en', localizedId: id };
+};
+
 const generatePermalink = async ({
   id,
   slug,
@@ -42,6 +55,7 @@ const generatePermalink = async ({
 
 const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
   const { id, data } = post;
+  const { locale, localizedId } = getPostLocaleAndId(id);
   const { Content, remarkPluginFrontmatter } = await render(post);
 
   const {
@@ -57,7 +71,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     metadata = {},
   } = data;
 
-  const slug = cleanSlug(id); // cleanSlug(rawSlug.split('/').pop());
+  const slug = cleanSlug(localizedId);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
@@ -75,8 +89,9 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
   return {
     id: id,
+    locale,
     slug: slug,
-    permalink: await generatePermalink({ id, slug, publishDate, category: category?.slug }),
+    permalink: await generatePermalink({ id: localizedId, slug, publishDate, category: category?.slug }),
 
     publishDate: publishDate,
     updateDate: updateDate,
@@ -128,6 +143,26 @@ export const blogTagRobots = APP_BLOG.tag.robots;
 
 export const blogPostsPerPage = APP_BLOG?.postsPerPage;
 
+type BlogPathLocaleOptions = {
+  locale?: PostLocale;
+  fallbackLocale?: PostLocale;
+};
+
+const getLocalizedPosts = (
+  posts: Array<Post>,
+  { locale = 'en', fallbackLocale }: BlogPathLocaleOptions = {}
+): Array<Post> => {
+  if (!fallbackLocale || fallbackLocale === locale) {
+    return posts.filter((post) => post.locale === locale);
+  }
+
+  const localizedSlugs = new Set(posts.filter((post) => post.locale === locale).map((post) => post.slug));
+
+  return posts.filter(
+    (post) => post.locale === locale || (post.locale === fallbackLocale && !localizedSlugs.has(post.slug))
+  );
+};
+
 /** */
 export const fetchPosts = async (): Promise<Array<Post>> => {
   if (!_posts) {
@@ -168,24 +203,32 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 /** */
 export const findLatestPosts = async ({ count }: { count?: number }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await fetchPosts();
+  const posts = (await fetchPosts()).filter((post) => post.locale === 'en');
 
   return posts ? posts.slice(0, _count) : [];
 };
 
 /** */
-export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
+export const getStaticPathsBlogList = async ({
+  paginate,
+  locale = 'en',
+  fallbackLocale,
+}: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await fetchPosts(), {
+
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+
+  return paginate(posts, {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
   });
 };
 
 /** */
-export const getStaticPathsBlogPost = async () => {
+export const getStaticPathsBlogPost = async ({ locale = 'en', fallbackLocale }: BlogPathLocaleOptions = {}) => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
-  return (await fetchPosts()).flatMap((post) => ({
+
+  return getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale }).flatMap((post) => ({
     params: {
       blog: post.permalink,
     },
@@ -194,11 +237,15 @@ export const getStaticPathsBlogPost = async () => {
 };
 
 /** */
-export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: PaginateFunction }) => {
+export const getStaticPathsBlogCategory = async ({
+  paginate,
+  locale = 'en',
+  fallbackLocale,
+}: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
-  const posts = await fetchPosts();
-  const categories = {};
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+  const categories: Record<string, { slug: string; title: string }> = {};
   posts.map((post) => {
     if (post.category?.slug) {
       categories[post.category?.slug] = post.category;
@@ -218,11 +265,15 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
 };
 
 /** */
-export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFunction }) => {
+export const getStaticPathsBlogTag = async ({
+  paginate,
+  locale = 'en',
+  fallbackLocale,
+}: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
-  const posts = await fetchPosts();
-  const tags = {};
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+  const tags: Record<string, { slug: string; title: string }> = {};
   posts.map((post) => {
     if (Array.isArray(post.tags)) {
       post.tags.map((tag) => {
@@ -250,6 +301,7 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 
   const postsWithScores = allPosts.reduce((acc: { post: Post; score: number }[], iteratedPost: Post) => {
     if (iteratedPost.slug === originalPost.slug) return acc;
+    if (iteratedPost.locale !== originalPost.locale) return acc;
 
     let score = 0;
     if (iteratedPost.category && originalPost.category && iteratedPost.category.slug === originalPost.category.slug) {
@@ -278,4 +330,31 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
   }
 
   return selectedPosts;
+}
+
+export async function findPostBySlugAndLocale(slug: string, locale: PostLocale): Promise<Post | undefined> {
+  const normalizedSlug = cleanSlug(slug);
+  return (await fetchPosts()).find((post) => post.locale === locale && post.slug === normalizedSlug);
+}
+
+export async function findLocalizedPostWithFallback({
+  slug,
+  locale,
+  fallbackLocale = 'en',
+}: {
+  slug: string;
+  locale: PostLocale;
+  fallbackLocale?: PostLocale;
+}): Promise<{ post: Post | undefined; usedLocale: PostLocale | undefined }> {
+  const localizedPost = await findPostBySlugAndLocale(slug, locale);
+  if (localizedPost) {
+    return { post: localizedPost, usedLocale: locale };
+  }
+
+  const fallbackPost = await findPostBySlugAndLocale(slug, fallbackLocale);
+  if (fallbackPost) {
+    return { post: fallbackPost, usedLocale: fallbackLocale };
+  }
+
+  return { post: undefined, usedLocale: undefined };
 }

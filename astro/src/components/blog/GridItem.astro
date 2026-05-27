@@ -9,12 +9,18 @@ import { getPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
+  locale?: 'en' | 'da';
 }
 
-const { post } = Astro.props;
+const { post, locale = 'en' } = Astro.props;
 const image = await findImage(post.image);
 
-const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
+const withLocalePrefix = (path: string) => {
+  if (locale !== 'da') return path;
+  return path === '/' ? '/da' : `/da${path}`;
+};
+
+const link = APP_BLOG?.post?.isEnabled ? withLocalePrefix(getPermalink(post.permalink, 'post')) : '';
 ---
 
 <article

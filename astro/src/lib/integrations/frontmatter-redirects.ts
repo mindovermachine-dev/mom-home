@@ -111,10 +111,10 @@ function getFieldValues(frontmatter: string, fieldName: string): string[] {
 }
 
 function walkMarkdownFiles(dir: string): string[] {
-  let entries: ReturnType<typeof readdirSync>;
+  let entries: Array<{ name: string; isDirectory(): boolean }>;
 
   try {
-    entries = readdirSync(dir, { withFileTypes: true });
+    entries = readdirSync(dir, { withFileTypes: true, encoding: 'utf8' });
   } catch {
     return [];
   }

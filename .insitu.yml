@@ -60,6 +60,10 @@ inventory:
     name: "Check for broken links"
     command: "npm run check-links"
 
+  - id: "check-astro"
+    name: "Run Astro checks"
+    command: "npm run check:astro"
+
   - id: "install-lint-tools"
     name: "Install linting and checker tools"
     command: |
@@ -128,6 +132,7 @@ waves:
       - "markdownlint"
       - "build"
       - "prettier"
+      - "check-astro"
 
   - id: "link-checker"
     name: "Worthy for trunk - post-build "

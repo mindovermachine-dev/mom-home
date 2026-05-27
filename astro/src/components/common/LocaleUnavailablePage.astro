@@ -1,0 +1,51 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+export interface Props {
+  locale: 'da';
+  englishPath: string;
+  requestedSlug: string;
+}
+
+const { locale, englishPath, requestedSlug } = Astro.props;
+
+const copy = {
+  da: {
+    metadata: {
+      title: 'Dansk side under opbygning',
+      description: 'Denne side er endnu ikke oversat til dansk.',
+    },
+    tagline: 'Dansk',
+    title: 'Denne side er endnu ikke oversat til dansk',
+    subtitle: 'Vi arbejder pa det. Du kan se siden pa engelsk i mellemtiden.',
+    primaryCta: 'Se side pa engelsk',
+    secondaryCta: 'Til dansk forside',
+    featureTitle: 'Oversaettelse pa vej',
+    featureHeading: 'Fallback for dansk sti',
+    featureDescription: `Siden /da/${requestedSlug} peger midlertidigt til den engelske version.`,
+  },
+}[locale];
+---
+
+<Layout metadata={copy.metadata}>
+  <HeroText
+    tagline={copy.tagline}
+    title={copy.title}
+    subtitle={copy.subtitle}
+    callToAction={{ text: copy.primaryCta, href: englishPath }}
+    callToAction2={{ text: copy.secondaryCta, href: '/da/' }}
+  />
+
+  <Features2
+    title={copy.featureTitle}
+    columns={1}
+    items={[
+      {
+        title: copy.featureHeading,
+        description: copy.featureDescription,
+      },
+    ]}
+  />
+</Layout>

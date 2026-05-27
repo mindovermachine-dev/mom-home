@@ -5,6 +5,14 @@ import type { AstroConfig, AstroIntegration } from 'astro';
 import configBuilder, { type Config } from './utils/configBuilder';
 import loadConfig from './utils/loadConfig';
 
+const resolveTrailingSlash = (
+  value: (Config['site'] extends infer S ? (S extends { trailingSlash?: infer T } ? T : never) : never) | undefined
+): 'always' | 'never' | 'ignore' => {
+  if (value === true || value === 'always') return 'always';
+  if (value === false || value === 'never') return 'never';
+  return 'ignore';
+};
+
 export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegration => {
   let cfg: AstroConfig;
   return {
@@ -32,7 +40,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
           site: SITE.site,
           base: SITE.base,
 
-          trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+          trailingSlash: resolveTrailingSlash(SITE.trailingSlash),
 
           vite: {
             plugins: [

@@ -4,6 +4,8 @@ import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 export interface Post {
   /** Unique ID identifying the post. */
   id: string;
+  /** Locale of the post content. */
+  locale: 'en' | 'da';
   /** URL-friendly slug derived from the post name. */
   slug: string;
   /** Fully resolved permalink, computed from the configured pattern. */
@@ -117,6 +119,7 @@ export interface Stat {
 
 export interface Item {
   title?: string;
+  subtitle?: string;
   description?: string;
   icon?: string;
   classes?: Record<string, string>;

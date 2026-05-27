@@ -20,6 +20,14 @@
         "approve": true,
         "matchCommandLine": true,
       },
+      "/^cd /workspaces/mom-home/astro && npm run check:astro$/": {
+        "approve": true,
+        "matchCommandLine": true,
+      },
+      "pushd": true,
+      "gh": true,
+      "popd": true,
+      "exit": true,
     },
   },
 }
