@@ -58,7 +58,7 @@ jobs:
         uses: devx-cafe/takt-actions/deploy-to-repo@v1
         with:
           target_repository: mindovermachine-dev/mindovermachine-dev.github.io
-          artifact_name: site-${{ github.sha }}
+          artifact_name: github-pages-${{ github.sha }}
           user_name: "Production Deployer"
           user_email: "deploy@mindovermachine.dk"
           cname: "www.mindovermachine.dk"
