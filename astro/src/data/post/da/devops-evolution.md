@@ -36,6 +36,36 @@ Samtidig modnedes observability. Prometheus, ELK-stakken og senere SRE-praksisse
 
 Det var ogsaa her, at historien om DevOps som kultur blev svær at ignorere. Nedbrydning af siloer var lige saa vigtigt som værktøjerne.
 
+```python
+# Program to check if a number is prime or not
+
+num = 29
+
+# To take input from the user
+#num = int(input("Enter a number: "))
+
+# define a flag variable
+flag = False
+
+if num == 0 or num == 1:
+    print(num, "is not a prime number")
+elif num > 1:
+    # check for factors
+    for i in range(2, num):
+        if (num % i) == 0:
+            # if factor is found, set flag to True
+            flag = True
+            # break out of loop
+            break
+
+    # check if flag is True
+    if flag:
+        print(num, "is not a prime number")
+    else:
+        print(num, "is a prime number")
+
+```
+
 ## 2020 til 2023: serverless, full-stack og DevX
 
 Serverless-platforme og managed backends sænkede barren for at sende software i drift. GitHub Codespaces, devcontainers og remote-first arbejde flyttede DevOps-perspektivet fra rene infrastrukturteams til alle udvikleres daglige arbejdsgang.

@@ -75,6 +75,6 @@
     "\\[\\^\\w+\\]", // ignore markdown footnotes
     "\\!\\[\\w+\\]", // ignore markdown images
     "^\\s*\"?[@a-zA-Z0-9_./-]+\"?\\s*:\\s", // ignore JSON/YAML keys in key-value pairs (incl. scoped npm keys)
-    "^\\s*\"?[@a-zA-Z0-9_./-]+\"?\\s*:\\s*\"?[^\"\\n]*[@/][^\"\\n]*\"?", // ignore JSON/YAML key-value pairs where the value contains '@' or
+    "^\\s*\"?[@a-zA-Z0-9_./-]+\"?\\s*:\\s*\"?[^\"\\n]*[@/-][^\"\\n]*\"?", // ignore JSON/YAML key-value pairs where the value contains '@', '/' or '-'
   ],
 }

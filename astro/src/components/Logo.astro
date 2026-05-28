@@ -1,11 +1,49 @@
 ---
+import { getImage } from 'astro:assets';
 import { SITE } from 'astrowind:config';
+
+import logoLight from '~/assets/images/mom-logo-text-transparent.png';
+import logoDark from '~/assets/images/mom-logo-text-transparent-dark.png';
+
+interface Props {
+  class?: string;
+  width?: number;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
+}
+
+const { class: className = 'h-8 w-auto shrink-0', width = 320, loading = 'eager', decoding = 'async' } = Astro.props;
+
+const light = await getImage({
+  src: logoLight,
+  width,
+  format: 'webp',
+});
+
+const dark = await getImage({
+  src: logoDark,
+  width,
+  format: 'webp',
+});
 ---
 
-<img
-  src="/mom-logo-text-transparent.png"
-  alt={SITE?.name ?? 'Mind over Machine'}
-  class="h-8 w-auto shrink-0"
-  loading="eager"
-  decoding="async"
-/>
+<>
+  <img
+    src={light.src}
+    alt={SITE?.name ?? 'Mind over Machine'}
+    width={light.attributes.width}
+    height={light.attributes.height}
+    class={`${className} dark:hidden`}
+    loading={loading}
+    decoding={decoding}
+  />
+  <img
+    src={dark.src}
+    alt={SITE?.name ?? 'Mind over Machine'}
+    width={dark.attributes.width}
+    height={dark.attributes.height}
+    class={`${className} hidden dark:block`}
+    loading={loading}
+    decoding={decoding}
+  />
+</>

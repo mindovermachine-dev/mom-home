@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import Logo from '~/components/Logo.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
@@ -14,13 +15,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <div class="flex justify-center pt-6 md:pt-10">
-    <img
-      src="/mom-logo-text-transparent.png"
-      alt="Mind over Machine"
-      class="h-20 w-auto md:h-28"
-      loading="eager"
-      decoding="async"
-    />
+    <Logo class="h-20 w-auto md:h-28" width={560} />
   </div>
 
   <Hero

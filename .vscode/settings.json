@@ -5,5 +5,8 @@
     "source.fixAll.cspell": "explicit"
   },
   "files.autoSave": "afterDelay",
-  "markdownlint.configFile": ".markdownlint-cli2.jsonc"
+  "markdownlint.configFile": ".markdownlint-cli2.jsonc",
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+  "tailwindCSS.lint.cssConflict": "ignore",
+  "css.lint.unknownAtRules": "ignore"
 }

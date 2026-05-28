@@ -18,9 +18,9 @@ metadata:
   openGraph:
     site_name: Mind over Machine
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/mom-og-default-1200x630.png'
         width: 1200
-        height: 628
+        height: 630
     type: website
   twitter:
     handle:
@@ -66,7 +66,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: 'G-T2KTNC1VRC' # null or "G-XXXXXXXXXX"
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
