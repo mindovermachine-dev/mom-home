@@ -64,6 +64,7 @@ jobs:
           name: github-pages-${{ github.sha }}
           path: astro/dist
           retention-days: 3
+          include-hidden-files: true
 
   merge-to-trunk:
     name: Merge to trunk
