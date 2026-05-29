@@ -56,8 +56,7 @@ jobs:
         run: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
 
       - name: Disable Jekyll processing in deployed github-pages artifact
-        run: touch astro/dist/.nojekyll
-
+        run: npm run write-nojekyll
       - name: Upload build artifact
         id: upload-artifact
         uses: actions/upload-artifact@v7

@@ -12,7 +12,8 @@
     "check:astro": "cd astro && npm run check:astro",
     "check-links": "linkinator . / --server-root astro/dist --recurse --skip '^https?://(?!127\\.0\\.0\\.1(?::\\d+)?/|localhost(?::\\d+)?/).*'",
     "check-links:files": "node scripts/check-links-with-sources.mjs",
-    "write-version": "printf 'Build from %s\\nRef: %s\\nCommit: %s\\n' \"${BUILD_REPO:-$(git remote get-url origin)}\" \"${BUILD_REF:-$(git branch --show-current)}\" \"${BUILD_SHA:-$(git rev-parse HEAD)}\" > astro/public/version.txt"
+    "write-version": "printf 'Build from %s\\nRef: %s\\nCommit: %s\\n' \"${BUILD_REPO:-$(git remote get-url origin)}\" \"${BUILD_REF:-$(git branch --show-current)}\" \"${BUILD_SHA:-$(git rev-parse HEAD)}\" > astro/public/version.txt",
+    "write-nojekyll": "echo \"De-jekyll-ify this static package\" > astro/dist/.nojekyll"
   },
   "devDependencies": {
     "cspell": "^6.28.0",
