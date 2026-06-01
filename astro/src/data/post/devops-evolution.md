@@ -1,8 +1,8 @@
 ---
 publishDate: 2025-12-13T00:00:00Z
 title: DevOps Evolution
-excerpt: 'What is DevOps? The answer changes over time, but the useful part is what it embraces: culture, delivery, infrastructure, observability, and now AI.'
-image: /assets/images/posts/evolution/devops-evolution.jpg
+excerpt: 'What is DevOps? The answer changes over time, but the useful part of the answer is not what is is, but what it embrases: culture, delivery, infrastructure, observability, and now AI'
+image: ~/assets/images/posts/evolution/devops-evolution.jpg
 category: Essays
 tags:
   - DevOps
@@ -15,7 +15,7 @@ pdf: true
 
 _What is DevOps?_ We have discussed that question since the concept hatched around 2008, but maybe the better move is not to over define it. Instead, reflect on what it embraces and keep the community open to change.
 
-I wrote this essay to help potential speakers decide whether a topic fits a DevOps conference. It still serves that purpose, but it also works as a guide for participants who want a feel for the range of ideas that sit under the DevOps umbrella.
+I wrote this essay to help potential speakers decide whether a topic fits a DevOps conference. It still serves that purpose, but it also works as a guide for participants who want a feel for the range of ideas that sits under the DevOps umbrella.
 
 ## The DevOps timeline
 

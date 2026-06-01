@@ -22,11 +22,11 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Laes essays',
+        text: 'Essays & Journals',
         href: '/da/essays/',
       },
       {
-        text: 'Udforsk services',
+        text: 'Tjenester',
         href: '/da/services/',
       },
     ]}
@@ -38,33 +38,50 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Vi er en non-profit fond, der samler en taenketank, et laboratorium og et praksisfaellesskab. Vi udgiver essays,
-      afholder events og leverer services, der styrker langsigtet softwareforvaltning.
+      Vi er en non-profit fond, der samler en <b>tænketank</b>, et <b>laboratorium</b> og et <b>praksisfællesskab</b>.
+      Vores mission er at udforske og dele regenerative tilgange og principper for softwareudvikling, som skaber en
+      langsigtet, balanceret værdi for mennesker, samfund og verden. Vi tror på, at software kan være en kraft for det
+      gode, når det udvikles og anvendes med omtanke og systemisk forståelse.
     </Fragment>
   </Hero>
 
   <Features
-    id="fokus"
-    tagline="Hvad vi laver"
-    title="Tre maader vi arbejder pa"
+    id="focus"
+    tagline="What we do"
+    title="Three pillars of our work"
     items={[
       {
-        title: 'Essays og faglig retning',
+        title: 'Tænketank:',
+        subtitle: 'Nytænkning og formidling',
         description:
-          'Vi skriver aabent om regenerativ softwareudvikling, systemtaenkning, etik og langsigtede leverancepraksisser.',
+          'Vi udvikler, analyserer, forsker og publicerer gratis materiale om regenerative softwareudvikling, systemtænkning, etik og langsigtede balancerede praksisser.',
         icon: 'tabler:book',
+        callToAction: {
+          text: 'Udforsk essays',
+          href: '/da/essays/',
+        },
       },
       {
-        title: 'Events og community',
+        title: 'Praksisfællesskab:',
+        subtitle: 'Legitim perifær deltagelse',
         description:
-          'Vi afholder events og samtaler, hvor praktikere afproever ideer, deler erfaringer og former en bedre softwarekultur.',
+          'Vi arrangerer events og samtaler, hvor praktikere tester idéer, deler lærdomme og formerer en bedre softwarekultur.',
         icon: 'tabler:users-group',
+        callToAction: {
+          text: 'Udforsk aktiviteter',
+          href: '/da/events/',
+        },
       },
       {
-        title: 'Services gennem laboratoriet',
+        title: 'Laboratorium:',
+        subtitle: 'Eksperimenter og medlemsengagement',
         description:
-          'Vi hjaelper organisationer med at anvende regenerative praksisser i konkrete projekter gennem samarbejdende leveranceforloeb.',
+          'Vi tester antagelser og hypoteser om regenerative principper i samarbejde med medlemmer og akademia.',
         icon: 'tabler:flask',
+        callToAction: {
+          text: 'Udforsk laboratoriumstjenester',
+          href: '/da/services/',
+        },
       },
     ]}
   />

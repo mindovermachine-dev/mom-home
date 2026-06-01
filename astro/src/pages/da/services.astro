@@ -1,0 +1,66 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Tjenester',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Services"
+    title="Tænketank og Laboratorium tjenester i regenerativ software"
+    subtitle="Rådgivning, inspiration og praksis for teams, der vil have bedre softwareresultater på lang sigt."
+  />
+
+  <Features2
+    title="Hvordan vi kan hjælpe"
+    columns={2}
+    items={[
+      {
+        title: 'Inspirational Talks',
+        description:
+          'Hvad betyder "regenerativ" - i forhold til softwareudvikling. Hvordan kan det anvendes i praksis? Hvad er fordelene? Vi tilbyder taler og keynotes for at inspirere og informere din organisation om regenerativ softwareudvikling.',
+      },
+      {
+        title: 'Produktionstræning',
+        description:
+          'Træning i _trunk-based_ udvikling, _shift-left_ kvalitetspraktikker, brug af _collaborative AI_,_ participatory design_, _No-estimates_, tilstræbe _færdige_ selvstændige komponenter og et balanceret leveranceflows.',
+      },
+      {
+        title: 'Arkitektur og systemvejledning',
+        description:
+          'I samarbejde med din organisation tilbyder vi vejledning i softwarearkitektur og designbeslutninger med fokus på langsigtede systemforhold. Forstå de systemiske implikationer af beslutninger og bevæg dig mod en socio-teknologisk balance.',
+      },
+      {
+        title: 'Facilterede workshops og hackathons',
+        description:
+          'Facilitering af arbejdende værksteder som udforsker gamle ideer i nye sammenhænge, arrangere øvelser og løse virkelige problemer.',
+      },
+      {
+        title: 'Laboratorium eksperimenter',
+        description: 'Små pilotprojekter som tester nye måder at arbejde på, før de skal skaleres ud i organisationen.',
+      },
+      {
+        title: 'Flow og value stream analysis',
+        description:
+          'Analyse af din softwareleveranceflow og value stream for at identificere _muda_, _mura_, og _muri_ for at starte din kontinuerlige forbedringsindsats.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'talt med os',
+        href: '/da/contact/',
+      },
+    ]}
+    title="Har du brug for praktisk hjælp?"
+    subtitle="Fortæl os hvor langt du er og hvad du forsøger at forbedre."
+  />
+</Layout>

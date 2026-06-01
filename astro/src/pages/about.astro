@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features2.astro';
 
 const metadata = {
   title: 'About',
@@ -11,24 +11,35 @@ const metadata = {
 <Layout metadata={metadata}>
   <HeroText tagline="About" title="Mind over Machine" subtitle="The Foundation for Regenerative Software Development" />
 
-  <Features2
-    title="Our purpose"
+  <Features
+    title="Mission"
     columns={1}
     items={[
       {
-        title: 'A non-profit foundation',
+        title: 'A commercial non-profit foundation',
         description:
-          'Mind over Machine is organized as a non-profit foundation focused on long-term regenerative software practice.',
+          'Our mission is to explore and share regenerative approaches to software development that create a net positive long-term value for people and the planet.',
+      },
+    ]}
+  />
+
+  <Features
+    title="Three Pillars"
+    columns={3}
+    items={[
+      {
+        title: 'Think Tank',
+        description:
+          'Research, analysis and dissemination of long-term systems thinking and regenerative principles within disciplines related to or derived from software and software development',
       },
       {
-        title: 'Think tank + laboratory',
-        description:
-          'We investigate ideas in public and test them in real delivery contexts so practice and theory improve together.',
+        title: 'Laboratory',
+        description: 'Development of software, tools and methods that demonstrate regenerative principles in practice.',
       },
       {
-        title: 'Community of practice',
+        title: 'Community of Practice',
         description:
-          'We build learning spaces where practitioners can share methods, challenge assumptions, and collaborate across disciplines.',
+          'Facilitation of a community of practice for practitioners, researchers, students and decision-makers with the aim of promoting regenerative software, software development and socio-technological understanding.',
       },
     ]}
   />

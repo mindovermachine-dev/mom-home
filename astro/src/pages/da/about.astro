@@ -1,34 +1,44 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features2.astro';
 
 const metadata = {
-  title: 'About',
+  title: 'Om Os',
 };
 ---
 
 <Layout metadata={metadata}>
-  <HeroText tagline="About" title="Mind over Machine" subtitle="Fonden for Regenerativ Softwareudvikling" />
+  <HeroText tagline="Om Os" title="Mind over Machine" subtitle="Fonden for Regenerativ Softwareudvikling" />
 
-  <Features2
-    title="Our purpose"
+  <Features
+    title="Mission"
     columns={1}
     items={[
       {
-        title: 'A non-profit foundation',
+        title: 'En almennyttig erhvervsdrivende fond',
         description:
-          'Mind over Machine is organized as a non-profit foundation focused on long-term regenerative software practice.',
+          'Vores overordnede formål er at afsøge, udforske, udvikle og udbrede tanker, principper, værktøjer og praksis for, hvordan software og softwareudvikling kan udføres således at det bidrager til et regenerativt paradigme, der skaber en balanceret systemisk værdi for mennesker, samfund og verden. Fonden opererer inden for en socio-teknologisk diskurs med fokus på det etiske og filosofiske møde mellem menneske og maskine samt på kvalitet i både softwareprodukter og -processer.',
+      },
+    ]}
+  />
+  <Features
+    title="Tre Søjler"
+    columns={3}
+    items={[
+      {
+        title: 'Tænketank',
+        description:
+          'Forskning, analyse og formidling af langsigtet systemtænkning og regenerative principper inden for discipliner relateret til eller afledt af software og softwareudvikling',
       },
       {
-        title: 'Think tank + laboratory',
-        description:
-          'We investigate ideas in public and test them in real delivery contexts so practice and theory improve together.',
+        title: 'Laboratorium',
+        description: 'Udvikling af software, værktøjer og metoder der demonstrerer regenerative principper i praksis.',
       },
       {
-        title: 'Community of practice',
+        title: 'Praksisfællesskab',
         description:
-          'We build learning spaces where practitioners can share methods, challenge assumptions, and collaborate across disciplines.',
+          'Facilitering af et praksisfællesskab <em>(Community of Practice)</em> for praktikere, forskere, studerende og beslutningstagere med henblik på at fremme regenerativ software, softwareudvikling og teknologiforståelse.',
       },
     ]}
   />

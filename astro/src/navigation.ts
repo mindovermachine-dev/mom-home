@@ -4,18 +4,22 @@ export const headerData = {
   links: [
     {
       text: 'Essays',
+      translations: { da: 'Essays' },
       href: getBlogPermalink(),
     },
     {
       text: 'Events',
+      translations: { da: 'Begivenheder' },
       href: getPermalink('/events'),
     },
     {
       text: 'Services',
+      translations: { da: 'Tjenester' },
       href: getPermalink('/services'),
     },
     {
       text: 'About',
+      translations: { da: 'Om os' },
       href: getPermalink('/about'),
     },
     {
@@ -24,7 +28,7 @@ export const headerData = {
       href: getPermalink('/contact'),
     },
   ],
-  actions: [{ text: 'Get in touch', href: getPermalink('/contact') }],
+  actions: [{ text: 'Get in touch', translations: { da: 'Tal med os' }, href: getPermalink('/contact') }],
 };
 
 export const footerData = {
@@ -32,19 +36,20 @@ export const footerData = {
     {
       title: 'Mind over Machine',
       links: [
-        { text: 'Home', href: getPermalink('/') },
-        { text: 'Essays', href: getBlogPermalink() },
-        { text: 'Events', href: getPermalink('/events') },
-        { text: 'Services', href: getPermalink('/services') },
+        { text: 'Home', translations: { da: 'Hjem' }, href: getPermalink('/') },
+        { text: 'Essays', translations: { da: 'Essays' }, href: getBlogPermalink() },
+        { text: 'Events', translations: { da: 'Begivenheder' }, href: getPermalink('/events') },
+        { text: 'Services', translations: { da: 'Tjenester' }, href: getPermalink('/services') },
       ],
     },
     {
       title: 'Organization',
+      translations: { da: 'Organisation' },
       links: [
-        { text: 'About', href: getPermalink('/about') },
+        { text: 'About', translations: { da: 'Om os' }, href: getPermalink('/about') },
         { text: 'Contact', href: getPermalink('/contact'), translations: { da: 'Kontakt' } },
-        { text: 'Terms', href: getPermalink('/terms') },
-        { text: 'Privacy', href: getPermalink('/privacy') },
+        { text: 'Terms', href: getPermalink('/terms'), translations: { da: 'Betingelser' } },
+        { text: 'Privacy', href: getPermalink('/privacy'), translations: { da: 'Privatliv' } },
       ],
     },
     {
