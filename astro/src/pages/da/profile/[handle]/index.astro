@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
+import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import { fetchPosts } from '~/utils/blog';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
@@ -50,35 +51,51 @@ const roleLabel = {
 <Layout metadata={metadata} localeFallback="da">
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <header class="mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{profile.name}</h1>
-      {profile.bio && <p class="mt-4 text-lg text-muted dark:text-slate-400">{profile.bio}</p>}
-      <div class="mt-4 flex flex-wrap gap-4 text-sm">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
         {
-          profile.website && (
-            <a class="hover:underline" href={profile.website} rel="noopener noreferrer" target="_blank">
-              Website
-            </a>
+          profile.image && (
+            <Image
+              src={profile.image}
+              alt={`${profile.name} portrait`}
+              width={160}
+              height={160}
+              layout="fixed"
+              class="rounded-xl"
+            />
           )
         }
-        {
-          profile.github && (
-            <a
-              class="hover:underline"
-              href={`https://github.com/${profile.github}`}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              GitHub
-            </a>
-          )
-        }
-        {
-          profile.linkedin && (
-            <a class="hover:underline" href={profile.linkedin} rel="noopener noreferrer" target="_blank">
-              LinkedIn
-            </a>
-          )
-        }
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{profile.name}</h1>
+          {profile.bio && <p class="mt-4 text-lg text-muted dark:text-slate-400">{profile.bio}</p>}
+          <div class="mt-4 flex flex-wrap gap-4 text-sm">
+            {
+              profile.website && (
+                <a class="hover:underline" href={profile.website} rel="noopener noreferrer" target="_blank">
+                  Website
+                </a>
+              )
+            }
+            {
+              profile.github && (
+                <a
+                  class="hover:underline"
+                  href={`https://github.com/${profile.github}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  GitHub
+                </a>
+              )
+            }
+            {
+              profile.linkedin && (
+                <a class="hover:underline" href={profile.linkedin} rel="noopener noreferrer" target="_blank">
+                  LinkedIn
+                </a>
+              )
+            }
+          </div>
+        </div>
       </div>
     </header>
 
