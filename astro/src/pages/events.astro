@@ -7,33 +7,6 @@ import { getPermalink } from '~/utils/permalinks';
 
 const events = await fetchEvents();
 
-const dateFormatter = new Intl.DateTimeFormat('en-GB', {
-  dateStyle: 'medium',
-  timeStyle: 'short',
-  timeZone: 'UTC',
-});
-
-const dateOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
-  dateStyle: 'medium',
-  timeZone: 'UTC',
-});
-
-const timeOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
-  timeStyle: 'short',
-  timeZone: 'UTC',
-});
-
-const isSameDay = (a: Date, b: Date) =>
-  a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate();
-
-const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
-  if (!endDate) return dateFormatter.format(eventDate);
-  if (isSameDay(eventDate, endDate)) {
-    return `${dateOnlyFormatter.format(eventDate)}, ${timeOnlyFormatter.format(eventDate)} - ${timeOnlyFormatter.format(endDate)}`;
-  }
-  return `${dateFormatter.format(eventDate)} - ${dateFormatter.format(endDate)}`;
-};
-
 const metadata = {
   title: 'Events',
 };
@@ -54,6 +27,10 @@ const metadata = {
           <li
             class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden"
             data-event-date={event.eventDate.toISOString()}
+            data-event-dates={JSON.stringify(
+              event.dates.map((occurrence) => ({ date: occurrence.date.toISOString(), duration: occurrence.duration }))
+            )}
+            data-event-end-date={event.endDate?.toISOString()}
           >
             <a
               class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
@@ -73,9 +50,7 @@ const metadata = {
               )}
               <div class="p-5">
                 <h3 class="text-xl font-bold font-heading">{event.title}</h3>
-                <p class="mt-2 text-sm text-muted dark:text-slate-400">
-                  {formatEventDateRange(event.eventDate, event.endDate)}
-                </p>
+                <div class="mt-2 text-sm text-muted dark:text-slate-400" data-event-date-output />
                 <p class="mt-1 text-sm text-muted dark:text-slate-400">
                   {typeof event.location === 'string'
                     ? event.location
@@ -121,17 +96,105 @@ const metadata = {
       return;
     }
 
+    const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+      timeZone: 'UTC',
+    });
+
+    const dateOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'medium',
+      timeZone: 'UTC',
+    });
+
+    const timeOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
+      timeStyle: 'short',
+      timeZone: 'UTC',
+    });
+
+    const isSameDay = (a, b) =>
+      a.getUTCFullYear() === b.getUTCFullYear() &&
+      a.getUTCMonth() === b.getUTCMonth() &&
+      a.getUTCDate() === b.getUTCDate();
+
+    const formatRange = (eventDate, endDate) => {
+      if (!endDate) return dateFormatter.format(eventDate);
+      if (isSameDay(eventDate, endDate)) {
+        return `${dateOnlyFormatter.format(eventDate)}, ${timeOnlyFormatter.format(eventDate)} - ${timeOnlyFormatter.format(endDate)}`;
+      }
+      return `${dateFormatter.format(eventDate)} - ${dateFormatter.format(endDate)}`;
+    };
+
+    const renderDateOutput = (card, occurrences, endDateIso) => {
+      const output = card.querySelector('[data-event-date-output]');
+      if (!output) return;
+
+      output.textContent = '';
+
+      if (occurrences.length === 0) return;
+
+      if (occurrences.length === 1) {
+        const dateValue = new Date(occurrences[0].date);
+        const hasDuration = typeof occurrences[0].duration === 'string' && occurrences[0].duration.length > 0;
+        const text = hasDuration
+          ? `${dateFormatter.format(dateValue)} (${occurrences[0].duration})`
+          : formatRange(dateValue, endDateIso ? new Date(endDateIso) : undefined);
+
+        output.textContent = text;
+        return;
+      }
+
+      const list = document.createElement('ul');
+      list.className = 'space-y-1';
+      for (const occurrence of occurrences) {
+        const item = document.createElement('li');
+        const dateValue = new Date(occurrence.date);
+        const hasDuration = typeof occurrence.duration === 'string' && occurrence.duration.length > 0;
+        item.textContent = hasDuration
+          ? `${dateFormatter.format(dateValue)} (${occurrence.duration})`
+          : dateFormatter.format(dateValue);
+        list.append(item);
+      }
+      output.append(list);
+    };
+
     const now = Date.now();
     const cards = Array.from(upcomingList.querySelectorAll('[data-event-date]'));
 
     cards.forEach((card) => {
-      const dateString = card.getAttribute('data-event-date');
-      if (!dateString) return;
+      const eventDatesRaw = card.getAttribute('data-event-dates');
+      const endDateIso = card.getAttribute('data-event-end-date');
+      const parsedDates = eventDatesRaw ? JSON.parse(eventDatesRaw) : [];
+      const occurrences = Array.isArray(parsedDates) ? parsedDates : [];
 
-      const eventTime = new Date(dateString).getTime();
-      if (!Number.isNaN(eventTime) && eventTime < now) {
-        pastList.append(card);
+      const upcomingOccurrences = occurrences.filter((occurrence) => {
+        const eventTime = new Date(occurrence.date).getTime();
+        return !Number.isNaN(eventTime) && eventTime >= now;
+      });
+
+      const pastOccurrences = occurrences.filter((occurrence) => {
+        const eventTime = new Date(occurrence.date).getTime();
+        return !Number.isNaN(eventTime) && eventTime < now;
+      });
+
+      if (upcomingOccurrences.length > 0) {
+        renderDateOutput(card, upcomingOccurrences, endDateIso);
       }
+
+      if (pastOccurrences.length > 0 && upcomingOccurrences.length > 0) {
+        const pastCard = card.cloneNode(true);
+        renderDateOutput(pastCard, pastOccurrences, endDateIso);
+        pastList.append(pastCard);
+        return;
+      }
+
+      if (pastOccurrences.length > 0) {
+        renderDateOutput(card, pastOccurrences, endDateIso);
+        pastList.append(card);
+        return;
+      }
+
+      card.remove();
     });
 
     upcomingEmpty.classList.toggle('hidden', upcomingList.children.length > 0);

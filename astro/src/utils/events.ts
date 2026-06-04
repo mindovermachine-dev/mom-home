@@ -6,13 +6,26 @@ import { cleanSlug } from '~/utils/permalinks';
 const getNormalizedEvent = async (event: CollectionEntry<'event'>): Promise<Event> => {
   const { id, data } = event;
   const { Content } = await render(event);
+  const dates = (data.dates ?? [])
+    .map((occurrence) => ({
+      date: new Date(occurrence.date),
+      duration: occurrence.duration,
+    }))
+    .sort((a, b) => a.date.valueOf() - b.date.valueOf());
+
+  const fallbackDate = data.eventDate ? new Date(data.eventDate) : dates[0]?.date;
+
+  if (!fallbackDate) {
+    throw new Error(`Event "${id}" is missing both eventDate and dates`);
+  }
 
   return {
     id,
     slug: cleanSlug(id),
     title: data.title,
-    eventDate: new Date(data.eventDate),
-    endDate: data.endDate ? new Date(data.endDate) : undefined,
+    eventDate: fallbackDate,
+    endDate: data.endDate && dates.length === 0 ? new Date(data.endDate) : undefined,
+    dates: dates.length > 0 ? dates : [{ date: fallbackDate }],
     location: data.location,
     excerpt: data.excerpt,
     image: data.image,

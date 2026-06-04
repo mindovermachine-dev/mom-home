@@ -55,7 +55,14 @@ export interface EventLocation {
 
 export interface EventSignup {
   signupurl: string;
+  caption?: string;
   icon?: string;
+  repeat?: boolean;
+}
+
+export interface EventOccurrence {
+  date: Date;
+  duration?: string;
 }
 
 export interface Event {
@@ -66,6 +73,7 @@ export interface Event {
   title: string;
   eventDate: Date;
   endDate?: Date;
+  dates: EventOccurrence[];
   location: string | EventLocation;
   excerpt?: string;
   image?: ImageMetadata | string;

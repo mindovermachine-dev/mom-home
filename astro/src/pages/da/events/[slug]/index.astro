@@ -62,6 +62,8 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
   }
   return `${dateTimeFormatter.format(eventDate)} \u2013 ${dateTimeFormatter.format(endDate)}`;
 };
+
+const signupCaption = event.signup?.caption ?? 'Sign up';
 ---
 
 <Layout metadata={metadata} localeFallback="da">
@@ -69,7 +71,21 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
     <a class="inline-flex text-sm hover:underline" href={getPermalink('da/events')}>← Back to Events</a>
     <header class="mt-4">
       <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{event.title}</h1>
-      <p class="mt-4 text-lg text-muted dark:text-slate-400">{formatEventDateRange(event.eventDate, event.endDate)}</p>
+      {
+        event.dates.length > 1 ? (
+          <ul class="mt-4 text-lg text-muted dark:text-slate-400 list-disc pl-5">
+            {event.dates.map((occurrence) => (
+              <li>{`${dateTimeFormatter.format(occurrence.date)}${occurrence.duration ? ` (${occurrence.duration})` : ''}`}</li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mt-4 text-lg text-muted dark:text-slate-400">
+            {event.dates[0]?.duration
+              ? `${dateTimeFormatter.format(event.dates[0].date)} (${event.dates[0].duration})`
+              : formatEventDateRange(event.eventDate, event.endDate)}
+          </p>
+        )
+      }
       <div class="mt-2 text-muted dark:text-slate-400">
         {
           typeof event.location === 'string' ? (
@@ -109,7 +125,7 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
                   class="rounded-full"
                 />
               )}
-              Sign up
+              {signupCaption}
             </a>
           </div>
         )
@@ -128,6 +144,30 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
       event.Content && (
         <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
           <event.Content />
+        </div>
+      )
+    }
+    {
+      event.signup?.signupurl && event.signup.repeat && (
+        <div class="mt-10 border-t border-gray-200 dark:border-slate-700 pt-8">
+          <a
+            href={event.signup.signupurl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary inline-flex items-center gap-2"
+          >
+            {event.signup.icon && (
+              <Image
+                src={event.signup.icon}
+                alt="Signup platform"
+                width={40}
+                height={40}
+                layout="fixed"
+                class="rounded-full"
+              />
+            )}
+            {signupCaption}
+          </a>
         </div>
       )
     }
