@@ -71,8 +71,6 @@ export interface Event {
   /** URL-friendly slug derived from the event ID. */
   slug: string;
   title: string;
-  eventDate: Date;
-  endDate?: Date;
   dates: EventOccurrence[];
   location: string | EventLocation;
   excerpt?: string;

@@ -82,44 +82,37 @@ const profileCollection = defineCollection({
 
 const eventCollection = defineCollection({
   loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/event' }),
-  schema: z
-    .object({
-      title: z.string(),
-      eventDate: z.date().optional(),
-      endDate: z.date().optional(),
-      dates: z
-        .array(
-          z.object({
-            date: z.date(),
-            duration: z.string().optional(),
-          })
-        )
-        .optional(),
-      location: z.union([
-        z.string(),
+  schema: z.object({
+    title: z.string(),
+    dates: z
+      .array(
         z.object({
-          venue: z.string().optional(),
-          address: z.string().optional(),
-          mapurl: z.string().optional(),
-        }),
-      ]),
-      excerpt: z.string().optional(),
-      image: z.string().optional(),
-      signup: z
-        .object({
-          signupurl: z.string(),
-          caption: z.string().optional(),
-          icon: z.string().optional(),
-          repeat: z.boolean().optional(),
+          date: z.date(),
+          duration: z.string().optional(),
         })
-        .optional(),
-      draft: z.boolean().optional(),
-      metadata: metadataDefinition(),
-    })
-    .refine((data) => data.eventDate || (data.dates?.length ?? 0) > 0, {
-      message: 'Either eventDate or dates is required',
-      path: ['eventDate'],
-    }),
+      )
+      .min(1),
+    location: z.union([
+      z.string(),
+      z.object({
+        venue: z.string().optional(),
+        address: z.string().optional(),
+        mapurl: z.string().optional(),
+      }),
+    ]),
+    excerpt: z.string().optional(),
+    image: z.string().optional(),
+    signup: z
+      .object({
+        signupurl: z.string(),
+        caption: z.string().optional(),
+        icon: z.string().optional(),
+        repeat: z.boolean().optional(),
+      })
+      .optional(),
+    draft: z.boolean().optional(),
+    metadata: metadataDefinition(),
+  }),
 });
 
 export const collections = {

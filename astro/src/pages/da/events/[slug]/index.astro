@@ -36,32 +36,11 @@ const metadata = {
     : undefined,
 };
 
-const dateOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
-  dateStyle: 'full',
-  timeZone: 'UTC',
-});
-
-const timeOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
-  timeStyle: 'short',
-  timeZone: 'UTC',
-});
-
 const dateTimeFormatter = new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'full',
   timeStyle: 'short',
   timeZone: 'UTC',
 });
-
-const isSameDay = (a: Date, b: Date) =>
-  a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate();
-
-const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
-  if (!endDate) return dateTimeFormatter.format(eventDate);
-  if (isSameDay(eventDate, endDate)) {
-    return `${dateOnlyFormatter.format(eventDate)} ${timeOnlyFormatter.format(eventDate)} \u2013 ${timeOnlyFormatter.format(endDate)}`;
-  }
-  return `${dateTimeFormatter.format(eventDate)} \u2013 ${dateTimeFormatter.format(endDate)}`;
-};
 
 const signupCaption = event.signup?.caption ?? 'Sign up';
 ---
@@ -80,9 +59,8 @@ const signupCaption = event.signup?.caption ?? 'Sign up';
           </ul>
         ) : (
           <p class="mt-4 text-lg text-muted dark:text-slate-400">
-            {event.dates[0]?.duration
-              ? `${dateTimeFormatter.format(event.dates[0].date)} (${event.dates[0].duration})`
-              : formatEventDateRange(event.eventDate, event.endDate)}
+            {dateTimeFormatter.format(event.dates[0].date)}
+            {event.dates[0].duration ? ` (${event.dates[0].duration})` : ''}
           </p>
         )
       }
