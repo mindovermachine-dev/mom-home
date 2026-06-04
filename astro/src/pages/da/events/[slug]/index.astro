@@ -25,6 +25,15 @@ const metadata = {
   title: event.title,
   description: event.excerpt,
   canonical: String(getCanonical(getPermalink(`da/events/${event.slug}`))),
+  openGraph: event.image
+    ? {
+        images: [
+          {
+            url: typeof event.image === 'string' ? event.image : event.image.src,
+          },
+        ],
+      }
+    : undefined,
 };
 
 const dateOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
@@ -94,8 +103,8 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
                 <Image
                   src={event.signup.icon}
                   alt="Signup platform"
-                  width={22}
-                  height={22}
+                  width={40}
+                  height={40}
                   layout="fixed"
                   class="rounded-full"
                 />
