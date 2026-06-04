@@ -9,7 +9,7 @@ tags:
   - culture
   - CI/CD
   - DevX
-author: Lars Kruse
+author: lakruzz
 pdf: true
 ---
 

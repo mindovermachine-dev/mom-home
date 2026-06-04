@@ -61,11 +61,26 @@ const postCollection = defineCollection({
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
+    coauthor: z.string().optional(),
+    reviewers: z.array(z.string()).optional(),
 
     metadata: metadataDefinition(),
   }),
 });
 
+const profileCollection = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/profile' }),
+  schema: z.object({
+    name: z.string(),
+    bio: z.string().optional(),
+    image: z.string().optional(),
+    github: z.string().optional(),
+    linkedin: z.string().optional(),
+    website: z.string().optional(),
+  }),
+});
+
 export const collections = {
   post: postCollection,
+  profile: profileCollection,
 };
