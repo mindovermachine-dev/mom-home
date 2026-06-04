@@ -1,5 +1,6 @@
 ---
 import type { ResolvedProfileReference } from '~/types';
+import { getPermalink } from '~/utils/permalinks';
 
 export interface Props {
   label: string;
@@ -8,8 +9,8 @@ export interface Props {
 
 const { label, entries } = Astro.props;
 
-const getProfileLink = ({ profile }: ResolvedProfileReference) =>
-  profile?.linkedin || (profile?.github ? `https://github.com/${profile.github}` : profile?.website);
+const getProfileLink = ({ id, profile }: ResolvedProfileReference) =>
+  profile ? getPermalink(`profile/${id}`) : undefined;
 ---
 
 <span>

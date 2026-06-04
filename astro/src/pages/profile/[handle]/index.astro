@@ -1,0 +1,109 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchPosts } from '~/utils/blog';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { buildProfileRelationsFromPosts } from '~/utils/profiles';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const [profiles, posts] = await Promise.all([getCollection('profile'), fetchPosts()]);
+  const relationsByProfile = buildProfileRelationsFromPosts(posts);
+
+  return await Promise.all(
+    profiles.map(async (profileEntry) => {
+      const { Content } = await render(profileEntry);
+
+      return {
+        params: { handle: profileEntry.id },
+        props: {
+          profileId: profileEntry.id,
+          profile: profileEntry.data,
+          ProfileContent: Content,
+          relations: relationsByProfile[profileEntry.id] || [],
+        },
+      };
+    })
+  );
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { profileId, profile, ProfileContent, relations } = Astro.props as Props;
+
+const metadata = {
+  title: profile.name,
+  description: profile.bio,
+  canonical: String(getCanonical(getPermalink(`profile/${profileId}`))),
+};
+
+const roleLabel = {
+  author: 'Author',
+  coauthor: 'Coauthor',
+  reviewer: 'Reviewer',
+} as const;
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <header class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{profile.name}</h1>
+      {profile.bio && <p class="mt-4 text-lg text-muted dark:text-slate-400">{profile.bio}</p>}
+      <div class="mt-4 flex flex-wrap gap-4 text-sm">
+        {
+          profile.website && (
+            <a class="hover:underline" href={profile.website} rel="noopener noreferrer" target="_blank">
+              Website
+            </a>
+          )
+        }
+        {
+          profile.github && (
+            <a
+              class="hover:underline"
+              href={`https://github.com/${profile.github}`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          )
+        }
+        {
+          profile.linkedin && (
+            <a class="hover:underline" href={profile.linkedin} rel="noopener noreferrer" target="_blank">
+              LinkedIn
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
+      <ProfileContent />
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold font-heading">Blogs</h2>
+      {
+        relations.length > 0 ? (
+          <ul class="mt-4 list-disc pl-6 space-y-2">
+            {relations.map((relation) => (
+              <li>
+                <a class="hover:underline" href={getPermalink(relation.permalink, 'post')}>
+                  {relation.title}
+                </a>{' '}
+                <span class="text-sm text-muted dark:text-slate-400">({roleLabel[relation.role]})</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mt-4 text-muted dark:text-slate-400">No blog relations found for this profile yet.</p>
+        )
+      }
+    </section>
+  </section>
+</Layout>
