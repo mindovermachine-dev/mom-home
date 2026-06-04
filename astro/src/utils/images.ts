@@ -8,9 +8,7 @@ let _localImages: Record<string, () => Promise<unknown>> | undefined;
 const loadLocalImages = () => {
   if (_localImages) return _localImages;
   try {
-    _localImages = import.meta.glob(
-      '~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}'
-    );
+    _localImages = import.meta.glob('~/assets/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
   } catch {
     _localImages = {};
   }
@@ -31,7 +29,7 @@ export const findImage = async (
   if (typeof imagePath !== 'string') return imagePath;
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/'))
     return imagePath;
-  if (!imagePath.startsWith('~/assets/images')) return imagePath;
+  if (!imagePath.startsWith('~/assets/')) return imagePath;
 
   const images = loadLocalImages();
   const key = imagePath.replace('~/', '/src/');

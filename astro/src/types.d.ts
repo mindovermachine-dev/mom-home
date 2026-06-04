@@ -47,6 +47,40 @@ export interface Profile {
   website?: string;
 }
 
+export interface EventLocation {
+  venue?: string;
+  address?: string;
+  mapurl?: string;
+}
+
+export interface EventSignup {
+  signupurl: string;
+  caption?: string;
+  icon?: string;
+  repeat?: boolean;
+}
+
+export interface EventOccurrence {
+  date: Date;
+  duration?: string;
+}
+
+export interface Event {
+  /** Unique ID identifying the event. */
+  id: string;
+  /** URL-friendly slug derived from the event ID. */
+  slug: string;
+  title: string;
+  dates: EventOccurrence[];
+  location: string | EventLocation;
+  excerpt?: string;
+  image?: ImageMetadata | string;
+  signup?: EventSignup;
+  metadata?: MetaData;
+  draft?: boolean;
+  Content?: AstroComponentFactory;
+}
+
 export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer';
 
 export type ProfileRelationSourceType = 'post' | 'event';

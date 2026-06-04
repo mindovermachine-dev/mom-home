@@ -1,7 +1,39 @@
 ---
+import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import { fetchEvents } from '~/utils/events';
+import { getPermalink } from '~/utils/permalinks';
+
+const events = await fetchEvents();
+const now = Date.now();
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const splitEvents = events.map((event) => {
+  const upcomingDates = event.dates.filter((occurrence) => occurrence.date.getTime() >= now);
+  const pastDates = event.dates.filter((occurrence) => occurrence.date.getTime() < now);
+
+  return {
+    event,
+    upcomingDates,
+    pastDates,
+  };
+});
+
+const upcomingEvents = splitEvents
+  .filter((entry) => entry.upcomingDates.length > 0)
+  .sort((a, b) => a.upcomingDates[0].date.valueOf() - b.upcomingDates[0].date.valueOf());
+
+const pastEvents = splitEvents
+  .filter((entry) => entry.pastDates.length > 0)
+  .sort(
+    (a, b) => b.pastDates[b.pastDates.length - 1].date.valueOf() - a.pastDates[a.pastDates.length - 1].date.valueOf()
+  );
 
 const metadata = {
   title: 'Events',
@@ -12,17 +44,131 @@ const metadata = {
   <HeroText
     tagline="Events"
     title="Events and community activities"
-    subtitle="A lightweight events overview for the MVP."
+    subtitle="Upcoming and past events from the Mind over Machine community."
   />
 
-  <Features2
-    title="Upcoming"
-    columns={1}
-    items={[
-      {
-        title: 'Program to be announced',
-        description: 'This page will list upcoming events, workshops, and community sessions as we publish them.',
-      },
-    ]}
-  />
+  <section class="px-6 sm:px-6 pb-12 sm:pb-16 lg:pb-20 mx-auto max-w-5xl">
+    <h2 class="text-2xl md:text-3xl font-bold font-heading">Upcoming Events</h2>
+    {
+      upcomingEvents.length > 0 ? (
+        <ul id="events-upcoming-list" class="mt-6 grid gap-6">
+          {upcomingEvents.map(({ event, upcomingDates }) => (
+            <li class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden">
+              <a
+                class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                href={getPermalink(`events/${event.slug}`)}
+              >
+                {event.image && (
+                  <div class="sm:w-72 shrink-0 overflow-hidden">
+                    <Image
+                      src={event.image}
+                      alt={`${event.title} event image`}
+                      width={600}
+                      height={338}
+                      layout="cover"
+                      style="width:100%;height:100%"
+                    />
+                  </div>
+                )}
+                <div class="p-5">
+                  <h3 class="text-xl font-bold font-heading">{event.title}</h3>
+                  <div class="mt-2 text-sm text-muted dark:text-slate-400">
+                    {upcomingDates.length === 1 ? (
+                      <p>
+                        {dateFormatter.format(upcomingDates[0].date)}
+                        {upcomingDates[0].duration ? ` (${upcomingDates[0].duration})` : ''}
+                      </p>
+                    ) : (
+                      <ul class="space-y-1">
+                        {upcomingDates.map((occurrence) => (
+                          <li>
+                            {dateFormatter.format(occurrence.date)}
+                            {occurrence.duration ? ` (${occurrence.duration})` : ''}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <p class="mt-1 text-sm text-muted dark:text-slate-400">
+                    {typeof event.location === 'string'
+                      ? event.location
+                      : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
+                  </p>
+                  {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p id="events-upcoming-empty" class="mt-6 text-muted dark:text-slate-400">
+          No upcoming events right now.
+        </p>
+      )
+    }
+
+    {
+      pastEvents.length > 0 && (
+        <details class="mt-10 group">
+          <summary class="inline-flex cursor-pointer list-none items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800">
+            <span class="group-open:hidden">See Past Events</span>
+            <span class="hidden group-open:inline">Hide Past Events</span>
+          </summary>
+
+          <section class="mt-6">
+            <h2 class="text-2xl md:text-3xl font-bold font-heading">Past Events</h2>
+            <ul id="events-past-list" class="mt-6 grid gap-6">
+              {pastEvents.map(({ event, pastDates }) => (
+                <li class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden">
+                  <a
+                    class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                    href={getPermalink(`events/${event.slug}`)}
+                  >
+                    {event.image && (
+                      <div class="sm:w-72 shrink-0 overflow-hidden">
+                        <Image
+                          src={event.image}
+                          alt={`${event.title} event image`}
+                          width={600}
+                          height={338}
+                          layout="cover"
+                          style="width:100%;height:100%"
+                        />
+                      </div>
+                    )}
+                    <div class="p-5">
+                      <h3 class="text-xl font-bold font-heading">{event.title}</h3>
+                      <div class="mt-2 text-sm text-muted dark:text-slate-400">
+                        {pastDates.length === 1 ? (
+                          <p>
+                            {dateFormatter.format(pastDates[0].date)}
+                            {pastDates[0].duration ? ` (${pastDates[0].duration})` : ''}
+                          </p>
+                        ) : (
+                          <ul class="space-y-1">
+                            {pastDates.map((occurrence) => (
+                              <li>
+                                {dateFormatter.format(occurrence.date)}
+                                {occurrence.duration ? ` (${occurrence.duration})` : ''}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                      <p class="mt-1 text-sm text-muted dark:text-slate-400">
+                        {typeof event.location === 'string'
+                          ? event.location
+                          : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
+                      </p>
+                      {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </details>
+      )
+    }
+  </section>
 </Layout>

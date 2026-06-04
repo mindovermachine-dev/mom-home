@@ -1,0 +1,153 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+
+import Image from '~/components/common/Image.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchEvents } from '~/utils/events';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const events = await fetchEvents();
+
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { event } = Astro.props as Props;
+
+const metadata = {
+  title: event.title,
+  description: event.excerpt,
+  canonical: String(getCanonical(getPermalink(`events/${event.slug}`))),
+  openGraph: event.image
+    ? {
+        images: [
+          {
+            url: typeof event.image === 'string' ? event.image : event.image.src,
+          },
+        ],
+      }
+    : undefined,
+};
+
+const dateTimeFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'full',
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const signupCaption = event.signup?.caption ?? 'Sign up';
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <a class="inline-flex text-sm hover:underline" href={getPermalink('events')}>← Back to Events</a>
+    <header class="mt-4">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{event.title}</h1>
+      {
+        event.dates.length > 1 ? (
+          <ul class="mt-4 text-lg text-muted dark:text-slate-400 list-disc pl-5">
+            {event.dates.map((occurrence) => (
+              <li>{`${dateTimeFormatter.format(occurrence.date)}${occurrence.duration ? ` (${occurrence.duration})` : ''}`}</li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mt-4 text-lg text-muted dark:text-slate-400">
+            {dateTimeFormatter.format(event.dates[0].date)}
+            {event.dates[0].duration ? ` (${event.dates[0].duration})` : ''}
+          </p>
+        )
+      }
+      <div class="mt-2 text-muted dark:text-slate-400">
+        {
+          typeof event.location === 'string' ? (
+            <p>{event.location}</p>
+          ) : (
+            <>
+              {event.location.venue && <p class="font-medium">{event.location.venue}</p>}
+              {event.location.address &&
+                (event.location.mapurl ? (
+                  <a href={event.location.mapurl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                    {event.location.address}
+                  </a>
+                ) : (
+                  <p>{event.location.address}</p>
+                ))}
+            </>
+          )
+        }
+      </div>
+      {event.excerpt && <p class="mt-4 text-lg text-muted dark:text-slate-400">{event.excerpt}</p>}
+      {
+        event.signup?.signupurl && (
+          <div class="mt-6">
+            <a
+              href={event.signup.signupurl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center gap-2"
+            >
+              {event.signup.icon && (
+                <Image
+                  src={event.signup.icon}
+                  alt="Signup platform"
+                  width={40}
+                  height={40}
+                  layout="fixed"
+                  class="rounded-full"
+                />
+              )}
+              {signupCaption}
+            </a>
+          </div>
+        )
+      }
+    </header>
+
+    {
+      event.image && (
+        <div class="mt-8 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700">
+          <Image src={event.image} alt={`${event.title} event image`} width={1200} height={675} layout="responsive" />
+        </div>
+      )
+    }
+
+    {
+      event.Content && (
+        <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
+          <event.Content />
+        </div>
+      )
+    }
+    {
+      event.signup?.signupurl && event.signup.repeat && (
+        <div class="mt-10 border-t border-gray-200 dark:border-slate-700 pt-8">
+          <a
+            href={event.signup.signupurl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary inline-flex items-center gap-2"
+          >
+            {event.signup.icon && (
+              <Image
+                src={event.signup.icon}
+                alt="Signup platform"
+                width={40}
+                height={40}
+                layout="fixed"
+                class="rounded-full"
+              />
+            )}
+            {signupCaption}
+          </a>
+        </div>
+      )
+    }
+  </section>
+</Layout>
