@@ -27,14 +27,32 @@ const metadata = {
   canonical: String(getCanonical(getPermalink(`da/events/${event.slug}`))),
 };
 
-const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+const dateOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'full',
+  timeZone: 'UTC',
+});
+
+const timeOnlyFormatter = new Intl.DateTimeFormat('en-GB', {
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const dateTimeFormatter = new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'full',
   timeStyle: 'short',
   timeZone: 'UTC',
 });
 
-const formatEventDateRange = (eventDate: Date, endDate?: Date) =>
-  endDate ? `${dateFormatter.format(eventDate)} - ${dateFormatter.format(endDate)}` : dateFormatter.format(eventDate);
+const isSameDay = (a: Date, b: Date) =>
+  a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate();
+
+const formatEventDateRange = (eventDate: Date, endDate?: Date) => {
+  if (!endDate) return dateTimeFormatter.format(eventDate);
+  if (isSameDay(eventDate, endDate)) {
+    return `${dateOnlyFormatter.format(eventDate)} ${timeOnlyFormatter.format(eventDate)} \u2013 ${timeOnlyFormatter.format(endDate)}`;
+  }
+  return `${dateTimeFormatter.format(eventDate)} \u2013 ${dateTimeFormatter.format(endDate)}`;
+};
 ---
 
 <Layout metadata={metadata} localeFallback="da">
@@ -43,8 +61,50 @@ const formatEventDateRange = (eventDate: Date, endDate?: Date) =>
     <header class="mt-4">
       <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{event.title}</h1>
       <p class="mt-4 text-lg text-muted dark:text-slate-400">{formatEventDateRange(event.eventDate, event.endDate)}</p>
-      <p class="mt-2 text-muted dark:text-slate-400">{event.location}</p>
+      <div class="mt-2 text-muted dark:text-slate-400">
+        {
+          typeof event.location === 'string' ? (
+            <p>{event.location}</p>
+          ) : (
+            <>
+              {event.location.venue && <p class="font-medium">{event.location.venue}</p>}
+              {event.location.address &&
+                (event.location.mapurl ? (
+                  <a href={event.location.mapurl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                    {event.location.address}
+                  </a>
+                ) : (
+                  <p>{event.location.address}</p>
+                ))}
+            </>
+          )
+        }
+      </div>
       {event.excerpt && <p class="mt-4 text-lg text-muted dark:text-slate-400">{event.excerpt}</p>}
+      {
+        event.signup?.signupurl && (
+          <div class="mt-6">
+            <a
+              href={event.signup.signupurl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center gap-2"
+            >
+              {event.signup.icon && (
+                <Image
+                  src={event.signup.icon}
+                  alt="Signup platform"
+                  width={22}
+                  height={22}
+                  layout="fixed"
+                  class="rounded-full"
+                />
+              )}
+              Sign up
+            </a>
+          </div>
+        )
+      }
     </header>
 
     {

@@ -47,6 +47,17 @@ export interface Profile {
   website?: string;
 }
 
+export interface EventLocation {
+  venue?: string;
+  address?: string;
+  mapurl?: string;
+}
+
+export interface EventSignup {
+  signupurl: string;
+  icon?: string;
+}
+
 export interface Event {
   /** Unique ID identifying the event. */
   id: string;
@@ -55,9 +66,10 @@ export interface Event {
   title: string;
   eventDate: Date;
   endDate?: Date;
-  location: string;
+  location: string | EventLocation;
   excerpt?: string;
   image?: ImageMetadata | string;
+  signup?: EventSignup;
   metadata?: MetaData;
   draft?: boolean;
   Content?: AstroComponentFactory;

@@ -86,9 +86,22 @@ const eventCollection = defineCollection({
     title: z.string(),
     eventDate: z.date(),
     endDate: z.date().optional(),
-    location: z.string(),
+    location: z.union([
+      z.string(),
+      z.object({
+        venue: z.string().optional(),
+        address: z.string().optional(),
+        mapurl: z.string().optional(),
+      }),
+    ]),
     excerpt: z.string().optional(),
     image: z.string().optional(),
+    signup: z
+      .object({
+        signupurl: z.string(),
+        icon: z.string().optional(),
+      })
+      .optional(),
     draft: z.boolean().optional(),
     metadata: metadataDefinition(),
   }),

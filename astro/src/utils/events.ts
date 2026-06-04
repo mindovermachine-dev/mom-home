@@ -16,6 +16,7 @@ const getNormalizedEvent = async (event: CollectionEntry<'event'>): Promise<Even
     location: data.location,
     excerpt: data.excerpt,
     image: data.image,
+    signup: data.signup,
     metadata: data.metadata,
     draft: data.draft,
     Content,
