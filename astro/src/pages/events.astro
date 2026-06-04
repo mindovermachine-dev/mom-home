@@ -1,7 +1,20 @@
 ---
+import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import { fetchEvents } from '~/utils/events';
+import { getPermalink } from '~/utils/permalinks';
+
+const events = await fetchEvents();
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const formatEventDateRange = (eventDate: Date, endDate?: Date) =>
+  endDate ? `${dateFormatter.format(eventDate)} - ${dateFormatter.format(endDate)}` : dateFormatter.format(eventDate);
 
 const metadata = {
   title: 'Events',
@@ -12,17 +25,110 @@ const metadata = {
   <HeroText
     tagline="Events"
     title="Events and community activities"
-    subtitle="A lightweight events overview for the MVP."
+    subtitle="Upcoming and past events from the Mind over Machine community."
   />
 
-  <Features2
-    title="Upcoming"
-    columns={1}
-    items={[
+  <section class="px-6 sm:px-6 pb-12 sm:pb-16 lg:pb-20 mx-auto max-w-5xl">
+    <h2 class="text-2xl md:text-3xl font-bold font-heading">Upcoming Events</h2>
+    <ul id="events-upcoming-list" class="mt-6 grid gap-6">
       {
-        title: 'Program to be announced',
-        description: 'This page will list upcoming events, workshops, and community sessions as we publish them.',
-      },
-    ]}
-  />
+        events.map((event) => (
+          <li
+            class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden"
+            data-event-date={event.eventDate.toISOString()}
+          >
+            <a
+              class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+              href={getPermalink(`events/${event.slug}`)}
+            >
+              {event.image && (
+                <div class="sm:w-72 shrink-0">
+                  <Image
+                    src={event.image}
+                    alt={`${event.title} event image`}
+                    width={600}
+                    height={338}
+                    layout="responsive"
+                  />
+                </div>
+              )}
+              <div class="p-5">
+                <h3 class="text-xl font-bold font-heading">{event.title}</h3>
+                <p class="mt-2 text-sm text-muted dark:text-slate-400">
+                  {formatEventDateRange(event.eventDate, event.endDate)}
+                </p>
+                <p class="mt-1 text-sm text-muted dark:text-slate-400">{event.location}</p>
+                {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p id="events-upcoming-empty" class="hidden mt-6 text-muted dark:text-slate-400">No upcoming events right now.</p>
+
+    <button
+      id="events-past-toggle"
+      type="button"
+      class="hidden mt-10 inline-flex items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800"
+      aria-expanded="false"
+      aria-controls="events-past-section"
+    >
+      See Past Events
+    </button>
+
+    <section id="events-past-section" class="hidden mt-6">
+      <h2 class="text-2xl md:text-3xl font-bold font-heading">Past Events</h2>
+      <ul id="events-past-list" class="mt-6 grid gap-6"></ul>
+      <p id="events-past-empty" class="hidden mt-6 text-muted dark:text-slate-400">No past events yet.</p>
+    </section>
+  </section>
 </Layout>
+
+<script is:inline>
+  const initializeEventsPage = () => {
+    const upcomingList = document.getElementById('events-upcoming-list');
+    const pastList = document.getElementById('events-past-list');
+    const pastSection = document.getElementById('events-past-section');
+    const pastToggle = document.getElementById('events-past-toggle');
+    const upcomingEmpty = document.getElementById('events-upcoming-empty');
+    const pastEmpty = document.getElementById('events-past-empty');
+
+    if (!upcomingList || !pastList || !pastSection || !pastToggle || !upcomingEmpty || !pastEmpty) {
+      return;
+    }
+
+    const now = Date.now();
+    const cards = Array.from(upcomingList.querySelectorAll('[data-event-date]'));
+
+    cards.forEach((card) => {
+      const dateString = card.getAttribute('data-event-date');
+      if (!dateString) return;
+
+      const eventTime = new Date(dateString).getTime();
+      if (!Number.isNaN(eventTime) && eventTime < now) {
+        pastList.append(card);
+      }
+    });
+
+    upcomingEmpty.classList.toggle('hidden', upcomingList.children.length > 0);
+
+    const hasPastEvents = pastList.children.length > 0;
+    pastToggle.classList.toggle('hidden', !hasPastEvents);
+    pastSection.classList.toggle('hidden', true);
+    pastToggle.setAttribute('aria-expanded', 'false');
+    pastToggle.textContent = 'See Past Events';
+    pastEmpty.classList.toggle('hidden', hasPastEvents);
+
+    pastToggle.onclick = () => {
+      const isExpanded = pastToggle.getAttribute('aria-expanded') === 'true';
+      pastToggle.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      pastSection.classList.toggle('hidden', isExpanded);
+      pastToggle.textContent = isExpanded ? 'See Past Events' : 'Hide Past Events';
+    };
+  };
+
+  initializeEventsPage();
+  document.addEventListener('astro:page-load', initializeEventsPage);
+  document.addEventListener('astro:after-swap', initializeEventsPage);
+</script>

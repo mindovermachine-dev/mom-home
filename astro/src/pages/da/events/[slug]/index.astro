@@ -1,0 +1,66 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+
+import Image from '~/components/common/Image.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchEvents } from '~/utils/events';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const events = await fetchEvents();
+
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { event } = Astro.props as Props;
+
+const metadata = {
+  title: event.title,
+  description: event.excerpt,
+  canonical: String(getCanonical(getPermalink(`da/events/${event.slug}`))),
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'full',
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const formatEventDateRange = (eventDate: Date, endDate?: Date) =>
+  endDate ? `${dateFormatter.format(eventDate)} - ${dateFormatter.format(endDate)}` : dateFormatter.format(eventDate);
+---
+
+<Layout metadata={metadata} localeFallback="da">
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <a class="inline-flex text-sm hover:underline" href={getPermalink('da/events')}>← Back to Events</a>
+    <header class="mt-4">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{event.title}</h1>
+      <p class="mt-4 text-lg text-muted dark:text-slate-400">{formatEventDateRange(event.eventDate, event.endDate)}</p>
+      <p class="mt-2 text-muted dark:text-slate-400">{event.location}</p>
+      {event.excerpt && <p class="mt-4 text-lg text-muted dark:text-slate-400">{event.excerpt}</p>}
+    </header>
+
+    {
+      event.image && (
+        <div class="mt-8 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700">
+          <Image src={event.image} alt={`${event.title} event image`} width={1200} height={675} layout="responsive" />
+        </div>
+      )
+    }
+
+    {
+      event.Content && (
+        <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
+          <event.Content />
+        </div>
+      )
+    }
+  </section>
+</Layout>
