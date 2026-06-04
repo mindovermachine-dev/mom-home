@@ -1,0 +1,32 @@
+---
+import type { ResolvedProfileReference } from '~/types';
+import { getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  label: string;
+  entries: Array<ResolvedProfileReference>;
+}
+
+const { label, entries } = Astro.props;
+
+const getProfileLink = ({ id, profile }: ResolvedProfileReference) =>
+  profile ? getPermalink(`profile/${id}`) : undefined;
+---
+
+<span>
+  <span class="font-medium">{label}:</span>{' '}
+  {
+    entries.map((entry, index) => (
+      <>
+        {index > 0 && ', '}
+        {getProfileLink(entry) ? (
+          <a class="hover:underline" href={getProfileLink(entry)}>
+            {entry.profile?.name || entry.id}
+          </a>
+        ) : (
+          <span>{entry.profile?.name || entry.id}</span>
+        )}
+      </>
+    ))
+  }
+</span>

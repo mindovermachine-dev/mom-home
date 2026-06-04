@@ -22,6 +22,8 @@ export interface Post {
   category?: Taxonomy;
   tags?: Taxonomy[];
   author?: string;
+  coauthor?: string;
+  reviewers?: string[];
 
   metadata?: MetaData;
 
@@ -32,6 +34,34 @@ export interface Post {
 
   /** Estimated reading time in minutes. */
   readingTime?: number;
+}
+
+export interface Profile {
+  /** Unique ID identifying the profile (file stem). */
+  id: string;
+  name: string;
+  bio?: string;
+  image?: ImageMetadata | string;
+  github?: string;
+  linkedin?: string;
+  website?: string;
+}
+
+export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer';
+
+export type ProfileRelationSourceType = 'post' | 'event';
+
+export interface ProfileRelation {
+  role: ProfileRelationRole;
+  sourceType: ProfileRelationSourceType;
+  sourceId: string;
+  title: string;
+  permalink: string;
+}
+
+export interface ResolvedProfileReference {
+  id: string;
+  profile?: Profile;
 }
 
 export interface Taxonomy {
