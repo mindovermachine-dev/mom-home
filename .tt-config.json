@@ -1,0 +1,16 @@
+{
+  "project": {
+    "owner": "mindovermachine-dev",
+    "number": 1
+  },
+  "wrapup": {
+    "policies": {
+      "poll": false
+    }
+  },
+  "deliver": {
+    "policies": {
+      "poll": true
+    }
+  }
+}

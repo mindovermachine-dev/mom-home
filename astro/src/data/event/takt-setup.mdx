@@ -1,0 +1,77 @@
+---
+title: TakT setup hackathon
+dates:
+  - date: 2026-06-24T15:00:00Z
+    duration: 1:00h
+location:
+  venue: Online (Slack Huddle)
+  address: ''
+  mapurl: ''
+excerpt: The TakT setup hackathon is an event where we come together to set up and configure our TakT development environment.
+signup:
+  signupurl: https://calendar.app.google/wd4aqjBhDQW5LahGA
+  caption: Signup and add to your calendar
+  icon: ~/assets/images/events/google-calendar.png
+  repeat: true
+image: ~/assets/images/events/takt.jpg
+---
+
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'secondary',
+        text: 'Create account',
+        href: '/contact',
+        icon: 'tabler:brand-slack'
+      },
+
+      {
+        variant: 'primary',
+        text: 'Join the huddle',
+        href: '/contact',
+        icon: 'tabler:brand-slack'
+      },
+
+    ]}
+    title="At the scheduled time of the event"
+    subtitle="We will start a huddle in the <u><a target='_blank' href='https://mindovermachine-dk.slack.com/archives/C0B9CTYQ8TA'><code>#takt</code></a></u> channel<br/> Create slack account beforehand"
+
+/>
+
+## What is TakT?
+
+**TakT is the name af a GitHub CLI extension which enables a truly Trunk-Based — Pull-Request free — workflow, that still allows for use of reviews, but in a non-blocking manner**
+
+It works by simply extending git (and gh CLI). with the commands `workon`, `wrapup` and `deliver` and in addition — through standardized devcontainers, workflows and hooks — it automates the entire process towards `main` (trunk) and the `semver` command will help deal with the tags, when final approval is done.
+
+TakT is a living example of a true DevX approach. The ideal is that onboarding new developers or AI agents should be as easy as simply cloning the repository and starting the IDE.
+
+## Why this event?
+
+The core and fundamental concept is that _any_ repo is _always_ 100% self contained. No extras are needed to get up and running. You do not need to install _anything_ project specific on your machine, you do not need to configure anything, you do not need to have any knowledge of the repo or the project.
+
+**For this to work, we do have need four generic dependencies installed on your machine:**
+
+- [VS Code](https://code.visualstudio.com/)
+- [A Docker Engine](https://www.docker.com/)
+- [Git](https://cli.github.com/)
+- [GitHub CLI](https://cli.github.com/)
+
+This may not cause any issues at all — Cool! But we also frequently see that developers have a hard time getting their head around installing WSL, Ubuntu and setting up a Docker Engine on the local environment — so lets do is what we will do.
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Step by step instructions',
+        href: 'https://github.com/orgs/mindovermachine-dev/discussions/5',
+        icon: 'tabler:brand-github'
+      },
+
+    ]}
+    title="We will follow this instruction..."
+    subtitle="You can skim read it - maybe give it a spin and see if you can get it to work. If not, we will help you out in the huddle."
+
+/>
