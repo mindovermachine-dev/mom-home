@@ -16,13 +16,25 @@ const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
   tagline = await Astro.slots.render('tagline'),
+  callToAction,
   actions = await Astro.slots.render('actions'),
 
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
-} = Astro.props;
+  ...actionProps
+} = Astro.props as Props & Partial<CallToAction>;
+
+const fallbackAction =
+  callToAction ??
+  (actionProps.text && actionProps.href
+    ? ({
+        ...actionProps,
+      } as CallToAction)
+    : undefined);
+
+const resolvedActions = actions ?? (fallbackAction ? [fallbackAction] : undefined);
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -40,16 +52,16 @@ const {
       }}
     />
     {
-      actions && (
+      resolvedActions && (
         <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
-          {Array.isArray(actions) ? (
-            actions.map((action) => (
+          {Array.isArray(resolvedActions) ? (
+            resolvedActions.map((action) => (
               <div class="flex w-full sm:w-auto">
                 <Button {...(action || {})} class="w-full sm:mb-0" />
               </div>
             ))
           ) : (
-            <Fragment set:html={actions} />
+            <Fragment set:html={resolvedActions} />
           )}
         </div>
       )

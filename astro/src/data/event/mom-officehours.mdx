@@ -18,24 +18,98 @@ signup:
 image: ~/assets/images/events/mom-officehours.png
 ---
 
+import Steps from '~/components/widgets/Steps.astro';
+import Button from '~/components/ui/Button.astro';
+
 ## This is MoM's weekly Office Hour meeting
 
-### Pre meeting steps:
+The meeting is run as a [huddle](https://app.slack.com/huddle/T09DW7D2W4Q/C0B4SUYJW4R) in our slack channel [`#mom-office-hours`](https://mindovermachine-dk.slack.com/archives/C0B4SUYJW4R) and is open to anyone who wants to join.
 
-- Set up a free account on [our slack](https://slack.mindovermachine.dk) if you haven't already
-- Join the channel [`#mom-office-hours`](https://mindovermachine-dk.slack.com/archives/C0B4SUYJW4R)
-- Add agenda items in that channel if you have any (it fine if you don't have any - join anyway)
+This meeting is an integrated part of our _Community of Practice_. We advocate full transparency and _Legitimate Peripheral Participation_. In short: no matter what you interest or incentive is: You are so welcome 🤩.
 
-### Get this as a calendar invite
+**You should join if:**
 
-You can join the mail group `office-hours@mindovermachine.dk` to get the calendar invites for the office hours.
+- You have an idea you want to pitch and get feedback on
+- You want to ask for help on a project you are working on
+- You are already in one of the MoM circles and want to share your progress or get feedback
+- You don't get what regenerative software is or why it matters — and want to learn more
+- You are just curious and don't want anything in particular — just curious...
 
-Visit [office-hours.mindovermachine.dk](https://office-hours.mindovermachine.dk) It will redirect you to the google group and you can click the "Join group" button - from here on you will get invites to alle office-hour events.
+### Lean Coffee style
 
-At any time feel free to ignore or reject the invites. To leave the group use the ([same link](https://office-hours.mindovermachine.dk)).
+The meeting is are run in a [Lean Coffee](https://leancoffee.org/) style. This means that we will start with a blank agenda and the participants will propose topics to discuss. The topics will be voted on and the most popular ones will be discussed first. Each topic will have a timebox of 8 minutes and we will use a timer to keep track of time. If a topic is not finished within the timebox, we will vote on whether to continue or move on to the next topic.
 
-### At the time of the event
+### If this is your first meeting
 
-We will start a huddle in the channel - join it, or jump straight to it.
+We have set up a few tools to support the logistices of the meeting. If this is your first time joining, we recommend that you do the following:
 
-If you need more details see the "[Office Hours](https://mindovermachine-dk.slack.com/docs/T09DW7D2W4Q/F0B5KDN9YBA)" tab in the `#mom-office-hours` slack channel - or just pop a question in the same channel
+<Steps
+  title="Prepare for the meeting"
+  subtitle="We have set up a few tools to support the logistices of the meeting, we recommend that you do the following beforehand"
+  items={[
+    {
+      title: 'Step 1: <span class="font-medium">Join our Slack</span>',
+      description: 'Create an account on our slack workspace. There is an open invitation waiting for you.',
+      callToAction: {
+        text: 'Create account on&nbsp;<code>mindovermachine-dk.slack.com</code>',
+        href: 'https://slack.mindovermachine.dk',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title: 'Step 2: <span class="font-medium">Visit and join the <code>#mom-office-hours</code> channel</span>',
+      description:
+        'The <code>#mom-office-hours</code> channel is dedicated to discussing the office hours. Also in-between scheduled meetings. If you join the channel you will also get notifications when the next office hour is started. Visit the channel and click the "Join channel" button.',
+      callToAction: {
+        text: 'Go to&nbsp;<code>#mom-office-hours</code>&nbsp;channel',
+        href: 'https://mindovermachine-dk.slack.com/archives/C0B4SUYJW4R',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title: 'Step 3: <span class="font-medium">Join the Miro board "MoM Office Hours"</span>',
+      description:
+        'This is where we execute the Lean Coffee meeting. The board is open to all for viewing, but you need to join the board to get write access; an open invitation is waiting for you.',
+      callToAction: {
+        text: 'Join "MoM Office Hours" Miro board',
+        href: 'https://www.google.com/url?q=https://miro.com/welcomeonboard/UjdVMi9HUi9ENWkxVzJxaUk2WC9RTitieDdiL0JaUTYxSDYwM2dUZ3ZIQ1o4K3B1ZmkvS2hYbHUvZG9mUG9IK1pVQjh4a3lLc0pJM2d5UytXbURwcDZ0azVkT0cxTGh3dTg5N25HZjQwc1Jnbmo1cGFOZVkzcWJtRVcweUJpcE9yVmtkMG5hNDA3dVlncnBvRVB2ZXBnPT0hdjE%3D?share_link_id%3D129103624326&sa=D&source=calendar&ust=1782900242352325&usg=AOvVaw0fYF_etV6aaUVy4Ixf89NO',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+  ]}
+/>
+
+### Dont miss a beat - get the invites in your calendar!
+
+We have set up a open google group [`office-hours.mindovermachine.dk`](https://office-hours.mindovermachine.dk) which is invited to all office hour meetings. If you join the group, you will see the invites along with all your other calendar events. You can ignore or reject the invites if you don't want to attend a specific meeting.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Join the open google group"
+    href="https://office-hours.mindovermachine.dk"
+    target="_blank"
+    icon="tabler:calendar"
+    variant="secondary"
+  />
+</div>
+
+Visit the group and click the "Join group" button. You will be asked to sign in with your google account and then you will be added to the group.
+
+**NOTE: Joining a google group requires a google account.**
+
+If you would like to get the invites set to an email address which is _not_ a google account. You can contact us at [hey@mindovermachine.dk](mailto:hey@mindovermachine.dk?subject=Office%20Hours%20Invites&body=I%20would%20like%20to%20receive%20invites%20for%20the%20office%20hours%20meetings.%20Please%20add%20me%20to%20the%20list).
+
+Or you can help yourself: Simply 'wrap' on your current email address is a free google account. It's harmless and non-intrusive, it simply allows you to use Google's OAuth and services with any email address you have (not email obviously, but stuff like _drive, photos, groups, gemini_ etc...).
+
+<div class="not-prose mt-6">
+  <Button
+    text="Wrap your email address in a free google account"
+    href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
