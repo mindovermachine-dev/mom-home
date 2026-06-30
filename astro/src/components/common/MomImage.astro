@@ -1,0 +1,82 @@
+---
+import type { ImageMetadata } from 'astro';
+import Image from '~/components/common/Image.astro';
+
+type Position = 'left' | 'center' | 'right';
+type Size = 'tiny' | 'small' | 'medium' | 'large' | 'full';
+type Mode = 'static' | 'flow';
+
+export interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  caption?: string;
+  position?: Position;
+  size?: Size;
+  mode?: Mode;
+  class?: string;
+  imageClass?: string;
+  captionClass?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  position = 'center',
+  size = 'large',
+  mode = 'static',
+  class: figureClass,
+  imageClass,
+  captionClass,
+} = Astro.props;
+
+const sizeConfig: Record<Size, { width?: number; widths?: number[]; sizes: string }> = {
+  tiny: {
+    width: 320,
+    widths: [240, 320, 480],
+    sizes: '(max-width: 320px) 100vw, 320px',
+  },
+  small: {
+    width: 480,
+    widths: [320, 480, 768],
+    sizes: '(max-width: 480px) 100vw, 480px',
+  },
+  medium: {
+    width: 640,
+    widths: [480, 640, 768],
+    sizes: '(max-width: 640px) 100vw, 640px',
+  },
+  large: {
+    width: 768,
+    widths: [480, 768, 1000],
+    sizes: '(max-width: 768px) 100vw, 768px',
+  },
+  full: {
+    width: 1600,
+    widths: [768, 1200, 1600, 2000],
+    sizes: '100vw',
+  },
+};
+
+const imgConfig = sizeConfig[size];
+---
+
+<figure
+  class:list={[
+    'mom-image',
+    `mom-image--${mode}`,
+    `mom-image--position-${position}`,
+    `mom-image--size-${size}`,
+    figureClass,
+  ]}
+>
+  <Image
+    src={src}
+    alt={alt}
+    width={imgConfig.width}
+    widths={imgConfig.widths}
+    sizes={imgConfig.sizes}
+    class:list={['mom-image__img', imageClass]}
+  />
+  {caption && <figcaption class:list={['mom-image-caption', captionClass]}>{caption}</figcaption>}
+</figure>
