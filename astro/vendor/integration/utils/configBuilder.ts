@@ -8,6 +8,7 @@ export type Config = {
   i18n?: I18NConfig;
   apps?: {
     blog?: AppBlogConfig;
+    events?: AppEventsConfig;
   };
   ui?: unknown;
   analytics?: unknown;
@@ -68,6 +69,10 @@ export interface AppBlogConfig {
       follow: boolean;
     };
   };
+}
+
+export interface AppEventsConfig {
+  showDrafts: boolean;
 }
 export interface AnalyticsConfig {
   vendors: {
@@ -172,6 +177,14 @@ const getAppBlog = (config: Config) => {
   return merge({}, _default, config?.apps?.blog ?? {}) as AppBlogConfig;
 };
 
+const getAppEvents = (config: Config) => {
+  const _default = {
+    showDrafts: false,
+  };
+
+  return merge({}, _default, config?.apps?.events ?? {}) as AppEventsConfig;
+};
+
 const getUI = (config: Config) => {
   const _default = {
     theme: 'system',
@@ -198,6 +211,7 @@ export default (config: Config) => ({
   I18N: getI18N(config),
   METADATA: getMetadata(config),
   APP_BLOG: getAppBlog(config),
+  APP_EVENTS: getAppEvents(config),
   UI: getUI(config),
   ANALYTICS: getAnalytics(config),
 });

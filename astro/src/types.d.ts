@@ -61,7 +61,8 @@ export interface EventSignup {
 }
 
 export interface EventOccurrence {
-  date: Date;
+  date: Date | string;
+  time?: string;
   duration?: string;
 }
 
@@ -71,6 +72,7 @@ export interface Event {
   /** URL-friendly slug derived from the event ID. */
   slug: string;
   title: string;
+  sortorder?: number;
   dates: EventOccurrence[];
   location: string | EventLocation;
   excerpt?: string;

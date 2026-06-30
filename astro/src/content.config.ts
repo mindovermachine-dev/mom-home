@@ -84,10 +84,12 @@ const eventCollection = defineCollection({
   loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/event' }),
   schema: z.object({
     title: z.string(),
+    sortorder: z.number().int().optional(),
     dates: z
       .array(
         z.object({
-          date: z.date(),
+          date: z.union([z.date(), z.string().min(1)]),
+          time: z.string().optional(),
           duration: z.string().optional(),
         })
       )

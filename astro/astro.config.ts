@@ -10,10 +10,12 @@ import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
+import remarkDirective from 'remark-directive';
 
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
+import { calloutDirectiveRemarkPlugin } from './src/utils/callouts';
 import { collectFrontmatterRedirects } from './src/lib/integrations/frontmatter-redirects';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,7 +47,10 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
-    mdx(),
+    mdx({
+      remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, readingTimeRemarkPlugin],
+      rehypePlugins: [responsiveTablesRehypePlugin],
+    }),
     icon({
       include: {
         tabler: ['*'],
@@ -102,7 +107,7 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
+    remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin],
   },
 

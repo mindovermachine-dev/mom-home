@@ -77,4 +77,46 @@ import '@fontsource-variable/roboto-mono';
       color: snow;
     }
   }
+
+  .callout {
+    margin: 1.5rem 0;
+    border-left: 0.35rem solid var(--callout-accent, var(--aw-color-primary));
+    border-radius: 0.9rem;
+    background: var(--callout-bg, rgba(255, 255, 255, 0.72));
+    padding: 1rem 1.15rem;
+    box-shadow: 0 10px 30px rgb(15 23 42 / 8%);
+  }
+
+  .callout > p:first-child {
+    margin-top: 0;
+    font-family: var(--aw-font-heading);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .callout > :last-child {
+    margin-bottom: 0;
+  }
+
+  .callout--tip {
+    --callout-accent: var(--mom-olive-green);
+    --callout-bg: rgba(149, 213, 178, 0.18);
+  }
+
+  .callout--note {
+    --callout-accent: var(--mom-ether-blue);
+    --callout-bg: rgba(102, 155, 188, 0.16);
+  }
+
+  .callout--warning,
+  .callout--caution {
+    --callout-accent: var(--mom-terracotta);
+    --callout-bg: rgba(208, 140, 96, 0.18);
+  }
+
+  .dark .callout {
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 24%);
+  }
 </style>

@@ -2,6 +2,7 @@
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
 import Image from '~/components/common/Image.astro';
+import MomImage from '~/components/common/MomImage.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import { fetchEvents } from '~/utils/events';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
@@ -38,9 +39,12 @@ const metadata = {
 
 const dateTimeFormatter = new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'full',
-  timeStyle: 'short',
   timeZone: 'UTC',
 });
+
+const isValidDate = (value: Date | string): value is Date => value instanceof Date && !Number.isNaN(value.getTime());
+const formatOccurrenceDate = (occurrence: { date: Date | string; time?: string; duration?: string }) =>
+  `${isValidDate(occurrence.date) ? dateTimeFormatter.format(occurrence.date) : occurrence.date}${occurrence.time ? ` ${occurrence.time}` : ''}${occurrence.duration ? ` (${occurrence.duration})` : ''}`;
 
 const signupCaption = event.signup?.caption ?? 'Sign up';
 ---
@@ -54,14 +58,11 @@ const signupCaption = event.signup?.caption ?? 'Sign up';
         event.dates.length > 1 ? (
           <ul class="mt-4 text-lg text-muted dark:text-slate-400 list-disc pl-5">
             {event.dates.map((occurrence) => (
-              <li>{`${dateTimeFormatter.format(occurrence.date)}${occurrence.duration ? ` (${occurrence.duration})` : ''}`}</li>
+              <li>{formatOccurrenceDate(occurrence)}</li>
             ))}
           </ul>
         ) : (
-          <p class="mt-4 text-lg text-muted dark:text-slate-400">
-            {dateTimeFormatter.format(event.dates[0].date)}
-            {event.dates[0].duration ? ` (${event.dates[0].duration})` : ''}
-          </p>
+          <p class="mt-4 text-lg text-muted dark:text-slate-400">{formatOccurrenceDate(event.dates[0])}</p>
         )
       }
       <div class="mt-2 text-muted dark:text-slate-400">
@@ -112,9 +113,15 @@ const signupCaption = event.signup?.caption ?? 'Sign up';
 
     {
       event.image && (
-        <div class="mt-8 overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700">
-          <Image src={event.image} alt={`${event.title} event image`} width={1200} height={675} layout="responsive" />
-        </div>
+        <MomImage
+          src={event.image}
+          alt={`${event.title} event image`}
+          position="center"
+          size="small"
+          mode="static"
+          class="mt-8"
+          imageClass="rounded-xl border border-gray-200 dark:border-slate-700"
+        />
       )
     }
 

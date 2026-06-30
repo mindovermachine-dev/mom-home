@@ -2,7 +2,7 @@
 import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import { fetchEvents } from '~/utils/events';
+import { fetchEvents, getOccurrenceTimestampOrInfinity } from '~/utils/events';
 import { getPermalink } from '~/utils/permalinks';
 
 const events = await fetchEvents();
@@ -10,13 +10,28 @@ const now = Date.now();
 
 const dateFormatter = new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'medium',
-  timeStyle: 'short',
   timeZone: 'UTC',
 });
 
+const isValidDate = (value: Date | string): value is Date => value instanceof Date && !Number.isNaN(value.getTime());
+const isUpcomingOccurrence = (occurrence: { date: Date | string; time?: string }) =>
+  isValidDate(occurrence.date) ? getOccurrenceTimestampOrInfinity(occurrence) >= now : true;
+const isPastOccurrence = (occurrence: { date: Date | string; time?: string }) =>
+  isValidDate(occurrence.date) ? getOccurrenceTimestampOrInfinity(occurrence) < now : false;
+const occurrenceSortValue = (occurrence: { date: Date | string; time?: string }) =>
+  getOccurrenceTimestampOrInfinity(occurrence);
+const formatOccurrenceDate = (occurrence: { date: Date | string; time?: string }) => {
+  const dateLabel = isValidDate(occurrence.date) ? dateFormatter.format(occurrence.date) : occurrence.date;
+  return occurrence.time ? `${dateLabel} ${occurrence.time}` : dateLabel;
+};
+
 const splitEvents = events.map((event) => {
-  const upcomingDates = event.dates.filter((occurrence) => occurrence.date.getTime() >= now);
-  const pastDates = event.dates.filter((occurrence) => occurrence.date.getTime() < now);
+  const upcomingDates = event.dates
+    .filter(isUpcomingOccurrence)
+    .sort((a, b) => occurrenceSortValue(a) - occurrenceSortValue(b));
+  const pastDates = event.dates
+    .filter(isPastOccurrence)
+    .sort((a, b) => occurrenceSortValue(a) - occurrenceSortValue(b));
 
   return {
     event,
@@ -27,12 +42,14 @@ const splitEvents = events.map((event) => {
 
 const upcomingEvents = splitEvents
   .filter((entry) => entry.upcomingDates.length > 0)
-  .sort((a, b) => a.upcomingDates[0].date.valueOf() - b.upcomingDates[0].date.valueOf());
+  .sort((a, b) => occurrenceSortValue(a.upcomingDates[0]) - occurrenceSortValue(b.upcomingDates[0]));
 
 const pastEvents = splitEvents
   .filter((entry) => entry.pastDates.length > 0)
   .sort(
-    (a, b) => b.pastDates[b.pastDates.length - 1].date.valueOf() - a.pastDates[a.pastDates.length - 1].date.valueOf()
+    (a, b) =>
+      occurrenceSortValue(b.pastDates[b.pastDates.length - 1]) -
+      occurrenceSortValue(a.pastDates[a.pastDates.length - 1])
   );
 
 const metadata = {
@@ -75,14 +92,14 @@ const metadata = {
                   <div class="mt-2 text-sm text-muted dark:text-slate-400">
                     {upcomingDates.length === 1 ? (
                       <p>
-                        {dateFormatter.format(upcomingDates[0].date)}
+                        {formatOccurrenceDate(upcomingDates[0])}
                         {upcomingDates[0].duration ? ` (${upcomingDates[0].duration})` : ''}
                       </p>
                     ) : (
                       <ul class="space-y-1">
                         {upcomingDates.map((occurrence) => (
                           <li>
-                            {dateFormatter.format(occurrence.date)}
+                            {formatOccurrenceDate(occurrence)}
                             {occurrence.duration ? ` (${occurrence.duration})` : ''}
                           </li>
                         ))}
@@ -141,14 +158,14 @@ const metadata = {
                       <div class="mt-2 text-sm text-muted dark:text-slate-400">
                         {pastDates.length === 1 ? (
                           <p>
-                            {dateFormatter.format(pastDates[0].date)}
+                            {formatOccurrenceDate(pastDates[0])}
                             {pastDates[0].duration ? ` (${pastDates[0].duration})` : ''}
                           </p>
                         ) : (
                           <ul class="space-y-1">
                             {pastDates.map((occurrence) => (
                               <li>
-                                {dateFormatter.format(occurrence.date)}
+                                {formatOccurrenceDate(occurrence)}
                                 {occurrence.duration ? ` (${occurrence.duration})` : ''}
                               </li>
                             ))}
