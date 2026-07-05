@@ -17,6 +17,18 @@ export const trim = (str = '', ch?: string) => {
   return start > 0 || end < str.length ? str.substring(start, end) : str;
 };
 
+const TRUE_VALUES = new Set(['1', 'true', 'yes', 'on']);
+
+const normalizeEnvFlag = (value: string | undefined): string => (value ?? '').trim().toLowerCase();
+
+export const isDraftModeEnabled = (): boolean => {
+  if (import.meta.env.MODE === 'drafts') {
+    return true;
+  }
+
+  return TRUE_VALUES.has(normalizeEnvFlag(import.meta.env.INCLUDE_DRAFTS));
+};
+
 // Function to format a number in thousands (K) or millions (M) format depending on its value
 export const toUiAmount = (amount: number) => {
   if (!amount) return 0;

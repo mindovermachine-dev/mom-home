@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { APP_EVENTS } from 'astrowind:config';
 import type { Event } from '~/types';
 import { cleanSlug } from '~/utils/permalinks';
-import { isDraftModeEnabled } from './drafts';
+import { isDraftModeEnabled } from '~/utils/utils';
 
 const toNormalizedDate = (rawDate: Date | string): Date | string => {
   if (rawDate instanceof Date) {

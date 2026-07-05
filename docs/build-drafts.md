@@ -17,7 +17,7 @@ No separate Astro config file is needed.
 
 Draft inclusion is controlled in content-loading utilities:
 
-- `astro/src/utils/drafts.ts`
+- `astro/src/utils/utils.ts`
 - `astro/src/utils/blog.ts`
 - `astro/src/utils/events.ts`
 
