@@ -3,8 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "cd astro && npm run dev -- --host 0.0.0.0",
+    "dev-draft": "cd astro && npm run dev:draft -- --host 0.0.0.0",
     "start": "cd astro && npm run start -- --host 0.0.0.0",
     "build": "cd astro && npm run build",
+    "build-draft": "cd astro && npm run build:draft",
     "preview": "cd astro && npm run preview -- --host 0.0.0.0",
     "astro": "cd astro && npm run astro",
     "install:astro": "npm --prefix astro install",

@@ -9,8 +9,10 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:draft": "astro dev --mode drafts",
     "start": "astro dev",
     "build": "astro build",
+    "build:draft": "astro build --mode drafts",
     "preview": "astro preview",
     "astro": "astro",
     "check": "npm run check:astro && npm run check:eslint && npm run check:prettier",

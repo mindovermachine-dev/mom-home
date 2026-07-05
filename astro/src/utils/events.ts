@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { APP_EVENTS } from 'astrowind:config';
 import type { Event } from '~/types';
 import { cleanSlug } from '~/utils/permalinks';
+import { isDraftModeEnabled } from './drafts';
 
 const toNormalizedDate = (rawDate: Date | string): Date | string => {
   if (rawDate instanceof Date) {
@@ -102,7 +103,7 @@ const load = async (): Promise<Array<Event>> => {
 
       return a.slug.localeCompare(b.slug);
     })
-    .filter((event) => APP_EVENTS.showDrafts || !event.draft);
+    .filter((event) => APP_EVENTS.showDrafts || isDraftModeEnabled() || !event.draft);
 };
 
 let _events: Array<Event>;
