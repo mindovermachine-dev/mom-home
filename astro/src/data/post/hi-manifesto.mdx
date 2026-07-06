@@ -1,0 +1,177 @@
+---
+publishDate: 2026-07-06T00:00:00Z
+title: MoM's Love Letter to the Hybrid Intelligence Manifesto
+author: lakruzz
+excerpt: >-
+  The Hybrid Intelligence Manifesto makes a rigorous case for keeping human judgment economically indispensable in an AI-accelerated world. This is Mind over Machine's open love letter to that vision, and a practical breakdown of how high-level theory meets the messy reality of software development.
+image: ~/assets/images/posts/hi-manifesto/hi-position-cover.png
+category: Essays
+tags:
+  - Cognitive Science
+  - AI
+  - Tacit Knowledge
+---
+
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+I’ve spent — what feels like my entire professional life — sticking a metaphorical dirty finger into the wounds of the software industry, squeezing, pressing down and asking _"Does it hurt?"_ It often does and usually, the pain comes from the exact same root cause. It’s the mindless, systemic rush to devalue developer intelligence and _fingerspitzengefühle[^fingerspitzengefühle]_ in favor of rigid, wasteful — often automated — structures and processes. We see it in the wild every day; organizations sleepwalking into an automated future, treating their developers like overpaid supermarket workers, mindlessly filling up the shelves with features decided by product owners and middle managers out of touch with the end user's true needs, but often quite well aligned with revenue-optimizing objectives.
+
+[^fingerspitzengefühle]: _Fingerspitzengefühl_ is a German term, literally meaning "fingertip feeling," and referring to intuitive flair or instinct. It describes strong situational awareness and the ability to respond tactfully and appropriately.
+
+Did the general availability of AI tools in 2022/2023 change this? Not so much. In many ways it made the problem worse. We are watching the industry double down on the same flawed, short-sighted metrics of "AI throughput." Organizations are handing out GitHub Copilot or Claude licenses to their developers like cheap digital safety blankets. We are watching human cognitive agency getting stripped away, commit by commit, in the name of that same flawed, short-sighted metric.
+
+When you automate a broken process, you get a broken result — automatically. And when you optimize that broken process with AI, you get broken results faster and cheaper. The industry is rushing headlong into a future where human judgment is systematically devalued, and the only thing that matters is how fast the machine can produce code. Quality be damned.
+
+I’ve ranted about this before in ["Say AI again — I Dare You!"](/say-ai-again-i-dare-you) and suggested alternatives like ["Collaborative Agents"](https://www.lakruzz.com/stories/collaborative-agents/) and [TakT](https://www.lakruzz.com/stories/takt/). I’ve yelled into the void about _tacit knowledge_, _reflection-in-action_ and _situatedness_. I’ve argued that software engineering is a creative, mindful, deeply reflective socio-technical craft, not a mechanical translation of specs into code.
+
+**But last week, I picked up important back-talk from the void. And it did so with the beautiful, rigorous authority of a global academic coalition and a new manifesto.**
+
+I stumbled upon an early draft of [The Hybrid Intelligence (HI) Manifesto](https://hi-infinity.ai/research/the-hybrid-intelligence-manifesto/). I sat down with it, hoping for more than just heavy academic jargon designed to cure insomnia. I found myself holding a mirror.
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get the HI Manifesto',
+        href: 'https://hi-infinity.ai/research/the-hybrid-intelligence-manifesto/',
+        target: '_blank',
+      },
+      {
+        variant: 'secondary',
+        text: 'Sign it!',
+        href: 'https://hi-infinity.ai/sign/',
+        target: '_blank',
+      },
+    ]}
+
+    title="Get Your Own Copy of the HI Manifesto"
+    subtitle="Visit the home of the hi-infinity group, where you can download the manifesto and explore their research."
+
+/>
+
+This is my open love ♥️ letter to their work, and a map of how their brilliant, high-altitude theory meets the muddy everyday life of software developers at terminal and IDE level practice.
+
+## What is the Hybrid Intelligence Manifesto?
+
+In [the middle of 2026](https://www.linkedin.com/posts/jacob-sherson-48828b4_hybrid-intelligence-manifesto-activity-7457185579164868608-mUqS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAALvRQBbTq_E-kPXqilzI5eQ0McYipDvQc), a broad coalition of researchers and practitioners sat down to draw a line in the sand. The effort emerged from global research networks centered around the Center for Hybrid Intelligence at Aarhus University and was spearheaded by Professor Jacob Sherson.
+
+If you have not read the HI manifesto yet, this is the short version in plain language:
+
+- They argue the future of AI is a choice, not an inevitability.
+- They reject both extremes: blind AI-first automation and shallow "human-centered" theater.
+- They focus on system design, incentives, procurement, and policy, because those structures decide whether human judgment survives.
+- They warn about structural lock-in: by the time productivity outcomes are measurable, the ability to choose a different path may already be gone.
+
+They looked at the current market trajectory and asked an elegantly simple question:
+
+> _"how can human judgment remain economically indispensable in systems where increasingly capable AI agents can perform not only execution, but also coordination and reasoning?"_
+
+They wrote this manifesto because they realized the contemporary corporate narrative is in jeopardy of being fundamentally flawed. If the market blindly assumes that when an algorithm can synthesize a task, then humans shouldn't be paying attention to it anymore, the result is brittle systems. The HI Manifesto argues that stripping human agency out of complex systems makes them fragile and vulnerable to a lack of situational awareness and tacit knowledge.
+
+Their audience is not just other academics. They are speaking directly to policymakers struggling to draft legislation, enterprise leaders deciding how to structure engineering workforces, and systems designers building the workspaces we inhabit. Their goal is to build a structural, measurable framework that proves human-in-the-loop co-creation is not a soft ethical compromise. It is an economic strategy.
+
+One of the concrete products of their work is the _Hybrid Intelligence Maturity Matrix_, in which they describe the highest level in the category — **Human-Premium signaling** — as follows:
+
+> Human judgment as value driver (human premium): Human involvement generates observable market or institutional advantage.
+
+## Where the Manifesto and Mind over Machine Interlock
+
+Reading through their draft, I felt an immediate resonance and connection to our mission here at Mind over Machine. The HI Manifesto has designed the blueprint for the entire building. In MoM's laboratory we are down in the engine room, making sure the pipes actually carry the steam.
+
+Two massive conceptual hinges stand out where their academic architecture perfectly locks into our day-to-day engineering practice.
+
+### Mode 4 Co-Creation Meets Collaborative Agents (Cobots)
+
+In the appendix of the manifesto, the authors outline different modes of human-AI interaction. They talk about the limitations of the traditional mode (where AI is just an assistant) and point us toward "Mode 4: Human-AI Co-creative Integration." This is a state where human and machine share agency over process and objectives inside a shared workflow. Human judgment is not an afterthought. It is structurally indispensable.
+
+That point matters for readers who do not live in this niche every day: this is not a call to "use AI less." It is a call to design workflows where human sense-making, evaluation, and accountability are built into the loop by default.
+
+This is the exact operational mode I previously explored in the post [Collaborative Agents](https://www.lakruzz.com/stories/collaborative-agents/).
+
+I’ve argued that the industry is focusing on the wrong problem. Everyone is trying to make the AI models smarter, but nobody is designing the workspace to make collaboration safe. We need "cobots"—collaborative software robots that work alongside developers in the same repository without causing chaos or breaking safety boundaries.
+
+When the HI Manifesto talks about structuring Mode 4 co-creation, we are building the Git-level protocols, IDE integrations and local developer environments Command Line Interfaces that turn that theory into a live, working practice.
+
+### Human-Premium Signaling and Regulated CD Pipelines
+
+The manifesto repeatedly returns to _human judgment_ as a market and governance signal. In a world flooded with automated noise, safety-critical and regulated systems must be able to prove where human agency, ethical reasoning, and critical reflection intervened to validate a decision. You need a _signal_ as well as an _audit trail_ that says: a conscious decision was made here.
+
+If you’ve ever created software in life sciences, safety-critical systems, or high-trust finance — following a GxP or Quality by Design (QbD) process — you know this challenge intimately. A glimpse into the future of software, flooded with automated noise and agentic AI, could well be one where every commit is treated as potential liability and every automated test as potential legal risk. In such a world, the only way to survive is to bake human judgment into the process itself. You must be able to prove the process was followed and that there was a human in the loop. You must be able to signal and prove that "a human mind took responsibility here."
+
+My point is that this is already the reality of regulated software development. This will likely be the reality of all professional software development in the near future. The [EU Cyber Resilience Act (CRA)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act) and the [EU AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) are just the first of potentially many regulatory frameworks that will require software teams to prove that human judgment was actively steering the ship.
+
+Our work at MoM on enabling Continuous Delivery in Regulated Environments is the living execution of this concept. We do not treat compliance as a slow manual gate that stops flow. Instead, we bake "substantiated signaling" directly into our workflows. Every cryptographic commit, every automated test validation, and every peer review signature becomes process-level proof that human judgment was actively steering the ship.
+
+The HI ecosystem has already started operationalizing this same idea in adjacent contexts. One example is the FERC framework (Frame, Explore, Refine, Commit), designed to counter "authorship drift" by keeping human evaluation and accountability visible across the interaction process.
+
+This is exactly why I believe the manifesto has practical teeth. It is not anti-AI. It is pro-designed collaboration. We should not merely use AI for "throughput," but for building systems that increase "human judgment throughput."
+
+## The Gaps We Fill
+
+No single framework has all the answers. The true beauty of this alignment is that where the HI Manifesto is silent, MoM has running code. And where MoM is searching for structural scaffolding, the HI Manifesto provides a solid foundation.
+
+At Mind over Machine, we are deeply committed to alternative economic models. We look to Doughnut Economics and well-being economics to guide our vision of a balanced, regenerative system.
+
+But let’s be honest: when you walk into a legacy corporate boardroom or sit down with a stressed CTO, they don't always have the appetite for systemic harmony. They want to know the bottom line.
+
+This is where Jacob Sherson’s team has handed us an invaluable tool. By formalizing and striving to measure the "Human Premium," they are building the peer-reviewed, empirical case for our values. They are giving us the vocabulary to prove to enterprise buyers that a human-steered, regenerative engineering team is not just an ethical luxury. It can also be a measurable market advantage.
+
+The HI manifesto also make this practical through concrete case framing. Their use-case model evaluates Interface, Co-design, Mindset, Organization, and Market Integration. In plain terms: not just "does the model work," but "does the organization reward and preserve human judgment where it matters most."
+
+The HI Manifesto is a beautiful, necessary document, but it operates at 30,000 feet. It does not know what a Git branch is. It does not have an opinion on the waste of tedious asynchronous Pull Requests, and it has no practical answer for the impact that something like the EU Cyber Resilience Act (CRA) may have on a software developer’s day.
+
+MoM is the soil where these academic seeds can actually take root.
+
+Our mission is to bring the hands-on engineering reality:
+
+- **FOSS Stewardship**: We are building active, CRA-compliant, non-profit stewardship models to protect and sustain open-source software.
+
+- **The Regenerative Software Model**: Comparable to the HI Manifesto, our community is developing a concrete, working maturity matrix targeting the concept of "Regenerative Software" — inspired by Gregory Bateson and his work on cybernetics, systems thinking, and his definitions of a mental process and a balanced system.
+
+- **The Tooling**: We build, sustain and steward the open-source CLI extensions to establish lean kanban inspired pull-based development flows that let developers live these principles in their daily routines without burning out.
+
+## Call to Collaboration
+
+We don't need any more generic AI debates. We don't need tech-evangelists screaming about artificial general intelligence, nor do we need doomer-philosophers weeping in the corner.
+
+We need systems that work. We need workspaces designed for human minds to thrive, to create, and to exercise their tacit knowledge and reflection-in-action without being crushed by the digital machinery we built to serve us.
+
+Jacob Sherson and the Center for Hybrid Intelligence have given us a stunning, rigorous intellectual map. Mind over Machine is determined to help build the road.
+
+Let’s stop talking about machines replacing minds. Let’s start building the hybrid future where the mind is firmly over the machine.
+
+## The Side Gig
+
+I build a tool that scrapes a site for `HTML` and `PDF` content and stores it in a structured `*.md` file to allow an AI tools to root their answers in the content of the site. The tool is called `sitemix` - as a reference to the tool `repomix` which essentailly does the same thing, but for a Git repostories.
+
+I've used `sitemix` to scrape:
+
+- https://hi-infinity.ai/
+- https://mgmt.au.dk/center-for-hybrid-intelligence
+
+I then grounded a Google Gemini Gem in these two files and made the HI Manifesto Gem publicly available. Go ahead and ask it questions about the HI Manifesto.
+
+<CallToAction
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Visit the HI Manifesto Gem',
+      href: 'https://gemini.google.com/gem/1RVFgAAZsO8amNR9TPsSmEfHTm5ALAgrq?usp=sharing',
+      target: '_blank',
+    },
+  ]}
+  title="Ask about the HI Manifesto"
+  subtitle="What is the point of this initiative? What is cooking in the work group and how does this initiative have relevans to non-researchers.<br/><b>👉 be sure to log in with a Google account👈</b>"
+/>
+
+### Try these prompts with the HI Manifesto Gem
+
+:::tip[Prompt]
+`How does the collaborative agent approach described in https://www.lakruzz.com/stories/collaborative-agents/ relate to the Hybrid Intelligence Manifesto?`
+:::
+
+:::note[Prompt]
+_`Mind over Machine is a non-profit foundation rooted in "regenerative software" specifically in Gregory Bateson's work on cybernetics, systems thinking, and his definitions of a mental process and a balanced system. The Foundation explain their mission on https://www.mindovermachine.dk and https://docs.mindovermachine.dk. How does MoM position themselves in relation to the Hybrid Intelligence Manifesto?`_
+:::
+
+---
