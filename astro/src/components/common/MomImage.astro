@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import Image from '~/components/common/Image.astro';
+import { findImage } from '~/utils/images';
 
 type Position = 'left' | 'center' | 'right';
 type Size = 'tiny' | 'small' | 'medium' | 'large' | 'full';
@@ -59,6 +60,11 @@ const sizeConfig: Record<Size, { width?: number; widths?: number[]; sizes: strin
 };
 
 const imgConfig = sizeConfig[size];
+const resolved = await findImage(src);
+const sourceWidth = resolved && typeof resolved === 'object' && 'width' in resolved ? resolved.width : undefined;
+const contentWidth =
+  sourceWidth && imgConfig.width ? Math.min(sourceWidth, imgConfig.width) : (sourceWidth ?? imgConfig.width);
+const contentStyle = contentWidth ? `--mom-image-content-width:min(100%, ${contentWidth}px)` : undefined;
 ---
 
 <figure
@@ -70,13 +76,15 @@ const imgConfig = sizeConfig[size];
     figureClass,
   ]}
 >
-  <Image
-    src={src}
-    alt={alt}
-    width={imgConfig.width}
-    widths={imgConfig.widths}
-    sizes={imgConfig.sizes}
-    class:list={['mom-image__img', imageClass]}
-  />
-  {caption && <figcaption class:list={['mom-image-caption', captionClass]}>{caption}</figcaption>}
+  <div class="mom-image__content" style={contentStyle}>
+    <Image
+      src={src}
+      alt={alt}
+      width={imgConfig.width}
+      widths={imgConfig.widths}
+      sizes={imgConfig.sizes}
+      class:list={['mom-image__img', imageClass]}
+    />
+    {caption && <figcaption class:list={['mom-image-caption', captionClass]}>{caption}</figcaption>}
+  </div>
 </figure>

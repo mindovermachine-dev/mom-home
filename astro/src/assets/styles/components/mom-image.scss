@@ -72,6 +72,11 @@ $size-large: 48rem;
     }
   }
 
+  &__content {
+    width: var(--mom-image-content-width, 100%);
+    margin-inline: auto;
+  }
+
   &__img {
     display: block;
     width: 100%;
