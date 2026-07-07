@@ -339,7 +339,12 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 
 export async function findPostBySlugAndLocale(slug: string, locale: PostLocale): Promise<Post | undefined> {
   const normalizedSlug = cleanSlug(slug);
-  return (await fetchPosts()).find((post) => post.locale === locale && post.slug === normalizedSlug);
+  // Danish fallback routes can pass either the raw slug ("devops-evolution")
+  // or the configured permalink segment ("essays/devops-evolution").
+  // Match both to avoid rewrite fallbacks that break prerendered static paths.
+  return (await fetchPosts()).find(
+    (post) => post.locale === locale && (post.slug === normalizedSlug || cleanSlug(post.permalink) === normalizedSlug)
+  );
 }
 
 export async function findLocalizedPostWithFallback({
