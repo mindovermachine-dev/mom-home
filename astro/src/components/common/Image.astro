@@ -31,6 +31,7 @@ import { findImage } from '~/utils/images';
 
 type Layout = 'constrained' | 'responsive' | 'fullWidth' | 'fixed' | 'cover';
 type Format = 'avif' | 'jpeg' | 'jpg' | 'png' | 'webp';
+type Fit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 
 interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'height'> {
   src?: string | ImageMetadata | null;
@@ -39,9 +40,22 @@ interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'height'> 
   widths?: number[];
   format?: Format;
   layout?: Layout;
+  fit?: Fit;
+  position?: string;
 }
 
-const { src, alt, width, height, widths, format, layout = 'constrained', ...rest } = Astro.props;
+const {
+  src,
+  alt,
+  width,
+  height,
+  widths,
+  format,
+  layout = 'constrained',
+  fit = 'cover',
+  position = 'center',
+  ...rest
+} = Astro.props;
 
 // --- Accessibility ---------------------------------------------------------
 if (alt === undefined || alt === null) {
@@ -87,8 +101,8 @@ const aspectRatio = w && h ? w / h : undefined;
 // --- Layout → inline style mapping -----------------------------------------
 const px = (v?: number) => (v == null ? undefined : `${v}px`);
 const declarations: Array<[string, string | undefined]> = [
-  ['object-fit', 'cover'],
-  ['object-position', 'center'],
+  ['object-fit', fit],
+  ['object-position', position],
 ];
 
 switch (layout) {
@@ -184,6 +198,8 @@ const cdnSrcSet =
           alt,
           widths,
           format,
+          fit,
+          position,
           style: finalStyle,
         } as unknown as Parameters<typeof AstroImage>[0])}
       />
