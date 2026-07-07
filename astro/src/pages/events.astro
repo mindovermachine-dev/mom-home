@@ -76,7 +76,7 @@ const metadata = {
                 href={getPermalink(`events/${event.slug}`)}
               >
                 {event.image && (
-                  <div class="shrink-0 bg-gray-50 dark:bg-slate-800/50 sm:w-72">
+                  <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">
                     <Image
                       src={event.image}
                       alt={`${event.title} event image`}
@@ -85,7 +85,7 @@ const metadata = {
                       fit="contain"
                       layout="cover"
                       class="h-full w-full"
-                      style="width:100%;height:100%;object-fit:contain"
+                      style="width:100%;height:100%"
                     />
                   </div>
                 )}
@@ -144,7 +144,7 @@ const metadata = {
                     href={getPermalink(`events/${event.slug}`)}
                   >
                     {event.image && (
-                      <div class="shrink-0 bg-gray-50 dark:bg-slate-800/50 sm:w-72">
+                      <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">
                         <Image
                           src={event.image}
                           alt={`${event.title} event image`}
@@ -153,7 +153,7 @@ const metadata = {
                           fit="contain"
                           layout="cover"
                           class="h-full w-full"
-                          style="width:100%;height:100%;object-fit:contain"
+                          style="width:100%;height:100%"
                         />
                       </div>
                     )}
