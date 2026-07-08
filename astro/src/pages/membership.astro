@@ -1,0 +1,150 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Membership',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Membership"
+    title="Membership for organizations that depend on FOSS"
+    subtitle="Membership gives leadership a clear operating model for OSS stewardship, shared risk reduction, and practical influence on the lab roadmap."
+  />
+
+  <section class="px-6 sm:px-6 pt-12 sm:pt-16 lg:pt-20 mx-auto max-w-6xl">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+      <h2 class="text-2xl md:text-3xl font-bold font-heading">Executive summary</h2>
+      <p class="mt-4 text-muted dark:text-slate-300">
+        Membership is the relationship model. Services are how we execute. Together they let you move critical FOSS
+        dependencies from informal maintenance to a stewarded setup that is fit for commercial use and long-term
+        quality.
+      </p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 text-muted dark:text-slate-300">
+        <ul class="space-y-3 list-disc pl-5">
+          <li>Quarterly alliance participation with direct influence on priorities</li>
+          <li>Preferred pricing on ad-hoc work, bundles, and retainers</li>
+        </ul>
+        <ul class="space-y-3 list-disc pl-5">
+          <li>Independent stewardship posture aligned with CRA intent</li>
+          <li>Visibility in community, events, and member profile surfaces</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Annual membership</p>
+        <div class="mt-3 flex items-end gap-2">
+          <span class="text-5xl font-bold font-heading">10,000</span>
+          <span class="pb-1 text-muted">DKK / year excl. VAT</span>
+        </div>
+        <ul class="mt-6 space-y-3 text-muted">
+          <li>Quarterly MoM-FOSS Alliance participation</li>
+          <li>Public member profile and logo placement</li>
+          <li>Access to event hosting and community visibility</li>
+          <li>Membership pricing on extra hours and retainers</li>
+        </ul>
+      </article>
+
+      <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Monthly membership</p>
+        <div class="mt-3 flex items-end gap-2">
+          <span class="text-5xl font-bold font-heading">1,000</span>
+          <span class="pb-1 text-muted">DKK / month excl. VAT</span>
+        </div>
+        <ul class="mt-6 space-y-3 text-muted">
+          <li>Same stewardship participation and member benefits</li>
+          <li>Flexible for organizations that want a lighter entry point</li>
+          <li>Direct support for FOSS maintenance and development</li>
+          <li>Can be combined with retainers for active projects</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+      <h3 class="text-xl md:text-2xl font-bold font-heading">Pricing snapshot</h3>
+      <p class="mt-2 text-muted dark:text-slate-300">
+        Membership pricing is designed to make active stewardship work economically realistic once projects move from
+        exploratory to sustained operation.
+      </p>
+      <div class="mt-6 grid gap-6 md:grid-cols-3 text-muted dark:text-slate-300">
+        <div>
+          <p class="text-sm uppercase tracking-[0.16em]">Ad-hoc hourly</p>
+          <p class="mt-1 text-2xl font-bold font-heading">1,120 DKK</p>
+          <p class="text-sm">vs. 1,600 DKK non-member</p>
+        </div>
+        <div>
+          <p class="text-sm uppercase tracking-[0.16em]">Prepaid bundles</p>
+          <p class="mt-1 text-2xl font-bold font-heading">up to 37% off</p>
+          <p class="text-sm">on 30h and 50h bundles</p>
+        </div>
+        <div>
+          <p class="text-sm uppercase tracking-[0.16em]">Retainers</p>
+          <p class="mt-1 text-2xl font-bold font-heading">40-49% off</p>
+          <p class="text-sm">based on monthly package size</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Features2
+    title="Why organizations join"
+    columns={2}
+    items={[
+      {
+        title: 'Stewardship you can rely on',
+        description:
+          'Membership funds an independent stewardship model for FOSS projects, including quality standards, governance, and sustainable maintenance.',
+      },
+      {
+        title: 'Visibility and influence',
+        description:
+          'Members get a public profile on the site, the option to host events, and a direct voice in quarterly alliance meetings that shape the laboratory agenda.',
+      },
+      {
+        title: 'Practical access',
+        description:
+          'Members benefit from discounts on ad-hoc work, retainers, conference participation, and the ability to engage us on stewardship-related work.',
+      },
+      {
+        title: 'A bridge to OSS stewardship',
+        description:
+          'When a project needs to move from hobby or manufacturer-led ownership into a stronger operating model, membership is the relationship that makes that stewardship possible.',
+        callToAction: {
+          variant: 'link',
+          text: 'See OSS Stewardship Transition',
+          href: '/services/oss-stewardship-transition/',
+        },
+      },
+      {
+        title: 'Long-form management rationale',
+        description:
+          'For teams that need the full argumentation around governance, quality, CRA context, and alliance dynamics, we keep the deeper narrative as an essay.',
+        callToAction: {
+          variant: 'link',
+          text: 'Read the essay',
+          href: '/essays/why-oss-stewardship-now/',
+        },
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Talk about membership',
+        href: '/contact',
+      },
+    ]}
+    title="Need membership for a project or an organization?"
+    subtitle="We can help you decide whether membership, stewardship, or a direct service engagement is the right fit."
+  />
+</Layout>

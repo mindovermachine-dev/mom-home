@@ -19,6 +19,17 @@ Laboratory engagements are short, focused pilots in your real environment. They 
 - Hybrid Intelligence, Collaborative AI centered coding workflow with quality gates
 - Alternative planning and estimation practice
 
+## Pricing context
+
+Laboratory experiments are often used as the first controlled step before a larger stewardship or delivery engagement.
+
+- Non-member ad-hoc work starts from 1,600 DKK/hour
+- Member ad-hoc work starts from 1,120 DKK/hour
+- Prepaid bundles and retainers reduce rates further when the pilot needs follow-through
+
+If your pilot is likely to continue into operational stewardship work, we usually recommend discussing membership up front so the
+economic model stays predictable across phases.
+
 ## Good fit when
 
 - You want evidence before broad transformation

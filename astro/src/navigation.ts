@@ -18,6 +18,11 @@ export const headerData = {
       href: getPermalink('/services'),
     },
     {
+      text: 'Membership',
+      translations: { da: 'Medlemskab' },
+      href: getPermalink('/membership'),
+    },
+    {
       text: 'About',
       translations: { da: 'Om os' },
       href: getPermalink('/about'),
@@ -40,6 +45,7 @@ export const footerData = {
         { text: 'Essays', translations: { da: 'Essays' }, href: getBlogPermalink() },
         { text: 'Events', translations: { da: 'Begivenheder' }, href: getPermalink('/events') },
         { text: 'Services', translations: { da: 'Tjenester' }, href: getPermalink('/services') },
+        { text: 'Membership', translations: { da: 'Medlemskab' }, href: getPermalink('/membership') },
       ],
     },
     {
