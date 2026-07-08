@@ -3,7 +3,7 @@ publishDate: 2026-07-08T00:00:00Z
 title: Why OSS Stewardship Now
 author: lakruzz
 excerpt: Why organizations that rely on FOSS should formalize stewardship, and why membership-driven alliances are a practical model for doing it.
-image: ~/assets/images/posts/evolution/devops-evolution.jpg
+image: ~/assets/images/posts/oss-steward/mom-coin-free.png
 category: Essays
 tags:
   - Open Source
