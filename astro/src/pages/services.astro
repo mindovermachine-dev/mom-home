@@ -3,53 +3,37 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { fetchServices } from '~/utils/services';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Services',
 };
+
+const services = await fetchServices({ locale: 'en' });
 ---
 
 <Layout metadata={metadata}>
   <HeroText
     tagline="Services"
     title="Think tank and Laboratory services for regenerative software"
-    subtitle="Advise, inspiration and hands-on support for teams that want better software outcomes over the long run."
+    subtitle="Advice, inspiration and hands-on support for teams that want better software outcomes over the long run."
   />
 
   <Features2
     title="How we can help"
     columns={2}
-    items={[
-      {
-        title: 'Inspirational Talks',
-        description:
-          'What does "regenerative" mean - in context of software development. How can it be applied in practice? What are the benefits? We offer talks and keynotes to inspire and inform your organization on regenerative software development.',
+    items={services.map((service) => ({
+      title: service.title,
+      description: service.excerpt,
+      callToAction: {
+        variant: 'secondary',
+        text: 'Read more',
+        href: getPermalink(`services/${service.slug}`),
+        class:
+          '!mt-3 !inline-flex !rounded-md !px-3 !py-1.5 !text-sm !font-medium border border-gray-300 hover:!bg-gray-50 dark:border-slate-600 dark:hover:!bg-slate-800',
       },
-      {
-        title: 'Delivery practice coaching',
-        description:
-          'Coaching on trunk-based development, shift-left quality practices, collaborative AI involvment, participatory design, No-estimates, feature-complete individual component releases and sustainable delivery flows.',
-      },
-      {
-        title: 'Architecture and systems guidance',
-        description:
-          'Collaborative guidance for software architecture and design decisions with long-term system health in mind. Understand the systemic implications of decisions and move towards a socio-technical alignment.',
-      },
-      {
-        title: 'Facilitated workshops and hackathons',
-        description:
-          'Facilitation of hands-on sessions to explore old ideas in new settings, run tutorials, solve real-world problems.',
-      },
-      {
-        title: 'Laboratory experiments',
-        description: 'Small pilot engagements to test new ways of working before scaling across the organization.',
-      },
-      {
-        title: 'Flow and value stream analysis',
-        description:
-          'Analysis of your software delivery flow and value stream to identify _muda_, _mura_, and _muri_ to start your continuous improvement endeavor.',
-      },
-    ]}
+    }))}
   />
 
   <CallToAction

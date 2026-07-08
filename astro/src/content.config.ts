@@ -117,8 +117,29 @@ const eventCollection = defineCollection({
   }),
 });
 
+const serviceCollection = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/service' }),
+  schema: z.object({
+    title: z.string(),
+    excerpt: z.string().optional(),
+    image: z.string().optional(),
+    cta: z
+      .object({
+        ctaurl: z.string(),
+        caption: z.string().optional(),
+        icon: z.string().optional(),
+        repeat: z.boolean().optional(),
+      })
+      .optional(),
+    order: z.number().int().optional(),
+    draft: z.boolean().optional(),
+    metadata: metadataDefinition(),
+  }),
+});
+
 export const collections = {
   post: postCollection,
   profile: profileCollection,
   event: eventCollection,
+  service: serviceCollection,
 };

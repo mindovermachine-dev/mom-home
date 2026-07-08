@@ -1,0 +1,125 @@
+---
+import type { GetStaticPaths } from 'astro';
+
+import Image from '~/components/common/Image.astro';
+import MomImage from '~/components/common/MomImage.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchServices, findLocalizedServiceWithFallback } from '~/utils/services';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const services = await fetchServices({ locale: 'da', fallbackLocale: 'en' });
+
+  return services.map((service) => ({
+    params: { slug: service.slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const slug = Astro.params.slug ?? '';
+const { service, usedLocale } = await findLocalizedServiceWithFallback({ slug, locale: 'da', fallbackLocale: 'en' });
+
+if (!service) {
+  return Astro.redirect('/da/services/');
+}
+
+const metadata = {
+  title: service.title,
+  description: service.excerpt,
+  canonical: String(getCanonical(getPermalink(`da/services/${service.slug}`))),
+  openGraph: service.image
+    ? {
+        images: [
+          {
+            url: typeof service.image === 'string' ? service.image : service.image.src,
+          },
+        ],
+      }
+    : undefined,
+};
+
+const ctaCaption = service.cta?.caption ?? 'Tal med os';
+---
+
+<Layout metadata={metadata} localeFallback={usedLocale === 'en' ? 'da' : undefined}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <a class="inline-flex text-sm hover:underline" href={getPermalink('da/services')}>← Tilbage til Tjenester</a>
+
+    <header class="mt-4">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{service.title}</h1>
+      {service.excerpt && <p class="kicker mt-4 text-muted dark:text-slate-400">{service.excerpt}</p>}
+      {
+        service.cta?.ctaurl && (
+          <div class="mt-6">
+            <a
+              href={service.cta.ctaurl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center gap-2"
+            >
+              {service.cta.icon && (
+                <Image
+                  src={service.cta.icon}
+                  alt="Call to action ikon"
+                  width={40}
+                  height={40}
+                  layout="fixed"
+                  class="rounded-full"
+                />
+              )}
+              {ctaCaption}
+            </a>
+          </div>
+        )
+      }
+    </header>
+
+    {
+      service.image && (
+        <MomImage
+          src={service.image}
+          alt={`${service.title} cover image`}
+          position="center"
+          size="medium"
+          mode="static"
+          class="mt-8"
+          imageClass="rounded-xl border border-gray-200 dark:border-slate-700"
+        />
+      )
+    }
+
+    {
+      service.Content && (
+        <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert">
+          <service.Content />
+        </div>
+      )
+    }
+
+    {
+      service.cta?.ctaurl && service.cta.repeat && (
+        <div class="mt-10 border-t border-gray-200 dark:border-slate-700 pt-8">
+          <a
+            href={service.cta.ctaurl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary inline-flex items-center gap-2"
+          >
+            {service.cta.icon && (
+              <Image
+                src={service.cta.icon}
+                alt="Call to action ikon"
+                width={40}
+                height={40}
+                layout="fixed"
+                class="rounded-full"
+              />
+            )}
+            {ctaCaption}
+          </a>
+        </div>
+      )
+    }
+  </section>
+</Layout>
