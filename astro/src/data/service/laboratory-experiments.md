@@ -16,7 +16,7 @@ Laboratory engagements are short, focused pilots in your real environment. They 
 ## Typical pilot scopes
 
 - New branching and release model in one product stream
-- AI-supported coding workflow with quality gates
+- Hybrid Intelligence, Collaborative AI centered coding workflow with quality gates
 - Alternative planning and estimation practice
 
 ## Good fit when

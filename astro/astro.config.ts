@@ -14,7 +14,7 @@ import remarkDirective from 'remark-directive';
 
 import astrowind from './vendor/integration';
 
-import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
+import { readingTimeRemarkPlugin, remarkAttrClassPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
 import { calloutDirectiveRemarkPlugin } from './src/utils/callouts';
 import { collectFrontmatterRedirects } from './src/lib/integrations/frontmatter-redirects';
 
@@ -48,7 +48,7 @@ export default defineConfig({
   integrations: [
     sitemap(),
     mdx({
-      remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, readingTimeRemarkPlugin],
+      remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, remarkAttrClassPlugin, readingTimeRemarkPlugin],
       rehypePlugins: [responsiveTablesRehypePlugin],
     }),
     icon({
@@ -107,7 +107,7 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, readingTimeRemarkPlugin],
+    remarkPlugins: [remarkDirective, calloutDirectiveRemarkPlugin, remarkAttrClassPlugin, readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin],
   },
 

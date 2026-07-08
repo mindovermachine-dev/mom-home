@@ -8,7 +8,7 @@ We design and facilitate practical sessions where teams learn by building, testi
 
 ## Typical workshop themes
 
-- Continuous delivery in legacy settings
+- Continuous Delivery in legacy settings
 - Quality engineering and fast feedback loops
 - AI-assisted development workflows and review patterns
 - Architecture katas based on your own domain
@@ -18,6 +18,7 @@ We design and facilitate practical sessions where teams learn by building, testi
 - Shared learning from real work scenarios
 - Concrete experiments to run after the session
 - Better cross-team collaboration habits
+- A lot of useful code
 
 ## Good fit when
 

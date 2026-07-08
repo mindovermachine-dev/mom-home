@@ -46,7 +46,7 @@ const ctaCaption = service.cta?.caption ?? 'Start a conversation';
 
     <header class="mt-4">
       <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{service.title}</h1>
-      {service.excerpt && <p class="mt-4 text-lg text-muted dark:text-slate-400">{service.excerpt}</p>}
+      {service.excerpt && <p class="kicker mt-4 text-muted dark:text-slate-400">{service.excerpt}</p>}
       {
         service.cta?.ctaurl && (
           <div class="mt-6">

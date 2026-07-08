@@ -28,4 +28,5 @@ We work with teams in their daily delivery system, not in abstract frameworks. T
 
 - Lead time is rising while quality is dropping
 - Code review and testing feel like bottlenecks
-- AI usage is increasing but standards are unclear
+- Pipelines complexity and execution time is rising out of control
+- AI usage is increasing but standards are unclear, quality and consistency is dropping
