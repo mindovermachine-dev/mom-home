@@ -18,14 +18,14 @@ export const headerData = {
       href: getPermalink('/services'),
     },
     {
+      text: 'Membership',
+      translations: { da: 'Medlemskab' },
+      href: getPermalink('/membership'),
+    },
+    {
       text: 'About',
       translations: { da: 'Om os' },
       href: getPermalink('/about'),
-    },
-    {
-      text: 'Contact',
-      translations: { da: 'Kontakt' },
-      href: getPermalink('/contact'),
     },
   ],
   actions: [{ text: 'Get in touch', translations: { da: 'Tal med os' }, href: getPermalink('/contact') }],
@@ -40,6 +40,7 @@ export const footerData = {
         { text: 'Essays', translations: { da: 'Essays' }, href: getBlogPermalink() },
         { text: 'Events', translations: { da: 'Begivenheder' }, href: getPermalink('/events') },
         { text: 'Services', translations: { da: 'Tjenester' }, href: getPermalink('/services') },
+        { text: 'Membership', translations: { da: 'Medlemskab' }, href: getPermalink('/membership') },
       ],
     },
     {
