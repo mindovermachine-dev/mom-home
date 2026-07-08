@@ -2,6 +2,11 @@
 title: Inspirational Talks
 excerpt: Keynotes and talks that connect regenerative software ideas to practical delivery choices.
 order: 6
+image: ~/assets/images/posts/hi/hi-position-cover.jpg
+cta:
+  ctaurl: /contact/
+  caption: Start a conversation
+  repeat: true
 ---
 
 We offer talks for leadership groups, engineering communities, and cross-functional teams that need a sharper language for sustainable software outcomes.

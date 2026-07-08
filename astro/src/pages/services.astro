@@ -10,7 +10,7 @@ const metadata = {
   title: 'Services',
 };
 
-const services = await fetchServices();
+const services = await fetchServices({ locale: 'en' });
 ---
 
 <Layout metadata={metadata}>
@@ -27,9 +27,11 @@ const services = await fetchServices();
       title: service.title,
       description: service.excerpt,
       callToAction: {
-        variant: 'link',
+        variant: 'secondary',
         text: 'Read more',
         href: getPermalink(`services/${service.slug}`),
+        class:
+          '!mt-3 !inline-flex !rounded-md !px-3 !py-1.5 !text-sm !font-medium border border-gray-300 hover:!bg-gray-50 dark:border-slate-600 dark:hover:!bg-slate-800',
       },
     }))}
   />

@@ -2,6 +2,11 @@
 title: Flow and value stream analysis
 excerpt: Analysis of delivery flow to identify bottlenecks, waste, and opportunities for continuous improvement.
 order: 1
+image: ~/assets/images/posts/evolution/devops-evolution.jpg
+cta:
+  ctaurl: /contact/
+  caption: Start a conversation
+  repeat: true
 ---
 
 We map your end-to-end delivery flow and identify where value gets delayed, lost, or degraded.

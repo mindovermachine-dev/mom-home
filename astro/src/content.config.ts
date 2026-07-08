@@ -122,6 +122,15 @@ const serviceCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     excerpt: z.string().optional(),
+    image: z.string().optional(),
+    cta: z
+      .object({
+        ctaurl: z.string(),
+        caption: z.string().optional(),
+        icon: z.string().optional(),
+        repeat: z.boolean().optional(),
+      })
+      .optional(),
     order: z.number().int().optional(),
     draft: z.boolean().optional(),
     metadata: metadataDefinition(),

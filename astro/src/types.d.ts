@@ -86,14 +86,25 @@ export interface Event {
 export interface Service {
   /** Unique ID identifying the service. */
   id: string;
+  /** Locale of the service content. */
+  locale: 'en' | 'da';
   /** URL-friendly slug derived from the service ID. */
   slug: string;
   title: string;
   excerpt?: string;
+  image?: ImageMetadata | string;
+  cta?: ServiceCta;
   order?: number;
   metadata?: MetaData;
   draft?: boolean;
   Content?: AstroComponentFactory;
+}
+
+export interface ServiceCta {
+  ctaurl: string;
+  caption?: string;
+  icon?: string;
+  repeat?: boolean;
 }
 
 export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer';

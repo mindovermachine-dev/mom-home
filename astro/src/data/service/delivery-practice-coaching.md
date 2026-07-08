@@ -2,6 +2,11 @@
 title: Delivery practice coaching
 excerpt: Coaching on trunk-based development, shift-left quality, and sustainable flow.
 order: 2
+image: ~/assets/images/posts/say-ai-again/say-ia-again.jpg
+cta:
+  ctaurl: /contact/
+  caption: Start a conversation
+  repeat: true
 ---
 
 We work with teams in their daily delivery system, not in abstract frameworks. The goal is to reduce friction while increasing confidence in change.

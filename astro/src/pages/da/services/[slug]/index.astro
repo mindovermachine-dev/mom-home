@@ -1,31 +1,33 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import type { GetStaticPaths } from 'astro';
 
 import Image from '~/components/common/Image.astro';
 import MomImage from '~/components/common/MomImage.astro';
 import Layout from '~/layouts/PageLayout.astro';
-import { fetchServices } from '~/utils/services';
+import { fetchServices, findLocalizedServiceWithFallback } from '~/utils/services';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-  const services = await fetchServices({ locale: 'en' });
+  const services = await fetchServices({ locale: 'da', fallbackLocale: 'en' });
 
   return services.map((service) => ({
     params: { slug: service.slug },
-    props: { service },
   }));
 }) satisfies GetStaticPaths;
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const slug = Astro.params.slug ?? '';
+const { service, usedLocale } = await findLocalizedServiceWithFallback({ slug, locale: 'da', fallbackLocale: 'en' });
 
-const { service } = Astro.props as Props;
+if (!service) {
+  return Astro.redirect('/da/services/');
+}
 
 const metadata = {
   title: service.title,
   description: service.excerpt,
-  canonical: String(getCanonical(getPermalink(`services/${service.slug}`))),
+  canonical: String(getCanonical(getPermalink(`da/services/${service.slug}`))),
   openGraph: service.image
     ? {
         images: [
@@ -37,12 +39,12 @@ const metadata = {
     : undefined,
 };
 
-const ctaCaption = service.cta?.caption ?? 'Start a conversation';
+const ctaCaption = service.cta?.caption ?? 'Tal med os';
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} localeFallback={usedLocale === 'en' ? 'da' : undefined}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <a class="inline-flex text-sm hover:underline" href={getPermalink('services')}>← Back to Services</a>
+    <a class="inline-flex text-sm hover:underline" href={getPermalink('da/services')}>← Tilbage til Tjenester</a>
 
     <header class="mt-4">
       <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{service.title}</h1>
@@ -59,7 +61,7 @@ const ctaCaption = service.cta?.caption ?? 'Start a conversation';
               {service.cta.icon && (
                 <Image
                   src={service.cta.icon}
-                  alt="Call to action icon"
+                  alt="Call to action ikon"
                   width={40}
                   height={40}
                   layout="fixed"
@@ -107,7 +109,7 @@ const ctaCaption = service.cta?.caption ?? 'Start a conversation';
             {service.cta.icon && (
               <Image
                 src={service.cta.icon}
-                alt="Call to action icon"
+                alt="Call to action ikon"
                 width={40}
                 height={40}
                 layout="fixed"
