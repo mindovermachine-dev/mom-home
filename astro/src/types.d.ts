@@ -83,6 +83,19 @@ export interface Event {
   Content?: AstroComponentFactory;
 }
 
+export interface Service {
+  /** Unique ID identifying the service. */
+  id: string;
+  /** URL-friendly slug derived from the service ID. */
+  slug: string;
+  title: string;
+  excerpt?: string;
+  order?: number;
+  metadata?: MetaData;
+  draft?: boolean;
+  Content?: AstroComponentFactory;
+}
+
 export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer';
 
 export type ProfileRelationSourceType = 'post' | 'event';
