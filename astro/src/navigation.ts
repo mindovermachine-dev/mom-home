@@ -27,11 +27,6 @@ export const headerData = {
       translations: { da: 'Om os' },
       href: getPermalink('/about'),
     },
-    {
-      text: 'Contact',
-      translations: { da: 'Kontakt' },
-      href: getPermalink('/contact'),
-    },
   ],
   actions: [{ text: 'Get in touch', translations: { da: 'Tal med os' }, href: getPermalink('/contact') }],
 };

@@ -1,7 +1,7 @@
 ---
 title: OSS Stewardship Transition
 excerpt: Move a hobby or manufacturer-led FOSS project into compliant stewardship under Mind over Machine.
-order: 7
+order: 1
 cta:
   ctaurl: /contact/
   caption: Start a transition assessment
@@ -35,12 +35,12 @@ automation, and maintainer operations on GitHub or Codeberg.
 ### Phase 5: Value stream and operating roadmap
 
 We map the current flow from intake to release, identify bottlenecks and risk concentration, and define a roadmap for the next
- operating period.
+operating period.
 
 ### Phase 6: Stewardship launch and cadence
 
 We establish recurring stewardship routines, role boundaries, quality guardrails, and decision checkpoints so the project can
- run sustainably after transition.
+run sustainably after transition.
 
 ## What the transition includes
 
