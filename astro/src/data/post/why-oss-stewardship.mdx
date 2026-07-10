@@ -1,0 +1,190 @@
+---
+publishDate: 2026-07-08T00:00:00Z
+title: Why OSS Stewardship Now
+author: lakruzz
+excerpt: The EU's Cyber Resilience Act is live. If your commercial product uses FOSS, your obligations just changed. Open Source Software Stewardship is no longer optional.
+image: ~/assets/images/posts/oss-steward/mom-coin-free.png
+category: Essays
+tags:
+  - Open Source
+  - OSS Stewardship
+  - CRA
+  - Governance
+  - Product Strategy
+---
+
+import MomImage from '~/components/common/MomImage.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+The EU [Cyber Resilience Act (CRA)](https://www.cyberresilienceact.eu/), changes the conversation from "best practice" to "expected practice" or even "required practice" for products with digital elements.
+
+And for organizations and companies that rely on Free and Open Source Software (FOSS) in commercial products, this is not only about security engineering. It is _also_ about operating model, accountability, and the sustainability and viability of the FOSS projects they have dependencies on.
+
+CRA is rolled out in waves, next milestone is in September 2026, where formal OSS Stewardship and incident and vulnerability reporting timelines for manufacturers must be established.
+
+## What the CRA is
+
+In practical terms, the CRA sets horizontal cybersecurity requirements for products with digital elements placed on the EU market.
+
+It covers both product properties and the manufacturer's processes. That includes:
+
+- Secure-by-design and secure-by-default expectations
+- Vulnerability handling during a defined support period
+- Technical documentation and conformity assessment
+- Reporting of actively exploited vulnerabilities and severe incidents
+- Market surveillance and enforcement mechanisms
+
+The goal is straightforward: improve baseline cybersecurity and make obligations clearer across the software supply chain.
+
+## Why this is good
+
+The CRA introduces discipline where many teams previously depended on informal heroics. Many FOSS projects, especially the popular and well-established ones, are already run with tight stewardship, using a _Benevolent Dictator Governance_ model or a _Sociocratic governance_ model placed under the wings of a not-for-profit foundation, and they are sufficiently funded and sponsored. This is good. The practice is already established, and the structure is recognized for producing the best and most reliable software in the world.
+
+The simple claim is that if a FOSS project is included in the foundation of a commercial product, then the manufacturer must ensure that the FOSS project is structured like this.
+
+That is good for buyers, users, and software teams because it improves:
+
+- Predictability of support and patching
+- Transparency around accountability
+- Consistency in vulnerability management
+- Trust in products that depend on third-party and open-source components
+
+It raises the quality floor of the market.
+
+## What changes for FOSS projects
+
+Most FOSS projects are not born as enterprise-ready systems. They usually start close to a concrete need, often with one or a few maintainers.
+
+That is a strength in early phases, but it can become fragile when the same project is used in commercial products at scale.
+
+In the future, FOSS projects like this must start scouting for _stewardship_ by a legal entity that is registered as _not-for-profit_. Until such an OSS Stewardship is established, that particular FOSS project cannot be used as a dependency in commercial products traded within the EU.
+
+Under CRA pressure, organizations increasingly need to ask:
+
+- Who sustains vulnerability handling over time?
+- Who maintains documentation and governance continuity?
+- Who can demonstrate viable support and stewardship posture?
+
+This is where project viability becomes as important as source-code availability.
+
+## The role of the OSS Steward
+
+CRA Article 3(14) defines an open-source software steward as a legal entity, other than a manufacturer, that provides sustained support for specific FOSS products intended for commercial activities and ensures those products remain viable.
+
+Under the CRA definition, that legal entity must be a:
+
+> Not-for-profit organization, set up in such a way that it ensures that all earnings after costs are used to achieve not-for-profit objectives.
+
+In short: the OSS Steward role exists to create continuity and credible support around FOSS projects that matter in commercial contexts.
+
+Why does it matter that the OSS Steward is a not-for-profit organization? Well, it ensures that the steward is not a commercial competitor to the manufacturer, and that the current de facto stewards; the maintainers and contributors are not merely _employees_ under the manufacturer; a construct that is known to jeopardize manufacturer-led FOSS project in the event that stewards are no longer employed and then suddenly forcefully locked out of their stewardship role in the FOSS project[^hudson]. It calls for a long-term commitment to the project and a governance model that promotes long-term sustainability, rather than short-term profit.
+
+[^hudson]: The story of Hudson vs Jenkins serves as a scholarly example: Kohsuke Kawaguchi developed and led the Hudson CI FOSS project while employed by Sun Microsystems. When Oracle bought Sun (2010), Kohsuke didn't move to Oracle. Oracle declared its intention to trademark the Hudson name and began development on a commercial version (2011). The majority of the development community, including Kawaguchi, decided to continue the project under the name Jenkins CI in early 2011. Oracle maintained that Hudson was continuing development and that Jenkins was a fork; the Jenkins developers considered Hudson to be the fork. Today, Jenkins is stewarded by the Linux Foundation and is fully CRA compliant, while Hudson is retired. [source: Wikipedia](<https://en.wikipedia.org/wiki/Hudson_(software)>)
+
+CRA Article 24 adds concrete obligations for OSS stewards, including a verifiable cybersecurity policy and cooperation with market surveillance authorities. The EU Commission's guidance clarifies that a FOSS project is considered a commercial activity—and thus subject to CRA obligations as a product—when it involves charging a price, monetizing through other services, requiring personal data for non-essential reasons, or accepting donations that function as a de facto price for access or exclusive benefits.
+
+<MomImage
+  src="~/assets/images/posts/oss-steward/cra-oss-steward-flow.png"
+  alt="Flowchart for CRA coverage of free and open-source software"
+  caption="Flowchart for CRA coverage of free and open-source software (From the EU Commission's draft guidance on CRA)"
+  position="center"
+  size="large"
+  url="https://www.law.co.il/media/computer-law/cra_draft_guidance.pdf"
+/>
+
+## Key roadmap dates
+
+From the Regulation timeline and current Commission guidance process:
+
+- **10 Dec 2024: CRA entered into force.** This is the legal start of Regulation (EU) 2024/2847 and the beginning of the transition period. From this point, organizations should treat CRA readiness as a live program, not future planning.
+- **11 Jun 2026: Chapter IV starts applying.** Chapter IV covers the notification and governance framework for conformity assessment bodies (Articles 35-51), which is the institutional setup needed to support CRA conformity assessments and market access workflows.
+- **11 Sep 2026: Article 14 reporting obligations start applying.** Article 14 introduces mandatory incident and vulnerability reporting timelines for manufacturers (including the 24-hour early warning, 72-hour notification, and later final reporting), via the ENISA/CSIRT reporting flow.
+- **11 Dec 2027: Regulation applies in full.** From this date, CRA obligations become generally applicable across products with digital elements placed on the EU market, with market surveillance and enforcement operating at full scope.
+
+The Commission has also prepared [draft guidance content for formal adoption](https://www.law.co.il/media/computer-law/cra_draft_guidance.pdf), to help operators and especially SMEs prepare for compliance.
+
+September 2026 is therefore a practical planning deadline for establishing OSS Stewardship on FOSS projects. Not a distant milestone, but a near one.
+
+## What organizations should do now
+
+Before reporting obligations apply, teams should establish a workable model for:
+
+- Product and component risk ownership
+- Vulnerability intake and remediation flow
+- Incident reporting readiness
+- Support-period policy and communication
+- Governance and stewardship continuity for critical FOSS dependencies
+
+This is not just a legal checkbox. It is operating resilience.
+
+## OSS Stewardship as a standard Mind over Machine service
+
+At Mind over Machine, OSS Stewardship is not an occasional project type. It is a standard service line.
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'MoM\'s OSS Stewardship',
+        href: '/services/oss-stewardship'
+      }
+    ]}
+
+    title="Interested in MoM's OSS Stewardship service?"
+    subtitle="Hosting and stewarding the required infrastructure for sustainable FOSS management, leading and engaging the the community, providing stellar support for DevX, DevOps, IaaC, deployment, release, documentation, AI instructions, verification, taking responsibility for deign and architecture<br/><b>...and all that jazz</b>."
+
+/>
+
+We are indeed a non-profit foundation, and we offer to take stewardship responsibility for selected FOSS projects and run a transition from hobby-led or manufacturer-led setups into a viable CRA compliant stewardship model.
+
+Typical transition scope includes:
+
+- Fit, governance, and ethical alignment assessment
+- Codebase and quality-system due diligence
+- Repository and organization transition on GitHub or Codeberg
+- Value stream analysis and operating roadmap
+- Establishment of stewardship cadence and guardrails
+
+If your product strategy depends on FOSS, stewardship should be treated as core infrastructure, not side activity.
+
+## From hero-maintenance to resilient operation
+
+Most FOSS projects start in exactly the right way: close to a real problem, built by people who care deeply. The challenge appears later, when the project must become stable for broader adoption.
+
+The transition is less about rewriting code and more about changing operating posture:
+
+- Clear governance and contribution boundaries
+- Repeatable release and quality routines
+- Transparent decision-making and roadmap discipline
+- Maintainability that survives individual role changes
+
+This is where stewardship becomes practical management, not abstract philosophy.
+
+The OSS Stewardship service from Mind over Machine is a cross delivery between the think tank, the laboratory and the Community of Practice.
+
+We optimize the FOSS project for regenerative long-term viability, and we do the actual hands-on optimizations and feature requests. By engaging the Community and letting the FOSS project serve as a _practicum_ for _legitimate peripheral participation_ purposes, we can even help you utilize one of the most praised features of Free and Open Source Software: that it becomes a collaborative, interest-driven effort. We engage academia, volunteers, and interns — in short; we build a crowd around your FOSS product.
+
+## Why a membership alliance model works
+
+A membership/alliance-backed model creates shared incentives across organizations that rely on the same ecosystem but do not share the same business model.
+
+It gives leadership teams a way to:
+
+- Fund stewardship capacity continuously
+- Reduce duplicated effort across companies
+- Influence priorities through a transparent forum
+- Keep neutral ground for collaboration on generic problems
+
+In practice, this can enable even direct market competitors to collaborate on common infrastructure or framework projects while still competing on product differentiation.
+
+## The strategic payoff
+
+Formal stewardship does not remove all risk. It changes risk from hidden and person-dependent to visible and manageable.
+
+For executives, that translates into better continuity, clearer accountability, and stronger confidence that FOSS dependencies can support commercial ambitions over time.
+
+For product and engineering leaders, it creates a more realistic path from experimental utility to durable platform capability.
+
+Stewardship is not a side activity anymore. For many organizations, it is becoming part of the core operating model for software strategy.
+
+**For many years, we have argued that companies should develop software as if it were Open Source, referring to the governance model and general transparency that drives quality to be built-in at the source. The open collaboration and shared responsibility. The relentless drive for a general-purpose core and the isolation of customizations in pluggable modules. If we (humanity) are lucky, then the CRA is a wake-up call for companies to take this seriously and to start acting on it.**
