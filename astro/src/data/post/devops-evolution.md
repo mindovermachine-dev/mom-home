@@ -11,6 +11,7 @@ tags:
   - DevX
 author: lakruzz
 pdf: true
+redirect-from: /essays/devops-evolution/
 ---
 
 _What is DevOps?_ We have discussed that question since the concept hatched around 2008, but maybe the better move is not to over define it. Instead, reflect on what it embraces and keep the community open to change.

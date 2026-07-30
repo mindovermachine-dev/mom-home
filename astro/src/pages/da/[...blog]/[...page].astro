@@ -18,7 +18,6 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
-const isFallbackToEnglish = page.data.some((post) => post.locale === 'en');
 
 const metadata = {
   title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
@@ -32,13 +31,15 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata} localeFallback={isFallbackToEnglish ? 'da' : undefined}>
+<Layout metadata={metadata}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <Headline
-      subtitle="Vi bruger bevidst betegnelserne og kategorierne 'essays' og 'journals' til at beskrive vores indhold"
+      subtitle="Alle vores skriverier listet chronologisk. Du kan filtrere på <a href='/da/category/briefs' style='text-decoration: underline;'>briefs</a> og <a href='/da/category/essays' style='text-decoration: underline;'>essays</a><br/>
+       <span style='font-size: 0.85em;font-style:italic;'>Hvis et skriveri ikke er tilgængeligt på dansk bliver det vist på engelsk.</span>"
     >
-      Essays & Journals
+      Skriverier
     </Headline>
+
     <BlogList posts={page.data} locale="da" />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </section>

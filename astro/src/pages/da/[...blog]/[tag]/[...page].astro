@@ -18,7 +18,6 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page, tag } = Astro.props as Props;
 
 const currentPage = page.currentPage ?? 1;
-const isFallbackToEnglish = page.data.some((post) => post.locale === 'en');
 
 const metadata = {
   title: `Posts by tag '${tag.title}'${currentPage > 1 ? ` — Page ${currentPage} ` : ''}`,
@@ -29,7 +28,7 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata} localeFallback={isFallbackToEnglish ? 'da' : undefined}>
+<Layout metadata={metadata}>
   <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <Headline>Tag: {tag.title}</Headline>
     <BlogList posts={page.data} locale="da" />

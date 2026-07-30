@@ -24,15 +24,35 @@ const hasExternalScripts = process.env.ENABLE_EXTERNAL_SCRIPTS === 'true';
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
-const frontmatterRedirects = collectFrontmatterRedirects({
-  roots: [path.resolve(__dirname, './src/pages'), path.resolve(__dirname, './src/data/post')],
-  localePrefixes: ['da', 'en'],
-  onConflict: ({ source, existing, incoming, filePath }) => {
-    console.warn(
-      `[redirect-from] Skipping conflicting source '${source}' from '${filePath}'. Already mapped to '${existing}' and ignored '${incoming}'.`
-    );
-  },
-});
+const onFrontmatterRedirectConflict = ({
+  source,
+  existing,
+  incoming,
+  filePath,
+}: {
+  source: string;
+  existing: string;
+  incoming: string;
+  filePath: string;
+}) => {
+  console.warn(
+    `[redirect-from] Skipping conflicting source '${source}' from '${filePath}'. Already mapped to '${existing}' and ignored '${incoming}'.`
+  );
+};
+
+const frontmatterRedirects = {
+  ...collectFrontmatterRedirects({
+    roots: [path.resolve(__dirname, './src/pages')],
+    localePrefixes: ['da', 'en'],
+    onConflict: onFrontmatterRedirectConflict,
+  }),
+  ...collectFrontmatterRedirects({
+    roots: [path.resolve(__dirname, './src/data/post')],
+    localePrefixes: ['da', 'en'],
+    targetPrefix: '/writings',
+    onConflict: onFrontmatterRedirectConflict,
+  }),
+};
 
 export default defineConfig({
   output: 'static',

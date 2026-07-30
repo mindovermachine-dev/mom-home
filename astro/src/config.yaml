@@ -38,13 +38,13 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/essays/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/writings/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'essays'
+      pathname: 'writings'
       robots:
         index: true
 

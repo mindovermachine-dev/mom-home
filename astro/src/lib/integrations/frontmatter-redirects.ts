@@ -12,6 +12,7 @@ export interface CollectFrontmatterRedirectsOptions {
   roots: string[];
   localePrefixes?: string[];
   redirectFields?: string[];
+  targetPrefix?: string;
   onConflict?: (context: RedirectConflictContext) => void;
 }
 
@@ -34,6 +35,38 @@ function normalizePathname(value: string | null | undefined): string | null {
   }
 
   return collapsed;
+}
+
+function withRoutePrefix(pathname: string, routePrefix: string | undefined, localePrefix: string): string {
+  const normalizedPrefix = normalizePathname(routePrefix);
+  if (!normalizedPrefix || normalizedPrefix === '/') {
+    return pathname;
+  }
+
+  if (localePrefix) {
+    const localeRoot = `/${localePrefix}`;
+    const localeScopedPrefix = `${localeRoot}${normalizedPrefix}`;
+
+    if (
+      pathname === localeRoot ||
+      pathname === `${localeScopedPrefix}` ||
+      pathname.startsWith(`${localeScopedPrefix}/`)
+    ) {
+      return pathname;
+    }
+
+    if (pathname.startsWith(`${localeRoot}/`)) {
+      return normalizePathname(`${localeScopedPrefix}/${pathname.slice(localeRoot.length + 1)}`) ?? pathname;
+    }
+
+    return normalizePathname(`${localeScopedPrefix}${pathname}`) ?? pathname;
+  }
+
+  if (pathname === normalizedPrefix || pathname.startsWith(`${normalizedPrefix}/`)) {
+    return pathname;
+  }
+
+  return normalizePathname(`${normalizedPrefix}${pathname}`) ?? pathname;
 }
 
 function stripQuotes(value: string): string {
@@ -143,7 +176,8 @@ function routeFromFile(
   filePath: string,
   root: string,
   localePrefixes: Set<string>,
-  slugValue: string | null
+  slugValue: string | null,
+  targetPrefix?: string
 ): string | null {
   const relative = path.relative(root, filePath).split(path.sep).join('/');
   const withoutExtension = relative.replace(/\.(md|mdx|mdoc)$/i, '');
@@ -160,11 +194,16 @@ function routeFromFile(
 
   const normalizedSlug = normalizePathname(slugValue);
   if (normalizedSlug) {
-    if (localePrefix && normalizedSlug !== `/${localePrefix}` && !normalizedSlug.startsWith(`/${localePrefix}/`)) {
-      return normalizePathname(`/${localePrefix}${normalizedSlug}`);
+    const localizedSlug =
+      localePrefix && normalizedSlug !== `/${localePrefix}` && !normalizedSlug.startsWith(`/${localePrefix}/`)
+        ? normalizePathname(`/${localePrefix}${normalizedSlug}`)
+        : normalizedSlug;
+
+    if (!localizedSlug) {
+      return null;
     }
 
-    return normalizedSlug;
+    return withRoutePrefix(localizedSlug, targetPrefix, localePrefix);
   }
 
   if (segments[segments.length - 1] === 'index') {
@@ -173,13 +212,19 @@ function routeFromFile(
 
   const joined = segments.join('/');
   const localePart = localePrefix ? `/${localePrefix}` : '';
-  return normalizePathname(`${localePart}/${joined}`);
+  const derivedPath = normalizePathname(`${localePart}/${joined}`);
+  if (!derivedPath) {
+    return null;
+  }
+
+  return withRoutePrefix(derivedPath, targetPrefix, localePrefix);
 }
 
 export function collectFrontmatterRedirects({
   roots,
   localePrefixes = ['da', 'en'],
   redirectFields = ['redirect-from', 'redirectFrom'],
+  targetPrefix,
   onConflict,
 }: CollectFrontmatterRedirectsOptions): Record<string, string> {
   const localePrefixSet = new Set(localePrefixes);
@@ -194,7 +239,7 @@ export function collectFrontmatterRedirects({
       if (!frontmatter) continue;
 
       const slugValue = getScalarField(frontmatter, 'slug');
-      const target = routeFromFile(filePath, resolvedRoot, localePrefixSet, slugValue);
+      const target = routeFromFile(filePath, resolvedRoot, localePrefixSet, slugValue, targetPrefix);
       if (!target) continue;
 
       const redirectFromValues = redirectFields.flatMap((field) => getFieldValues(frontmatter, field));
@@ -203,7 +248,7 @@ export function collectFrontmatterRedirects({
         const source = normalizePathname(sourceValue);
         if (!source || source === target) continue;
 
-        const existing = redirects[source];
+        const existing: string | undefined = redirects[source];
         if (existing && existing !== target) {
           onConflict?.({ source, existing, incoming: target, filePath });
           continue;
