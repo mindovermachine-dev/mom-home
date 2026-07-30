@@ -5,6 +5,34 @@ import type { Event } from '~/types';
 import { cleanSlug } from '~/utils/permalinks';
 import { isDraftModeEnabled } from '~/utils/utils';
 
+type EventLocale = 'en' | 'da';
+const SUPPORTED_EVENT_LOCALES = new Set<EventLocale>(['en', 'da']);
+
+const getEventLocaleAndId = (id: string): { locale: EventLocale; localizedId: string } => {
+  const [first, ...rest] = id.split('/');
+
+  if (first && SUPPORTED_EVENT_LOCALES.has(first as EventLocale) && rest.length) {
+    return { locale: first as EventLocale, localizedId: rest.join('/') };
+  }
+
+  return { locale: 'en', localizedId: id };
+};
+
+const getLocalizedEvents = (
+  events: Array<Event>,
+  { locale = 'en', fallbackLocale }: { locale?: EventLocale; fallbackLocale?: EventLocale } = {}
+): Array<Event> => {
+  if (!fallbackLocale || fallbackLocale === locale) {
+    return events.filter((event) => event.locale === locale);
+  }
+
+  const localizedSlugs = new Set(events.filter((event) => event.locale === locale).map((event) => event.slug));
+
+  return events.filter(
+    (event) => event.locale === locale || (event.locale === fallbackLocale && !localizedSlugs.has(event.slug))
+  );
+};
+
 const toNormalizedDate = (rawDate: Date | string): Date | string => {
   if (rawDate instanceof Date) {
     return rawDate;
@@ -54,6 +82,7 @@ export const getOccurrenceTimestampOrInfinity = (occurrence: { date: Date | stri
 
 const getNormalizedEvent = async (event: CollectionEntry<'event'>): Promise<Event> => {
   const { id, data } = event;
+  const { locale, localizedId } = getEventLocaleAndId(id);
   const { Content } = await render(event);
   const dates = data.dates
     .map((occurrence) => ({
@@ -65,7 +94,8 @@ const getNormalizedEvent = async (event: CollectionEntry<'event'>): Promise<Even
 
   return {
     id,
-    slug: cleanSlug(id),
+    locale,
+    slug: cleanSlug(localizedId),
     title: data.title,
     sortorder: data.sortorder,
     dates,
@@ -108,15 +138,51 @@ const load = async (): Promise<Array<Event>> => {
 
 let _events: Array<Event>;
 
-export const fetchEvents = async (): Promise<Array<Event>> => {
+export const fetchEvents = async ({
+  locale,
+  fallbackLocale,
+}: { locale?: EventLocale; fallbackLocale?: EventLocale } = {}): Promise<Array<Event>> => {
   if (!_events) {
     _events = await load();
   }
 
-  return _events;
+  if (!locale && !fallbackLocale) {
+    return _events;
+  }
+
+  return getLocalizedEvents(_events, { locale, fallbackLocale });
 };
 
 export const findEventBySlug = async (slug: string): Promise<Event | undefined> => {
   const normalizedSlug = cleanSlug(slug);
   return (await fetchEvents()).find((event) => event.slug === normalizedSlug);
+};
+
+export const findLocalizedEventWithFallback = async ({
+  slug,
+  locale = 'en',
+  fallbackLocale = 'en',
+}: {
+  slug: string;
+  locale?: EventLocale;
+  fallbackLocale?: EventLocale;
+}): Promise<{ event: Event | undefined; usedLocale: EventLocale | undefined }> => {
+  const normalizedSlug = cleanSlug(slug);
+  const primaryEvent = (await fetchEvents({ locale })).find((event) => event.slug === normalizedSlug);
+
+  if (primaryEvent) {
+    return { event: primaryEvent, usedLocale: locale };
+  }
+
+  if (fallbackLocale !== locale) {
+    const fallbackEvent = (await fetchEvents({ locale: fallbackLocale })).find(
+      (event) => event.slug === normalizedSlug
+    );
+
+    if (fallbackEvent) {
+      return { event: fallbackEvent, usedLocale: fallbackLocale };
+    }
+  }
+
+  return { event: undefined, usedLocale: undefined };
 };

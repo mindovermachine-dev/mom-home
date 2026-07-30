@@ -5,10 +5,10 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import { fetchEvents, getOccurrenceTimestampOrInfinity } from '~/utils/events';
 import { getPermalink } from '~/utils/permalinks';
 
-const events = await fetchEvents({ locale: 'en' });
+const events = await fetchEvents({ locale: 'da', fallbackLocale: 'en' });
 const now = Date.now();
 
-const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+const dateFormatter = new Intl.DateTimeFormat('da-DK', {
   dateStyle: 'medium',
   timeZone: 'UTC',
 });
@@ -59,13 +59,13 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Events"
-    title="Events and community activities"
-    subtitle="Upcoming and past events from the Mind over Machine community."
+    tagline="Begivenheder"
+    title="Events og aktiviteter i fællesskabet"
+    subtitle="Kommende og tidligere events fra Mind over Machine fællesskabet."
   />
 
   <section class="px-6 sm:px-6 pb-12 sm:pb-16 lg:pb-20 mx-auto max-w-5xl">
-    <h2 class="text-2xl md:text-3xl font-bold font-heading">Upcoming Events</h2>
+    <h2 class="text-2xl md:text-3xl font-bold font-heading">Kommende events</h2>
     {
       upcomingEvents.length > 0 ? (
         <ul id="events-upcoming-list" class="mt-6 grid gap-6">
@@ -73,7 +73,7 @@ const metadata = {
             <li class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden">
               <a
                 class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
-                href={getPermalink(`events/${event.slug}`)}
+                href={getPermalink(`da/events/${event.slug}`)}
               >
                 {event.image && (
                   <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">
@@ -121,7 +121,7 @@ const metadata = {
         </ul>
       ) : (
         <p id="events-upcoming-empty" class="mt-6 text-muted dark:text-slate-400">
-          No upcoming events right now.
+          Ingen kommende events lige nu.
         </p>
       )
     }
@@ -130,18 +130,18 @@ const metadata = {
       pastEvents.length > 0 && (
         <details class="mt-10 group">
           <summary class="inline-flex cursor-pointer list-none items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800">
-            <span class="group-open:hidden">See Past Events</span>
-            <span class="hidden group-open:inline">Hide Past Events</span>
+            <span class="group-open:hidden">Se tidligere events</span>
+            <span class="hidden group-open:inline">Skjul tidligere events</span>
           </summary>
 
           <section class="mt-6">
-            <h2 class="text-2xl md:text-3xl font-bold font-heading">Past Events</h2>
+            <h2 class="text-2xl md:text-3xl font-bold font-heading">Tidligere events</h2>
             <ul id="events-past-list" class="mt-6 grid gap-6">
               {pastEvents.map(({ event, pastDates }) => (
                 <li class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden">
                   <a
                     class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
-                    href={getPermalink(`events/${event.slug}`)}
+                    href={getPermalink(`da/events/${event.slug}`)}
                   >
                     {event.image && (
                       <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">

@@ -69,6 +69,8 @@ export interface EventOccurrence {
 export interface Event {
   /** Unique ID identifying the event. */
   id: string;
+  /** Locale of the event content. */
+  locale: 'en' | 'da';
   /** URL-friendly slug derived from the event ID. */
   slug: string;
   title: string;
