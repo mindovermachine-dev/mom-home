@@ -1,6 +1,10 @@
 ---
 name: "Daily Issues Report"
 description: "Generates a daily summary of open issues and recent activity as a GitHub issue"
+tools:
+  github:
+    toolsets: [repos, issues]
+    min-integrity: unapproved
 on:
   schedule: daily on weekdays
 permissions:

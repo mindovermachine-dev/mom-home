@@ -27,3 +27,6 @@ astro/public/version.txt
 # General
 /tmp
 /temp
+
+# gh-aw run artifacts
+.github/aw/logs/*
