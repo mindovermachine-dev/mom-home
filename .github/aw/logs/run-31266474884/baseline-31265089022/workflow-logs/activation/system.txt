@@ -1,9 +1,0 @@
-2026-08-08T15:41:36.0870000Z Evaluating activation.if
-2026-08-08T15:41:36.0870000Z Evaluating: (success() && ((needs.pre_activation.outputs.activated == 'true')))
-2026-08-08T15:41:36.0870000Z Expanded: (true && ('true' == 'true'))
-2026-08-08T15:41:36.0870000Z Result: true
-2026-08-08T15:41:36.0890000Z Requested labels: ubuntu-slim
-2026-08-08T15:41:36.0890000Z Job defined at: mindovermachine-dev/mom-home/.github/workflows/review-issue.lock.yml@refs/heads/main
-2026-08-08T15:41:36.0890000Z Waiting for a runner to pick up this job...
-2026-08-08T15:41:36.5040000Z Job is waiting for a hosted runner to come online.
-2026-08-08T15:41:36.5050000Z Job is about to start running on the hosted runner: GitHub Actions 1000000574

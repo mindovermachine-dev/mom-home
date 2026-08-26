@@ -27,3 +27,6 @@ astro/public/version.txt
 # General
 /tmp
 /temp
+
+# GitHub Agentic Workflow logs
+/.github/aw/logs/

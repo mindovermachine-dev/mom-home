@@ -1,4 +1,0 @@
-{"ts":1786203769362,"event":"TRACK_START","rid":"36a7a443-a817-4ac9-9891-0583bc47f2a3","provider":"copilot","path":"/chat/completions","streaming":true,"ct":"text/event-stream","ce":"(none)","status":200}
-{"ts":1786203769667,"event":"TRACK_END","rid":"36a7a443-a817-4ac9-9891-0583bc47f2a3","result":"ok","streaming":true,"model":"claude-sonnet-5","input":3985,"output":177,"cache_read":0}
-{"ts":1786203772300,"event":"TRACK_START","rid":"ec790c0e-3922-4afb-8dbe-3a9de9fb5335","provider":"copilot","path":"/chat/completions","streaming":true,"ct":"text/event-stream","ce":"(none)","status":200}
-{"ts":1786203772688,"event":"TRACK_END","rid":"ec790c0e-3922-4afb-8dbe-3a9de9fb5335","result":"ok","streaming":true,"model":"claude-sonnet-5","input":2,"output":50,"cache_read":36110}

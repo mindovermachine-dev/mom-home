@@ -1,9 +1,0 @@
-{
-  "input_tokens": 3987,
-  "output_tokens": 227,
-  "cache_read_tokens": 36110,
-  "cache_write_tokens": 40210,
-  "ambient_context": 7596,
-  "ai_credits": 11.002,
-  "primary_model": "claude-sonnet-5"
-}
