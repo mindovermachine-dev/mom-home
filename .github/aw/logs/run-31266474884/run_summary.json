@@ -1,0 +1,110 @@
+{
+  "cli_version": "v0.85.4",
+  "run_id": 31266474884,
+  "processed_at": "2026-08-08T16:14:59.136626582Z",
+  "run": {
+    "databaseId": 31266474884,
+    "number": 3,
+    "url": "https://github.com/mindovermachine-dev/mom-home/actions/runs/31266474884",
+    "status": "queued",
+    "conclusion": "",
+    "workflowName": "Issue Clarifier",
+    "workflowPath": ".github/workflows/review-issue.lock.yml",
+    "createdAt": "2026-08-08T16:14:44Z",
+    "startedAt": "2026-08-08T16:14:44Z",
+    "updatedAt": "2026-08-08T16:14:54Z",
+    "event": "workflow_dispatch",
+    "headBranch": "54-Fix_agentic_workflows",
+    "headSha": "be2f3a43f7c82f5a4b5f7262ec691a7c6ff2ef9a",
+    "displayTitle": "Issue Clarifier",
+    "Duration": 10000000000,
+    "ActionMinutes": 0,
+    "TokenUsage": 0,
+    "Turns": 0,
+    "TurnsAvailable": false,
+    "ErrorCount": 0,
+    "WarningCount": 0,
+    "MissingToolCount": 0,
+    "MissingDataCount": 0,
+    "NoopCount": 0,
+    "EffectiveTokens": 0,
+    "AvgTimeBetweenTurns": 0,
+    "LogsPath": "/workspaces/mom-home/.github/aw/logs/run-31266474884"
+  },
+  "metrics": {
+    "TokenUsage": 0,
+    "EstimatedCost": 0,
+    "Turns": 0,
+    "ToolCalls": null,
+    "ToolSequences": null,
+    "AvgTimeBetweenTurns": 0,
+    "MaxTimeBetweenTurns": 0,
+    "MedianTimeBetweenTurns": 0,
+    "StdDevTimeBetweenTurns": 0
+  },
+  "task_domain": {
+    "name": "code_fix",
+    "label": "Code Fix",
+    "reason": "The workflow appears oriented toward code changes or pull request review."
+  },
+  "behavior_fingerprint": {
+    "execution_style": "directed",
+    "tool_breadth": "narrow",
+    "actuation_style": "read_only",
+    "resource_profile": "lean",
+    "dispatch_mode": "standalone",
+    "agentic_fraction": 0
+  },
+  "access_analysis": null,
+  "firewall_analysis": null,
+  "redacted_domains_analysis": null,
+  "missing_tools": null,
+  "missing_data": null,
+  "noops": null,
+  "mcp_failures": null,
+  "artifacts_list": null,
+  "job_details": [
+    {
+      "name": "pre_activation",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-08-08T16:14:48Z",
+      "completed_at": "2026-08-08T16:14:54Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Setup Scripts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check team membership for workflow",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Setup Scripts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Duration": 6000000000
+    },
+    {
+      "name": "activation",
+      "status": "in_progress",
+      "conclusion": "",
+      "started_at": "2026-08-08T16:14:57Z",
+      "Duration": 0
+    }
+  ]
+}

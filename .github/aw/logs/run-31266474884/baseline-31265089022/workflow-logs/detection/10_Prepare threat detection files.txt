@@ -1,0 +1,33 @@
+﻿2026-08-08T15:43:19.5705429Z ##[group]Run mkdir -p /tmp/gh-aw/threat-detection/aw-prompts
+2026-08-08T15:43:19.5705922Z [36;1mmkdir -p /tmp/gh-aw/threat-detection/aw-prompts[0m
+2026-08-08T15:43:19.5706277Z [36;1mrm -f /tmp/gh-aw/agent_usage.json[0m
+2026-08-08T15:43:19.5706807Z [36;1mcp /tmp/gh-aw/aw-prompts/prompt.txt /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt 2>/dev/null || true[0m
+2026-08-08T15:43:19.5707440Z [36;1mif [ ! -s /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt ]; then[0m
+2026-08-08T15:43:19.5708924Z [36;1m  echo "::warning::ERR_VALIDATION: Missing or empty detection context prompt at /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt. Ensure the agent artifact includes /tmp/gh-aw/aw-prompts/prompt.txt. Detection will continue with fallback workflow context."[0m
+2026-08-08T15:43:19.5709968Z [36;1mfi[0m
+2026-08-08T15:43:19.5710383Z [36;1mcp /tmp/gh-aw/agent_output.json /tmp/gh-aw/threat-detection/agent_output.json 2>/dev/null || true[0m
+2026-08-08T15:43:19.5710886Z [36;1mfor f in /tmp/gh-aw/aw-*.patch; do[0m
+2026-08-08T15:43:19.5711203Z [36;1m  if [ -f "$f" ]; then[0m
+2026-08-08T15:43:19.5711524Z [36;1m    cp "$f" /tmp/gh-aw/threat-detection/ 2>/dev/null || true[0m
+2026-08-08T15:43:19.5711853Z [36;1m  fi[0m
+2026-08-08T15:43:19.5712045Z [36;1mdone[0m
+2026-08-08T15:43:19.5712261Z [36;1mfor f in /tmp/gh-aw/aw-*.bundle; do[0m
+2026-08-08T15:43:19.5712546Z [36;1m  if [ -f "$f" ]; then[0m
+2026-08-08T15:43:19.5712849Z [36;1m    cp "$f" /tmp/gh-aw/threat-detection/ 2>/dev/null || true[0m
+2026-08-08T15:43:19.5713173Z [36;1m  fi[0m
+2026-08-08T15:43:19.5713363Z [36;1mdone[0m
+2026-08-08T15:43:19.5713593Z [36;1mecho "Prepared threat detection files:"[0m
+2026-08-08T15:43:19.5713961Z [36;1mls -la /tmp/gh-aw/threat-detection/ 2>/dev/null || true[0m
+2026-08-08T15:43:19.5753874Z shell: /usr/bin/bash -e {0}
+2026-08-08T15:43:19.5754177Z env:
+2026-08-08T15:43:19.5754393Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:43:19.5754692Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:43:19.5755072Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dc02d1bdbda3312b
+2026-08-08T15:43:19.5755389Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203790154
+2026-08-08T15:43:19.5755661Z ##[endgroup]
+2026-08-08T15:43:19.5864055Z Prepared threat detection files:
+2026-08-08T15:43:19.5877200Z total 16
+2026-08-08T15:43:19.5877638Z drwxr-xr-x 3 runner runner 4096 Aug  8 15:43 .
+2026-08-08T15:43:19.5878402Z drwxr-xr-x 6 runner runner 4096 Aug  8 15:43 ..
+2026-08-08T15:43:19.5879004Z -rw-r--r-- 1 runner runner  223 Aug  8 15:43 agent_output.json
+2026-08-08T15:43:19.5879436Z drwxr-xr-x 2 runner runner 4096 Aug  8 15:43 aw-prompts

@@ -1,0 +1,34 @@
+﻿2026-08-08T15:42:02.0677381Z ##[group]Run github/gh-aw-actions/setup@2709137ea6c5b0e19aa621454dc643ea8dc526b1
+2026-08-08T15:42:02.0678618Z with:
+2026-08-08T15:42:02.0679024Z   destination: /home/runner/work/_temp/gh-aw/actions
+2026-08-08T15:42:02.0679402Z   job-name: agent
+2026-08-08T15:42:02.0679654Z   trace-id: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:42:02.0679966Z   parent-span-id: eff3975b71776412
+2026-08-08T15:42:02.0680267Z   safe-output-artifact-client: false
+2026-08-08T15:42:02.0680739Z env:
+2026-08-08T15:42:02.0680946Z   DEFAULT_BRANCH: main
+2026-08-08T15:42:02.0681200Z   GH_AW_ASSETS_ALLOWED_EXTS: 
+2026-08-08T15:42:02.0681455Z   GH_AW_ASSETS_BRANCH: 
+2026-08-08T15:42:02.0681709Z   GH_AW_ASSETS_MAX_SIZE_KB: 0
+2026-08-08T15:42:02.0682018Z   GH_AW_MCP_LOG_DIR: /tmp/gh-aw/mcp-logs/safeoutputs
+2026-08-08T15:42:02.0682645Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:42:02.0682917Z   GH_AW_WORKFLOW_ID_SANITIZED: reviewissue
+2026-08-08T15:42:02.0683231Z   GH_AW_SETUP_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:42:02.0683786Z   GH_AW_CURRENT_WORKFLOW_REF: mindovermachine-dev/mom-home/.github/workflows/review-issue.lock.yml@refs/heads/main
+2026-08-08T15:42:02.0684539Z   GH_AW_INFO_VERSION: 1.0.78
+2026-08-08T15:42:02.0684805Z   GH_AW_INFO_AWF_VERSION: v0.27.44
+2026-08-08T15:42:02.0685085Z   GH_AW_INFO_ENGINE_ID: copilot
+2026-08-08T15:42:02.0685333Z ##[endgroup]
+2026-08-08T15:42:03.6712984Z Successfully copied 448 files to /home/runner/work/_temp/gh-aw/actions
+2026-08-08T15:42:03.9459169Z Successfully copied 26 mcp-scripts files to /home/runner/work/_temp/gh-aw/mcp-scripts
+2026-08-08T15:42:04.0811873Z Successfully copied 84 safe-outputs files to /home/runner/work/_temp/gh-aw/safeoutputs
+2026-08-08T15:42:04.0940929Z [info] [otlp] INPUT_TRACE_ID=825a6f7a25d9d2588ae1dd8e63c4ae02 (will reuse activation trace)
+2026-08-08T15:42:04.0942202Z [info] [otlp] INPUT_PARENT_SPAN_ID=eff3975b71776412 (will parent setup span)
+2026-08-08T15:42:04.0942908Z [info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+2026-08-08T15:42:04.0961398Z [info] [otlp] resolved trace-id=825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:42:04.0962253Z [info] [otlp] trace-id=825a6f7a25d9d2588ae1dd8e63c4ae02 written to GITHUB_OUTPUT
+2026-08-08T15:42:04.0963002Z [info] [otlp] span-id=021f8058ad1d34a5 written to GITHUB_OUTPUT
+2026-08-08T15:42:04.0963689Z [info] [otlp] parent-span-id=eff3975b71776412 written to GITHUB_OUTPUT
+2026-08-08T15:42:04.0964524Z [info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+2026-08-08T15:42:04.0965153Z [info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+2026-08-08T15:42:04.0965731Z [info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV

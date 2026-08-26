@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy_artifact_to_pages:
+    name: Deploy prebuilt artifact to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read # required to download workflow artifacts in a private repo
+      statuses: write
+      pages: write
+      id-token: write
+      contents: read # explictly required when repository is private, otherwise optional
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Deploy artifact
+        uses: devx-cafe/takt-actions/deploy-artifact@v1
+        with:
+          artifact_name: github-pages-${{ github.sha }}
+          artifact_path: astro/dist
+          # status_context: # default "deploy:pages"

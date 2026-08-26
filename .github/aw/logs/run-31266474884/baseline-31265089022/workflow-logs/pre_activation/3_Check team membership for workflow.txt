@@ -1,0 +1,25 @@
+﻿2026-08-08T15:41:32.9098678Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:41:32.9099505Z with:
+2026-08-08T15:41:32.9103329Z   github-token: ***
+2026-08-08T15:41:32.9104935Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/check_membership.cjs');
+await main();
+
+2026-08-08T15:41:32.9106628Z   debug: false
+2026-08-08T15:41:32.9107296Z   user-agent: actions/github-script
+2026-08-08T15:41:32.9108108Z   result-encoding: json
+2026-08-08T15:41:32.9108581Z   retries: 0
+2026-08-08T15:41:32.9109043Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:41:32.9109610Z env:
+2026-08-08T15:41:32.9110011Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:41:32.9110590Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:41:32.9111275Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: eff3975b71776412
+2026-08-08T15:41:32.9111883Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203692886
+2026-08-08T15:41:32.9112521Z   GH_AW_REQUIRED_ROLES: admin,maintainer,write
+2026-08-08T15:41:32.9113085Z ##[endgroup]
+2026-08-08T15:41:33.0558776Z Event workflow_dispatch requires validation
+2026-08-08T15:41:33.0559830Z Checking if user 'lakruzz' has required permissions for mindovermachine-dev/mom-home
+2026-08-08T15:41:33.0560691Z Required permissions: admin, maintainer, write
+2026-08-08T15:41:33.3170117Z Repository permission level: admin
+2026-08-08T15:41:33.3187017Z ✅ User has admin access to repository

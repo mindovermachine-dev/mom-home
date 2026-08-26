@@ -1,0 +1,31 @@
+﻿2026-08-08T15:44:23.2898776Z ##[group]Run bash "${RUNNER_TEMP}/gh-aw/actions/collect_usage_artifact_files.sh"
+2026-08-08T15:44:23.2902253Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/collect_usage_artifact_files.sh"[0m
+2026-08-08T15:44:23.2915521Z shell: /usr/bin/bash -e {0}
+2026-08-08T15:44:23.2916238Z env:
+2026-08-08T15:44:23.2916660Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:23.2917281Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:23.2918004Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:23.2918638Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:23.2919800Z ##[endgroup]
+2026-08-08T15:44:23.3046630Z Usage artifact source file status:
+2026-08-08T15:44:23.3626901Z [info] safe-output-items manifest: 0 item(s) logged (file present but contained no loggable items)
+2026-08-08T15:44:23.3628042Z MISSING: /tmp/gh-aw/aw_info.json
+2026-08-08T15:44:23.3704797Z [info] /tmp/gh-aw/usage/activity/summary.json
+2026-08-08T15:44:23.3705544Z MISSING: /tmp/gh-aw/aw-info.jsonl
+2026-08-08T15:44:23.3706188Z FOUND: /tmp/gh-aw/agent_usage.json
+2026-08-08T15:44:23.3706750Z MISSING: /tmp/gh-aw/agent_usage.jsonl
+2026-08-08T15:44:23.3707357Z MISSING: /tmp/gh-aw/detection_usage.jsonl
+2026-08-08T15:44:23.3707950Z MISSING: /tmp/gh-aw/evals/evals.jsonl
+2026-08-08T15:44:23.3708562Z FOUND: /tmp/gh-aw/github_rate_limits.jsonl
+2026-08-08T15:44:23.3709186Z FOUND: /tmp/gh-aw/safe-output-items.jsonl
+2026-08-08T15:44:23.3710021Z MISSING: /tmp/gh-aw/sandbox/firewall-audit-logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3711382Z FOUND: /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3712356Z MISSING: /tmp/gh-aw/sandbox/firewall/audit/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3713489Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall-audit-logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3714694Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3715843Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall/audit/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3784548Z /tmp/gh-aw/usage/activity/summary.json
+2026-08-08T15:44:23.3786360Z /tmp/gh-aw/usage/agent/token_usage.jsonl
+2026-08-08T15:44:23.3787497Z /tmp/gh-aw/usage/agent_usage.json
+2026-08-08T15:44:23.3788274Z /tmp/gh-aw/usage/detection/token_usage.jsonl
+2026-08-08T15:44:23.3788999Z /tmp/gh-aw/usage/github_rate_limits.jsonl

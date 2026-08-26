@@ -1,0 +1,25 @@
+﻿2026-08-08T15:41:50.4405394Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:41:50.4406273Z with:
+2026-08-08T15:41:50.4407844Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/compute_text.cjs');
+await main();
+
+2026-08-08T15:41:50.4415501Z   github-token: ***
+2026-08-08T15:41:50.4416086Z   debug: false
+2026-08-08T15:41:50.4416522Z   user-agent: actions/github-script
+2026-08-08T15:41:50.4417044Z   result-encoding: json
+2026-08-08T15:41:50.4417486Z   retries: 0
+2026-08-08T15:41:50.4417970Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:41:50.4418530Z env:
+2026-08-08T15:41:50.4418928Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-08-08T15:41:50.4419448Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:41:50.4420005Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:41:50.4420692Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 1a3a48f4304eb5e1
+2026-08-08T15:41:50.4423148Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203705637
+2026-08-08T15:41:50.4435928Z   GH_AW_ALLOWED_DOMAINS: api.business.githubcopilot.com,api.enterprise.githubcopilot.com,api.github.com,api.githubcopilot.com,api.individual.githubcopilot.com,api.snapcraft.io,archive.ubuntu.com,azure.archive.ubuntu.com,crl.geotrust.com,crl.globalsign.com,crl.identrust.com,crl.sectigo.com,crl.thawte.com,crl.usertrust.com,crl.verisign.com,crl3.digicert.com,crl4.digicert.com,crls.ssl.com,github.com,host.docker.internal,json-schema.org,json.schemastore.org,keyserver.ubuntu.com,ocsp.digicert.com,ocsp.geotrust.com,ocsp.globalsign.com,ocsp.identrust.com,ocsp.sectigo.com,ocsp.ssl.com,ocsp.thawte.com,ocsp.usertrust.com,ocsp.verisign.com,packagecloud.io,packages.cloud.google.com,packages.microsoft.com,ppa.launchpad.net,raw.githubusercontent.com,registry.npmjs.org,s.symcb.com,s.symcd.com,security.ubuntu.com,telemetry.enterprise.githubcopilot.com,ts-crl.ws.symantec.com,ts-ocsp.ws.symantec.com,www.googleapis.com
+2026-08-08T15:41:50.4451415Z ##[endgroup]
+2026-08-08T15:41:50.9515905Z Repository permission level: admin
+2026-08-08T15:41:50.9523334Z text: 
+2026-08-08T15:41:50.9526413Z title: 
+2026-08-08T15:41:50.9529154Z body: 

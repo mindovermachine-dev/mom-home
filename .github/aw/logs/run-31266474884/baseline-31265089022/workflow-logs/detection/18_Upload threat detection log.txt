@@ -1,0 +1,31 @@
+﻿2026-08-08T15:43:56.8363017Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-08-08T15:43:56.8363698Z with:
+2026-08-08T15:43:56.8364001Z   name: detection
+2026-08-08T15:43:56.8364403Z   path: /tmp/gh-aw/threat-detection/detection.log
+2026-08-08T15:43:56.8364915Z   if-no-files-found: ignore
+2026-08-08T15:43:56.8365314Z   compression-level: 6
+2026-08-08T15:43:56.8365667Z   overwrite: false
+2026-08-08T15:43:56.8366015Z   include-hidden-files: false
+2026-08-08T15:43:56.8366405Z   archive: true
+2026-08-08T15:43:56.8366708Z env:
+2026-08-08T15:43:56.8367013Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:43:56.8367484Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:43:56.8368310Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dc02d1bdbda3312b
+2026-08-08T15:43:56.8369073Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203790154
+2026-08-08T15:43:56.8369596Z   GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+2026-08-08T15:43:56.8370112Z   GH_AW_PRIMARY_MODEL: claude-haiku-4.5
+2026-08-08T15:43:56.8370546Z   GH_AW_AIC: 1.971
+2026-08-08T15:43:56.8370917Z   GH_AW_AMBIENT_CONTEXT: 3249
+2026-08-08T15:43:56.8371295Z ##[endgroup]
+2026-08-08T15:43:56.9785900Z With the provided path, there will be 1 file uploaded
+2026-08-08T15:43:56.9793342Z Artifact name is valid!
+2026-08-08T15:43:56.9794563Z Root directory input is valid!
+2026-08-08T15:43:57.2944518Z Uploading artifact: detection.zip
+2026-08-08T15:43:57.2992914Z Beginning upload of artifact content to blob storage
+2026-08-08T15:43:57.5974297Z Uploaded bytes 4369
+2026-08-08T15:43:57.6724354Z Finished uploading artifact content to blob storage!
+2026-08-08T15:43:57.6725740Z SHA256 digest of uploaded artifact is 8d135541819008af6fd4d7db5504712d6c55b0a228402b7eb87dcec2d64a4ce8
+2026-08-08T15:43:57.6726946Z Finalizing artifact upload
+2026-08-08T15:43:58.0107920Z Artifact detection successfully finalized. Artifact ID 9023927597
+2026-08-08T15:43:58.0109793Z Artifact detection has been successfully uploaded! Final size is 4369 bytes. Artifact ID is 9023927597
+2026-08-08T15:43:58.0113245Z Artifact download URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022/artifacts/9023927597

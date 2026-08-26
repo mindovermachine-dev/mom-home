@@ -1,0 +1,24 @@
+﻿2026-08-08T15:44:26.5314317Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.5315143Z with:
+2026-08-08T15:44:26.5318746Z   github-token: ***
+2026-08-08T15:44:26.5320416Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/missing_tool.cjs');
+await main();
+
+2026-08-08T15:44:26.5322491Z   debug: false
+2026-08-08T15:44:26.5323000Z   user-agent: actions/github-script
+2026-08-08T15:44:26.5323579Z   result-encoding: json
+2026-08-08T15:44:26.5324075Z   retries: 0
+2026-08-08T15:44:26.5324602Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.5325226Z env:
+2026-08-08T15:44:26.5325669Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.5326311Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.5327244Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.5327915Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.5328625Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.5329291Z   GH_AW_MISSING_TOOL_CREATE_ISSUE: true
+2026-08-08T15:44:26.5329908Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.5331187Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.5332271Z ##[endgroup]
+2026-08-08T15:44:26.6535104Z Max count: unlimited

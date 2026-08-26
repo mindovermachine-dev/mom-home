@@ -1,0 +1,79 @@
+﻿2026-08-08T15:44:09.6688356Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:09.6689134Z with:
+2026-08-08T15:44:09.6692994Z   github-token: ***
+2026-08-08T15:44:09.6694639Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/process_safe_outputs.cjs');
+await main();
+
+2026-08-08T15:44:09.6696678Z   debug: false
+2026-08-08T15:44:09.6697158Z   user-agent: actions/github-script
+2026-08-08T15:44:09.6697710Z   result-encoding: json
+2026-08-08T15:44:09.6698161Z   retries: 0
+2026-08-08T15:44:09.6698634Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:09.6699204Z env:
+2026-08-08T15:44:09.6699603Z   GH_AW_AGENT_AIC: 11.002
+2026-08-08T15:44:09.6700058Z   GH_AW_AIC: 11.002
+2026-08-08T15:44:09.6700489Z   GH_AW_AMBIENT_CONTEXT: 7596
+2026-08-08T15:44:09.6701138Z   GH_AW_CALLER_WORKFLOW_ID: mindovermachine-dev/mom-home/review-issue
+2026-08-08T15:44:09.6701868Z   GH_AW_DETECTION_CONCLUSION: success
+2026-08-08T15:44:09.6702394Z   GH_AW_DETECTION_REASON: 
+2026-08-08T15:44:09.6702870Z   GH_AW_EFFECTIVE_TOKENS: 
+2026-08-08T15:44:09.6703337Z   GH_AW_ENGINE_ID: copilot
+2026-08-08T15:44:09.6703806Z   GH_AW_ENGINE_MODEL: auto
+2026-08-08T15:44:09.6704280Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:09.6704763Z   GH_AW_THREAT_DETECTION_AIC: 1.971
+2026-08-08T15:44:09.6705491Z   GH_AW_WORKFLOW_ID: review-issue
+2026-08-08T15:44:09.6706036Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:09.6707016Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:09.6708100Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:09.6708782Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: a33962188356a052
+2026-08-08T15:44:09.6709405Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203848765
+2026-08-08T15:44:09.6709953Z   GH_HOST: github.com
+2026-08-08T15:44:09.6710559Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:09.6711148Z   GH_AW_COMMENT_ID: 
+2026-08-08T15:44:09.6722871Z   GH_AW_ALLOWED_DOMAINS: api.business.githubcopilot.com,api.enterprise.githubcopilot.com,api.github.com,api.githubcopilot.com,api.individual.githubcopilot.com,api.snapcraft.io,archive.ubuntu.com,azure.archive.ubuntu.com,crl.geotrust.com,crl.globalsign.com,crl.identrust.com,crl.sectigo.com,crl.thawte.com,crl.usertrust.com,crl.verisign.com,crl3.digicert.com,crl4.digicert.com,crls.ssl.com,github.com,host.docker.internal,json-schema.org,json.schemastore.org,keyserver.ubuntu.com,ocsp.digicert.com,ocsp.geotrust.com,ocsp.globalsign.com,ocsp.identrust.com,ocsp.sectigo.com,ocsp.ssl.com,ocsp.thawte.com,ocsp.usertrust.com,ocsp.verisign.com,packagecloud.io,packages.cloud.google.com,packages.microsoft.com,ppa.launchpad.net,raw.githubusercontent.com,registry.npmjs.org,s.symcb.com,s.symcd.com,security.ubuntu.com,telemetry.enterprise.githubcopilot.com,ts-crl.ws.symantec.com,ts-ocsp.ws.symantec.com,www.googleapis.com
+2026-08-08T15:44:09.6734520Z   GITHUB_SERVER_URL: https://github.com
+2026-08-08T15:44:09.6735096Z   GITHUB_API_URL: https://api.github.com
+2026-08-08T15:44:09.6736562Z   GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: {"add_comment":{"max":1},"create_report_incomplete_issue":{},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-08-08T15:44:09.6737856Z ##[endgroup]
+2026-08-08T15:44:09.8020827Z Safe Output Handler Manager starting...
+2026-08-08T15:44:09.8030098Z Loaded config from GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: {"add_comment":{"max":1},"create_report_incomplete_issue":{},"missing_data":{},"missing_tool":{},"noop":{"max":1,"report-as-issue":"false"},"report_incomplete":{}}
+2026-08-08T15:44:09.8040524Z Agent output content length: 223
+2026-08-08T15:44:09.8043606Z Found 1 message(s) in agent output
+2026-08-08T15:44:09.8050986Z Loading and initializing safe output handlers based on configuration...
+2026-08-08T15:44:09.8205107Z Add comment configuration: max=1, target=triggering
+2026-08-08T15:44:09.8208938Z Default target repo: mindovermachine-dev/mom-home
+2026-08-08T15:44:09.8214253Z ✓ Loaded and initialized handler for: add_comment
+2026-08-08T15:44:09.8296384Z Max count: unlimited
+2026-08-08T15:44:09.8297917Z ✓ Loaded and initialized handler for: missing_tool
+2026-08-08T15:44:09.8302400Z Max count: unlimited
+2026-08-08T15:44:09.8303656Z ✓ Loaded and initialized handler for: missing_data
+2026-08-08T15:44:09.8308926Z Max count: 1
+2026-08-08T15:44:09.8310043Z ✓ Loaded and initialized handler for: noop
+2026-08-08T15:44:09.8313600Z Max count: unlimited
+2026-08-08T15:44:09.8314804Z ✓ Loaded and initialized handler for: report_incomplete
+2026-08-08T15:44:09.8329097Z Title prefix: [incomplete]
+2026-08-08T15:44:09.8342999Z Default labels: agentic-workflows
+2026-08-08T15:44:09.8344656Z Max count: 1
+2026-08-08T15:44:09.8346610Z ✓ Loaded and initialized handler for: create_report_incomplete_issue
+2026-08-08T15:44:09.8352612Z Loaded 6 handler(s)
+2026-08-08T15:44:10.1097860Z ℹ️ Rate-limit headroom: 4984/5000 requests remaining (99%) [safe_outputs_pre_check]
+2026-08-08T15:44:10.1106330Z Collected 0 missing tool(s), 0 missing data item(s), 1 noop message(s), and 0 incomplete signal(s)
+2026-08-08T15:44:10.1107419Z Processing 1 message(s) in order of appearance...
+2026-08-08T15:44:10.1108107Z Processing message 1/1: noop
+2026-08-08T15:44:10.1109713Z ✓ Recorded noop message: No issue was identified in this workflow run (issue-number is unset and no workflow_dispatch issue_number input was provided), so there is nothing to review or comment on.
+2026-08-08T15:44:10.1111259Z ✓ Message 1 (noop) completed successfully
+2026-08-08T15:44:10.1112825Z Stored 0 missing tool(s), 0 missing data item(s), 1 noop message(s), and 0 incomplete signal(s) for footer generation
+2026-08-08T15:44:10.1138521Z 📝 Safe output summaries written to step summary
+2026-08-08T15:44:10.1140844Z 
+2026-08-08T15:44:10.1141230Z === Processing Summary ===
+2026-08-08T15:44:10.1142368Z Total messages: 1
+2026-08-08T15:44:10.1146044Z Status: success
+2026-08-08T15:44:10.1147410Z Successful: 1
+2026-08-08T15:44:10.1148915Z Failed: 0
+2026-08-08T15:44:10.1150098Z Temporary IDs registered: 0
+2026-08-08T15:44:10.1151370Z Synthetic updates: 0
+2026-08-08T15:44:10.1197866Z Exported temporary ID map with 0 mapping(s)
+2026-08-08T15:44:10.1200958Z Wrote temporary ID map to file for artifact upload
+2026-08-08T15:44:10.1226618Z Safe Output Handler Manager completed

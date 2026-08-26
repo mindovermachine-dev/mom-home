@@ -1,0 +1,26 @@
+﻿2026-08-08T15:43:19.5948621Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:43:19.5949328Z with:
+2026-08-08T15:43:19.5950309Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/setup_threat_detection.cjs');
+await main();
+
+2026-08-08T15:43:19.5953511Z   github-token: ***
+2026-08-08T15:43:19.5953734Z   debug: false
+2026-08-08T15:43:19.5953956Z   user-agent: actions/github-script
+2026-08-08T15:43:19.5954228Z   result-encoding: json
+2026-08-08T15:43:19.5954443Z   retries: 0
+2026-08-08T15:43:19.5954678Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:43:19.5954963Z env:
+2026-08-08T15:43:19.5955151Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:43:19.5955444Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:43:19.5955803Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dc02d1bdbda3312b
+2026-08-08T15:43:19.5956149Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203790154
+2026-08-08T15:43:19.5956605Z   WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:43:19.5956898Z   WORKFLOW_DESCRIPTION: No description provided
+2026-08-08T15:43:19.5957208Z   HAS_PATCH: false
+2026-08-08T15:43:19.5957432Z   GH_AW_DETECTION_CONTINUE_ON_ERROR: true
+2026-08-08T15:43:19.5957698Z ##[endgroup]
+2026-08-08T15:43:19.6963577Z Prompt file found: /tmp/gh-aw/threat-detection/aw-prompts/prompt.txt (10841 bytes)
+2026-08-08T15:43:19.6966375Z Agent output file found: /tmp/gh-aw/threat-detection/agent_output.json (223 bytes)
+2026-08-08T15:43:19.6990914Z Threat detection setup completed

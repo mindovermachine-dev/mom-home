@@ -1,0 +1,28 @@
+﻿2026-08-08T15:44:25.4281621Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-08-08T15:44:25.4282508Z with:
+2026-08-08T15:44:25.4282950Z   name: aic-usage-cache
+2026-08-08T15:44:25.4283552Z   path: /tmp/gh-aw/agentic-workflow-usage-cache.jsonl
+2026-08-08T15:44:25.4284236Z   if-no-files-found: ignore
+2026-08-08T15:44:25.4284757Z   retention-days: 7
+2026-08-08T15:44:25.4285228Z   compression-level: 6
+2026-08-08T15:44:25.4285714Z   overwrite: false
+2026-08-08T15:44:25.4286193Z   include-hidden-files: false
+2026-08-08T15:44:25.4286740Z   archive: true
+2026-08-08T15:44:25.4287178Z env:
+2026-08-08T15:44:25.4287607Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:25.4288232Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:25.4288962Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:25.4289619Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:25.4290199Z ##[endgroup]
+2026-08-08T15:44:25.5882105Z With the provided path, there will be 1 file uploaded
+2026-08-08T15:44:25.5894705Z Artifact name is valid!
+2026-08-08T15:44:25.5898303Z Root directory input is valid!
+2026-08-08T15:44:25.8093536Z Uploading artifact: aic-usage-cache.zip
+2026-08-08T15:44:25.8169380Z Beginning upload of artifact content to blob storage
+2026-08-08T15:44:25.9801319Z Uploaded bytes 259
+2026-08-08T15:44:26.0169476Z Finished uploading artifact content to blob storage!
+2026-08-08T15:44:26.0174948Z SHA256 digest of uploaded artifact is 9ba430a5e2aeb4b108a5e01b84a60cdbe7a425328e6d72ae6d8e40a6a2dc6b39
+2026-08-08T15:44:26.0178621Z Finalizing artifact upload
+2026-08-08T15:44:26.2371319Z Artifact aic-usage-cache successfully finalized. Artifact ID 9023933066
+2026-08-08T15:44:26.2373982Z Artifact aic-usage-cache has been successfully uploaded! Final size is 259 bytes. Artifact ID is 9023933066
+2026-08-08T15:44:26.2380343Z Artifact download URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022/artifacts/9023933066

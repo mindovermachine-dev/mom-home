@@ -1,0 +1,561 @@
+﻿2026-08-08T15:44:17.1050140Z Current runner version: '2.336.0'
+2026-08-08T15:44:17.1088733Z ##[group]Runner Image Provisioner
+2026-08-08T15:44:17.1092727Z Hosted Compute Agent
+2026-08-08T15:44:17.1093454Z Version: 20260707.563
+2026-08-08T15:44:17.1094089Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-08-08T15:44:17.1094783Z Build Date: 2026-07-07T19:33:50Z
+2026-08-08T15:44:17.1095469Z Worker ID: {d09dc0ad-0001-4903-8b40-ff1114658cc9}
+2026-08-08T15:44:17.1096192Z Azure Region: centralus
+2026-08-08T15:44:17.1096737Z ##[endgroup]
+2026-08-08T15:44:17.1098511Z ##[group]VM Image
+2026-08-08T15:44:17.1099082Z - OS: Linux (x64)
+2026-08-08T15:44:17.1099696Z - Source: Docker
+2026-08-08T15:44:17.1100241Z - Name: ubuntu:24.04
+2026-08-08T15:44:17.1100778Z - Version: 20260728.2.1
+2026-08-08T15:44:17.1101721Z ##[endgroup]
+2026-08-08T15:44:17.1102999Z ##[group]GITHUB_TOKEN Permissions
+2026-08-08T15:44:17.1105357Z Actions: read
+2026-08-08T15:44:17.1105932Z Issues: write
+2026-08-08T15:44:17.1106441Z Metadata: read
+2026-08-08T15:44:17.1107189Z PullRequests: write
+2026-08-08T15:44:17.1107808Z ##[endgroup]
+2026-08-08T15:44:17.1112332Z Secret source: Actions
+2026-08-08T15:44:17.1113542Z Prepare workflow directory
+2026-08-08T15:44:17.1632936Z Prepare all required actions
+2026-08-08T15:44:17.1679939Z Getting action download info
+2026-08-08T15:44:17.5537964Z Download action repository 'github/gh-aw-actions@2709137ea6c5b0e19aa621454dc643ea8dc526b1' (SHA:2709137ea6c5b0e19aa621454dc643ea8dc526b1)
+2026-08-08T15:44:18.2895372Z Download action repository 'actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c' (SHA:3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c)
+2026-08-08T15:44:18.7007950Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-08-08T15:44:18.8686288Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-08-08T15:44:19.0020421Z Download action repository 'actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3' (SHA:3a2844b7e9c422d3c10d287c895573f7108da1b3)
+2026-08-08T15:44:19.4673312Z Complete job name: conclusion
+2026-08-08T15:44:19.5370177Z ##[group]Run github/gh-aw-actions/setup@2709137ea6c5b0e19aa621454dc643ea8dc526b1
+2026-08-08T15:44:19.5371724Z with:
+2026-08-08T15:44:19.5372260Z   destination: /home/runner/work/_temp/gh-aw/actions
+2026-08-08T15:44:19.5372879Z   job-name: conclusion
+2026-08-08T15:44:19.5373370Z   trace-id: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:19.5373947Z   parent-span-id: eff3975b71776412
+2026-08-08T15:44:19.5374482Z   safe-output-artifact-client: false
+2026-08-08T15:44:19.5375182Z env:
+2026-08-08T15:44:19.5375596Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:19.5376109Z   GH_AW_SETUP_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:19.5377091Z   GH_AW_CURRENT_WORKFLOW_REF: mindovermachine-dev/mom-home/.github/workflows/review-issue.lock.yml@refs/heads/main
+2026-08-08T15:44:19.5378035Z   GH_AW_INFO_VERSION: 1.0.78
+2026-08-08T15:44:19.5378546Z   GH_AW_INFO_AWF_VERSION: v0.27.44
+2026-08-08T15:44:19.5379046Z   GH_AW_INFO_ENGINE_ID: copilot
+2026-08-08T15:44:19.5379514Z ##[endgroup]
+2026-08-08T15:44:21.2659047Z Successfully copied 448 files to /home/runner/work/_temp/gh-aw/actions
+2026-08-08T15:44:21.6446692Z [info] [otlp] INPUT_TRACE_ID=825a6f7a25d9d2588ae1dd8e63c4ae02 (will reuse activation trace)
+2026-08-08T15:44:21.6447778Z [info] [otlp] INPUT_PARENT_SPAN_ID=eff3975b71776412 (will parent setup span)
+2026-08-08T15:44:21.6448619Z [info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping setup span
+2026-08-08T15:44:21.6449386Z [info] [otlp] resolved trace-id=825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:21.6461307Z [info] [otlp] trace-id=825a6f7a25d9d2588ae1dd8e63c4ae02 written to GITHUB_OUTPUT
+2026-08-08T15:44:21.6462598Z Successfully copied 26 mcp-scripts files to /home/runner/work/_temp/gh-aw/mcp-scripts
+2026-08-08T15:44:21.6463651Z Successfully copied 84 safe-outputs files to /home/runner/work/_temp/gh-aw/safeoutputs
+2026-08-08T15:44:21.6557340Z [info] [otlp] span-id=dbd6cd25f3661504 written to GITHUB_OUTPUT
+2026-08-08T15:44:21.6558226Z [info] [otlp] parent-span-id=eff3975b71776412 written to GITHUB_OUTPUT
+2026-08-08T15:44:21.6559041Z [info] [otlp] GITHUB_AW_OTEL_TRACE_ID written to GITHUB_ENV
+2026-08-08T15:44:21.6559792Z [info] [otlp] GITHUB_AW_OTEL_PARENT_SPAN_ID written to GITHUB_ENV
+2026-08-08T15:44:21.6560615Z [info] [otlp] GITHUB_AW_OTEL_JOB_START_MS written to GITHUB_ENV
+2026-08-08T15:44:21.6857920Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-08-08T15:44:21.6858740Z with:
+2026-08-08T15:44:21.6859128Z   name: agent
+2026-08-08T15:44:21.6859537Z   path: /tmp/gh-aw/
+2026-08-08T15:44:21.6859976Z   merge-multiple: false
+2026-08-08T15:44:21.6860465Z   repository: mindovermachine-dev/mom-home
+2026-08-08T15:44:21.6861347Z   run-id: 31265089022
+2026-08-08T15:44:21.6861797Z   skip-decompress: false
+2026-08-08T15:44:21.6862252Z   digest-mismatch: error
+2026-08-08T15:44:21.6862684Z env:
+2026-08-08T15:44:21.6863098Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:21.6863682Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:21.6864358Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:21.6864963Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:21.6865491Z ##[endgroup]
+2026-08-08T15:44:21.8748316Z Downloading single artifact
+2026-08-08T15:44:22.3856613Z (node:1354) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-08-08T15:44:22.3858256Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-08T15:44:22.3861124Z Preparing to download the following artifacts:
+2026-08-08T15:44:22.3862215Z - agent (ID: 9023915830, Size: 193097, Expected Digest: sha256:c16cce80c8b1ccfa1978c38f6780610a9462075130d38655470958880a8040f3)
+2026-08-08T15:44:22.3873476Z Redirecting to blob download url: https://productionresultssa3.blob.core.windows.net/actions-results/71a9f72b-2e72-47f6-a0c7-e64bb221d854/workflow-job-run-54d9cf3b-cf2e-5861-ac68-e9db4e865d51/artifacts/d4f0bc5a29de06b510f9aa428f1eedba926012b591fef7a518e776a7c9bd1824.zip
+2026-08-08T15:44:22.3875563Z Starting download of artifact to: /tmp/gh-aw
+2026-08-08T15:44:22.5131244Z SHA256 digest of downloaded artifact is c16cce80c8b1ccfa1978c38f6780610a9462075130d38655470958880a8040f3
+2026-08-08T15:44:22.5132299Z Artifact download completed successfully.
+2026-08-08T15:44:22.5132896Z Total of 1 artifact(s) downloaded
+2026-08-08T15:44:22.5133448Z Download artifact has finished successfully
+2026-08-08T15:44:22.5208283Z ##[group]Run mkdir -p /tmp/gh-aw/
+2026-08-08T15:44:22.5209145Z [36;1mmkdir -p /tmp/gh-aw/[0m
+2026-08-08T15:44:22.5209728Z [36;1mfind "/tmp/gh-aw/" -type f -print[0m
+2026-08-08T15:44:22.5210559Z [36;1mecho "GH_AW_AGENT_OUTPUT=/tmp/gh-aw/agent_output.json" >> "$GITHUB_OUTPUT"[0m
+2026-08-08T15:44:22.5219121Z shell: /usr/bin/bash -e {0}
+2026-08-08T15:44:22.5219646Z env:
+2026-08-08T15:44:22.5220082Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:22.5220689Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:22.5221774Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:22.5222412Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:22.5222958Z ##[endgroup]
+2026-08-08T15:44:22.5312973Z /tmp/gh-aw/mcp-logs/observed-url-domains.json
+2026-08-08T15:44:22.5313840Z /tmp/gh-aw/mcp-logs/github.log
+2026-08-08T15:44:22.5314493Z /tmp/gh-aw/mcp-logs/safeoutputs.log
+2026-08-08T15:44:22.5315106Z /tmp/gh-aw/mcp-logs/stderr.log
+2026-08-08T15:44:22.5315731Z /tmp/gh-aw/mcp-logs/start-gateway.log
+2026-08-08T15:44:22.5316344Z /tmp/gh-aw/mcp-logs/gateway.md
+2026-08-08T15:44:22.5316912Z /tmp/gh-aw/mcp-logs/mcp-gateway.log
+2026-08-08T15:44:22.5317503Z /tmp/gh-aw/mcp-logs/tools.json
+2026-08-08T15:44:22.5318080Z /tmp/gh-aw/mcp-logs/safeoutputs/server.log
+2026-08-08T15:44:22.5318748Z /tmp/gh-aw/mcp-logs/rpc-messages.jsonl
+2026-08-08T15:44:22.5319356Z /tmp/gh-aw/safeoutputs.jsonl
+2026-08-08T15:44:22.5320131Z /tmp/gh-aw/agent-stdio.log
+2026-08-08T15:44:22.5320843Z /tmp/gh-aw/otel.jsonl
+2026-08-08T15:44:22.5321946Z /tmp/gh-aw/agent_usage.json
+2026-08-08T15:44:22.5322455Z /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:22.5322963Z /tmp/gh-aw/github_rate_limits.jsonl
+2026-08-08T15:44:22.5323519Z /tmp/gh-aw/aw-prompts/prompt.txt
+2026-08-08T15:44:22.5324042Z /tmp/gh-aw/awf-config.json
+2026-08-08T15:44:22.5324537Z /tmp/gh-aw/pre-agent-audit.txt
+2026-08-08T15:44:22.5325127Z /tmp/gh-aw/sandbox/firewall/audit/policy-manifest.json
+2026-08-08T15:44:22.5325865Z /tmp/gh-aw/sandbox/firewall/audit/awf-resolved-config.json
+2026-08-08T15:44:22.5326543Z /tmp/gh-aw/sandbox/firewall/audit/squid.conf
+2026-08-08T15:44:22.5327224Z /tmp/gh-aw/sandbox/firewall/audit/docker-compose.redacted.yml
+2026-08-08T15:44:22.5327930Z /tmp/gh-aw/sandbox/firewall/awf-reflect.json
+2026-08-08T15:44:22.5328537Z /tmp/gh-aw/sandbox/firewall/logs/audit.jsonl
+2026-08-08T15:44:22.5329205Z /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/otel.jsonl
+2026-08-08T15:44:22.5329982Z /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/models.json
+2026-08-08T15:44:22.5330763Z /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:22.5331877Z /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-tracker-audit.jsonl
+2026-08-08T15:44:22.5332654Z /tmp/gh-aw/sandbox/firewall/logs/access.log
+2026-08-08T15:44:22.5333248Z /tmp/gh-aw/sandbox/firewall/logs/cache.log
+2026-08-08T15:44:22.5333899Z /tmp/gh-aw/sandbox/agent/logs/process-1786203765057-113.log
+2026-08-08T15:44:22.5466529Z ##[group]Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+2026-08-08T15:44:22.5467310Z with:
+2026-08-08T15:44:22.5467724Z   name: safe-outputs-items
+2026-08-08T15:44:22.5468203Z   path: /tmp/gh-aw/
+2026-08-08T15:44:22.5468647Z   merge-multiple: false
+2026-08-08T15:44:22.5469140Z   repository: mindovermachine-dev/mom-home
+2026-08-08T15:44:22.5469696Z   run-id: 31265089022
+2026-08-08T15:44:22.5470146Z   skip-decompress: false
+2026-08-08T15:44:22.5470633Z   digest-mismatch: error
+2026-08-08T15:44:22.5471379Z env:
+2026-08-08T15:44:22.5471781Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:22.5472359Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:22.5473066Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:22.5473690Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:22.5474232Z ##[endgroup]
+2026-08-08T15:44:22.7071821Z Downloading single artifact
+2026-08-08T15:44:22.8576512Z Preparing to download the following artifacts:
+2026-08-08T15:44:22.8582066Z - safe-outputs-items (ID: 9023930210, Size: 301, Expected Digest: sha256:2a9250d2c03ee728233831cbf514c10c7edd35f446bbd67b70e77db10e2914e7)
+2026-08-08T15:44:23.2695287Z (node:1369) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-08-08T15:44:23.2711792Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-08-08T15:44:23.2716402Z Redirecting to blob download url: https://productionresultssa3.blob.core.windows.net/actions-results/71a9f72b-2e72-47f6-a0c7-e64bb221d854/workflow-job-run-9e4b4eb5-ffd0-5c7d-98df-e32802a2c322/artifacts/140086647422da92f7ddc36c3ae296f3ebb1dfa20d074a5f6305bad1022cc591.zip
+2026-08-08T15:44:23.2718436Z Starting download of artifact to: /tmp/gh-aw
+2026-08-08T15:44:23.2792335Z SHA256 digest of downloaded artifact is 2a9250d2c03ee728233831cbf514c10c7edd35f446bbd67b70e77db10e2914e7
+2026-08-08T15:44:23.2793394Z Artifact download completed successfully.
+2026-08-08T15:44:23.2793998Z Total of 1 artifact(s) downloaded
+2026-08-08T15:44:23.2794574Z Download artifact has finished successfully
+2026-08-08T15:44:23.2898797Z ##[group]Run bash "${RUNNER_TEMP}/gh-aw/actions/collect_usage_artifact_files.sh"
+2026-08-08T15:44:23.2902271Z [36;1mbash "${RUNNER_TEMP}/gh-aw/actions/collect_usage_artifact_files.sh"[0m
+2026-08-08T15:44:23.2915535Z shell: /usr/bin/bash -e {0}
+2026-08-08T15:44:23.2916243Z env:
+2026-08-08T15:44:23.2916670Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:23.2917284Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:23.2918007Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:23.2918641Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:23.2919805Z ##[endgroup]
+2026-08-08T15:44:23.3046659Z Usage artifact source file status:
+2026-08-08T15:44:23.3626989Z [info] safe-output-items manifest: 0 item(s) logged (file present but contained no loggable items)
+2026-08-08T15:44:23.3628047Z MISSING: /tmp/gh-aw/aw_info.json
+2026-08-08T15:44:23.3704835Z [info] /tmp/gh-aw/usage/activity/summary.json
+2026-08-08T15:44:23.3705620Z MISSING: /tmp/gh-aw/aw-info.jsonl
+2026-08-08T15:44:23.3706191Z FOUND: /tmp/gh-aw/agent_usage.json
+2026-08-08T15:44:23.3706753Z MISSING: /tmp/gh-aw/agent_usage.jsonl
+2026-08-08T15:44:23.3707360Z MISSING: /tmp/gh-aw/detection_usage.jsonl
+2026-08-08T15:44:23.3707953Z MISSING: /tmp/gh-aw/evals/evals.jsonl
+2026-08-08T15:44:23.3708565Z FOUND: /tmp/gh-aw/github_rate_limits.jsonl
+2026-08-08T15:44:23.3709189Z FOUND: /tmp/gh-aw/safe-output-items.jsonl
+2026-08-08T15:44:23.3710025Z MISSING: /tmp/gh-aw/sandbox/firewall-audit-logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3711391Z FOUND: /tmp/gh-aw/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3712359Z MISSING: /tmp/gh-aw/sandbox/firewall/audit/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3713493Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall-audit-logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3714698Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall/logs/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3715852Z MISSING: /tmp/gh-aw/threat-detection/sandbox/firewall/audit/api-proxy-logs/token-usage.jsonl
+2026-08-08T15:44:23.3784570Z /tmp/gh-aw/usage/activity/summary.json
+2026-08-08T15:44:23.3786374Z /tmp/gh-aw/usage/agent/token_usage.jsonl
+2026-08-08T15:44:23.3787507Z /tmp/gh-aw/usage/agent_usage.json
+2026-08-08T15:44:23.3788280Z /tmp/gh-aw/usage/detection/token_usage.jsonl
+2026-08-08T15:44:23.3789004Z /tmp/gh-aw/usage/github_rate_limits.jsonl
+2026-08-08T15:44:23.3867591Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-08-08T15:44:23.3868389Z with:
+2026-08-08T15:44:23.3868789Z   name: usage
+2026-08-08T15:44:23.3871392Z   path: /tmp/gh-aw/usage/aw_info.json
+/tmp/gh-aw/usage/aw-info.jsonl
+/tmp/gh-aw/usage/agent_usage.json
+/tmp/gh-aw/usage/agent_usage.jsonl
+/tmp/gh-aw/usage/detection_usage.jsonl
+/tmp/gh-aw/usage/evals.jsonl
+/tmp/gh-aw/usage/github_rate_limits.jsonl
+/tmp/gh-aw/usage/agent/token_usage.jsonl
+/tmp/gh-aw/usage/detection/token_usage.jsonl
+/tmp/gh-aw/usage/activity/summary.json
+
+2026-08-08T15:44:23.3873796Z   if-no-files-found: ignore
+2026-08-08T15:44:23.3874305Z   compression-level: 6
+2026-08-08T15:44:23.3874775Z   overwrite: false
+2026-08-08T15:44:23.3875239Z   include-hidden-files: false
+2026-08-08T15:44:23.3875737Z   archive: true
+2026-08-08T15:44:23.3876171Z env:
+2026-08-08T15:44:23.3876578Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:23.3877207Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:23.3877917Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:23.3878551Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:23.3879428Z ##[endgroup]
+2026-08-08T15:44:23.6483410Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-08-08T15:44:23.6487293Z The least common ancestor is /tmp/gh-aw/usage. This will be the root directory of the artifact
+2026-08-08T15:44:23.6488227Z With the provided path, there will be 5 files uploaded
+2026-08-08T15:44:23.6489165Z Artifact name is valid!
+2026-08-08T15:44:23.6489666Z Root directory input is valid!
+2026-08-08T15:44:23.9257895Z Uploading artifact: usage.zip
+2026-08-08T15:44:23.9332088Z Beginning upload of artifact content to blob storage
+2026-08-08T15:44:24.1344990Z Uploaded bytes 1750
+2026-08-08T15:44:24.1805484Z Finished uploading artifact content to blob storage!
+2026-08-08T15:44:24.1811426Z SHA256 digest of uploaded artifact is 47406f64d8df098a63ce5b0d060e9c9c717e5ccfa03b2bc2cae10e591b8aef55
+2026-08-08T15:44:24.1815465Z Finalizing artifact upload
+2026-08-08T15:44:24.4107072Z Artifact usage successfully finalized. Artifact ID 9023932723
+2026-08-08T15:44:24.4112138Z Artifact usage has been successfully uploaded! Final size is 1750 bytes. Artifact ID is 9023932723
+2026-08-08T15:44:24.4121585Z Artifact download URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022/artifacts/9023932723
+2026-08-08T15:44:24.4303590Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-08-08T15:44:24.4304400Z with:
+2026-08-08T15:44:24.4304929Z   key: agentic-workflow-usage-reviewissue-31265089022
+2026-08-08T15:44:24.4305660Z   restore-keys: agentic-workflow-usage-reviewissue-
+2026-08-08T15:44:24.4306405Z   path: /tmp/gh-aw/agentic-workflow-usage-cache.jsonl
+2026-08-08T15:44:24.4307063Z   enableCrossOsArchive: false
+2026-08-08T15:44:24.4307627Z   fail-on-cache-miss: false
+2026-08-08T15:44:24.4308133Z   lookup-only: false
+2026-08-08T15:44:24.4308585Z env:
+2026-08-08T15:44:24.4309007Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:24.4309605Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:24.4310335Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:24.4311257Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:24.4311851Z ##[endgroup]
+2026-08-08T15:44:24.6869978Z Cache not found for input keys: agentic-workflow-usage-reviewissue-31265089022, agentic-workflow-usage-reviewissue-
+2026-08-08T15:44:24.6961381Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:24.6962398Z with:
+2026-08-08T15:44:24.6966074Z   github-token: ***
+2026-08-08T15:44:24.6967713Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/write_daily_aic_usage_cache.cjs');
+await main();
+
+2026-08-08T15:44:24.6969413Z   debug: false
+2026-08-08T15:44:24.6969881Z   user-agent: actions/github-script
+2026-08-08T15:44:24.6970442Z   result-encoding: json
+2026-08-08T15:44:24.6971152Z   retries: 0
+2026-08-08T15:44:24.6971661Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:24.6972259Z env:
+2026-08-08T15:44:24.6972691Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:24.6973292Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:24.6974025Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:24.6974699Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:24.6975267Z ##[endgroup]
+2026-08-08T15:44:24.8167941Z [daily-aic-cache] Scanning usage JSONL files: {"dir":"/tmp/gh-aw/usage","count":3,"files":["/tmp/gh-aw/usage/github_rate_limits.jsonl","/tmp/gh-aw/usage/agent/token_usage.jsonl","/tmp/gh-aw/usage/detection/token_usage.jsonl"]}
+2026-08-08T15:44:24.8171619Z [daily-aic-cache] Computed AIC for current run: {"runId":31265089022,"aic":11.7987}
+2026-08-08T15:44:24.8174305Z [daily-aic-cache] No existing cache file found; starting fresh: {"path":"/tmp/gh-aw/agentic-workflow-usage-cache.jsonl"}
+2026-08-08T15:44:24.8176740Z [daily-aic-cache] Wrote cache entry: {"runId":31265089022,"aic":11.7987,"path":"/tmp/gh-aw/agentic-workflow-usage-cache.jsonl"}
+2026-08-08T15:44:24.8256197Z ##[group]Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-08-08T15:44:24.8256975Z with:
+2026-08-08T15:44:24.8257503Z   key: agentic-workflow-usage-reviewissue-31265089022
+2026-08-08T15:44:24.8258248Z   path: /tmp/gh-aw/agentic-workflow-usage-cache.jsonl
+2026-08-08T15:44:24.8259831Z   enableCrossOsArchive: false
+2026-08-08T15:44:24.8260356Z env:
+2026-08-08T15:44:24.8260781Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:24.8261667Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:24.8262395Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:24.8263247Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:24.8263819Z ##[endgroup]
+2026-08-08T15:44:25.4161891Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/mom-home/mom-home --files-from manifest.txt --use-compress-program zstdmt
+2026-08-08T15:44:25.4168052Z Sent 277 of 277 (100.0%), 0.0 MBs/sec
+2026-08-08T15:44:25.4170262Z Cache saved with key: agentic-workflow-usage-reviewissue-31265089022
+2026-08-08T15:44:25.4281641Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-08-08T15:44:25.4282513Z with:
+2026-08-08T15:44:25.4282954Z   name: aic-usage-cache
+2026-08-08T15:44:25.4283556Z   path: /tmp/gh-aw/agentic-workflow-usage-cache.jsonl
+2026-08-08T15:44:25.4284239Z   if-no-files-found: ignore
+2026-08-08T15:44:25.4284760Z   retention-days: 7
+2026-08-08T15:44:25.4285230Z   compression-level: 6
+2026-08-08T15:44:25.4285717Z   overwrite: false
+2026-08-08T15:44:25.4286196Z   include-hidden-files: false
+2026-08-08T15:44:25.4286743Z   archive: true
+2026-08-08T15:44:25.4287181Z env:
+2026-08-08T15:44:25.4287610Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:25.4288235Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:25.4288965Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:25.4289622Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:25.4290202Z ##[endgroup]
+2026-08-08T15:44:25.5882255Z With the provided path, there will be 1 file uploaded
+2026-08-08T15:44:25.5894736Z Artifact name is valid!
+2026-08-08T15:44:25.5898321Z Root directory input is valid!
+2026-08-08T15:44:25.8093571Z Uploading artifact: aic-usage-cache.zip
+2026-08-08T15:44:25.8169411Z Beginning upload of artifact content to blob storage
+2026-08-08T15:44:25.9801360Z Uploaded bytes 259
+2026-08-08T15:44:26.0169508Z Finished uploading artifact content to blob storage!
+2026-08-08T15:44:26.0174969Z SHA256 digest of uploaded artifact is 9ba430a5e2aeb4b108a5e01b84a60cdbe7a425328e6d72ae6d8e40a6a2dc6b39
+2026-08-08T15:44:26.0178635Z Finalizing artifact upload
+2026-08-08T15:44:26.2371359Z Artifact aic-usage-cache successfully finalized. Artifact ID 9023933066
+2026-08-08T15:44:26.2373996Z Artifact aic-usage-cache has been successfully uploaded! Final size is 259 bytes. Artifact ID is 9023933066
+2026-08-08T15:44:26.2380372Z Artifact download URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022/artifacts/9023933066
+2026-08-08T15:44:26.2520272Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.2521491Z with:
+2026-08-08T15:44:26.2525142Z   github-token: ***
+2026-08-08T15:44:26.2526871Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_noop_message.cjs');
+await main();
+
+2026-08-08T15:44:26.2528676Z   debug: false
+2026-08-08T15:44:26.2529175Z   user-agent: actions/github-script
+2026-08-08T15:44:26.2529789Z   result-encoding: json
+2026-08-08T15:44:26.2530282Z   retries: 0
+2026-08-08T15:44:26.2530809Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.2531643Z env:
+2026-08-08T15:44:26.2532097Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.2532725Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.2533500Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.2534169Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.2534850Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.2535497Z   GH_AW_NOOP_MAX: 1
+2026-08-08T15:44:26.2535991Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.2537057Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.2538356Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.2539223Z   GH_AW_AGENT_CONCLUSION: success
+2026-08-08T15:44:26.2539971Z   GH_AW_NOOP_REPORT_AS_ISSUE: false
+2026-08-08T15:44:26.2540539Z   GH_AW_AIC: 11.002
+2026-08-08T15:44:26.2541229Z   GH_AW_THREAT_DETECTION_AIC: 1.971
+2026-08-08T15:44:26.2541824Z   GH_AW_AMBIENT_CONTEXT: 7596
+2026-08-08T15:44:26.2542381Z   GH_AW_WORKFLOW_ID: review-issue
+2026-08-08T15:44:26.2542936Z ##[endgroup]
+2026-08-08T15:44:26.3679570Z Agent output content length: 223
+2026-08-08T15:44:26.3685483Z Found 1 noop item(s)
+2026-08-08T15:44:26.3689555Z No-op message 1: No issue was identified in this workflow run (issue-number is unset and no workflow_dispatch issue_number input was provided), so there is nothing to review or comment on.
+2026-08-08T15:44:26.3715979Z Successfully processed 1 noop message(s)
+2026-08-08T15:44:26.3719035Z Workflow name: Issue Clarifier
+2026-08-08T15:44:26.3722623Z Run URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.3725630Z Agent conclusion: success
+2026-08-08T15:44:26.3728253Z Report as issue: false
+2026-08-08T15:44:26.3731520Z report-as-issue is disabled (set to false), skipping no-op message posting to issue
+2026-08-08T15:44:26.3878624Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.3879453Z with:
+2026-08-08T15:44:26.3883704Z   github-token: ***
+2026-08-08T15:44:26.3885494Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_detection_runs.cjs');
+await main();
+
+2026-08-08T15:44:26.3887279Z   debug: false
+2026-08-08T15:44:26.3887777Z   user-agent: actions/github-script
+2026-08-08T15:44:26.3888359Z   result-encoding: json
+2026-08-08T15:44:26.3888852Z   retries: 0
+2026-08-08T15:44:26.3889362Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.3889987Z env:
+2026-08-08T15:44:26.3890439Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.3891289Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.3892105Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.3892788Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.3893481Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.3894159Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.3895210Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.3896528Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.3897399Z   GH_AW_DETECTION_CONCLUSION: success
+2026-08-08T15:44:26.3898003Z   GH_AW_DETECTION_REASON: 
+2026-08-08T15:44:26.3898529Z ##[endgroup]
+2026-08-08T15:44:26.5176187Z Detection conclusion: success
+2026-08-08T15:44:26.5224482Z Detection reason: 
+2026-08-08T15:44:26.5226010Z Workflow name: Issue Clarifier
+2026-08-08T15:44:26.5226937Z Run URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.5228000Z Detection conclusion is "success", no issue comment needed
+2026-08-08T15:44:26.5314332Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.5315148Z with:
+2026-08-08T15:44:26.5318749Z   github-token: ***
+2026-08-08T15:44:26.5320432Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/missing_tool.cjs');
+await main();
+
+2026-08-08T15:44:26.5322496Z   debug: false
+2026-08-08T15:44:26.5323003Z   user-agent: actions/github-script
+2026-08-08T15:44:26.5323587Z   result-encoding: json
+2026-08-08T15:44:26.5324078Z   retries: 0
+2026-08-08T15:44:26.5324605Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.5325229Z env:
+2026-08-08T15:44:26.5325672Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.5326315Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.5327248Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.5327952Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.5328628Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.5329294Z   GH_AW_MISSING_TOOL_CREATE_ISSUE: true
+2026-08-08T15:44:26.5329910Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.5331193Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.5332274Z ##[endgroup]
+2026-08-08T15:44:26.6535130Z Max count: unlimited
+2026-08-08T15:44:26.6641471Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.6642353Z with:
+2026-08-08T15:44:26.6645969Z   github-token: ***
+2026-08-08T15:44:26.6647720Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/report_incomplete_handler.cjs');
+await main();
+
+2026-08-08T15:44:26.6649541Z   debug: false
+2026-08-08T15:44:26.6650033Z   user-agent: actions/github-script
+2026-08-08T15:44:26.6650615Z   result-encoding: json
+2026-08-08T15:44:26.6651395Z   retries: 0
+2026-08-08T15:44:26.6651928Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.6652565Z env:
+2026-08-08T15:44:26.6653015Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.6653655Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.6654451Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.6655131Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.6655817Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.6656493Z   GH_AW_REPORT_INCOMPLETE_CREATE_ISSUE: true
+2026-08-08T15:44:26.6657123Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.6658177Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.6659226Z ##[endgroup]
+2026-08-08T15:44:26.7842628Z Max count: unlimited
+2026-08-08T15:44:26.7939290Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.7940138Z with:
+2026-08-08T15:44:26.7944109Z   github-token: ***
+2026-08-08T15:44:26.7945851Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_agent_failure.cjs');
+await main();
+
+2026-08-08T15:44:26.7947703Z   debug: false
+2026-08-08T15:44:26.7948186Z   user-agent: actions/github-script
+2026-08-08T15:44:26.7948777Z   result-encoding: json
+2026-08-08T15:44:26.7949271Z   retries: 0
+2026-08-08T15:44:26.7949793Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.7950425Z env:
+2026-08-08T15:44:26.8041310Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.8042281Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.8043345Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.8044257Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.8045167Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.8046067Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.8047493Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.8049125Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.8049998Z   GH_AW_AGENT_CONCLUSION: success
+2026-08-08T15:44:26.8050587Z   GH_AW_WORKFLOW_ID: review-issue
+2026-08-08T15:44:26.8051385Z   GH_AW_ACTION_FAILURE_ISSUE_EXPIRES_HOURS: 168
+2026-08-08T15:44:26.8052025Z   GH_AW_ENGINE_ID: copilot
+2026-08-08T15:44:26.8052612Z   GH_AW_SECRET_VERIFICATION_RESULT: success
+2026-08-08T15:44:26.8055598Z   GH_AW_ENGINE_SECRET_FAILURE_MESSAGE: **Alternative**: If your organization has a Copilot subscription, you can avoid the need for a personal access token by adding a top-level `permissions` block to your workflow file. This enables Copilot inference through the org using the built-in GitHub Actions token.
+
+```yaml
+permissions:
+  copilot-requests: write
+```
+
+See: https://github.github.com/gh-aw/reference/engines/#github-copilot-default
+2026-08-08T15:44:26.8058336Z   GH_AW_CHECKOUT_PR_SUCCESS: true
+2026-08-08T15:44:26.8058911Z   GH_AW_EFFECTIVE_TOKENS: 
+2026-08-08T15:44:26.8059465Z   GH_AW_AI_CREDITS_RATE_LIMIT_ERROR: false
+2026-08-08T15:44:26.8060091Z   GH_AW_UNKNOWN_MODEL_AI_CREDITS: false
+2026-08-08T15:44:26.8060680Z   GH_AW_AIC: 11.002
+2026-08-08T15:44:26.8061344Z   GH_AW_THREAT_DETECTION_AIC: 1.971
+2026-08-08T15:44:26.8061941Z   GH_AW_MAX_AI_CREDITS: 1000
+2026-08-08T15:44:26.8062505Z   GH_AW_INFERENCE_ACCESS_ERROR: false
+2026-08-08T15:44:26.8063100Z   GH_AW_MCP_POLICY_ERROR: false
+2026-08-08T15:44:26.8063671Z   GH_AW_AGENTIC_ENGINE_TIMEOUT: false
+2026-08-08T15:44:26.8064280Z   GH_AW_MODEL_NOT_SUPPORTED_ERROR: false
+2026-08-08T15:44:26.8064900Z   GH_AW_HTTP_400_RESPONSE_ERROR: false
+2026-08-08T15:44:26.8065502Z   GH_AW_MAX_CACHE_MISSES_EXCEEDED: false
+2026-08-08T15:44:26.8066225Z   GH_AW_MISSING_MODEL_PRICING_ERROR: false
+2026-08-08T15:44:26.8066862Z   GH_AW_MISSING_MODEL_PRICING_MODEL_NAME: 
+2026-08-08T15:44:26.8068184Z   GH_AW_ENGINE_API_HOSTS: api.enterprise.githubcopilot.com,api.githubcopilot.com,api.business.githubcopilot.com,api.individual.githubcopilot.com
+2026-08-08T15:44:26.8069489Z   GH_AW_LOCKDOWN_CHECK_FAILED: false
+2026-08-08T15:44:26.8070096Z   GH_AW_OAUTH_TOKEN_CHECK_FAILED: false
+2026-08-08T15:44:26.8070701Z   GH_AW_STALE_LOCK_FILE_FAILED: false
+2026-08-08T15:44:26.8071476Z   GH_AW_DAILY_AI_CREDITS_EXCEEDED: false
+2026-08-08T15:44:26.8072124Z   GH_AW_DAILY_AI_CREDITS_TOTAL_EFFECTIVE_TOKENS: 
+2026-08-08T15:44:26.8072778Z   GH_AW_DAILY_AI_CREDITS_THRESHOLD: 
+2026-08-08T15:44:26.8073374Z   GH_AW_GROUP_REPORTS: false
+2026-08-08T15:44:26.8073931Z   GH_AW_FAILURE_REPORT_AS_ISSUE: true
+2026-08-08T15:44:26.8074551Z   GH_AW_MISSING_TOOL_REPORT_AS_FAILURE: true
+2026-08-08T15:44:26.8082937Z   GH_AW_MISSING_DATA_REPORT_AS_FAILURE: true
+2026-08-08T15:44:26.8084190Z   GH_AW_TIMEOUT_MINUTES: 20
+2026-08-08T15:44:26.8084737Z ##[endgroup]
+2026-08-08T15:44:26.9462389Z [ai-credits] aiCredits source=env(GH_AW_AIC) value=11.002
+2026-08-08T15:44:26.9463735Z [ai-credits] maxAICredits source=env(GH_AW_MAX_AI_CREDITS) value=1000
+2026-08-08T15:44:26.9465384Z [ai-credits] rateLimitSignal source=none
+2026-08-08T15:44:26.9466000Z Agent conclusion: success
+2026-08-08T15:44:26.9466559Z Workflow name: Issue Clarifier
+2026-08-08T15:44:26.9467120Z Workflow ID: review-issue
+2026-08-08T15:44:26.9467670Z Secret verification result: success
+2026-08-08T15:44:26.9468289Z Engine secret failure message: (set)
+2026-08-08T15:44:26.9468891Z Assignment error count: 0
+2026-08-08T15:44:26.9469434Z Assign copilot failure count: 0
+2026-08-08T15:44:26.9470016Z Skill install failure count: 0
+2026-08-08T15:44:26.9470591Z Create discussion error count: 0
+2026-08-08T15:44:26.9471495Z Code push failure count: 0
+2026-08-08T15:44:26.9472068Z Checkout PR success: true
+2026-08-08T15:44:26.9472600Z AI credits: 11.002
+2026-08-08T15:44:26.9473107Z Configured max AI credits: 1000
+2026-08-08T15:44:26.9473684Z AI credits rate-limit error: false
+2026-08-08T15:44:26.9474334Z Max AI credits exceeded (harness budget abort): false
+2026-08-08T15:44:26.9475045Z Daily workflow AIC guardrail exceeded: false
+2026-08-08T15:44:26.9475684Z Inference access error: false
+2026-08-08T15:44:26.9476232Z MCP policy error: false
+2026-08-08T15:44:26.9476760Z Agentic engine timeout: false
+2026-08-08T15:44:26.9477318Z Model not supported error: false
+2026-08-08T15:44:26.9477895Z HTTP 400 response error: false
+2026-08-08T15:44:26.9478462Z Unknown model AI credits error: false
+2026-08-08T15:44:26.9479174Z Unknown model AI credits sources (audit/output): false/false
+2026-08-08T15:44:26.9480170Z Missing model pricing error: false (model: (unknown))
+2026-08-08T15:44:26.9481344Z Push repo-memory result: 
+2026-08-08T15:44:26.9482178Z App token minting failed (safe_outputs/conclusion/activation): false/false/false
+2026-08-08T15:44:26.9483017Z Lockdown check failed: false
+2026-08-08T15:44:26.9483587Z OAuth token check failed: false
+2026-08-08T15:44:26.9484165Z Stale lock file check failed: false
+2026-08-08T15:44:26.9484751Z Cache memory enabled: false
+2026-08-08T15:44:26.9485372Z Cache memory restored (from restore outputs): false
+2026-08-08T15:44:26.9486087Z Missing tool report-as-failure: true
+2026-08-08T15:44:26.9486707Z Missing data report-as-failure: true
+2026-08-08T15:44:26.9487307Z Agent output content length: 223
+2026-08-08T15:44:26.9488638Z Agent succeeded with only noop outputs - this is not a failure
+2026-08-08T15:44:26.9492434Z Agent job did not fail and no assignment/discussion/code-push/push-repo-memory/app-token/lockdown/oauth-token-check/stale-lock-file/daily-workflow-aic/ai-credits/max-ai-credits-exceeded/report-incomplete/cache-miss/missing-tool/missing-data/tool-denials-exceeded/secret-verification errors and has safe outputs (conclusion: success), skipping failure handling
+2026-08-08T15:44:26.9580514Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.9581730Z with:
+2026-08-08T15:44:26.9585368Z   github-token: ***
+2026-08-08T15:44:26.9587089Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/report_failed_jobs.cjs');
+await main();
+
+2026-08-08T15:44:26.9588876Z   debug: false
+2026-08-08T15:44:26.9589372Z   user-agent: actions/github-script
+2026-08-08T15:44:26.9589971Z   result-encoding: json
+2026-08-08T15:44:26.9590465Z   retries: 0
+2026-08-08T15:44:26.9591181Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.9591820Z env:
+2026-08-08T15:44:26.9592284Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.9592918Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.9593699Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.9594373Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.9595053Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.9595716Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.9596774Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.9598087Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.9598952Z   GH_AW_REPORT_FAILED_JOBS: true
+2026-08-08T15:44:26.9599508Z ##[endgroup]
+2026-08-08T15:44:27.0779942Z Checking GitHub API rate limit before querying jobs
+2026-08-08T15:44:27.3187456Z Querying jobs for workflow run 31265089022
+2026-08-08T15:44:27.7327948Z Page 1: retrieved 6 jobs
+2026-08-08T15:44:27.7343025Z Checking GitHub API rate limit after querying jobs
+2026-08-08T15:44:27.8265985Z No failed non-builtin jobs found, skipping issue creation
+2026-08-08T15:44:27.8447297Z Post job cleanup.
+2026-08-08T15:44:27.8883012Z [info] [otlp] GH_AW_OTLP_ENDPOINTS not set, skipping OTLP export (will attempt JSONL mirror)
+2026-08-08T15:44:27.8942345Z Cleaning up /tmp/gh-aw...
+2026-08-08T15:44:27.9074216Z Cleaned up /tmp/gh-aw
+2026-08-08T15:44:27.9179021Z No /tmp/awf-*-chroot-home directories found
+2026-08-08T15:44:27.9275763Z No /tmp/awf-chroot-* directories found
+2026-08-08T15:44:27.9365832Z Evaluate and set job outputs
+2026-08-08T15:44:27.9375951Z Set output 'noop_message'
+2026-08-08T15:44:27.9378278Z Cleaning up orphan processes

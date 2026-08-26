@@ -1,0 +1,128 @@
+﻿2026-08-08T15:41:47.1329204Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-08-08T15:41:47.1329962Z with:
+2026-08-08T15:41:47.1330376Z   persist-credentials: false
+2026-08-08T15:41:47.1330991Z   sparse-checkout: .github
+.agents
+.claude
+.codex
+.gemini
+.pi
+
+2026-08-08T15:41:47.1331860Z   sparse-checkout-cone-mode: true
+2026-08-08T15:41:47.1332643Z   fetch-depth: 1
+2026-08-08T15:41:47.1333114Z   repository: mindovermachine-dev/mom-home
+2026-08-08T15:41:47.1337883Z   token: ***
+2026-08-08T15:41:47.1338320Z   ssh-strict: true
+2026-08-08T15:41:47.1338737Z   ssh-user: git
+2026-08-08T15:41:47.1339139Z   clean: true
+2026-08-08T15:41:47.1339528Z   fetch-tags: false
+2026-08-08T15:41:47.1339939Z   show-progress: true
+2026-08-08T15:41:47.1340491Z   lfs: false
+2026-08-08T15:41:47.1340885Z   submodules: false
+2026-08-08T15:41:47.1341323Z   set-safe-directory: true
+2026-08-08T15:41:47.1341808Z   allow-unsafe-pr-checkout: false
+2026-08-08T15:41:47.1342539Z env:
+2026-08-08T15:41:47.1342946Z   GH_AW_MAX_DAILY_AI_CREDITS: 5000
+2026-08-08T15:41:47.1343497Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:41:47.1344058Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:41:47.1344745Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: 1a3a48f4304eb5e1
+2026-08-08T15:41:47.1345358Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203705637
+2026-08-08T15:41:47.1345884Z ##[endgroup]
+2026-08-08T15:41:47.6808309Z Syncing repository: mindovermachine-dev/mom-home
+2026-08-08T15:41:47.6810529Z ##[group]Getting Git version info
+2026-08-08T15:41:47.6811296Z Working directory is '/home/runner/work/mom-home/mom-home'
+2026-08-08T15:41:47.6812665Z [command]/usr/bin/git version
+2026-08-08T15:41:47.6813223Z git version 2.54.0
+2026-08-08T15:41:47.6814793Z ##[endgroup]
+2026-08-08T15:41:47.6819882Z Temporarily overriding HOME='/home/runner/work/_temp/b750c69d-c4f1-4f4d-acb7-4c8d739ddabf' before making global git config changes
+2026-08-08T15:41:47.6823020Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-08T15:41:47.6824218Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/mom-home/mom-home
+2026-08-08T15:41:47.6828193Z Deleting the contents of '/home/runner/work/mom-home/mom-home'
+2026-08-08T15:41:47.6829386Z ##[group]Determining repository object format
+2026-08-08T15:41:47.6831008Z ##[endgroup]
+2026-08-08T15:41:47.6831790Z ##[group]Initializing the repository
+2026-08-08T15:41:47.6832737Z [command]/usr/bin/git init /home/runner/work/mom-home/mom-home
+2026-08-08T15:41:47.6834297Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-08T15:41:47.6835297Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-08T15:41:47.6836763Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-08T15:41:47.6837517Z hint: call:
+2026-08-08T15:41:47.6837927Z hint:
+2026-08-08T15:41:47.6838436Z hint: 	git config --global init.defaultBranch <name>
+2026-08-08T15:41:47.6839055Z hint:
+2026-08-08T15:41:47.6839641Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-08T15:41:47.6840588Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-08T15:41:47.6841317Z hint:
+2026-08-08T15:41:47.6841733Z hint: 	git branch -m <name>
+2026-08-08T15:41:47.6842227Z hint:
+2026-08-08T15:41:47.6843065Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-08T15:41:47.6844056Z Initialized empty Git repository in /home/runner/work/mom-home/mom-home/.git/
+2026-08-08T15:41:47.6846440Z [command]/usr/bin/git remote add origin https://github.com/mindovermachine-dev/mom-home
+2026-08-08T15:41:47.6848089Z ##[endgroup]
+2026-08-08T15:41:47.6848820Z ##[group]Disabling automatic garbage collection
+2026-08-08T15:41:47.6849574Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-08T15:41:47.6850936Z ##[endgroup]
+2026-08-08T15:41:47.6851595Z ##[group]Setting up auth
+2026-08-08T15:41:47.6852104Z Removing SSH command configuration
+2026-08-08T15:41:47.6853056Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-08T15:41:47.6856353Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-08T15:41:47.6858436Z Removing HTTP extra header
+2026-08-08T15:41:47.6859278Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-08T15:41:47.6861685Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-08T15:41:47.6864235Z Removing includeIf entries pointing to credentials config files
+2026-08-08T15:41:47.6865163Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-08T15:41:47.6866955Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-08T15:41:47.6869580Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-08T15:41:47.6872259Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/mom-home/mom-home/.git.path /home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:47.6875585Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/mom-home/mom-home/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:47.6898297Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:47.6900990Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:47.6903524Z ##[endgroup]
+2026-08-08T15:41:47.6904282Z ##[group]Fetching the repository
+2026-08-08T15:41:47.6905706Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +772921f400fe98f8e31083a950d2d4bb6bfdfb24:refs/remotes/origin/main
+2026-08-08T15:41:48.2113035Z From https://github.com/mindovermachine-dev/mom-home
+2026-08-08T15:41:48.2114401Z  * [new ref]         772921f400fe98f8e31083a950d2d4bb6bfdfb24 -> origin/main
+2026-08-08T15:41:48.2166371Z [command]/usr/bin/git branch --list --remote origin/main
+2026-08-08T15:41:48.2190294Z   origin/main
+2026-08-08T15:41:48.2205380Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-08-08T15:41:48.2230740Z 772921f400fe98f8e31083a950d2d4bb6bfdfb24
+2026-08-08T15:41:48.2244538Z ##[endgroup]
+2026-08-08T15:41:48.2245351Z ##[group]Determining the checkout info
+2026-08-08T15:41:48.2246207Z ##[endgroup]
+2026-08-08T15:41:48.2247013Z ##[group]Setting up sparse checkout
+2026-08-08T15:41:48.2248814Z [command]/usr/bin/git sparse-checkout set .github .agents .claude .codex .gemini .pi
+2026-08-08T15:41:48.2301513Z ##[endgroup]
+2026-08-08T15:41:48.2302858Z ##[group]Checking out the ref
+2026-08-08T15:41:48.2305053Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-08T15:41:48.9209631Z Switched to a new branch 'main'
+2026-08-08T15:41:48.9225187Z branch 'main' set up to track 'origin/main'.
+2026-08-08T15:41:48.9234657Z ##[endgroup]
+2026-08-08T15:41:48.9290225Z [command]/usr/bin/git log -1 --format=%H
+2026-08-08T15:41:48.9311857Z 772921f400fe98f8e31083a950d2d4bb6bfdfb24
+2026-08-08T15:41:48.9324619Z ##[group]Removing auth
+2026-08-08T15:41:48.9358271Z Removing SSH command configuration
+2026-08-08T15:41:48.9359908Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-08T15:41:48.9401146Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-08T15:41:48.9595234Z Removing HTTP extra header
+2026-08-08T15:41:48.9600539Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-08T15:41:48.9633111Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-08T15:41:48.9821376Z Removing includeIf entries pointing to credentials config files
+2026-08-08T15:41:48.9827990Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-08T15:41:48.9870057Z includeif.gitdir:/home/runner/work/mom-home/mom-home/.git.path
+2026-08-08T15:41:48.9871361Z includeif.gitdir:/home/runner/work/mom-home/mom-home/.git/worktrees/*.path
+2026-08-08T15:41:48.9873675Z includeif.gitdir:/github/workspace/.git.path
+2026-08-08T15:41:48.9874477Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-08-08T15:41:48.9893602Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/mom-home/mom-home/.git.path
+2026-08-08T15:41:48.9913463Z /home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:48.9930145Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/mom-home/mom-home/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-cdd1aa92\-ff1d\-415f\-900e\-a390ee4090a3\.config
+2026-08-08T15:41:48.9964817Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/mom-home/mom-home/.git/worktrees/*.path
+2026-08-08T15:41:48.9986978Z /home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:49.0005610Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/mom-home/mom-home/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-cdd1aa92\-ff1d\-415f\-900e\-a390ee4090a3\.config
+2026-08-08T15:41:49.0038186Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-08-08T15:41:49.0059096Z /github/runner_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:49.0234499Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-cdd1aa92\-ff1d\-415f\-900e\-a390ee4090a3\.config
+2026-08-08T15:41:49.0343489Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-08-08T15:41:49.0398508Z /github/runner_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config
+2026-08-08T15:41:49.0400994Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-cdd1aa92\-ff1d\-415f\-900e\-a390ee4090a3\.config
+2026-08-08T15:41:49.0432195Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-08T15:41:49.0646040Z Removing credentials config '/home/runner/work/_temp/git-credentials-cdd1aa92-ff1d-415f-900e-a390ee4090a3.config'
+2026-08-08T15:41:49.0672069Z ##[endgroup]

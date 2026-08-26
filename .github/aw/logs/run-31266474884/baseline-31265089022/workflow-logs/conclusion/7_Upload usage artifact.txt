@@ -1,0 +1,39 @@
+﻿2026-08-08T15:44:23.3867575Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-08-08T15:44:23.3868385Z with:
+2026-08-08T15:44:23.3868786Z   name: usage
+2026-08-08T15:44:23.3871365Z   path: /tmp/gh-aw/usage/aw_info.json
+/tmp/gh-aw/usage/aw-info.jsonl
+/tmp/gh-aw/usage/agent_usage.json
+/tmp/gh-aw/usage/agent_usage.jsonl
+/tmp/gh-aw/usage/detection_usage.jsonl
+/tmp/gh-aw/usage/evals.jsonl
+/tmp/gh-aw/usage/github_rate_limits.jsonl
+/tmp/gh-aw/usage/agent/token_usage.jsonl
+/tmp/gh-aw/usage/detection/token_usage.jsonl
+/tmp/gh-aw/usage/activity/summary.json
+
+2026-08-08T15:44:23.3873792Z   if-no-files-found: ignore
+2026-08-08T15:44:23.3874302Z   compression-level: 6
+2026-08-08T15:44:23.3874772Z   overwrite: false
+2026-08-08T15:44:23.3875236Z   include-hidden-files: false
+2026-08-08T15:44:23.3875734Z   archive: true
+2026-08-08T15:44:23.3876169Z env:
+2026-08-08T15:44:23.3876570Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:23.3877172Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:23.3877914Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:23.3878549Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:23.3879421Z ##[endgroup]
+2026-08-08T15:44:23.6483345Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-08-08T15:44:23.6487286Z The least common ancestor is /tmp/gh-aw/usage. This will be the root directory of the artifact
+2026-08-08T15:44:23.6488223Z With the provided path, there will be 5 files uploaded
+2026-08-08T15:44:23.6489161Z Artifact name is valid!
+2026-08-08T15:44:23.6489662Z Root directory input is valid!
+2026-08-08T15:44:23.9257850Z Uploading artifact: usage.zip
+2026-08-08T15:44:23.9332043Z Beginning upload of artifact content to blob storage
+2026-08-08T15:44:24.1344928Z Uploaded bytes 1750
+2026-08-08T15:44:24.1805423Z Finished uploading artifact content to blob storage!
+2026-08-08T15:44:24.1811351Z SHA256 digest of uploaded artifact is 47406f64d8df098a63ce5b0d060e9c9c717e5ccfa03b2bc2cae10e591b8aef55
+2026-08-08T15:44:24.1815446Z Finalizing artifact upload
+2026-08-08T15:44:24.4107002Z Artifact usage successfully finalized. Artifact ID 9023932723
+2026-08-08T15:44:24.4112116Z Artifact usage has been successfully uploaded! Final size is 1750 bytes. Artifact ID is 9023932723
+2026-08-08T15:44:24.4121556Z Artifact download URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022/artifacts/9023932723

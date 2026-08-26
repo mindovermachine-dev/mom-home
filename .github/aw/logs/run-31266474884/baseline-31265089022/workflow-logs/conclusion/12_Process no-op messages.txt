@@ -1,0 +1,39 @@
+﻿2026-08-08T15:44:26.2520256Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.2521485Z with:
+2026-08-08T15:44:26.2525138Z   github-token: ***
+2026-08-08T15:44:26.2526854Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_noop_message.cjs');
+await main();
+
+2026-08-08T15:44:26.2528673Z   debug: false
+2026-08-08T15:44:26.2529171Z   user-agent: actions/github-script
+2026-08-08T15:44:26.2529785Z   result-encoding: json
+2026-08-08T15:44:26.2530279Z   retries: 0
+2026-08-08T15:44:26.2530806Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.2531637Z env:
+2026-08-08T15:44:26.2532094Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.2532722Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.2533470Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.2534166Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.2534847Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.2535494Z   GH_AW_NOOP_MAX: 1
+2026-08-08T15:44:26.2535988Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.2537053Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.2538352Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.2539220Z   GH_AW_AGENT_CONCLUSION: success
+2026-08-08T15:44:26.2539968Z   GH_AW_NOOP_REPORT_AS_ISSUE: false
+2026-08-08T15:44:26.2540536Z   GH_AW_AIC: 11.002
+2026-08-08T15:44:26.2541225Z   GH_AW_THREAT_DETECTION_AIC: 1.971
+2026-08-08T15:44:26.2541821Z   GH_AW_AMBIENT_CONTEXT: 7596
+2026-08-08T15:44:26.2542378Z   GH_AW_WORKFLOW_ID: review-issue
+2026-08-08T15:44:26.2542933Z ##[endgroup]
+2026-08-08T15:44:26.3679494Z Agent output content length: 223
+2026-08-08T15:44:26.3685417Z Found 1 noop item(s)
+2026-08-08T15:44:26.3689539Z No-op message 1: No issue was identified in this workflow run (issue-number is unset and no workflow_dispatch issue_number input was provided), so there is nothing to review or comment on.
+2026-08-08T15:44:26.3715956Z Successfully processed 1 noop message(s)
+2026-08-08T15:44:26.3719023Z Workflow name: Issue Clarifier
+2026-08-08T15:44:26.3722608Z Run URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.3725622Z Agent conclusion: success
+2026-08-08T15:44:26.3728245Z Report as issue: false
+2026-08-08T15:44:26.3731505Z report-as-issue is disabled (set to false), skipping no-op message posting to issue

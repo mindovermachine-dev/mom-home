@@ -1,10 +1,12 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Logo from '~/components/Logo.astro';
+import Image from '~/components/common/Image.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
   title: 'Mind over Machine',
@@ -23,14 +25,13 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Read essays',
-        href: '/essays/',
+        href: '/writings/',
       },
       {
         text: 'Explore services',
         href: '/services/',
       },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Mind over Machine visual' }}
   >
     <Fragment slot="title">
       Mind over Machine
@@ -44,6 +45,42 @@ const metadata = {
       long-term value for people and the planet.
     </Fragment>
   </Hero>
+
+  <section class="mx-auto max-w-5xl px-4 pb-12 sm:px-6 md:pb-20" aria-labelledby="new-event-title">
+    <h2 id="new-event-title" class="mb-4 font-heading text-2xl font-bold tracking-wide text-heading">NEW EVENT!</h2>
+    <div class="group overflow-hidden rounded-md">
+      <a href="/events/" class="block" aria-label="See events">
+        <div class="relative aspect-[1200/640] overflow-hidden">
+          <Image
+            src="~/assets/images/events/web-lab/banner.png"
+            alt=""
+            layout="responsive"
+            widths={[400, 768, 1024, 1440]}
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 768px, 1024px"
+            loading="eager"
+            class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        </div>
+      </a>
+      <div class="flex flex-col items-end gap-3 pt-3">
+        <a href="/events/" class="transition-transform duration-300 hover:scale-[1.1]" aria-label="See events">
+          <span
+            class="flex items-center gap-2 bg-white px-3 py-2 font-heading text-xl font-bold tracking-wide text-midnight-forest shadow-md transition-colors hover:bg-ochre-yellow sm:gap-3 sm:px-4 sm:py-3 sm:text-2xl"
+          >
+            <Icon name="tabler:arrow-right" class="h-8 w-10 stroke-[3] sm:h-10 sm:w-12" aria-hidden="true" />
+            <span>SEE EVENTS</span>
+          </span>
+        </a>
+        <a href="/writings/" class="transition-transform duration-300 hover:scale-[1.1]" aria-label="Announcement">
+          <span
+            class="flex items-center gap-2 bg-white px-3 py-2 font-heading text-xl font-bold tracking-wide text-midnight-forest shadow-md transition-colors hover:bg-ochre-yellow sm:gap-3 sm:px-4 sm:py-3 sm:text-2xl"
+          >
+            <span>ANNOUNCEMENT</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <Features
     id="focus"

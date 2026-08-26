@@ -1,0 +1,30 @@
+﻿2026-08-08T15:44:26.3878608Z ##[group]Run actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+2026-08-08T15:44:26.3879450Z with:
+2026-08-08T15:44:26.3883695Z   github-token: ***
+2026-08-08T15:44:26.3885476Z   script: const { setupGlobals } = require('/home/runner/work/_temp/gh-aw/actions/setup_globals.cjs');
+setupGlobals(core, github, context, exec, io, getOctokit);
+const { main } = require('/home/runner/work/_temp/gh-aw/actions/handle_detection_runs.cjs');
+await main();
+
+2026-08-08T15:44:26.3887275Z   debug: false
+2026-08-08T15:44:26.3887773Z   user-agent: actions/github-script
+2026-08-08T15:44:26.3888357Z   result-encoding: json
+2026-08-08T15:44:26.3888849Z   retries: 0
+2026-08-08T15:44:26.3889359Z   retry-exempt-status-codes: 400,401,403,404,422
+2026-08-08T15:44:26.3889984Z env:
+2026-08-08T15:44:26.3890436Z   GH_AW_RUNTIME_FEATURES: 
+2026-08-08T15:44:26.3891283Z   GITHUB_AW_OTEL_TRACE_ID: 825a6f7a25d9d2588ae1dd8e63c4ae02
+2026-08-08T15:44:26.3892073Z   GITHUB_AW_OTEL_PARENT_SPAN_ID: dbd6cd25f3661504
+2026-08-08T15:44:26.3892785Z   GITHUB_AW_OTEL_JOB_START_MS: 1786203861647
+2026-08-08T15:44:26.3893478Z   GH_AW_AGENT_OUTPUT: /tmp/gh-aw/agent_output.json
+2026-08-08T15:44:26.3894157Z   GH_AW_WORKFLOW_NAME: Issue Clarifier
+2026-08-08T15:44:26.3895206Z   GH_AW_WORKFLOW_SOURCE_URL: https://github.com/mindovermachine-dev/mom-home/blob/main/.github/workflows/review-issue.md
+2026-08-08T15:44:26.3896524Z   GH_AW_RUN_URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.3897396Z   GH_AW_DETECTION_CONCLUSION: success
+2026-08-08T15:44:26.3898000Z   GH_AW_DETECTION_REASON: 
+2026-08-08T15:44:26.3898526Z ##[endgroup]
+2026-08-08T15:44:26.5176146Z Detection conclusion: success
+2026-08-08T15:44:26.5224465Z Detection reason: 
+2026-08-08T15:44:26.5225998Z Workflow name: Issue Clarifier
+2026-08-08T15:44:26.5226932Z Run URL: https://github.com/mindovermachine-dev/mom-home/actions/runs/31265089022
+2026-08-08T15:44:26.5227981Z Detection conclusion is "success", no issue comment needed

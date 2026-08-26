@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "message": "No issue was identified in this workflow run (issue-number is unset and no workflow_dispatch issue_number input was provided), so there is nothing to review or comment on.",
+      "type": "noop"
+    }
+  ],
+  "errors": []
+}
