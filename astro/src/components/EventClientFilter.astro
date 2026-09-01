@@ -1,0 +1,58 @@
+---
+// This component re-filters events on the client side based on the current time.
+// It reorganizes the DOM so that events past the current date move from "Upcoming" to "Past".
+// Events have data-first-date-timestamp attributes that contain the timestamp of their first occurrence.
+---
+
+<script is:inline>
+  function reFilterEvents() {
+    const now = Date.now();
+    const upcomingList = document.getElementById('events-upcoming-list');
+    const upcomingEmpty = document.getElementById('events-upcoming-empty');
+    const pastList = document.getElementById('events-past-list');
+    const pastSection = pastList?.closest('details');
+
+    if (!upcomingList) return;
+
+    // Get all event items from upcoming
+    const upcomingItems = Array.from(upcomingList.querySelectorAll('li[data-first-date-timestamp]'));
+
+    // Collect items that have moved into the past
+    const itemsToMove = [];
+
+    upcomingItems.forEach((item) => {
+      const timestamp = Number(item.getAttribute('data-first-date-timestamp'));
+      if (!isNaN(timestamp) && timestamp < now) {
+        itemsToMove.push(item);
+      }
+    });
+
+    // Move items from upcoming to past
+    itemsToMove.forEach((item) => {
+      item.remove();
+      if (pastList) {
+        pastList.appendChild(item);
+      }
+    });
+
+    // Update upcoming empty state
+    if (upcomingList.children.length === 0) {
+      upcomingList.style.display = 'none';
+      if (upcomingEmpty) {
+        upcomingEmpty.style.display = 'block';
+      }
+    }
+
+    // Show past section if it has items
+    if (pastList && pastList.children.length > 0 && pastSection) {
+      pastSection.style.display = 'block';
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', reFilterEvents);
+  } else {
+    reFilterEvents();
+  }
+</script>
