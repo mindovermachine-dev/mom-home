@@ -55,6 +55,7 @@ export interface EventLocation {
 
 export interface EventSignup {
   signupurl: string;
+  embeddedTallyURL?: string;
   caption?: string;
   icon?: string;
   repeat?: boolean;

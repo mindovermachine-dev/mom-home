@@ -1,0 +1,52 @@
+---
+publishDate: 2026-09-03T00:00:00Z
+title: "Don't miss a beat!"
+excerpt: MoM has a mail-group you can join to stay updated on the events, essays, software releases, and other important updates.
+image: ~/assets/images/group.png
+category: Briefs
+tags:
+  - Infrastructure
+  - Community
+---
+
+import MomImage from '~/components/common/MomImage.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Button from '~/components/ui/Button.astro';
+
+## Dont miss a beat - stay updated with MoM!
+
+We have set up a open google group <a href="https://groups.google.com/a/mindovermachine.dk/g/updates" target="_blank">`updates@mindovermachine.dk`</a>. The group receives an email when new stuff is published. Join the group and you will get instant updates in your inbox on new events, essays, briefs, software releases, member news and other MoM stuff.
+
+You can adjust your group settings to receive each update, a daily digest or you can silence it, so you don't get any emails, but just occasionally check in on the group yourself. You can unsubscribe at any time.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Visit and join the group"
+    href="https://groups.google.com/a/mindovermachine.dk/g/updates"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+
+If you don't see the "Join group" option on th page,it's because you are not signed in 🤷‍♂️.
+
+If you want to receive updates to an email address that is not a google account, you can click the action below to wrap your email address in a free google account and then revisit the group and join.
+
+<CallToAction
+  actions={[
+    {
+      variant: 'secondary',
+      text: 'Wrap your email address in a free google account',
+      href: 'https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp',
+    },
+  ]}
+  title="Google services with any email address"
+  subtitle="Google allows you to use their services with any email address you have (not <em>email</em> obviously, but stuff like <em>drive, photos, groups, gemini</em> etc)."
+/>
+
+If you insist on joining the group with an email address that is not a google account, we need to add you to the group manually. You can contact us at
+
+<a href="mailto:hey@mindovermachine.dk" target="_blank">
+  hey@mindovermachine.dk
+</a>

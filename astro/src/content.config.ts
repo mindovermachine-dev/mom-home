@@ -107,6 +107,7 @@ const eventCollection = defineCollection({
     signup: z
       .object({
         signupurl: z.string(),
+        embeddedTallyURL: z.string().url().optional(),
         caption: z.string().optional(),
         icon: z.string().optional(),
         repeat: z.boolean().optional(),
