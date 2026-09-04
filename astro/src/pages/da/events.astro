@@ -73,16 +73,13 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
       upcomingEvents.length > 0 ? (
         <ul id="events-upcoming-list" class="mt-6 grid gap-6">
           {upcomingEvents.map(({ event, upcomingDates }) => (
-            <li
-              class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden"
-              data-first-date-timestamp={upcomingDates[0] ? getOccurrenceTimestampOrInfinity(upcomingDates[0]) : 0}
-            >
+            <li data-first-date-timestamp={upcomingDates[0] ? getOccurrenceTimestampOrInfinity(upcomingDates[0]) : 0}>
               <a
-                class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                class="group flex flex-col gap-6 sm:flex-row sm:items-center"
                 href={getPermalink(`da/events/${event.slug}`)}
               >
                 {event.image && (
-                  <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">
+                  <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
                     <Image
                       src={event.image}
                       alt={`${event.title} event image`}
@@ -90,12 +87,11 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
                       height={338}
                       fit="contain"
                       layout="cover"
-                      class="h-full w-full"
-                      style="width:100%;height:100%"
+                      class="max-h-full max-w-full"
                     />
                   </div>
                 )}
-                <div class="p-5">
+                <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
                   <h3 class="text-xl font-bold font-heading">{event.title}</h3>
                   <div class="mt-2 text-sm text-muted dark:text-slate-400">
                     {upcomingDates.length === 1 ? (
@@ -144,16 +140,13 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
             <h2 class="text-2xl md:text-3xl font-bold font-heading">Tidligere events</h2>
             <ul id="events-past-list" class="mt-6 grid gap-6">
               {pastEvents.map(({ event, pastDates }) => (
-                <li
-                  class="rounded-xl border border-gray-200 bg-white dark:bg-slate-900 dark:border-slate-700 overflow-hidden"
-                  data-first-date-timestamp={pastDates[0] ? getOccurrenceTimestampOrInfinity(pastDates[0]) : 0}
-                >
+                <li data-first-date-timestamp={pastDates[0] ? getOccurrenceTimestampOrInfinity(pastDates[0]) : 0}>
                   <a
-                    class="flex flex-col sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                    class="group flex flex-col gap-6 sm:flex-row sm:items-center"
                     href={getPermalink(`da/events/${event.slug}`)}
                   >
                     {event.image && (
-                      <div class="aspect-[600/338] shrink-0 overflow-hidden bg-gray-50 dark:bg-slate-800/50 sm:h-[162px] sm:w-72 sm:aspect-auto">
+                      <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
                         <Image
                           src={event.image}
                           alt={`${event.title} event image`}
@@ -161,12 +154,11 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
                           height={338}
                           fit="contain"
                           layout="cover"
-                          class="h-full w-full"
-                          style="width:100%;height:100%"
+                          class="max-h-full max-w-full"
                         />
                       </div>
                     )}
-                    <div class="p-5">
+                    <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
                       <h3 class="text-xl font-bold font-heading">{event.title}</h3>
                       <div class="mt-2 text-sm text-muted dark:text-slate-400">
                         {pastDates.length === 1 ? (

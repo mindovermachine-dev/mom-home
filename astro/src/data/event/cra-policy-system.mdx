@@ -1,8 +1,8 @@
 ---
-title: 'CRA – Policy made easy'
+title: 'CRA — Policy made easy'
 dates:
   - date: 2026-10-7
-    time: 16:00 CET
+    time: 16:30 CET
     duration: 3:00h
 location:
   venue: Workbar, Matrikel 1
@@ -10,24 +10,53 @@ location:
   mapurl: https://maps.app.goo.gl/Sh7Vv4ydkALD98Ym6
 excerpt: 'Policy System A FOSS product, you can install for free already today'
 signup:
-  signupurl: https://calendar.app.google/ALsoHbCVY6HXCC326
-  icon: ~/assets/images/events/google-calendar.png
+  signupurl: https://luma.com/m9rkuuqc
+  icon: ~/assets/images/events/register.svg
   caption: Signup
-  repeat: false
-image: ~/assets/images/events/cra.png
+  repeat: true
+image: ~/assets/images/events/mom-cra-consequences.png
 ---
 
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Steps from '~/components/widgets/Steps.astro';
 
-The event will start with a ~25 min presentation and demo of the Free and opens Source _Policy System_.
+The event will start with a ~25 min presentation and demo of the Free and opens Source _Policy System_. The demo will be followed by a ~90 min facilitated discussion — lean coffee style.
 
 You use it as an AI Extension (skill) it knows all the regulatory rule sets you feed to it: CRA, NIS2, GDPR, EU AI Act, etc. You can even feed it your own internal "How We Work" rule book.
 
 You can then query it any compliance questions you have — about your own code base, roles, processes, or even about your suppliers. It will give you a clear answer and a reference to the combined rule set it used to answer your question.
 
-:::note
-This event is the third event in a series of three about the CRA, it's consequences on the software development industry, including the development and usage of Free Open Source Software (FOSS).
-:::
+<Steps
+  title="This is part of a series of three events about the CRA"
+  subtitle="We have set up a few tools to support the logistices of the meeting, we recommend that you do the following beforehand"
+  items={[
+    {
+      title: '1: <span class="font-medium">Incoming large object: CRA</span>',
+      description:
+        'EUs CRA will have a major impact on the software industry. All software developers must learn to work under a regulatory rule set',
+      callToAction: {
+        text: 'Go to event page',
+        href: '/events/cra-large-object',
+      },
+      icon: 'tabler:calendar-user',
+    },
+    {
+      title:
+        '2: <span class="font-medium">CRA and the consequences to the future use of Free Open Source Software</span>',
+      description: 'Shed light on the consequences of the CRA on the future use of Free Open Source Software (FOSS)',
+      callToAction: {
+        text: 'Go to event page',
+        href: '/events/cra-foss',
+      },
+      icon: 'tabler:calendar-user',
+    },
+    {
+      title: '3: <span class="font-medium">CRA — Policy made easy</span>',
+      description: 'This is the one your are reading now',
+      icon: 'tabler:eye',
+    },
+  ]}
+/>
 
 <CallToAction
   actions={[

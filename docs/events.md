@@ -191,3 +191,7 @@ Before committing event content:
 ```bash
 cd astro && npm run build
 ```
+
+## Luma
+
+Create the event on Luma, add it to the MoM calendar and invite editorial@mindovermachine.dk to be the host

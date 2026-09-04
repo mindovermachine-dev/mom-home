@@ -2,29 +2,61 @@
 title: 'CRA and the consequences to the future use of Free Open Source Software'
 dates:
   - date: 2026-09-29
-    time: 16:00 CET
+    time: 16:30 CET
     duration: 3:00h
 location:
   venue: Workbar, Matrikel 1
   address: Gammel Strand 26, Copenhagen
   mapurl: https://maps.app.goo.gl/Sh7Vv4ydkALD98Ym6
-excerpt: EUs Cyber resilince Act (CRA) will have a major impact on the software industry. All software developers must learn to work under a regulatory rule set. This is new to most — we want to explore the consequences together.
+excerpt: There are many rumors on what impact the CRA will have on Open Source, both on how we use it and how we develop it in the future.
 signup:
-  signupurl: https://calendar.app.google/8Aa2MiUs7kLUtSzb8
-  icon: ~/assets/images/events/google-calendar.png
+  signupurl: https://luma.com/t3iro6f6
+  icon: ~/assets/images/events/register.svg
   caption: Signup
-  repeat: false
-image: ~/assets/images/posts/oss-steward/mom-coin-free.png
+  repeat: true
+image: ~/assets/images/events/mom-cra-free.png
 ---
 
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Steps from '~/components/widgets/Steps.astro';
 
 The event will start with a ~25 min presentation on setting things straight and busting the myth about CRA being the end of Free Open Source Software (FOSS). The presentation will be followed by a ~90 min open discussion — lean coffee style.
 
-Check out our brief on the subject: [Why OSS Stewardship Now](/writings/why-oss-stewardship)
-:::note
-This event is the second event in a series of three about the CRA, it's consequences on the software development industry, including the development and usage of Free Open Source Software (FOSS).
-:::
+🚪 Organizers will be at the venue at 16\:00 (30 mins before start)<br/>
+☕️ Show up early to mingle<br/>
+🥪 The venue is a café, you can buy drinks and sandwiches on site.
+
+<Steps
+  title="This is part of a series of three events about the CRA"
+  subtitle="We have set up a few tools to support the logistices of the meeting, we recommend that you do the following beforehand"
+  items={[
+    {
+      title: '1: <span class="font-medium">Incoming large object: CRA</span>',
+      description:
+        'EUs CRA will have a major impact on the software industry. All software developers must learn to work under a regulatory rule set',
+      callToAction: {
+        text: 'Go to event page',
+        href: '/events/cra-large-object',
+      },
+      icon: 'tabler:calendar-user',
+    },
+    {
+      title:
+        '2: <span class="font-medium">CRA and the consequences to the future use of Free Open Source Software</span>',
+      description: 'This is the one your are reading now',
+      icon: 'tabler:eye',
+    },
+    {
+      title: '3: <span class="font-medium">CRA — Policy made easy</span>',
+      description: 'Policy System A FOSS product, you can install for free already today',
+      callToAction: {
+        text: 'Go to event page',
+        href: '/events/cra-policy-system',
+      },
+      icon: 'tabler:calendar-user',
+    },
+  ]}
+/>
 
 <CallToAction
   actions={[
