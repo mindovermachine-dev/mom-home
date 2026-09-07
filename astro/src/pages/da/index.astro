@@ -1,7 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Logo from '~/components/Logo.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Image from '~/components/common/Image.astro';
+import HeroX from '~/components/widgets/HeroX.astro';
 import Features from '~/components/widgets/Features.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -18,7 +19,7 @@ const metadata = {
     <Logo class="h-20 w-auto md:h-28" width={560} />
   </div>
 
-  <Hero
+  <HeroX
     actions={[
       {
         variant: 'primary',
@@ -30,7 +31,17 @@ const metadata = {
         href: '/da/services/',
       },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Mind over Machine visual' }}
+    overlayActions={[
+      {
+        variant: 'primary',
+        text: 'Tilmeld dig kommende gratis CRA-events',
+        href: '/da/events/',
+        position: 'left',
+        icon: 'tabler:calendar-event',
+      },
+    ]}
+    tagline="Softwaresystemer i balance — som ikke løber løbsk"
+    imageCaption="MoM arrangerer en serie af tre gratis events om EU's Cyber Resilience Act (CRA), dens betydning for softwareproducenter, dens indvirkning på Free and Open Source Software (FOSS) og en enkel måde at håndtere CRA-compliance gennem et simpelt FOSS-værktøj udviklet af MoM-fællesskabet."
   >
     <Fragment slot="title">
       Mind over Machine
@@ -43,12 +54,14 @@ const metadata = {
       langsigtet, balanceret værdi for mennesker, samfund og verden. Vi tror på, at software kan være en kraft for det
       gode, når det udvikles og anvendes med omtanke og systemisk forståelse.
     </Fragment>
-  </Hero>
-
+    <Fragment slot="image">
+      <Image src="~/assets/images/events/mom-cra.png" alt="Mind over Machine visual" />
+    </Fragment>
+  </HeroX>
   <Features
     id="focus"
-    tagline="What we do"
-    title="Three pillars of our work"
+    tagline="Hvad vi laver"
+    title="Tre søjler i vores arbejde"
     items={[
       {
         title: 'Tænketank:',
@@ -57,7 +70,7 @@ const metadata = {
           'Vi udvikler, analyserer, forsker og publicerer gratis materiale om regenerative softwareudvikling, systemtænkning, etik og langsigtede balancerede praksisser.',
         icon: 'tabler:book',
         callToAction: {
-          text: 'Udforsk vores skriverier',
+          text: 'Udforsk vores essays og skriverier',
           href: '/da/writings/',
         },
       },
@@ -88,7 +101,7 @@ const metadata = {
 
   <BlogLatestPosts
     title="Seneste skriverier"
-    information="Nylige tekster fra Mind over Machine"
+    information="Nyeste skriverier fra Mind over Machine"
     linkText="Se alle skriverier"
     linkUrl="/da/writings/"
     locale="da"

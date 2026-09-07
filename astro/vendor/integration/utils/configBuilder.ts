@@ -85,6 +85,9 @@ export interface AnalyticsConfig {
 
 export interface UIConfig {
   theme: string;
+  widgetWrapper: {
+    spacing: 'normal' | 'compact';
+  };
 }
 
 const DEFAULT_SITE_NAME = 'Website';
@@ -188,9 +191,12 @@ const getAppEvents = (config: Config) => {
 const getUI = (config: Config) => {
   const _default = {
     theme: 'system',
+    widgetWrapper: {
+      spacing: 'normal',
+    },
   };
 
-  return merge({}, _default, config?.ui ?? {});
+  return merge({}, _default, config?.ui ?? {}) as UIConfig;
 };
 
 const getAnalytics = (config: Config) => {

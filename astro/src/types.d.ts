@@ -291,6 +291,15 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   image?: string | unknown;
 }
 
+export interface HeroX extends Hero {
+  imageCaption?: string;
+  overlayActions?: HeroXOverlayAction[];
+}
+
+export interface HeroXOverlayAction extends CallToAction {
+  position?: 'left' | 'right';
+}
+
 export interface Team extends Omit<Headline, 'classes'>, Widget {
   team?: Array<TeamMember>;
 }
