@@ -1,8 +1,6 @@
-name: Project directory entry
-description: Propose or create a project entry for /projects/
+name: "Project directory entry"
+description: "Propose or create a project entry for /projects/"
 title: "[project] <project title>"
-labels:
-  - project
 body:
   - type: markdown
     attributes:
@@ -28,7 +26,7 @@ body:
     attributes:
       label: Publish date (UTC)
       description: Maps to frontmatter `publishDate` (ISO 8601).
-      placeholder: 2026-09-03T00:00:00Z
+      placeholder: "2026-09-03T00:00:00Z"
     validations:
       required: true
 
@@ -38,11 +36,11 @@ body:
       label: Project status
       description: Maps to `project.status`.
       options:
-        - mature
-        - beta
-        - lab
-        - explore
-        - not-started
+        - "mature"
+        - "beta"
+        - "lab"
+        - "explore"
+        - "not-started"
     validations:
       required: true
 
@@ -94,8 +92,8 @@ body:
       label: Publication intent
       description: Maps to frontmatter `draft`.
       options:
-        - Publish now (draft: false)
-        - Keep as draft (draft: true)
+        - "Publish now (draft: false)"
+        - "Keep as draft (draft: true)"
     validations:
       required: true
 
@@ -167,27 +165,3 @@ body:
         blikest
     validations:
       required: false
-
-  - type: textarea
-    id: machine_readable
-    attributes:
-      label: Machine-readable payload
-      description: Keep keys unchanged; fill values explicitly so automation can map deterministically.
-      value: |
-        title:
-        publishDate:
-        excerpt:
-        draft:
-        image:
-        metadata.description:
-        status:
-        rootTags:
-        projectTags:
-        slack.channel:
-        slack.url:
-        github.repositories:
-        references:
-        leads:
-        contributors:
-    validations:
-      required: true
