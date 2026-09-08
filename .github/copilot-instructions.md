@@ -7,6 +7,8 @@ This repository now powers the main website for Mind over Machine:
 - Live site: https://www.mindovermachine.dk
 - Stack: Astro 6 + AstroWind + Tailwind CSS 4
 - Output: static site generated to astro/dist
+- Deployment: GitHub Pages, with the production artifact deployed to `mindovermachine-dev.github.io`
+- Runtime constraint: this is a static site. Do not add SSR, an Astro adapter, server endpoints, or a database for page features.
 
 The repository was originally a docs/Starlight setup. It has been repurposed to a marketing/editorial site (blog/essays/events/services/about/contact).
 
@@ -65,6 +67,13 @@ Current target behavior:
 - trailingSlash is enabled in astro/src/config.yaml
 
 Do not reintroduce automatic root redirect to /da/.
+
+## Static Site And GitHub Pages
+
+- Preserve `output: 'static'` in `astro/astro.config.ts` and keep builds compatible with GitHub Pages.
+- GitHub Pages supplies the deployment `site` and `base` values during the build. Do not hard-code a repository subpath or assume the local development URL is the production URL.
+- Query-string features must use static HTML with progressive client-side enhancement. The unfiltered build output must remain usable without JavaScript; do not introduce SSR solely to process URL parameters.
+- Use Astro content collections, `getStaticPaths`, existing layouts, and the existing metadata/permalink utilities for generated content.
 
 ## Custom Integrations Carried Forward
 
