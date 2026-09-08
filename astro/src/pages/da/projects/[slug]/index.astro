@@ -10,7 +10,7 @@ import type { MetaData } from '~/types';
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-  const projects = await fetchProjects({ locale: 'da' });
+  const projects = await fetchProjects({ locale: 'da', fallbackLocale: 'en' });
 
   return projects.map((project) => ({
     params: { slug: project.slug },

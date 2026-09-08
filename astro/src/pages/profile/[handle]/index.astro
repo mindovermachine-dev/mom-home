@@ -12,7 +12,11 @@ import { buildProfileRelationsFromPosts, buildProfileRelationsFromProjects } fro
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-  const [profiles, posts, projects] = await Promise.all([getCollection('profile'), fetchPosts(), fetchProjects()]);
+  const [profiles, posts, projects] = await Promise.all([
+    getCollection('profile'),
+    fetchPosts(),
+    fetchProjects({ locale: 'en' }),
+  ]);
   const relationsByProfile = buildProfileRelationsFromPosts(posts);
   const projectRelationsByProfile = buildProfileRelationsFromProjects(projects);
 
