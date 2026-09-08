@@ -54,7 +54,7 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
     </header>
 
     <div class="mt-4 grid gap-4 sm:grid-cols-[1fr_220px] sm:items-start">
-      <dl class="grid gap-3 rounded-xl border border-gray-200 p-4 text-sm dark:border-slate-700">
+      <dl class="grid gap-x-6 gap-y-3 rounded-xl border-[3px] border-[#1C4331] p-4 text-sm sm:grid-cols-2">
         <div>
           <dt class="font-semibold">{labels.status}</dt>
           <dd class="mt-1">{statusLabel}</dd>
@@ -176,14 +176,16 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
       </dl>
       {
         project.image && (
-          <MomImage
-            src={project.image}
-            alt={`${project.title} image`}
-            position="center"
-            size="small"
-            mode="static"
-            imageClass="rounded-xl border border-gray-200 dark:border-slate-700"
-          />
+          <div class="self-start">
+            <MomImage
+              src={project.image}
+              alt={`${project.title} image`}
+              position="center"
+              size="small"
+              mode="static"
+              imageClass="rounded-xl"
+            />
+          </div>
         )
       }
     </div>
