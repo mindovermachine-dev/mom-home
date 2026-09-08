@@ -24,8 +24,7 @@ const labels =
   locale === 'da'
     ? {
         status: 'Status',
-        projectTags: 'Projekt-tags',
-        seoTags: 'Tags',
+        tags: 'Tags',
         slack: 'Slack',
         github: 'GitHub repositories',
         references: 'Referencer',
@@ -34,8 +33,7 @@ const labels =
       }
     : {
         status: 'Status',
-        projectTags: 'Project tags',
-        seoTags: 'Tags',
+        tags: 'Tags',
         slack: 'Slack',
         github: 'GitHub repositories',
         references: 'References',
@@ -44,6 +42,10 @@ const labels =
       };
 
 const statusLabel = project.project.status.replace(/-/g, ' ');
+const unifiedTags = Array.from(
+  new Map([...(project.project.tags ?? []), ...(project.tags ?? [])].map((tag) => [tag.slug, tag])).values()
+);
+const projectsDirectoryPath = getPermalink(locale === 'da' ? 'da/projects' : 'projects');
 ---
 
 <Layout metadata={metadata}>
@@ -60,18 +62,16 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
           <dd class="mt-1">{statusLabel}</dd>
         </div>
         {
-          project.project.tags && project.project.tags.length > 0 && (
+          unifiedTags.length > 0 && (
             <div>
-              <dt class="font-semibold">{labels.projectTags}</dt>
-              <dd class="mt-1">{project.project.tags.map((tag) => tag.title).join(', ')}</dd>
-            </div>
-          )
-        }
-        {
-          project.tags && project.tags.length > 0 && (
-            <div>
-              <dt class="font-semibold">{labels.seoTags}</dt>
-              <dd class="mt-1">{project.tags.map((tag) => tag.title).join(', ')}</dd>
+              <dt class="font-semibold">{labels.tags}</dt>
+              <dd class="mt-1 flex flex-wrap gap-2">
+                {unifiedTags.map((tag) => (
+                  <a class="hover:underline" href={`${projectsDirectoryPath}?tags=${encodeURIComponent(tag.slug)}`}>
+                    {tag.title}
+                  </a>
+                ))}
+              </dd>
             </div>
           )
         }
