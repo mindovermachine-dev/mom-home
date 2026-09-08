@@ -1,7 +1,8 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import type { Profile, ProfileRelation, ProfileRelationRole, Post } from '~/types';
+import type { Profile, ProfileRelation, ProfileRelationRole, Post, Project } from '~/types';
 import { fetchPosts } from '~/utils/blog';
+import { fetchProjects } from '~/utils/projects';
 
 const getNormalizedProfile = (profile: CollectionEntry<'profile'>): Profile => {
   const { id, data } = profile;
@@ -70,15 +71,52 @@ export const buildProfileRelationsFromPosts = (
     return relationsByProfile;
   }, {});
 
+const addProjectRelation = (
+  relationsByProfile: Record<string, Array<ProfileRelation>>,
+  profileId: string | undefined,
+  role: Extract<ProfileRelationRole, 'lead' | 'contributor'>,
+  project: Pick<Project, 'id' | 'title' | 'permalink'>
+) => {
+  if (!profileId) return;
+
+  if (!relationsByProfile[profileId]) {
+    relationsByProfile[profileId] = [];
+  }
+
+  relationsByProfile[profileId].push({
+    role,
+    sourceType: 'project',
+    sourceId: project.id,
+    title: project.title,
+    permalink: project.permalink,
+  });
+};
+
+export const buildProfileRelationsFromProjects = (
+  projects: Array<Pick<Project, 'id' | 'title' | 'permalink' | 'project'>>
+): Record<string, Array<ProfileRelation>> =>
+  projects.reduce<Record<string, Array<ProfileRelation>>>((relationsByProfile, project) => {
+    project.project.participants?.leads?.forEach((leadId) =>
+      addProjectRelation(relationsByProfile, leadId, 'lead', project)
+    );
+    project.project.participants?.contributors?.forEach((contributorId) =>
+      addProjectRelation(relationsByProfile, contributorId, 'contributor', project)
+    );
+
+    return relationsByProfile;
+  }, {});
+
 export const getProfileWithRelations = async (
   id: string
 ): Promise<{ id: string; profile?: Profile; relations: Array<ProfileRelation> }> => {
-  const [profile, posts] = await Promise.all([findProfileById(id), fetchPosts()]);
+  const [profile, posts, projects] = await Promise.all([findProfileById(id), fetchPosts(), fetchProjects()]);
   const relationsByProfile = buildProfileRelationsFromPosts(posts);
+  const projectRelationsByProfile = buildProfileRelationsFromProjects(projects);
+  const relations = [...(relationsByProfile[id] || []), ...(projectRelationsByProfile[id] || [])];
 
   return {
     id,
     profile,
-    relations: relationsByProfile[id] || [],
+    relations,
   };
 };

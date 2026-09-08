@@ -1,0 +1,193 @@
+name: Project directory entry
+description: Propose or create a project entry for /projects/
+title: "[project] <project title>"
+labels:
+  - project
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit this form to request a project entry in `astro/src/data/project`.
+
+        Assigning this issue to **Copilot** requests implementation and a pull request for review.
+        Submitting the issue does **not** publish content directly.
+
+        Do not submit secrets, access tokens, or private credentials.
+
+  - type: input
+    id: project_title
+    attributes:
+      label: Project title
+      description: Maps to frontmatter `title`.
+      placeholder: Takt Community Lab
+    validations:
+      required: true
+
+  - type: input
+    id: publish_date
+    attributes:
+      label: Publish date (UTC)
+      description: Maps to frontmatter `publishDate` (ISO 8601).
+      placeholder: 2026-09-03T00:00:00Z
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Project status
+      description: Maps to `project.status`.
+      options:
+        - mature
+        - beta
+        - lab
+        - explore
+        - not-started
+    validations:
+      required: true
+
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Summary / excerpt
+      description: Maps to frontmatter `excerpt`.
+      placeholder: A short summary used in cards and metadata.
+    validations:
+      required: true
+
+  - type: textarea
+    id: body_markdown
+    attributes:
+      label: Project body (Markdown/MDX)
+      description: Preserved as the page body content.
+      placeholder: |
+        ## Purpose
+        Explain what this project does and how people can participate.
+    validations:
+      required: true
+
+  - type: textarea
+    id: root_tags
+    attributes:
+      label: Root tags (SEO/content taxonomy)
+      description: One value per line. Maps to root `tags`.
+      placeholder: |
+        AI
+        Community
+    validations:
+      required: false
+
+  - type: textarea
+    id: project_tags
+    attributes:
+      label: Project tags (filter taxonomy)
+      description: One value per line. Maps to `project.tags`.
+      placeholder: |
+        DevX
+        Python
+    validations:
+      required: false
+
+  - type: dropdown
+    id: publication_intent
+    attributes:
+      label: Publication intent
+      description: Maps to frontmatter `draft`.
+      options:
+        - Publish now (draft: false)
+        - Keep as draft (draft: true)
+    validations:
+      required: true
+
+  - type: input
+    id: image_path
+    attributes:
+      label: Image path or image request
+      description: "Use `~/assets/images/...` path, or write a request like `REQUEST: create image for ...`."
+      placeholder: ~/assets/images/projects/project-name.png
+    validations:
+      required: false
+
+  - type: input
+    id: slack_channel
+    attributes:
+      label: Slack channel
+      description: Optional. Maps to `project.slack.channel`.
+      placeholder: "#takt"
+    validations:
+      required: false
+
+  - type: input
+    id: slack_url
+    attributes:
+      label: Slack URL
+      description: Optional. Must be absolute `http`/`https`. Maps to `project.slack.url`.
+      placeholder: https://mindovermachine-dk.slack.com/archives/C0B9CTYQ8TA
+    validations:
+      required: false
+
+  - type: textarea
+    id: github_repositories
+    attributes:
+      label: GitHub repositories
+      description: Optional. One `owner/name` per line. Maps to `project.github.repositories`.
+      placeholder: |
+        mindovermachine-dev/gh-tt
+        mindovermachine/takt-actions
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Optional. One reference per line in `name | url` format. URL must be `/relative/path/` or absolute `http`/`https`.
+      placeholder: |
+        Takt | /writings/takt/
+        Reference manual | https://mindovermachine.dev/takt/
+    validations:
+      required: false
+
+  - type: textarea
+    id: leads
+    attributes:
+      label: Leads (profile IDs)
+      description: Optional. One profile ID per line. IDs must already exist in the profile collection.
+      placeholder: |
+        lakruzz
+    validations:
+      required: false
+
+  - type: textarea
+    id: contributors
+    attributes:
+      label: Contributors (profile IDs)
+      description: Optional. One profile ID per line. IDs must already exist in the profile collection and must not duplicate leads.
+      placeholder: |
+        blikest
+    validations:
+      required: false
+
+  - type: textarea
+    id: machine_readable
+    attributes:
+      label: Machine-readable payload
+      description: Keep keys unchanged; fill values explicitly so automation can map deterministically.
+      value: |
+        title:
+        publishDate:
+        excerpt:
+        draft:
+        image:
+        metadata.description:
+        status:
+        rootTags:
+        projectTags:
+        slack.channel:
+        slack.url:
+        github.repositories:
+        references:
+        leads:
+        contributors:
+    validations:
+      required: true

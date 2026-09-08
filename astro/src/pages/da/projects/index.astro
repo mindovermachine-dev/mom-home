@@ -1,0 +1,8 @@
+---
+import ProjectDirectoryPage from '~/components/content/ProjectDirectoryPage.astro';
+import { fetchProjects } from '~/utils/projects';
+
+const projects = await fetchProjects({ locale: 'da', fallbackLocale: 'en' });
+---
+
+<ProjectDirectoryPage locale="da" projects={projects} />

@@ -110,9 +110,55 @@ export interface ServiceCta {
   repeat?: boolean;
 }
 
-export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer';
+export type ProjectStatus = 'mature' | 'beta' | 'lab' | 'explore' | 'not-started';
 
-export type ProfileRelationSourceType = 'post' | 'event';
+export interface ProjectSlack {
+  channel?: string;
+  url?: string;
+}
+
+export interface ProjectGithub {
+  repositories: string[];
+}
+
+export interface ProjectReference {
+  name: string;
+  url: string;
+}
+
+export interface ProjectParticipants {
+  leads?: string[];
+  contributors?: string[];
+}
+
+export interface Project {
+  id: string;
+  locale: 'en' | 'da';
+  slug: string;
+  permalink: string;
+  publishDate: Date;
+  updateDate?: Date;
+  title: string;
+  excerpt?: string;
+  image?: ImageMetadata | string;
+  tags?: Taxonomy[];
+  metadata?: MetaData;
+  draft?: boolean;
+  project: {
+    status: ProjectStatus;
+    order?: number;
+    tags?: Taxonomy[];
+    slack?: ProjectSlack;
+    github?: ProjectGithub;
+    references?: ProjectReference[];
+    participants?: ProjectParticipants;
+  };
+  Content?: AstroComponentFactory;
+}
+
+export type ProfileRelationRole = 'author' | 'coauthor' | 'reviewer' | 'lead' | 'contributor';
+
+export type ProfileRelationSourceType = 'post' | 'event' | 'project';
 
 export interface ProfileRelation {
   role: ProfileRelationRole;

@@ -169,12 +169,16 @@ const getLocalizedPosts = (
 };
 
 /** */
-export const fetchPosts = async (): Promise<Array<Post>> => {
+export const fetchPosts = async ({ locale, fallbackLocale }: BlogPathLocaleOptions = {}): Promise<Array<Post>> => {
   if (!_posts) {
     _posts = await load();
   }
 
-  return _posts;
+  if (!locale && !fallbackLocale) {
+    return _posts;
+  }
+
+  return getLocalizedPosts(_posts, { locale, fallbackLocale });
 };
 
 /** */

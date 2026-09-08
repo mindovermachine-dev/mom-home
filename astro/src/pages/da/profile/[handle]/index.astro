@@ -5,18 +5,28 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import { fetchPosts } from '~/utils/blog';
+import { fetchProjects } from '~/utils/projects';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
-import { buildProfileRelationsFromPosts } from '~/utils/profiles';
+import { buildProfileRelationsFromPosts, buildProfileRelationsFromProjects } from '~/utils/profiles';
 
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-  const [profiles, posts] = await Promise.all([getCollection('profile'), fetchPosts()]);
+  const [profiles, posts, projects] = await Promise.all([
+    getCollection('profile'),
+    fetchPosts({ locale: 'da', fallbackLocale: 'en' }),
+    fetchProjects({ locale: 'da', fallbackLocale: 'en' }),
+  ]);
   const relationsByProfile = buildProfileRelationsFromPosts(posts);
+  const projectRelationsByProfile = buildProfileRelationsFromProjects(projects);
 
   return await Promise.all(
     profiles.map(async (profileEntry) => {
       const { Content } = await render(profileEntry);
+      const allRelations = [
+        ...(relationsByProfile[profileEntry.id] || []),
+        ...(projectRelationsByProfile[profileEntry.id] || []),
+      ];
 
       return {
         params: { handle: profileEntry.id },
@@ -24,7 +34,7 @@ export const getStaticPaths = (async () => {
           profileId: profileEntry.id,
           profile: profileEntry.data,
           ProfileContent: Content,
-          relations: relationsByProfile[profileEntry.id] || [],
+          relations: allRelations,
         },
       };
     })
@@ -45,7 +55,12 @@ const roleLabel = {
   author: 'Author',
   coauthor: 'Coauthor',
   reviewer: 'Reviewer',
+  lead: 'Lead',
+  contributor: 'Contributor',
 } as const;
+
+const postRelations = relations.filter((relation) => relation.sourceType === 'post');
+const projectRelations = relations.filter((relation) => relation.sourceType === 'project');
 ---
 
 <Layout metadata={metadata} localeFallback="da">
@@ -106,9 +121,9 @@ const roleLabel = {
     <section class="mt-12">
       <h2 class="text-2xl font-bold font-heading">Blogs</h2>
       {
-        relations.length > 0 ? (
+        postRelations.length > 0 ? (
           <ul class="mt-4 list-disc pl-6 space-y-2">
-            {relations.map((relation) => (
+            {postRelations.map((relation) => (
               <li>
                 <a class="hover:underline" href={getPermalink(`da/${relation.permalink}`)}>
                   {relation.title}
@@ -119,6 +134,26 @@ const roleLabel = {
           </ul>
         ) : (
           <p class="mt-4 text-muted dark:text-slate-400">No blog relations found for this profile yet.</p>
+        )
+      }
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold font-heading">Projects</h2>
+      {
+        projectRelations.length > 0 ? (
+          <ul class="mt-4 list-disc pl-6 space-y-2">
+            {projectRelations.map((relation) => (
+              <li>
+                <a class="hover:underline" href={getPermalink(relation.permalink)}>
+                  {relation.title}
+                </a>{' '}
+                <span class="text-sm text-muted dark:text-slate-400">({roleLabel[relation.role]})</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="mt-4 text-muted dark:text-slate-400">No project relations found for this profile yet.</p>
         )
       }
     </section>

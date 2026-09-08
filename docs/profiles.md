@@ -7,8 +7,9 @@ This document explains how the profile system works in this repository, how it i
 Profiles are content entries used to:
 
 - show author/coauthor/reviewer attribution on blog posts
+- link lead/contributor relationships from projects
 - provide dedicated profile pages (`/profile/:handle` and `/da/profile/:handle`)
-- build a per-profile list of related blog posts
+- build a per-profile list of related posts and projects
 
 At build time, profile and post content are loaded from Astro content collections, normalized into typed objects, and rendered by the relevant page/components.
 
@@ -89,6 +90,7 @@ These values should match existing profile IDs in `astro/src/data/profile`.
   - profile identity block (name/bio/socials/portrait image when provided)
   - profile body content (`<ProfileContent />`)
   - list of related blog posts with role labels
+  - list of related projects with `Lead` / `Contributor` labels
 
 ## Portrait images
 

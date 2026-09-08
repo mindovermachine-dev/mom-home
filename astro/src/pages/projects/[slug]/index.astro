@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import merge from 'lodash.merge';
+import ProjectDetailPage from '~/components/content/ProjectDetailPage.astro';
+import { fetchProfiles } from '~/utils/profiles';
+import { fetchProjects } from '~/utils/projects';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import type { MetaData } from '~/types';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const projects = await fetchProjects({ locale: 'en' });
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { project } = Astro.props as Props;
+
+const canonical = String(getCanonical(getPermalink(`projects/${project.slug}`)));
+const metadata = merge(
+  {
+    title: project.title,
+    description: project.excerpt,
+    canonical,
+    openGraph: project.image
+      ? {
+          images: [
+            {
+              url: typeof project.image === 'string' ? project.image : project.image.src,
+            },
+          ],
+        }
+      : undefined,
+  },
+  { ...(project?.metadata ? { ...project.metadata, canonical: project.metadata?.canonical || canonical } : {}) }
+) as MetaData;
+
+const profiles = await fetchProfiles();
+const profileById = new Map(profiles.map((profile) => [profile.id, profile]));
+const leadLinks = (project.project.participants?.leads ?? []).map((id) => {
+  const profile = profileById.get(id);
+  return {
+    id,
+    name: profile?.name ?? id,
+    href: getPermalink(`profile/${id}`),
+  };
+});
+const contributorLinks = (project.project.participants?.contributors ?? []).map((id) => {
+  const profile = profileById.get(id);
+  return {
+    id,
+    name: profile?.name ?? id,
+    href: getPermalink(`profile/${id}`),
+  };
+});
+---
+
+<ProjectDetailPage
+  project={project}
+  metadata={metadata}
+  locale="en"
+  leads={leadLinks}
+  contributors={contributorLinks}
+/>

@@ -1,0 +1,201 @@
+---
+import MomImage from '~/components/common/MomImage.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+import type { MetaData, Project } from '~/types';
+
+interface ParticipantLink {
+  id: string;
+  name: string;
+  href: string;
+}
+
+export interface Props {
+  project: Project;
+  metadata: MetaData;
+  locale?: 'en' | 'da';
+  leads: ParticipantLink[];
+  contributors: ParticipantLink[];
+}
+
+const { project, metadata, locale = 'en', leads, contributors } = Astro.props;
+
+const labels =
+  locale === 'da'
+    ? {
+        status: 'Status',
+        tags: 'Tags',
+        slack: 'Slack',
+        github: 'GitHub repositories',
+        references: 'Referencer',
+        leads: 'Leads',
+        contributors: 'Bidragydere',
+      }
+    : {
+        status: 'Status',
+        tags: 'Tags',
+        slack: 'Slack',
+        github: 'GitHub repositories',
+        references: 'References',
+        leads: 'Leads',
+        contributors: 'Contributors',
+      };
+
+const statusLabel = project.project.status.replace(/-/g, ' ');
+const unifiedTags = Array.from(
+  new Map([...(project.project.tags ?? []), ...(project.tags ?? [])].map((tag) => [tag.slug, tag])).values()
+);
+const projectsDirectoryPath = getPermalink(locale === 'da' ? 'da/projects' : 'projects');
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <header class="mt-1">
+      <h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight font-heading">{project.title}</h1>
+      {project.excerpt && <p class="kicker mt-3">{project.excerpt}</p>}
+    </header>
+
+    <div class="mt-4 grid gap-4 sm:grid-cols-[1fr_220px] sm:items-start">
+      <dl class="grid gap-x-6 gap-y-3 rounded-xl border-[3px] border-[#1C4331] p-4 text-sm sm:grid-cols-2">
+        <div>
+          <dt class="font-semibold">{labels.status}</dt>
+          <dd class="mt-1">{statusLabel}</dd>
+        </div>
+        {
+          unifiedTags.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.tags}</dt>
+              <dd class="mt-1 flex flex-wrap gap-2">
+                {unifiedTags.map((tag) => (
+                  <a class="hover:underline" href={`${projectsDirectoryPath}?tags=${encodeURIComponent(tag.slug)}`}>
+                    {tag.title}
+                  </a>
+                ))}
+              </dd>
+            </div>
+          )
+        }
+        {
+          project.project.slack?.url && (
+            <div>
+              <dt class="font-semibold">{labels.slack}</dt>
+              <dd class="mt-1">
+                <a class="hover:underline" href={project.project.slack.url} rel="noopener noreferrer" target="_blank">
+                  {project.project.slack.channel || project.project.slack.url}
+                </a>
+              </dd>
+            </div>
+          )
+        }
+        {
+          project.project.github?.repositories && project.project.github.repositories.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.github}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {project.project.github.repositories.map((repository) => (
+                    <li>
+                      <a
+                        class="hover:underline"
+                        href={`https://github.com/${repository}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {repository}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          project.project.references && project.project.references.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.references}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {project.project.references.map((reference) => {
+                    const isExternal = reference.url.startsWith('http://') || reference.url.startsWith('https://');
+                    return (
+                      <li>
+                        {isExternal ? (
+                          <a class="hover:underline" href={reference.url} rel="noopener noreferrer" target="_blank">
+                            {reference.name}
+                          </a>
+                        ) : (
+                          <a class="hover:underline" href={getPermalink(reference.url)}>
+                            {reference.name}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          leads.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.leads}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {leads.map((lead) => (
+                    <li>
+                      <a class="hover:underline" href={lead.href}>
+                        {lead.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          contributors.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.contributors}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {contributors.map((contributor) => (
+                    <li>
+                      <a class="hover:underline" href={contributor.href}>
+                        {contributor.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+      {
+        project.image && (
+          <div class="self-start">
+            <MomImage
+              src={project.image}
+              alt={`${project.title} image`}
+              position="center"
+              size="small"
+              mode="static"
+              imageClass="rounded-xl"
+            />
+          </div>
+        )
+      }
+    </div>
+
+    {
+      project.Content && (
+        <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
+          <project.Content />
+        </div>
+      )
+    }
+  </section>
+</Layout>
