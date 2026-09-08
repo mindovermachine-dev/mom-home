@@ -1,0 +1,202 @@
+---
+import MomImage from '~/components/common/MomImage.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+import type { MetaData, Project } from '~/types';
+
+interface ParticipantLink {
+  id: string;
+  name: string;
+  href: string;
+}
+
+export interface Props {
+  project: Project;
+  metadata: MetaData;
+  backHref: string;
+  backLabel: string;
+  locale?: 'en' | 'da';
+  leads: ParticipantLink[];
+  contributors: ParticipantLink[];
+}
+
+const { project, metadata, backHref, backLabel, locale = 'en', leads, contributors } = Astro.props;
+
+const labels =
+  locale === 'da'
+    ? {
+        status: 'Status',
+        projectTags: 'Projekt-tags',
+        seoTags: 'Tags',
+        slack: 'Slack',
+        github: 'GitHub repositories',
+        references: 'Referencer',
+        leads: 'Leads',
+        contributors: 'Bidragydere',
+        opensExternal: '(åbner eksternt link)',
+      }
+    : {
+        status: 'Status',
+        projectTags: 'Project tags',
+        seoTags: 'Tags',
+        slack: 'Slack',
+        github: 'GitHub repositories',
+        references: 'References',
+        leads: 'Leads',
+        contributors: 'Contributors',
+        opensExternal: '(opens external link)',
+      };
+
+const statusLabel = project.project.status.replace(/-/g, ' ');
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <a class="inline-flex text-sm hover:underline" href={backHref}>{backLabel}</a>
+
+    <header class="mt-4">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading">{project.title}</h1>
+      {project.excerpt && <p class="mt-4 text-lg text-muted dark:text-slate-400">{project.excerpt}</p>}
+    </header>
+
+    {
+      project.image && (
+        <MomImage
+          src={project.image}
+          alt={`${project.title} image`}
+          position="center"
+          size="small"
+          mode="static"
+          class="mt-8"
+          imageClass="rounded-xl border border-gray-200 dark:border-slate-700"
+        />
+      )
+    }
+
+    <dl class="mt-8 grid gap-4 rounded-xl border border-gray-200 p-5 text-sm dark:border-slate-700">
+      <div>
+        <dt class="font-semibold">{labels.status}</dt>
+        <dd class="mt-1">{statusLabel}</dd>
+      </div>
+      {
+        project.project.tags && project.project.tags.length > 0 && (
+          <div>
+            <dt class="font-semibold">{labels.projectTags}</dt>
+            <dd class="mt-1">{project.project.tags.map((tag) => tag.title).join(', ')}</dd>
+          </div>
+        )
+      }
+      {
+        project.tags && project.tags.length > 0 && (
+          <div>
+            <dt class="font-semibold">{labels.seoTags}</dt>
+            <dd class="mt-1">{project.tags.map((tag) => tag.title).join(', ')}</dd>
+          </div>
+        )
+      }
+      {
+        project.project.slack?.url && (
+          <div>
+            <dt class="font-semibold">{labels.slack}</dt>
+            <dd class="mt-1">
+              <a class="hover:underline" href={project.project.slack.url} rel="noopener noreferrer" target="_blank">
+                {project.project.slack.channel || project.project.slack.url} {labels.opensExternal}
+              </a>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    {
+      project.project.github?.repositories && project.project.github.repositories.length > 0 && (
+        <section class="mt-8">
+          <h2 class="text-2xl font-bold font-heading">{labels.github}</h2>
+          <ul class="mt-3 list-disc pl-6 space-y-1">
+            {project.project.github.repositories.map((repository) => (
+              <li>
+                <a
+                  class="hover:underline"
+                  href={`https://github.com/${repository}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {repository} {labels.opensExternal}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      project.project.references && project.project.references.length > 0 && (
+        <section class="mt-8">
+          <h2 class="text-2xl font-bold font-heading">{labels.references}</h2>
+          <ul class="mt-3 list-disc pl-6 space-y-1">
+            {project.project.references.map((reference) => {
+              const isExternal = reference.url.startsWith('http://') || reference.url.startsWith('https://');
+              return (
+                <li>
+                  {isExternal ? (
+                    <a class="hover:underline" href={reference.url} rel="noopener noreferrer" target="_blank">
+                      {reference.name} {labels.opensExternal}
+                    </a>
+                  ) : (
+                    <a class="hover:underline" href={getPermalink(reference.url)}>
+                      {reference.name}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      (leads.length > 0 || contributors.length > 0) && (
+        <section class="mt-8 grid gap-6 sm:grid-cols-2">
+          {leads.length > 0 && (
+            <div>
+              <h2 class="text-2xl font-bold font-heading">{labels.leads}</h2>
+              <ul class="mt-3 list-disc pl-6 space-y-1">
+                {leads.map((lead) => (
+                  <li>
+                    <a class="hover:underline" href={lead.href}>
+                      {lead.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {contributors.length > 0 && (
+            <div>
+              <h2 class="text-2xl font-bold font-heading">{labels.contributors}</h2>
+              <ul class="mt-3 list-disc pl-6 space-y-1">
+                {contributors.map((contributor) => (
+                  <li>
+                    <a class="hover:underline" href={contributor.href}>
+                      {contributor.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )
+    }
+
+    {
+      project.Content && (
+        <div class="mt-10 prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300">
+          <project.Content />
+        </div>
+      )
+    }
+  </section>
+</Layout>

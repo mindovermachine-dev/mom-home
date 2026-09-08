@@ -1,0 +1,104 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Image from '~/components/common/Image.astro';
+import StatusTagFilter from '~/components/filters/StatusTagFilter.astro';
+import { getPermalink } from '~/utils/permalinks';
+import { PROJECT_STATUSES } from '~/utils/project-filters';
+import type { Project } from '~/types';
+
+export interface Props {
+  locale?: 'en' | 'da';
+  projects: Project[];
+}
+
+const { locale = 'en', projects } = Astro.props;
+
+const metadata = {
+  title: locale === 'da' ? 'Projekter' : 'Projects',
+};
+
+const statusOptions = PROJECT_STATUSES.map((status) => ({
+  value: status,
+  label: status.replace(/-/g, ' '),
+}));
+
+const tagOptions = Array.from(
+  new Map(
+    projects
+      .flatMap((project) => project.project.tags ?? [])
+      .map((tag) => [tag.slug, { value: tag.slug, label: tag.title }])
+  ).values()
+).sort((a, b) => a.label.localeCompare(b.label));
+
+const listId = `projects-list-${locale}`;
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline={locale === 'da' ? 'Projekter' : 'Projects'}
+    title={locale === 'da' ? 'Projekter i Mind over Machine' : 'Projects in Mind over Machine'}
+    subtitle={locale === 'da'
+      ? 'Et åbent overblik over aktive projekter, status og hvordan du kan deltage.'
+      : 'An open directory of active projects, their status, and ways to participate.'}
+  />
+
+  <section class="px-6 sm:px-6 pb-12 sm:pb-16 lg:pb-20 mx-auto max-w-5xl">
+    <StatusTagFilter
+      listId={listId}
+      itemSelector="li[data-filter-item]"
+      statusOptions={statusOptions}
+      tagOptions={tagOptions}
+      statusLabel={locale === 'da' ? 'Status' : 'Status'}
+      tagsLegend={locale === 'da' ? 'Tags' : 'Tags'}
+      clearLabel={locale === 'da' ? 'Nulstil filtre' : 'Clear filters'}
+      summaryLabel={locale === 'da' ? 'Filtreringsresultat' : 'Filter results'}
+    />
+
+    <ul id={listId} class="mt-8 grid gap-6">
+      {
+        projects.map((project) => (
+          <li
+            data-filter-item
+            data-filter-status={project.project.status}
+            data-filter-tags={(project.project.tags ?? []).map((tag) => tag.slug).join(',')}
+            class="rounded-xl border border-gray-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900"
+          >
+            <a
+              class="group flex flex-col gap-4 sm:flex-row sm:items-start"
+              href={getPermalink(locale === 'da' ? `da/projects/${project.slug}` : `projects/${project.slug}`)}
+            >
+              {project.image && (
+                <div class="w-full shrink-0 sm:w-56">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} image`}
+                    width={600}
+                    height={338}
+                    fit="contain"
+                    layout="cover"
+                    class="rounded-lg border border-gray-200 dark:border-slate-700"
+                  />
+                </div>
+              )}
+              <div class="min-w-0">
+                <h2 class="text-2xl font-bold font-heading group-hover:underline">{project.title}</h2>
+                {project.excerpt && <p class="mt-2 text-muted dark:text-slate-300">{project.excerpt}</p>}
+                <p class="mt-3 text-sm text-muted dark:text-slate-400">
+                  <span class="font-medium">{locale === 'da' ? 'Status' : 'Status'}:</span>{' '}
+                  {project.project.status.replace(/-/g, ' ')}
+                </p>
+                {project.project.tags && project.project.tags.length > 0 && (
+                  <p class="mt-1 text-sm text-muted dark:text-slate-400">
+                    <span class="font-medium">{locale === 'da' ? 'Tags' : 'Tags'}:</span>{' '}
+                    {project.project.tags.map((tag) => tag.title).join(', ')}
+                  </p>
+                )}
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

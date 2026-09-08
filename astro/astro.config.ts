@@ -41,6 +41,7 @@ const onFrontmatterRedirectConflict = ({
 };
 
 const frontmatterRedirects = {
+  '/project': '/projects',
   ...collectFrontmatterRedirects({
     roots: [path.resolve(__dirname, './src/pages')],
     localePrefixes: ['da', 'en'],

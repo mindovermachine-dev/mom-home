@@ -1,6 +1,35 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
+import {
+  hasDuplicateParticipantIds,
+  isSafeProjectReferenceUrl,
+  isValidProjectRepository,
+} from '~/utils/project-validation';
+
+const PROJECT_STATUSES = ['mature', 'beta', 'lab', 'explore', 'not-started'] as const;
+
+const projectParticipantsSchema = z
+  .object({
+    leads: z.array(reference('profile')).optional(),
+    contributors: z.array(reference('profile')).optional(),
+  })
+  .optional()
+  .superRefine((participants, context) => {
+    if (!participants) return;
+
+    const leads = participants.leads?.map((lead) => lead.id) ?? [];
+    const contributors = participants.contributors?.map((contributor) => contributor.id) ?? [];
+    contributors.forEach((contributorId, index) => {
+      if (hasDuplicateParticipantIds(leads, [contributorId])) {
+        context.addIssue({
+          code: 'custom',
+          message: `Duplicate participant '${contributorId}' is not allowed in both leads and contributors.`,
+          path: ['contributors', index],
+        });
+      }
+    });
+  });
 
 const metadataDefinition = () =>
   z
@@ -138,9 +167,51 @@ const serviceCollection = defineCollection({
   }),
 });
 
+const projectCollection = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/project' }),
+  schema: z.object({
+    publishDate: z.date(),
+    updateDate: z.date().optional(),
+    draft: z.boolean().optional(),
+    title: z.string(),
+    excerpt: z.string().optional(),
+    image: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    metadata: metadataDefinition(),
+    project: z.object({
+      status: z.enum(PROJECT_STATUSES),
+      order: z.number().int().optional(),
+      tags: z.array(z.string()).optional(),
+      slack: z
+        .object({
+          channel: z.string().trim().min(1).optional(),
+          url: z.url().optional(),
+        })
+        .optional(),
+      github: z
+        .object({
+          repositories: z.array(z.string().trim().min(1).refine(isValidProjectRepository, 'Use owner/name format')),
+        })
+        .optional(),
+      references: z
+        .array(
+          z.object({
+            name: z.string().trim().min(1),
+            url: z.string().trim().refine(isSafeProjectReferenceUrl, {
+              message: 'Use a site-relative path or an absolute http/https URL',
+            }),
+          })
+        )
+        .optional(),
+      participants: projectParticipantsSchema,
+    }),
+  }),
+});
+
 export const collections = {
   post: postCollection,
   profile: profileCollection,
   event: eventCollection,
   service: serviceCollection,
+  project: projectCollection,
 };
