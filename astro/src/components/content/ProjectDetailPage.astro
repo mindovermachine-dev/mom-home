@@ -13,14 +13,12 @@ interface ParticipantLink {
 export interface Props {
   project: Project;
   metadata: MetaData;
-  backHref: string;
-  backLabel: string;
   locale?: 'en' | 'da';
   leads: ParticipantLink[];
   contributors: ParticipantLink[];
 }
 
-const { project, metadata, backHref, backLabel, locale = 'en', leads, contributors } = Astro.props;
+const { project, metadata, locale = 'en', leads, contributors } = Astro.props;
 
 const labels =
   locale === 'da'
@@ -50,11 +48,9 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
 
 <Layout metadata={metadata}>
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <a class="inline-flex text-sm hover:underline" href={backHref}>{backLabel}</a>
-
-    <header class="mt-3">
+    <header class="mt-1">
       <h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight font-heading">{project.title}</h1>
-      {project.excerpt && <p class="mt-2 text-base text-muted dark:text-slate-400">{project.excerpt}</p>}
+      {project.excerpt && <p class="kicker mt-3">{project.excerpt}</p>}
     </header>
 
     <div class="mt-4 grid gap-4 sm:grid-cols-[1fr_220px] sm:items-start">
@@ -91,6 +87,92 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
             </div>
           )
         }
+        {
+          project.project.github?.repositories && project.project.github.repositories.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.github}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {project.project.github.repositories.map((repository) => (
+                    <li>
+                      <a
+                        class="hover:underline"
+                        href={`https://github.com/${repository}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {repository}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          project.project.references && project.project.references.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.references}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {project.project.references.map((reference) => {
+                    const isExternal = reference.url.startsWith('http://') || reference.url.startsWith('https://');
+                    return (
+                      <li>
+                        {isExternal ? (
+                          <a class="hover:underline" href={reference.url} rel="noopener noreferrer" target="_blank">
+                            {reference.name}
+                          </a>
+                        ) : (
+                          <a class="hover:underline" href={getPermalink(reference.url)}>
+                            {reference.name}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          leads.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.leads}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {leads.map((lead) => (
+                    <li>
+                      <a class="hover:underline" href={lead.href}>
+                        {lead.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+        {
+          contributors.length > 0 && (
+            <div>
+              <dt class="font-semibold">{labels.contributors}</dt>
+              <dd class="mt-1">
+                <ul class="space-y-1">
+                  {contributors.map((contributor) => (
+                    <li>
+                      <a class="hover:underline" href={contributor.href}>
+                        {contributor.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
       </dl>
       {
         project.image && (
@@ -105,89 +187,6 @@ const statusLabel = project.project.status.replace(/-/g, ' ');
         )
       }
     </div>
-
-    {
-      project.project.github?.repositories && project.project.github.repositories.length > 0 && (
-        <section class="mt-8">
-          <h2 class="text-2xl font-bold font-heading">{labels.github}</h2>
-          <ul class="mt-3 list-disc pl-6 space-y-1">
-            {project.project.github.repositories.map((repository) => (
-              <li>
-                <a
-                  class="hover:underline"
-                  href={`https://github.com/${repository}`}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {repository}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      project.project.references && project.project.references.length > 0 && (
-        <section class="mt-8">
-          <h2 class="text-2xl font-bold font-heading">{labels.references}</h2>
-          <ul class="mt-3 list-disc pl-6 space-y-1">
-            {project.project.references.map((reference) => {
-              const isExternal = reference.url.startsWith('http://') || reference.url.startsWith('https://');
-              return (
-                <li>
-                  {isExternal ? (
-                    <a class="hover:underline" href={reference.url} rel="noopener noreferrer" target="_blank">
-                      {reference.name}
-                    </a>
-                  ) : (
-                    <a class="hover:underline" href={getPermalink(reference.url)}>
-                      {reference.name}
-                    </a>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      (leads.length > 0 || contributors.length > 0) && (
-        <section class="mt-8 grid gap-6 sm:grid-cols-2">
-          {leads.length > 0 && (
-            <div>
-              <h2 class="text-2xl font-bold font-heading">{labels.leads}</h2>
-              <ul class="mt-3 list-disc pl-6 space-y-1">
-                {leads.map((lead) => (
-                  <li>
-                    <a class="hover:underline" href={lead.href}>
-                      {lead.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {contributors.length > 0 && (
-            <div>
-              <h2 class="text-2xl font-bold font-heading">{labels.contributors}</h2>
-              <ul class="mt-3 list-disc pl-6 space-y-1">
-                {contributors.map((contributor) => (
-                  <li>
-                    <a class="hover:underline" href={contributor.href}>
-                      {contributor.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </section>
-      )
-    }
 
     {
       project.Content && (
