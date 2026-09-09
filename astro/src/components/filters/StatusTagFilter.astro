@@ -32,7 +32,7 @@ const {
 ---
 
 <section
-  class="mt-8 rounded-xl border border-gray-200 p-4 dark:border-slate-700"
+  class="mt-8 rounded-xl border-[3px] border-[#1C4331] p-4"
   data-status-tag-filter
   data-list-id={listId}
   data-item-selector={itemSelector}
@@ -41,7 +41,7 @@ const {
   data-tags-param={tagsParam}
   data-summary-label={summaryLabel}
 >
-  <div class="grid gap-4 md:grid-cols-[minmax(0,220px)_1fr_auto] md:items-end">
+  <div class="grid gap-4 md:grid-cols-[minmax(0,220px)_1fr_auto] md:items-start">
     <label class="text-sm font-medium" for={`${listId}-status`}>
       {statusLabel}
       <select
@@ -70,7 +70,7 @@ const {
 
     <button
       type="button"
-      class="inline-flex justify-center rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800"
+      class="inline-flex self-start justify-center rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800"
       data-filter-clear
     >
       {clearLabel}
