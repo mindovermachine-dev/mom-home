@@ -101,9 +101,9 @@ const profileCollection = defineCollection({
   loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/profile' }),
   schema: z.object({
     name: z.string(),
-    bio: z.string().optional(),
-    image: z.string().optional(),
-    github: z.string().optional(),
+    bio: z.string(),
+    image: z.string(),
+    github: z.string(),
     linkedin: z.string().optional(),
     website: z.string().optional(),
   }),

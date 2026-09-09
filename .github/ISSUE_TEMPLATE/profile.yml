@@ -1,0 +1,92 @@
+name: "Profile directory entry"
+description: "Propose or create a profile entry for /profile/"
+title: "[profile] <name>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit this form to request a profile entry in `astro/src/data/profile`.
+
+        Assigning this issue to **Copilot** will start a headless implementation
+        on a `copilot/**` branch attached to a Pull Request. Review the
+        changes, continue the process and approve the review when you're done.
+        Submitting the issue does **not** publish content directly.
+
+  - type: input
+    id: name
+    attributes:
+      label: Full name
+      description: Maps to frontmatter `name`.
+      placeholder: <Full name of the person>
+    validations:
+      required: true
+
+  - type: input
+    id: github_handle
+    attributes:
+      label: GitHub handle
+      description: Maps to frontmatter `github`. Mandatory. Also used as the file name for this profile entry (`astro/src/data/profile/<github_handle>.mdx`) and the uploaded image file name.
+      placeholder: <github-username>
+    validations:
+      required: true
+
+  - type: textarea
+    id: bio
+    attributes:
+      label: Short bio
+      description: Maps to frontmatter `bio`. A single short sentence/paragraph used in cards and metadata.
+      placeholder: A short summary of the person's role and expertise.
+    validations:
+      required: true
+
+  - type: textarea
+    id: body_markdown
+    attributes:
+      label: Profile body (Markdown)
+      description: Preserved as the page body content.
+      placeholder: |
+        A longer description of the person, their background, and their work.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: ai_rewrite_intent
+    attributes:
+      label: AI rewrite intent
+      description: Instructs the AI to either rewrite the content or leave it as is (allow spelling/grammar fixes).
+      options:
+        - "Allow rewrite"
+        - "Keep as is"
+      default: 0
+    validations:
+      required: false
+
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn URL
+      description: Optional. Maps to frontmatter `linkedin`. Must be an absolute `https://` URL.
+      placeholder: https://linkedin.com/in/<handle>
+    validations:
+      required: false
+
+  - type: input
+    id: website
+    attributes:
+      label: Website URL
+      description: Optional. Maps to frontmatter `website`. Must be an absolute `https://` URL.
+      placeholder: https://example.com
+    validations:
+      required: false
+
+  - type: textarea
+    id: image_upload
+    attributes:
+      label: Profile image (1:1 format)
+      description: >-
+        Upload a square (ideally 1:1 aspect ratio) profile image by dragging it into this field. GitHub will
+        attach it to the issue; the AI implementation will download it and save it as
+        `astro/src/assets/images/profiles/<github_handle>.<extension>`, matching the GitHub handle above.
+      placeholder: Drag and drop an image here.
+    validations:
+      required: true
