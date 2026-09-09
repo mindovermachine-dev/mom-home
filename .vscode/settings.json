@@ -8,5 +8,8 @@
   "markdownlint.configFile": ".markdownlint-cli2.jsonc",
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
   "tailwindCSS.lint.cssConflict": "ignore",
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "chat.tools.terminal.autoApprove": {
+    "npx prettier": true
+  }
 }

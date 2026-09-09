@@ -82,9 +82,9 @@ body:
       options:
         - "Allow rewrite"
         - "Keep as is"
-      default: 1
+      default: 0
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: project_tags
@@ -160,7 +160,9 @@ body:
     id: leads
     attributes:
       label: Leads (profile IDs)
-      description: Optional. One profile ID per line. IDs must already exist in the profile collection.
+      description: Optional. One profile ID per line. IDs must already exist in the profile collection (`astro/src/data/profile`).
+      placeholder: |
+        <valid profile ID>
     validations:
       required: false
 
@@ -168,6 +170,8 @@ body:
     id: contributors
     attributes:
       label: Contributors (profile IDs)
-      description: Optional. One profile ID per line. IDs must already exist in the profile collection and must not duplicate leads.
+      description: Optional. One profile ID per line. IDs must already exist in the profile collection (`astro/src/data/profile`) and must not duplicate leads.
+      placeholder: |
+        <valid profile ID>
     validations:
       required: false
