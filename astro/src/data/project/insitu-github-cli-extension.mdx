@@ -1,0 +1,41 @@
+---
+publishDate: 2026-07-01T00:00:00Z
+title: Insitu — Github CLI extension
+excerpt: Shift-left verification utility for running parallel jobs organized in waves, provides same functionality locally and in headless AI agent environments.
+draft: false
+project:
+  status: beta
+  github:
+    repositories:
+      - devx-cafe/gh-insitu
+  participants:
+    leads:
+      - lakruzz
+  tags:
+    - 'parallel execution'
+    - DevX
+    - Golang
+    - CLI
+---
+
+## Problem
+
+Verification and validation of code changes usually happen in cloud pipelines, where queueing and runner spin-up add latency. Timing is also off because the pipeline is triggered by events like commit or tag, and is not available in the local development environment. Consequently, quality cannot be fully checked at the source.
+
+When running AI agents in spec-driven headless mode, this becomes an even bigger issue, because the agent cannot run full verification steps until _after_ it claims the work is done.
+
+## Solution
+
+This tool shifts verification left by bringing the full verification step into the development context, whether the contributor is human or a headless AI agent. It exploits the fact that the development environment is already set up to run required checks with zero wait time.
+
+It runs jobs in parallel inside a _wave_ and executes waves sequentially to manage dependencies. It can be wired into a git `pre-commit` hook to block commits on failing checks. When installed in headless AI agent containers, agents are forced to run the same checks too.
+
+## Value
+
+Checking software quality at the source—where files are actually changed—is a prerequisite for trunk-based development and continuous delivery. Execution takes seconds rather than minutes, and the same checks are available on equal terms for both humans and AI agents.
+
+## Status
+
+This project is used in production by the Mind Over Machine team, and is in a phase where it collects feedback from users. It is open for contributions.
+
+The intent is to keep the tool focused on its core purpose, to provide _insitu_ support for shift-left verification in the development environment. It's aiming for feature completeness and stability.
