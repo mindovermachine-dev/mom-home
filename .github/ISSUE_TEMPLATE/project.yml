@@ -7,17 +7,17 @@ body:
       value: |
         Submit this form to request a project entry in `astro/src/data/project`.
 
-        Assigning this issue to **Copilot** requests implementation and a pull request for review.
+        Assigning this issue to **Copilot** will start a headless implementation
+        on a `copilot/**` attached to a Pull Reques. Review the 
+        changes, continue the process and approve the review when you're done.
         Submitting the issue does **not** publish content directly.
-
-        Do not submit secrets, access tokens, or private credentials.
 
   - type: input
     id: project_title
     attributes:
       label: Project title
       description: Maps to frontmatter `title`.
-      placeholder: Takt Community Lab
+      placeholder: <The title of entry in the project directory>
     validations:
       required: true
 
@@ -26,9 +26,9 @@ body:
     attributes:
       label: Publish date (UTC)
       description: Maps to frontmatter `publishDate` (ISO 8601).
-      placeholder: "2026-09-03T00:00:00Z"
+      placeholder: "YYYY-MM-DD"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: status
@@ -41,8 +41,9 @@ body:
         - "lab"
         - "explore"
         - "not-started"
+      default: "lab"
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: excerpt
@@ -56,24 +57,34 @@ body:
   - type: textarea
     id: body_markdown
     attributes:
-      label: Project body (Markdown/MDX)
+      label: Project body (Markdown)
       description: Preserved as the page body content.
       placeholder: |
-        ## Purpose
-        Explain what this project does and how people can participate.
+        ## Problem
+        Explain the problem that needs to be solved.
+
+        ## Solution
+        Explain the solution that was implemented.
+
+        ## Value
+        Explain the value this solution provides.
+
+        ## Status
+        Explain the current status of the project.
     validations:
       required: true
 
-  - type: textarea
-    id: root_tags
+  - type: dropdown
+    id:
     attributes:
-      label: Root tags (SEO/content taxonomy)
-      description: One value per line. Maps to root `tags`.
-      placeholder: |
-        AI
-        Community
+      label: AI rewrite intent
+      description: Instructs the AI to either rewrite the content or leave it as is (allow spelling/grammar fixes).
+      options:
+        - "Allow rewrite"
+        - "Keep as is"
+      default: "Keep as is"
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: project_tags
@@ -83,6 +94,7 @@ body:
       placeholder: |
         DevX
         Python
+        Internship
     validations:
       required: false
 
@@ -110,8 +122,8 @@ body:
     id: slack_channel
     attributes:
       label: Slack channel
-      description: Optional. Maps to `project.slack.channel`.
-      placeholder: "#takt"
+      description: Optional. Maps to `project.slack.channel`. Use this setting when the project has a dedicated Slack channel. Otherwise, leave blank to use the default `#project` channel.
+      placeholder: ""
     validations:
       required: false
 
@@ -119,8 +131,8 @@ body:
     id: slack_url
     attributes:
       label: Slack URL
-      description: Optional. Must be absolute `http`/`https`. Maps to `project.slack.url`.
-      placeholder: https://mindovermachine-dk.slack.com/archives/C0B9CTYQ8TA
+      description: Optional. Must be absolute `https://` URLs. Maps to `project.slack.url`. Use this setting when the project has a dedicated Slack channel.
+      placeholder: ""
     validations:
       required: false
 
@@ -139,7 +151,7 @@ body:
     id: references
     attributes:
       label: References
-      description: Optional. One reference per line in `name | url` format. URL must be `/relative/path/` or absolute `http`/`https`.
+      description: Optional. One reference per line in `name | url` format. URL must be `/relative/path/` or absolute `https://`.
       placeholder: |
         Takt | /writings/takt/
         Reference manual | https://mindovermachine.dev/takt/
@@ -151,8 +163,7 @@ body:
     attributes:
       label: Leads (profile IDs)
       description: Optional. One profile ID per line. IDs must already exist in the profile collection.
-      placeholder: |
-        lakruzz
+      placeholder: ""
     validations:
       required: false
 
@@ -161,7 +172,6 @@ body:
     attributes:
       label: Contributors (profile IDs)
       description: Optional. One profile ID per line. IDs must already exist in the profile collection and must not duplicate leads.
-      placeholder: |
-        blikest
+      placeholder: ""
     validations:
       required: false
