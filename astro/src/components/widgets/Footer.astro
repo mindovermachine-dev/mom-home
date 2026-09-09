@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
+import { getExternalLinkAttrs } from '~/utils/external-links';
 
 interface Link {
   text?: string;
@@ -68,6 +69,7 @@ const getLocalizedLabel = (text?: string, translations?: { en?: string; da?: str
                 <a
                   class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
                   href={localizeHref(href)}
+                  {...getExternalLinkAttrs(href)}
                   set:html={getLocalizedLabel(text, translations)}
                 />
               </>
@@ -87,6 +89,7 @@ const getLocalizedLabel = (text?: string, translations?: { en?: string; da?: str
                       class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
                       href={localizeHref(href)}
                       aria-label={ariaLabel}
+                      {...getExternalLinkAttrs(href)}
                     >
                       <Fragment set:html={getLocalizedLabel(text, translations)} />
                     </a>
@@ -108,6 +111,7 @@ const getLocalizedLabel = (text?: string, translations?: { en?: string; da?: str
                   class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
                   aria-label={ariaLabel}
                   href={href}
+                  {...getExternalLinkAttrs(href)}
                 >
                   {icon && <Icon name={icon} class="w-5 h-5" />}
                   <Fragment set:html={text} />
