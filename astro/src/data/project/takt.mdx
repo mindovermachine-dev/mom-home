@@ -1,0 +1,53 @@
+---
+publishDate: 2026-07-01T00:00:00Z
+title: TakT — A quality enforcing framework for, trunk-based development and AI agents humans alike
+excerpt: Originally implemented a a GitHub CLI extension, but has since evolved into a more comprehensive solution, providing a complete set of tools for quality assurance in the development process and focusing on the enablement of Collaborative Agents.
+draft: false
+project:
+  status: mature
+  github:
+    repositories:
+      - devx-cafe/gh-tt
+      - devx-cafe/takt-actions
+      - mindovermachine-dev/how-we-work
+  participants:
+    leads:
+      - lakruzz
+  tags:
+    - DevX
+    - Python
+    - CLI
+    - FOSS
+    - 'AI skill'
+    - Internship
+  references:
+    - name: 'GitHub’s Enfant Terrible: Pull Requests'
+      url: 'https://www.lakruzz.com/stories/githubs-enfant-terrible/'
+    - name: 'Takt - Software Development as a Pull System'
+      url: 'https://www.lakruzz.com/stories/takt/'
+  slack:
+    channel: '#takt'
+    url: 'https://mindovermachine.slack.com/archives/C04Q1K6J7G9'
+---
+
+## Problem
+
+Pull Requests are the golden standard for code review and collaboration in software development. However, they can introduce significant delays in the development process, especially when multiple contributors are involved. The traditional pull request workflow often leads to bottlenecks, as changes must be reviewed and approved before they can be merged into the main branch. With the introduction of AI agents as first class citizens in our code bases, the complexity of managing and reviewing code changes increases.
+
+## Solution
+
+Shift left, return to true trunk-based development. The TakT framework provides a comprehensive solution for enforcing quality in the development process, enabling both human and AI agents to collaborate effectively. By integrating with existing tools and workflows, TakT allows for continuous verification of code changes, ensuring that quality standards are met before changes are merged into the main branch.
+
+## Value
+
+The flow introduces three composite commands `workon`, `wrapup` and `deliver` these commands will control the entire flow. It's desinged to be a viable alternative to PR's - while they still remain fully supported.
+
+Simplicity is key. The flow automatically implement full traceability making it especially relevant for teams working under regulatory rules ets.
+
+## Status
+
+This project is used in production by the Mind Over Machine team, and is in a phase where it collects feedback from users. It is open for contributions.
+
+The project has visions for the future that involves development of tool integrations in VS Code, code base optimization, perhaps migration from Python to Golang or Rust, and the development of a more comprehensive framework for collaborative agents. The intent is to keep the tool focused on its core purpose, to provide _TakT_ support for shift-left verification in the development environment. It's aiming for feature completeness and stability.
+
+This project is ideal for interns and students looking to gain experience in software development, DevX, and AI agent collaboration.

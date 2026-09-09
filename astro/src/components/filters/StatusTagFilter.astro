@@ -59,7 +59,7 @@ const {
       <div class="mt-2 flex flex-wrap gap-2">
         {
           tagOptions.map((option) => (
-            <label class="inline-flex items-center gap-2 rounded-md border border-gray-300 px-2 py-1 text-sm dark:border-slate-600">
+            <label class="tag-toggle">
               <input type="checkbox" value={option.value} data-filter-tag />
               <span>{option.label}</span>
             </label>
@@ -68,11 +68,7 @@ const {
       </div>
     </fieldset>
 
-    <button
-      type="button"
-      class="inline-flex self-start justify-center rounded-md border border-gray-300 px-3 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800"
-      data-filter-clear
-    >
+    <button type="button" class="btn btn-secondary self-start" data-filter-clear>
       {clearLabel}
     </button>
   </div>

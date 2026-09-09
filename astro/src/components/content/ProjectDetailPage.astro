@@ -59,7 +59,9 @@ const projectsDirectoryPath = getPermalink(locale === 'da' ? 'da/projects' : 'pr
       <dl class="grid gap-x-6 gap-y-3 rounded-xl border-[3px] border-[#1C4331] p-4 text-sm sm:grid-cols-2">
         <div>
           <dt class="font-semibold">{labels.status}</dt>
-          <dd class="mt-1">{statusLabel}</dd>
+          <dd class="mt-1">
+            <span class="status-chip">{statusLabel}</span>
+          </dd>
         </div>
         {
           unifiedTags.length > 0 && (
@@ -67,7 +69,7 @@ const projectsDirectoryPath = getPermalink(locale === 'da' ? 'da/projects' : 'pr
               <dt class="font-semibold">{labels.tags}</dt>
               <dd class="mt-1 flex flex-wrap gap-2">
                 {unifiedTags.map((tag) => (
-                  <a class="hover:underline" href={`${projectsDirectoryPath}?tags=${encodeURIComponent(tag.slug)}`}>
+                  <a class="tag-chip" href={`${projectsDirectoryPath}?tags=${encodeURIComponent(tag.slug)}`}>
                     {tag.title}
                   </a>
                 ))}
