@@ -41,7 +41,7 @@ body:
         - "lab"
         - "explore"
         - "not-started"
-      default: "lab"
+      default: 2
     validations:
       required: false
 
@@ -75,14 +75,14 @@ body:
       required: true
 
   - type: dropdown
-    id:
+    id: ai_rewrite_intent
     attributes:
       label: AI rewrite intent
       description: Instructs the AI to either rewrite the content or leave it as is (allow spelling/grammar fixes).
       options:
         - "Allow rewrite"
         - "Keep as is"
-      default: "Keep as is"
+      default: 1
     validations:
       required: true
 
@@ -123,7 +123,6 @@ body:
     attributes:
       label: Slack channel
       description: Optional. Maps to `project.slack.channel`. Use this setting when the project has a dedicated Slack channel. Otherwise, leave blank to use the default `#project` channel.
-      placeholder: ""
     validations:
       required: false
 
@@ -132,7 +131,6 @@ body:
     attributes:
       label: Slack URL
       description: Optional. Must be absolute `https://` URLs. Maps to `project.slack.url`. Use this setting when the project has a dedicated Slack channel.
-      placeholder: ""
     validations:
       required: false
 
@@ -163,7 +161,6 @@ body:
     attributes:
       label: Leads (profile IDs)
       description: Optional. One profile ID per line. IDs must already exist in the profile collection.
-      placeholder: ""
     validations:
       required: false
 
@@ -172,6 +169,5 @@ body:
     attributes:
       label: Contributors (profile IDs)
       description: Optional. One profile ID per line. IDs must already exist in the profile collection and must not duplicate leads.
-      placeholder: ""
     validations:
       required: false
