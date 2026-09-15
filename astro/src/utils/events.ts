@@ -42,42 +42,144 @@ const toNormalizedDate = (rawDate: Date | string): Date | string => {
   return Number.isNaN(parsed.getTime()) ? rawDate : parsed;
 };
 
-const TIME_PATTERN = /^([01]?\d|2[0-3]):([0-5]\d)(?:\s*(?:UTC|Z))?$/i;
+const TIME_PATTERN = /^([01]?\d|2[0-3]):([0-5]\d)(?:\s*(CET|CEST|UTC|GMT|Z|[+-]\d{1,2}(?::?\d{2})?))?$/i;
 
-const getTimeOffsetMs = (time?: string): number | undefined => {
-  if (!time) return undefined;
+export const getDurationMs = (duration?: string): number => {
+  if (!duration) return 0;
+  const str = duration.trim().toLowerCase();
 
-  const match = TIME_PATTERN.exec(time.trim());
-  if (!match) return undefined;
+  // Pattern: "2:30h", "2:30", "01:00h"
+  const colonMatch = /^(\d+):([0-5]\d)(?:\s*h(?:ours?|rs?)?)?$/i.exec(str);
+  if (colonMatch) {
+    const hours = Number(colonMatch[1]);
+    const minutes = Number(colonMatch[2]);
+    return (hours * 60 + minutes) * 60 * 1000;
+  }
 
-  const hours = Number(match[1]);
-  const minutes = Number(match[2]);
-  return (hours * 60 + minutes) * 60 * 1000;
+  // Pattern: "1h 30m", "1h30m", "1 hour 30 mins"
+  const combinedMatch =
+    /^(\d+(?:\.\d+)?)\s*(?:h|hours?|hrs?)\s*(?:and\s*)?(\d+(?:\.\d+)?)\s*(?:m|mins?|minutes?)$/i.exec(str);
+  if (combinedMatch) {
+    const hours = Number(combinedMatch[1]);
+    const minutes = Number(combinedMatch[2]);
+    return (hours * 60 + minutes) * 60 * 1000;
+  }
+
+  // Pattern: "3 hours", "2.5h", "1 hr", "2 hrs"
+  const hoursMatch = /^(\d+(?:\.\d+)?)\s*(?:h|hours?|hrs?)$/i.exec(str);
+  if (hoursMatch) {
+    return Number(hoursMatch[1]) * 60 * 60 * 1000;
+  }
+
+  // Pattern: "30 mins", "45 minutes", "90m", "15 min"
+  const minsMatch = /^(\d+(?:\.\d+)?)\s*(?:m|mins?|minutes?)$/i.exec(str);
+  if (minsMatch) {
+    return Number(minsMatch[1]) * 60 * 1000;
+  }
+
+  return 0;
 };
 
-export const getOccurrenceTimestampOrInfinity = (occurrence: { date: Date | string; time?: string }): number => {
+const getZonedUtcTimestamp = (
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  minute: number,
+  timeZone = 'Europe/Copenhagen'
+): number => {
+  const d = new Date(Date.UTC(year, month - 1, day, hour, minute));
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+  });
+  const parts = formatter.formatToParts(d);
+  const p: Record<string, string> = {};
+  for (const part of parts) {
+    p[part.type] = part.value;
+  }
+  const tzHour = parseInt(p.hour, 10) === 24 ? 0 : parseInt(p.hour, 10);
+  const asIfUtc = Date.UTC(
+    parseInt(p.year, 10),
+    parseInt(p.month, 10) - 1,
+    parseInt(p.day, 10),
+    tzHour,
+    parseInt(p.minute, 10),
+    parseInt(p.second, 10)
+  );
+  const offset = asIfUtc - d.getTime();
+  return d.getTime() - offset;
+};
+
+export const getOccurrenceStartTimestampOrInfinity = (occurrence: { date: Date | string; time?: string }): number => {
   if (!(occurrence.date instanceof Date)) {
     return Number.POSITIVE_INFINITY;
   }
 
-  const baseTimestamp = occurrence.date.getTime();
-  const timeOffset = getTimeOffsetMs(occurrence.time);
+  const year = occurrence.date.getUTCFullYear();
+  const month = occurrence.date.getUTCMonth() + 1;
+  const day = occurrence.date.getUTCDate();
 
-  if (timeOffset == null) {
-    return baseTimestamp;
+  if (!occurrence.time) {
+    return getZonedUtcTimestamp(year, month, day, 0, 0);
   }
 
-  const midnightUtc = Date.UTC(
-    occurrence.date.getUTCFullYear(),
-    occurrence.date.getUTCMonth(),
-    occurrence.date.getUTCDate(),
-    0,
-    0,
-    0,
-    0
-  );
+  const match = TIME_PATTERN.exec(occurrence.time.trim());
+  if (!match) {
+    return getZonedUtcTimestamp(year, month, day, 0, 0);
+  }
 
-  return midnightUtc + timeOffset;
+  const hours = Number(match[1]);
+  const minutes = Number(match[2]);
+  const tzSpec = match[3]?.toUpperCase();
+
+  if (tzSpec === 'UTC' || tzSpec === 'GMT' || tzSpec === 'Z') {
+    return Date.UTC(year, month - 1, day, hours, minutes);
+  }
+
+  if (tzSpec && (tzSpec.startsWith('+') || tzSpec.startsWith('-'))) {
+    const sign = tzSpec[0] === '+' ? 1 : -1;
+    const cleanTz = tzSpec.slice(1).replace(':', '');
+    const offsetMinutes =
+      cleanTz.length <= 2 ? Number(cleanTz) * 60 : Number(cleanTz.slice(0, 2)) * 60 + Number(cleanTz.slice(2));
+    return Date.UTC(year, month - 1, day, hours, minutes) - sign * offsetMinutes * 60 * 1000;
+  }
+
+  return getZonedUtcTimestamp(year, month, day, hours, minutes, 'Europe/Copenhagen');
+};
+
+export const getOccurrenceTimestampOrInfinity = getOccurrenceStartTimestampOrInfinity;
+
+export const getOccurrenceEndTimestampOrInfinity = (occurrence: {
+  date: Date | string;
+  time?: string;
+  duration?: string;
+}): number => {
+  if (!(occurrence.date instanceof Date)) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  const startTimestamp = getOccurrenceStartTimestampOrInfinity(occurrence);
+  const durationMs = getDurationMs(occurrence.duration);
+
+  if (durationMs > 0) {
+    return startTimestamp + durationMs;
+  }
+
+  if (!occurrence.time) {
+    const year = occurrence.date.getUTCFullYear();
+    const month = occurrence.date.getUTCMonth() + 1;
+    const day = occurrence.date.getUTCDate();
+    return getZonedUtcTimestamp(year, month, day, 23, 59) + 59 * 1000 + 999;
+  }
+
+  return startTimestamp;
 };
 
 const getNormalizedEvent = async (event: CollectionEntry<'event'>): Promise<Event> => {

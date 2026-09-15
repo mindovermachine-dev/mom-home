@@ -1,7 +1,7 @@
 ---
 // This component re-filters events on the client side based on the current time.
-// It reorganizes the DOM so that events past the current date move from "Upcoming" to "Past".
-// Events have data-first-date-timestamp attributes that contain the timestamp of their first occurrence.
+// It reorganizes the DOM so that events whose end time has passed move from "Upcoming" to "Past".
+// Events have data-end-timestamp (and data-first-date-timestamp) attributes.
 ---
 
 <script is:inline>
@@ -10,18 +10,22 @@
     const upcomingList = document.getElementById('events-upcoming-list');
     const upcomingEmpty = document.getElementById('events-upcoming-empty');
     const pastList = document.getElementById('events-past-list');
-    const pastSection = pastList?.closest('details');
+    const pastSection = document.getElementById('events-past-details') || pastList?.closest('details');
 
     if (!upcomingList) return;
 
     // Get all event items from upcoming
-    const upcomingItems = Array.from(upcomingList.querySelectorAll('li[data-first-date-timestamp]'));
+    const upcomingItems = Array.from(
+      upcomingList.querySelectorAll('li[data-end-timestamp], li[data-first-date-timestamp]')
+    );
 
-    // Collect items that have moved into the past
+    // Collect items that have moved into the past (event has ended)
     const itemsToMove = [];
 
     upcomingItems.forEach((item) => {
-      const timestamp = Number(item.getAttribute('data-first-date-timestamp'));
+      const endAttr = item.getAttribute('data-end-timestamp');
+      const firstAttr = item.getAttribute('data-first-date-timestamp');
+      const timestamp = Number(endAttr || firstAttr);
       if (!isNaN(timestamp) && timestamp < now) {
         itemsToMove.push(item);
       }
@@ -31,7 +35,7 @@
     itemsToMove.forEach((item) => {
       item.remove();
       if (pastList) {
-        pastList.appendChild(item);
+        pastList.prepend(item);
       }
     });
 
@@ -45,6 +49,7 @@
 
     // Show past section if it has items
     if (pastList && pastList.children.length > 0 && pastSection) {
+      pastSection.classList.remove('hidden');
       pastSection.style.display = 'block';
     }
   }

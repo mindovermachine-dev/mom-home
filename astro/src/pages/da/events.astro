@@ -2,7 +2,7 @@
 import Image from '~/components/common/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import { fetchEvents, getOccurrenceTimestampOrInfinity } from '~/utils/events';
+import { fetchEvents, getOccurrenceTimestampOrInfinity, getOccurrenceEndTimestampOrInfinity } from '~/utils/events';
 import { getPermalink } from '~/utils/permalinks';
 
 const events = await fetchEvents({ locale: 'da', fallbackLocale: 'en' });
@@ -14,10 +14,10 @@ const dateFormatter = new Intl.DateTimeFormat('da-DK', {
 });
 
 const isValidDate = (value: Date | string): value is Date => value instanceof Date && !Number.isNaN(value.getTime());
-const isUpcomingOccurrence = (occurrence: { date: Date | string; time?: string }) =>
-  isValidDate(occurrence.date) ? getOccurrenceTimestampOrInfinity(occurrence) >= now : true;
-const isPastOccurrence = (occurrence: { date: Date | string; time?: string }) =>
-  isValidDate(occurrence.date) ? getOccurrenceTimestampOrInfinity(occurrence) < now : false;
+const isUpcomingOccurrence = (occurrence: { date: Date | string; time?: string; duration?: string }) =>
+  isValidDate(occurrence.date) ? getOccurrenceEndTimestampOrInfinity(occurrence) >= now : true;
+const isPastOccurrence = (occurrence: { date: Date | string; time?: string; duration?: string }) =>
+  isValidDate(occurrence.date) ? getOccurrenceEndTimestampOrInfinity(occurrence) < now : false;
 const occurrenceSortValue = (occurrence: { date: Date | string; time?: string }) =>
   getOccurrenceTimestampOrInfinity(occurrence);
 const formatOccurrenceDate = (occurrence: { date: Date | string; time?: string }) => {
@@ -71,56 +71,64 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
     <h2 class="text-2xl md:text-3xl font-bold font-heading">Kommende events</h2>
     {
       upcomingEvents.length > 0 ? (
-        <ul id="events-upcoming-list" class="mt-6 grid gap-6">
-          {upcomingEvents.map(({ event, upcomingDates }) => (
-            <li data-first-date-timestamp={upcomingDates[0] ? getOccurrenceTimestampOrInfinity(upcomingDates[0]) : 0}>
-              <a
-                class="group flex flex-col gap-6 sm:flex-row sm:items-center"
-                href={getPermalink(`da/events/${event.slug}`)}
+        <>
+          <ul id="events-upcoming-list" class="mt-6 grid gap-6">
+            {upcomingEvents.map(({ event, upcomingDates }) => (
+              <li
+                data-first-date-timestamp={upcomingDates[0] ? getOccurrenceTimestampOrInfinity(upcomingDates[0]) : 0}
+                data-end-timestamp={upcomingDates[0] ? getOccurrenceEndTimestampOrInfinity(upcomingDates[0]) : 0}
               >
-                {event.image && (
-                  <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
-                    <Image
-                      src={event.image}
-                      alt={`${event.title} event image`}
-                      width={600}
-                      height={338}
-                      fit="contain"
-                      layout="cover"
-                      class="max-h-full max-w-full"
-                    />
+                <a
+                  class="group flex flex-col gap-6 sm:flex-row sm:items-center"
+                  href={getPermalink(`da/events/${event.slug}`)}
+                >
+                  {event.image && (
+                    <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
+                      <Image
+                        src={event.image}
+                        alt={`${event.title} event image`}
+                        width={600}
+                        height={338}
+                        fit="contain"
+                        layout="cover"
+                        class="max-h-full max-w-full"
+                      />
+                    </div>
+                  )}
+                  <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
+                    <h3 class="text-xl font-bold font-heading">{event.title}</h3>
+                    <div class="mt-2 text-sm text-muted dark:text-slate-400">
+                      {upcomingDates.length === 1 ? (
+                        <p>
+                          {formatOccurrenceDate(upcomingDates[0])}
+                          {upcomingDates[0].duration ? ` (${upcomingDates[0].duration})` : ''}
+                        </p>
+                      ) : (
+                        <ul class="space-y-1">
+                          {upcomingDates.map((occurrence) => (
+                            <li>
+                              {formatOccurrenceDate(occurrence)}
+                              {occurrence.duration ? ` (${occurrence.duration})` : ''}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <p class="mt-1 text-sm text-muted dark:text-slate-400">
+                      {typeof event.location === 'string'
+                        ? event.location
+                        : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
+                    </p>
+                    {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
                   </div>
-                )}
-                <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
-                  <h3 class="text-xl font-bold font-heading">{event.title}</h3>
-                  <div class="mt-2 text-sm text-muted dark:text-slate-400">
-                    {upcomingDates.length === 1 ? (
-                      <p>
-                        {formatOccurrenceDate(upcomingDates[0])}
-                        {upcomingDates[0].duration ? ` (${upcomingDates[0].duration})` : ''}
-                      </p>
-                    ) : (
-                      <ul class="space-y-1">
-                        {upcomingDates.map((occurrence) => (
-                          <li>
-                            {formatOccurrenceDate(occurrence)}
-                            {occurrence.duration ? ` (${occurrence.duration})` : ''}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  <p class="mt-1 text-sm text-muted dark:text-slate-400">
-                    {typeof event.location === 'string'
-                      ? event.location
-                      : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
-                  </p>
-                  {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p id="events-upcoming-empty" class="mt-6 text-muted dark:text-slate-400" style="display: none;">
+            Ingen kommende events lige nu.
+          </p>
+        </>
       ) : (
         <p id="events-upcoming-empty" class="mt-6 text-muted dark:text-slate-400">
           Ingen kommende events lige nu.
@@ -128,70 +136,73 @@ import EventClientFilter from '~/components/EventClientFilter.astro';
       )
     }
 
-    {
-      pastEvents.length > 0 && (
-        <details class="mt-10 group">
-          <summary class="inline-flex cursor-pointer list-none items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800">
-            <span class="group-open:hidden">Se tidligere events</span>
-            <span class="hidden group-open:inline">Skjul tidligere events</span>
-          </summary>
+    <details id="events-past-details" class:list={['mt-10 group', { hidden: pastEvents.length === 0 }]}>
+      <summary
+        class="inline-flex cursor-pointer list-none items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium hover:bg-gray-50 dark:border-slate-600 dark:hover:bg-slate-800"
+      >
+        <span class="group-open:hidden">Se tidligere events</span>
+        <span class="hidden group-open:inline">Skjul tidligere events</span>
+      </summary>
 
-          <section class="mt-6">
-            <h2 class="text-2xl md:text-3xl font-bold font-heading">Tidligere events</h2>
-            <ul id="events-past-list" class="mt-6 grid gap-6">
-              {pastEvents.map(({ event, pastDates }) => (
-                <li data-first-date-timestamp={pastDates[0] ? getOccurrenceTimestampOrInfinity(pastDates[0]) : 0}>
-                  <a
-                    class="group flex flex-col gap-6 sm:flex-row sm:items-center"
-                    href={getPermalink(`da/events/${event.slug}`)}
-                  >
-                    {event.image && (
-                      <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
-                        <Image
-                          src={event.image}
-                          alt={`${event.title} event image`}
-                          width={600}
-                          height={338}
-                          fit="contain"
-                          layout="cover"
-                          class="max-h-full max-w-full"
-                        />
-                      </div>
-                    )}
-                    <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
-                      <h3 class="text-xl font-bold font-heading">{event.title}</h3>
-                      <div class="mt-2 text-sm text-muted dark:text-slate-400">
-                        {pastDates.length === 1 ? (
-                          <p>
-                            {formatOccurrenceDate(pastDates[0])}
-                            {pastDates[0].duration ? ` (${pastDates[0].duration})` : ''}
-                          </p>
-                        ) : (
-                          <ul class="space-y-1">
-                            {pastDates.map((occurrence) => (
-                              <li>
-                                {formatOccurrenceDate(occurrence)}
-                                {occurrence.duration ? ` (${occurrence.duration})` : ''}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                      <p class="mt-1 text-sm text-muted dark:text-slate-400">
-                        {typeof event.location === 'string'
-                          ? event.location
-                          : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
-                      </p>
-                      {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
+      <section class="mt-6">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading">Tidligere events</h2>
+        <ul id="events-past-list" class="mt-6 grid gap-6">
+          {
+            pastEvents.map(({ event, pastDates }) => (
+              <li
+                data-first-date-timestamp={pastDates[0] ? getOccurrenceTimestampOrInfinity(pastDates[0]) : 0}
+                data-end-timestamp={pastDates[0] ? getOccurrenceEndTimestampOrInfinity(pastDates[0]) : 0}
+              >
+                <a
+                  class="group flex flex-col gap-6 sm:flex-row sm:items-center"
+                  href={getPermalink(`da/events/${event.slug}`)}
+                >
+                  {event.image && (
+                    <div class="flex aspect-[600/338] shrink-0 items-center justify-center sm:h-[162px] sm:w-72 sm:aspect-auto">
+                      <Image
+                        src={event.image}
+                        alt={`${event.title} event image`}
+                        width={600}
+                        height={338}
+                        fit="contain"
+                        layout="cover"
+                        class="max-h-full max-w-full"
+                      />
                     </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </details>
-      )
-    }
+                  )}
+                  <div class="rounded-xl border border-gray-200 bg-white p-5 transition group-hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-900 dark:group-hover:bg-slate-800 sm:flex-1">
+                    <h3 class="text-xl font-bold font-heading">{event.title}</h3>
+                    <div class="mt-2 text-sm text-muted dark:text-slate-400">
+                      {pastDates.length === 1 ? (
+                        <p>
+                          {formatOccurrenceDate(pastDates[0])}
+                          {pastDates[0].duration ? ` (${pastDates[0].duration})` : ''}
+                        </p>
+                      ) : (
+                        <ul class="space-y-1">
+                          {pastDates.map((occurrence) => (
+                            <li>
+                              {formatOccurrenceDate(occurrence)}
+                              {occurrence.duration ? ` (${occurrence.duration})` : ''}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <p class="mt-1 text-sm text-muted dark:text-slate-400">
+                      {typeof event.location === 'string'
+                        ? event.location
+                        : [event.location.venue, event.location.address].filter(Boolean).join(', ')}
+                    </p>
+                    {event.excerpt && <p class="mt-3 text-muted dark:text-slate-300">{event.excerpt}</p>}
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </details>
   </section>
 
   <EventClientFilter />
