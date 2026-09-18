@@ -153,7 +153,8 @@ Our initial plan is to settle on tools with an evil score under 30 - this is wha
 
 - **VS Chromium** IDE; While the VS Code is open source, the Microsoft branded version is not. The Chromium version is fully FOSS and can be used without any Microsoft telemetry.
 - **Forgejo** Git hosting; A self-hosted FOSS alternative to GitHub, allowing developers to maintain control over their code repositories, issues, projects releases etc.
-- **Woodpecker C**I\*\* Continuous Integration; A self-hosted, open-source alternative to GitHub Actions, enabling developers to automate their build, test, and deployment processes.
+- **Woodpecker CI** Continuous Integration; A self-hosted, open-source alternative to GitHub Actions, enabling developers to automate their build, test, and deployment processes.
+- **Ollama, vLLm, LocalAI** Self-hosted LLM's on our infrastructure to connect to both from our IDEs and our pipeline runners; We will host and run LLM's on our own infrastructure, allowing developers to use them without relying on proprietary cloud providers or exposing their data to third parties.
 - **Matrix** Team Communication; A decentralized, open standard for messaging and collaboration)
 - **Element X, FluffyChat** (Populous Matrix clients; FOSS clients for the Matrix protocol, providing secure and private E2EE communication.
 - **DevBox, DevEnv, Nix, Dagger.io, DevContainers, Docker, Podman, Kubernetes** Containerized Development Environment; A collection of FOSS tools for creating isolated and reproducible development environments that are detached from any proprietary cloud provider, allowing developers to maintain control over their development stack and run the exact same verification and validation in their local environments as the will later execute in the CI/CD pipeline.
