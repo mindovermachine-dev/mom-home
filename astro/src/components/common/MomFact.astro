@@ -1,0 +1,18 @@
+---
+type Position = 'left' | 'center' | 'right';
+type Size = 'small' | 'medium' | 'large' | 'full';
+
+export interface Props {
+  title?: string;
+  position?: Position;
+  size?: Size;
+  class?: string;
+}
+
+const { title, position = 'center', size = 'medium', class: className } = Astro.props;
+---
+
+<aside class:list={['mom-fact', `mom-fact--position-${position}`, `mom-fact--size-${size}`, className]}>
+  {title && <p class="mom-fact__title">{title}</p>}
+  <div class="mom-fact__body"><slot /></div>
+</aside>

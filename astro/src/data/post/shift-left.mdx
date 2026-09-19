@@ -1,105 +1,128 @@
 ---
 publishDate: 2026-09-18T00:00:00Z
 title: 'Shift-left: Take control of your development stack'
-excerpt: There is a widespread trend in digital online presence that we should all be aware of US techbros' evil intentions. But this worry is not just relevant to SoMe and instagram, it is also relevant to the software development stack.
+excerpt: There is a widespread trend in digital online presence that we should all be aware of US techbros' evil intentions. But this worry is not just relevant to SoMe, it is also relevant to the software development stack.
 image: ~/assets/images/posts/shift-left/mom-coin-consequences.1.91.png
 category: Essays
+author: lakruzz
 tags:
   - Infrastructure
   - Community
+  - FOSS
+# cspell:ignore inux pache
 ---
 
 import MomImage from '~/components/common/MomImage.astro';
+import MomFact from '~/components/common/MomFact.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Button from '~/components/ui/Button.astro';
 
-"Shift Left" is a term used in computer science, it is a bitwise operation: A shift left operation multiplies a binary number by 2; The decimal number `42` as 8-bit binary is `0010 1010` when you shift left you get `0101 0100` which is the decimal number `84`. This trick works for any decimal number, represented in binary.
+"Shift Left" is a term used in computer science: it is a bitwise operation. Shifting all bits in a binary number to the left multiplies the decimal number by 2.
 
-The term "Shift Left" is used in the context of software development to indicate _a clever hack_, where you do an adorable simple trick in _one_ context to gain a huge impact in _another_. It's next level from "low hanging fruits" - it so effectful, that it's almost like magic or a trick.
+:::fact[Bitwise shift-left operation | right | small ]
+The decimal number `42` as 8-bit binary is `0010 1010`; when you shift left, you get `0101 0100`, which is the decimal number `84`. This trick works for an unsigned binary integer where no bits are shifted out. So it works in _some_ cases — not all.
+:::
 
-In moderne age, the term "Shift Left" is adopted by quality workers as Quality Assurance term — Software Developers included — to indicate that the verification and validation process should "Shift Left". While it is still a reference to a smart hack, and the almost magical impact in quality you get from testing early rather than late. In this context it's also a reference to the general reading directions - things start at the left and progresses to the right.
+For this reason, "Shift Left" is also used in software development to mean _a clever hack_ — a simple move in one context that creates a huge impact in another. It is a step beyond "low-hanging fruit": it is so effective that it feels almost magical.
 
-So "Shift Left" has become a synonym with testing sooner in the process, closers to the source, more to the left; Building quality in — as opposed to glueing it on. It has become a mantra and a sign of recognition by a Continuous Delivery process and the Developer Experience (DevX) movement.
+In modern software development, the term "Shift Left" has been adopted by quality workers, including software developers, to indicate that verification and validation should happen earlier in the process, further to the left, closer to the source, building quality in rather than gluing it on afterward. Software developers love these double meanings. It is still an impactful _clever hack_, and it also speaks to the direction of reading: things start on the left and move to the right.
+
+"Shift Left" has become a mantra, and a sign of recognition within Continuous Delivery and the Developer Experience (DevX) movement.
 
 ## Developer Experience (DevX)
 
-A new term and movement grew out of the DevOps paradigm in the last decade or so; Developer Experience (DevX).
+A new term and movement grew out of the DevOps paradigm in the last decade or so: Developer Experience (DevX).
 
-Inspired by the User Experience (UX) and Customer Experience (CX) disciplines focusing on answering the question:
-
-> _— How does it fee to be a user of this product?_<br/>
-> _— How does it feel to be a customer of this product?_
-
-The DevX movement focuses on answering the question:
+It asks:
 
 > _— How does it feel to be a developer of this product?_
 
-DevX insists on a socio-technological agenda. It includes focus on the team leadership, the tool stack, the CI/CD pipeline, the development environment, the code review process, the overall culture of the development team. And advocates a meritocratic approach to recognizing and rewarding developers insights and contributions — as opposed to constantly being suppressed by short sighted commercial interests or ignorant manageres. It is about creating an environment where developers can thrive, be creative, and produce high-quality software.
+:::fact[Experience disciplines | right | small]
+Developer Experience (DevX) takes inspiration from User Experience (UX) and Customer Experience (CX).
 
-In the DevOps and Continuous Delivery (CD) context, the annual State of DevOps reports from DORA (DevOps Research and Assessment) has — again and again — provided the insights, that optimizing DevX is the most impactful, and almost magical way, to improve software development processes — including quality, productivity and as a consequence hereof also revenue.
+UX asks how it feels to use a product; CX asks how it feels to be its customer.
+
+DevX asks how it feels to build it.
+:::
+
+DevX insists on a holistic socio-technological agenda. It embraces everything that affects the developer's experience, including team leadership, the tool stack, the CI/CD pipeline, the development environment, the code review process, and the overall culture of the development team. It advocates recognizing and rewarding developers' insights and contributions, rather than constantly suppressing them through short-sighted commercial interests or ignorant management. It is about creating an environment where developers can thrive, be creative, and produce high-quality software.
+
+In the DevOps and Continuous Delivery (CD) context, the annual State of DevOps reports from DORA (DevOps Research and Assessment) have repeatedly linked healthy development practices and developer-friendly platforms with stronger delivery, reliability, and organisational performance.
+
+So, optimizing DevX may be one of the most impactful — and almost magical — ways to improve software development processes, including quality, productivity — and as a consequence — potentially also revenue.
 
 ## Don't be evil
 
-There is a widespread trend in digital online presence that we should all be aware of the US techbros' evil intentions. This worry seem to concentrate mostly on the negative impact of social medias and messaging platforms.
+There is a widespread concern about the concentration of power in digital platforms and the commercial logic behind them. This concern seems to focus mostly on the negative impact of social media and messaging platforms.
 
-But this worry is also relevant to the software development stack.
+But it is also relevant to the software development stack.
 
-However the concern is often overlooked by civilians (non-developers). But as AI is eating the world. A world that is already gulped by software, it turns out that the software development stack is potentially evil too.
+The concern is often overlooked by civilians (non-developers), yet as AI becomes more deeply embedded in society and software continues to shape our lives, it turns out that the software development stack is potentially evil too.
 
 - Cunning vendor lock-ins followed by spiralling costs.
-- US based cloud providers that can not escape the dreaded US SCA and CLOUD acts, and consequently may be forced to allow US intelligence to secretly access data — even on non-US servers.
-- Proprietary platforms, that sniffs your data and code, either for up selling or for AI training purposes.
-- Proprietary protocols that you cannot inspect, extend or improve, and which you must pay for to use programmatically (APIs, SDKs)
+- U.S.-registered cloud providers that may remain subject to U.S. legal demands under the SCA and CLOUD Act, which can in some circumstances require disclosure of data even when it is stored outside the U.S.
+- Proprietary platforms that sniff your data and code, either for upselling or AI training purposes.
+- Proprietary protocols that you cannot inspect, extend, or improve, and which you must pay to use programmatically (APIs, SDKs).
 
-While the evil social media platforms are well debated and discussed, the evilness of the software development stack is often overlooked. But this is really the true battle-field for independence, since our digital lives are rooted in software. It's an attack on the very foundation of our digital autonomy.
+While the evilness of social media platforms is widely debated, the ethical problems of the software development stack are often overlooked. But this is really the true battlefield for independence, since our digital lives are rooted in software. It is an attack on the very foundation of our digital autonomy.
 
 ## Software is born free — and everywhere it is in chains
 
 > _"Man is born free, and everywhere he is in chains."_
 
-The quote is from Jean-Jacques Rousseau's book "The Social Contract" (1762). Rousseau's point being that humans are naturally independent and born without restrictions, but civilization places them under unjust rules, laws, and social controls.
+The quote is from Jean-Jacques Rousseau's book _The Social Contract_ (1762). Rousseau's point is that humans are naturally independent and born without restrictions, yet civilization places them under unjust laws, rules, and social controls.
 
-The field of "Participatory Design" has been around for decades, rooted in Scandinavian traditions, and it is a field that advocates for the users of software to be involved in the design of the software they use. The claim is that software exist for the purpose of the users. It should serve humanity. Same basic pledge as academic research and knowledge. Participatory Designs speaks directly to the FOSS tradition.
-
-FOSS=Free and Open Source Software.
+The field of "Participatory Design" has been around for decades, rooted in Scandinavian traditions. It advocates for the users of software to be involved in the design of the software they use. The claim is that software exists for the purpose of the users. It should serve humanity. The same basic pledge underpins academic research and knowledge. Participatory Design speaks directly to the Open Source tradition.
 
 Imagine a world without:
 
 - Linux
-- http/tcp
+- HTTP/TCP
 - HTML
 - SMTP
 - Git
 - Apache Web Server
 - PostgreSQL, MySQL
-- Python, Rust, Go, PhP, C, C++, JavaScript, TypeScript, Java.
+- Python, Rust, Go, PHP, C, C++, JavaScript, TypeScript, Java
 - React, Astro, Node.js
 
-As some one who has spent all my professional life in software development, I often wonder if the world even knows the importance and impact that FOSS has on our lives.
+The list contains a mix of software, standards, protocols, and languages, but they all have one thing in common: they are part of a free and open digital commons. They are the invisible infrastructure of our digital lives.
 
-Every single one of these technologies are Free and Open Source Software (FOSS). They are given to humanity at no cost. On terms similar to how academic knowledge is shared. The FOSS are stewarded by reliable not-for-profit software foundations that guarantee their continued development and maintenance and who guard their continued independence with the same fierce dedication as a lioness protects her newborn pups.
+As someone who has spent my professional life in software development, I often wonder whether the world understands the importance and impact that FOSS has on our lives.
 
-The list is endless, the impact of FOSS is everywhere. And taking away less than a handful of these technologies would make the entire world collapse. The internet would stop working, and the world would instantly be thrown back to the 1980s.
+These technologies are all maintained and shared on terms similar to academic knowledge. Much of the FOSS and digital commons ecosystem is stewarded by not-for-profit foundations and communities that provide continuity, maintenance, and independence.
 
-They are all part of a circular economy that decouples activity from growth and exploitation, and therefore they are nowhere present or visible in any GDP statistics. They are the silent invisible infrastructure of our digital lives.
+The list is endless, and the impact of FOSS and digital commons is everywhere. Taking away even a handful of these technologies would disable large parts of the modern internet and many of the services built on top of it. It would throw the world back to the early 1990s, before the FOSS breakthrough and the subsequent rise of the LAMP stack revolutionised our world.
+
+:::fact[The LAMP stack | right | small]
+**L**inux (OS 1991)<br/>**A**pache (web server 1995)<br/>**M**ySQL (database 1995)<br/>**P**HP (server-side scripting 1995)
+
+Four technologies, their first letters form the word _LAMP_. Internet historians often refer to the LAMP stack (or some variation of it) as a key enabler of the modern web, as it provided a free and open-source platform for building dynamic websites and web applications.
+
+LAMP made dynamic web development accessible to far more people by providing a widely adopted, low-cost, open-source stack.
+:::
+
+These technologies are part of a broader digital commons and a circular economy that seeks to decouple activity from extraction, waste, and exploitation. Much of their value is created through volunteer work, donations, and freely shared knowledge; it is therefore poorly captured by GDP, a metric built mainly to measure market activity and growth. They are the silent, invisible infrastructure of our digital lives.
 
 Let me paraphrase Rousseau's quote in the context of software:
 
 > _"Software is born free, and everywhere it is in chains."_
 
-There is barely a single piece of software in the entire world that does not have a FOSS dependency. Facebook, Microsoft Office and any LLM that you can think of included.
+There is barely a major software system in the world untouched by the free and open digital commons — Facebook, Microsoft Office, and the LLMs you can think of included.
 
-But software is chained. Despite the importance of FOSS the vast majority of all software in the entire world is proprietary, and exists for the sole purpose of being _someone's_ mean to profit and exploitation.
+But software is chained. Despite the importance of FOSS, the majority of software in the world is proprietary, and ultimately serves someone’s means to profit and exploit.
 
 ## The rubric of evilness
 
+:::fact[Rubric | right | small]
 The word _rubric_ originates from the Latin word _rubrica_, meaning "red ochre" or "red earth." In medieval times, it referred to the red ink used by scribes and monks to highlight liturgical directions, headings, or important rules in religious manuscripts. Over time, the term shifted from referring to the literal red text to the actual rules and guidelines themselves.
 
 In academic and assessment contexts, a _rubric_ is a structured set of criteria for making judgments consistently.
+:::
 
-The benfit of a rubric is that it provides a clear framework for evaluating complex concepts, ensuring that assessments are fair, transparent, and reproducible. It allows for nuanced evaluations by breaking down broad questions into specific criteria.
+The benefit of a rubric is that it provides a clear framework for evaluating complex concepts, ensuring that assessments are fair, transparent, and reproducible. It allows for nuanced evaluations by breaking down broad questions into specific criteria.
 
-Yesterday, together with Claude Sonnet 🤖, I generated a rubric for evaluating the "evilness" of software tools, platforms, frameworks, protocols etc. This rubric is designed to help developers and organizations assess the ethical implications of the tools they use in their development stack. In short to measure the evilness of the tool.
+Yesterday, together with Claude Sonnet 🤖, I generated a rubric for evaluating the "evilness" of software tools, platforms, frameworks, protocols, and so on. The rubric is designed to help developers and organizations assess the ethical implications of the tools they use in their development stack — in short, to measure how evil a tool might be.
 
 The rubric uses _dimensions_ and _weights_ to quantify the evilness of a software tool. Each dimension represents a specific aspect of ethical concern, and the weights reflect the relative importance of each dimension in the overall assessment.
 
@@ -119,9 +142,9 @@ The dimensions include:
 
 Some dimensions were added by Claude and some by me.
 
-The rubric is designed as an AI skill, you can see it at [lakruzz/evils](https://github.com/lakruzz/evils), feel free to fork it at do with it what you will.
+The rubric is designed as an AI skill; you can see it at [lakruzz/evils](https://github.com/lakruzz/evils). Feel free to fork it and do with it what you will.
 
-I generated a list of tools and platforms that was basically ...all over the place, but the clever thing about the rubric is really that it allows me to systematically evaluate each one based on the defined dimensions, despite the fact that they may have different characteristics.
+I generated a list of tools and platforms that was basically all over the place, but the clever thing about the rubric is that it allows me to systematically evaluate each one based on the defined dimensions, even when they have very different characteristics.
 
 My prompt was simply:
 
@@ -130,49 +153,65 @@ My prompt was simply:
 Use the skill on the list in techstack.md
 ```
 
-If you are curious, have a look at the [`digital-autonomy-assessment-full.md`](https://github.com/lakruzz/evils/blob/main/reports/digital-autonomy-assessment-full.md) **Note: The higher the score the more evil**
+If you are curious, have a look at the [`digital-autonomy-assessment-full.md`](https://github.com/lakruzz/evils/blob/main/reports/digital-autonomy-assessment-full.md). **Note: the higher the score, the more evil**.
 
-So in one end 😈 Meta scores 90 on both Facebook and Instagram, and in the other 😇 Forgejo, the selfhosted FOSS alternative to GitHub, scores 1.5.
+So, at one end 😈, Meta scores 90+ on both Facebook and Instagram, and at the other 😇, Forgejo, the self-hosted FOSS alternative to GitHub, scores 1.5.
 
 ## The Real Utopia
 
-If Utopia is an imaginary place where software is once again free, then the _real Utopia_ is a place that can actually be implemented - not a dream! But also not a place you can buy a subscription to today. It's basically a D.I.Y. place; You will have to stitch it together yourself, or jointly with others.
+If Utopia is an imaginary place where software is once again free, then the _real Utopia_ is a place that can actually be implemented — not a dream, but also not something you can buy a subscription to today. It is basically a D.I.Y. place: you have to stitch it together yourself, or jointly with others.
 
 Let's go!
 
-In Mind over Machine (MoM) we are setting out to build this real Utopia. SImply to prove that it can be done!
-It will be a build-in-public process, with install parties, hackathons, and other community events.
+In Mind over Machine (MoM), we are setting out to build this real Utopia — to prove that there exists a road to a truly free and open software ecosystem. But we also aim to prove that the feasibility of such a system is achievable. It will be a build-in-public process, with install parties, hackathons, and other community events.
 
-We even intend to spin up actual servers, located geographically in Denmark, and host the running instances of all this FOSS software.
+We even intend to spin up actual infrastructure, on servers geographically located in Denmark, and host the running instances of all this FOSS software.
 
-If you want to be part of this exploratory journey, you should [join our _MoM FOSS Alliance_](/membership) As we progress we will host FOSS projects that we steward ourselves, and FOSS inistives run by _MoM FOSS Alliance_ members,
+If you want to be part of this exploratory journey, you should [join our _MoM FOSS Alliance_](/membership). As we progress, we will host FOSS projects that we steward ourselves, and FOSS initiatives run by _MoM FOSS Alliance_ members.
 
 ## Under 30
 
-Our initial plan is to settle on tools with an evil score under 30 - this is what we imagines:
+Our initial plan is to settle on tools with an evil score under 30. Some of them are genuine FOSS projects and others are
+tools with open-source cores or self-hostable alternatives.
 
-- **VS Chromium** IDE; While the VS Code is open source, the Microsoft branded version is not. The Chromium version is fully FOSS and can be used without any Microsoft telemetry.
-- **Forgejo** Git hosting; A self-hosted FOSS alternative to GitHub, allowing developers to maintain control over their code repositories, issues, projects releases etc.
-- **Woodpecker CI** Continuous Integration; A self-hosted, open-source alternative to GitHub Actions, enabling developers to automate their build, test, and deployment processes.
-- **Ollama, vLLm, LocalAI** Self-hosted LLM's on our infrastructure to connect to both from our IDEs and our pipeline runners; We will host and run LLM's on our own infrastructure, allowing developers to use them without relying on proprietary cloud providers or exposing their data to third parties.
-- **Matrix** Team Communication; A decentralized, open standard for messaging and collaboration)
-- **Element X, FluffyChat** (Populous Matrix clients; FOSS clients for the Matrix protocol, providing secure and private E2EE communication.
-- **DevBox, DevEnv, Nix, Dagger.io, DevContainers, Docker, Podman, Kubernetes** Containerized Development Environment; A collection of FOSS tools for creating isolated and reproducible development environments that are detached from any proprietary cloud provider, allowing developers to maintain control over their development stack and run the exact same verification and validation in their local environments as the will later execute in the CI/CD pipeline.
-- **Mastodon/ActivityPub** Social Media and community building; A decentralized, open-source social networking platform — The Fediverse — that allows users to create and share content without being subject to the control of a single corporation or platform.
-- **POSSE** (Publish on your own Site, syndicate elsewhere); A strategy based on always only publishing content on your own website and then syndicating it to other platforms, giving you control over your content and audience. All documentation, blog posts, user manual, User voice channels, and other content will be published on your websites we host ourselves first, and only _then_ shared (syndicated) to social media platforms like Mastodon. With this approach, we still maintain the option to syndicate to other platforms with evil scores over 30.
+This is what we imagine:
 
-In all humbleness - that's the plan!
+- **VSCodium** IDE; while VS Code is open source, the Microsoft-branded version is not. The open-source build is fully FOSS and can be used without Microsoft telemetry.
+- **Forgejo** Git hosting; a self-hosted FOSS alternative to GitHub, allowing developers to maintain control over their code repositories, issues, project releases, and more.
+- **Woodpecker CI** Continuous Integration; a self-hosted, open-source alternative to GitHub Actions, enabling developers to automate their build, test, and deployment processes.
+- **Ollama, vLLM, LocalAI** Self-hosted LLMs on our infrastructure, connected to both our IDEs and our pipeline runners; we will host and run LLMs on our own infrastructure, allowing developers to use them without relying on proprietary cloud providers or exposing their data to third parties.
+- **Matrix** Team Communication; a decentralized, open standard for messaging and collaboration.
+- **Element X, FluffyChat** Populous Matrix clients; FOSS clients for the Matrix protocol, providing secure and private E2EE communication.
+- **DevBox, DevEnv, Nix, Dagger.io, DevContainers, Docker, Podman, Kubernetes** Containerized Development Environment; a collection of FOSS tools for creating isolated and reproducible development environments detached from any proprietary cloud provider, allowing developers to maintain control over their development stack and run the exact same verification and validation locally as they later execute in the CI/CD pipeline.
+- **Mastodon/ActivityPub** Social Media and community building; a decentralized, open-source social networking platform — the Fediverse — that allows users to create and share content without being subject to the control of a single corporation or platform.
+- **POSSE** (Publish on your own site, syndicate elsewhere); a strategy based on always publishing content on your own website first and then syndicating it to other platforms, giving you control over your content and audience. All documentation, blog posts, user manuals, user voice channels, and other content will be published on websites we host ourselves first, and only _then_ shared (syndicated) to social media platforms like Mastodon. With this approach, we still maintain the option to syndicate to other platforms with evil scores over 30.
 
-As always we will work by a MVP (Minimum Viable Product) approach, and we may start with a small subset of the tools and use publicly and non-commercially available resources such as `matrix.to`, `matrix.org`, `codeberg.org`, `mastodon.social` etc.
+In all humility — that's the plan!
+
+As always, we will work by an MVP (Minimum Viable Product) approach, and we may start with a small subset of the tools and use publicly and non-commercially available resources such as `matrix.to`, `matrix.org`, `codeberg.org`, and `mastodon.social`.
 
 We sincerely hope that this will inspire other developers and organizations to adopt similar practices, and to contribute to the development of a more ethical and sustainable software ecosystem.
 
-As a company, when you join our _MoM FOSS Alliance_ you will be able to get a first hand access to the latest developments and opportunities and to participate in shaping the future of software development in a more ethical and regenerative direction. You will get complementary advise and early access to test and use the infrastructure we are building.
+As a company, when you join our _MoM FOSS Alliance_, you will gain firsthand access to the latest developments and opportunities, and participate in shaping the future of software development in a more ethical and regenerative direction. You will get complimentary advice and early access to test and use the infrastructure we are building.
 
-Using the infrastructure for your FOSS projects will be included in the _MoM FOSS Alliance_ membership. If you want to run you propiotary software projects on a similar infrastructure, we will be happy to provide that as well — only with the caveat that you will have to pay for it, only FOSS projects will be included in the membership.
+:::fact[New to Matrix? | right | small]
+Matrix is like Slack or Discord, but federated like email and end-to-end encrypted like Signal: You can choose your own server and client while still talking to everyone else.
 
-**We will need help**, so if you are a developer, designer, computer science student or just someone who is passionate about software freedom and ethical development practices, we encourage you to get involved. Together, we can create a software ecosystem that prioritizes user autonomy, privacy, and ethical considerations.
+**Join us**
 
-Chat with us on Matrix:
+1. Go to our space: [#mindovermachine\:matrix.org](https://matrix.to/#/#mindovermachine:matrix.org).
+2. Create an account on a public homeserver such as `matrix.org`, or sign in with an existing account.
+3. Use a web client such as [element.io](https://app.element.io) or install a client such as FluffyChat or Element X, then say hi.
 
-https://matrix.to/#/#mindovermachine:matrix.org
+The space link is an open invite; you do not need a MoM account to join.
+:::
+
+Using the infrastructure for your FOSS projects will be included in the _MoM FOSS Alliance_ membership. If you want to run your proprietary software projects on similar infrastructure, we will be happy to provide that as well — with the caveat that you will have to pay for it. Only FOSS projects will be included in the membership.
+
+**We will need help**, so if you are a developer, designer, computer science student, or just someone who is passionate about software freedom and ethical development practices, we encourage you to get involved. Together, we can create a software ecosystem that prioritizes user autonomy, privacy, and ethical considerations.
+
+## Chat with us on Matrix:
+
+[#mindovermachine\:matrix.org](https://matrix.to/#/#mindovermachine:matrix.org)
+
+---

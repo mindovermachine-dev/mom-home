@@ -1,0 +1,116 @@
+$fact-margin-y: 2rem;
+$fact-gap: 1.5rem;
+$size-small: 24rem;
+$size-medium: 32rem;
+$size-large: 40rem;
+$size-full: 100%;
+
+@mixin fact-size-modifiers {
+  &--size-small {
+    width: min(100%, $size-small);
+  }
+
+  &--size-medium {
+    width: min(100%, $size-medium);
+  }
+
+  &--size-large {
+    width: min(100%, $size-large);
+  }
+
+  &--size-full {
+    width: $size-full;
+  }
+}
+
+.mom-fact,
+.callout.callout--fact {
+  position: relative;
+  margin-top: $fact-margin-y;
+  margin-bottom: $fact-margin-y;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgb(0 0 0 / 0.2);
+  border-left: 0.35rem solid var(--mom-ether-blue);
+  border-radius: 0.9rem;
+  background: rgba(102, 155, 188, 0.08);
+  box-shadow: 0 10px 28px rgb(15 23 42 / 0.06);
+  color: var(--aw-color-text-default);
+  font-size: 0.95rem;
+
+  &.mom-fact--size-small,
+  &.mom-fact--size-medium,
+  &.mom-fact--size-large,
+  &.mom-fact--size-full {
+    width: min(100%, 100%);
+  }
+
+  &.mom-fact--size-small {
+    width: min(100%, $size-small);
+  }
+
+  &.mom-fact--size-medium {
+    width: min(100%, $size-medium);
+  }
+
+  &.mom-fact--size-large {
+    width: min(100%, $size-large);
+  }
+
+  &.mom-fact--size-full {
+    width: 100%;
+  }
+
+  &.mom-fact--position-left {
+    float: left;
+    clear: left;
+    margin-top: 0;
+    margin-right: $fact-gap;
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  &.mom-fact--position-right {
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-left: $fact-gap;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  &.mom-fact--position-center {
+    clear: both;
+    margin-top: $fact-margin-y;
+    margin-bottom: $fact-margin-y;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.mom-fact__title,
+.callout.callout--fact > p:first-child {
+  margin: 0 0 0.75rem;
+  font-family: var(--aw-font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aw-color-text-heading);
+}
+
+.callout.callout--fact > :not(:first-child) > :first-child,
+.mom-fact__body > :first-child,
+.callout.callout--fact > :not(:first-child):first-child {
+  margin-top: 0;
+}
+
+.mom-fact__body > :last-child,
+.callout.callout--fact > :last-child {
+  margin-bottom: 0;
+}
+
+.dark .mom-fact,
+.dark .callout.callout--fact {
+  border-color: rgb(148 163 184 / 0.3);
+  background: rgba(102, 155, 188, 0.12);
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.15);
+}
