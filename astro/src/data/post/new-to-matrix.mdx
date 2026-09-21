@@ -1,0 +1,104 @@
+---
+publishDate: 2026-09-21T00:00:00Z
+title: 'New to Matrix?'
+excerpt: Matrix is a decentralized communication protocol that supports chats, groups and video calls with anyone, anywhere, in a network of federated servers using a client of your own choice.
+image: ~/assets/images/posts/matrix/matrix.webp
+category: Briefs
+tags:
+  - Infrastructure
+  - Community
+  - Matrix
+---
+
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Steps from '~/components/widgets/Steps.astro';
+
+## What is Matrix?
+
+### A Protocol
+
+:::fact[The Easy Road | right | small ]
+
+If you want to get started quickly, follow these steps to join the Mind Over Machine community. You can come back to the background information below later.
+
+<Steps
+  items={[
+    {
+      title: '1: Install Element',
+      description: 'A Matrix client that works on all platforms',
+      callToAction: {
+        text: 'Download Element client',
+        href: 'https://element.io/en/download',
+        target: '_blank',
+      },
+      icon: 'tabler:calendar-user',
+    },
+    {
+      title: '2: Open Element and create an account',
+      description: 'Create an account on <code>matrix.org</code>',
+      icon: 'tabler:calendar-user',
+    },
+    {
+      title: '3: Join the community',
+      description: 'Join the Mind Over Machine <em>space</em>, then say "hi" in the General <em>room</em>.',
+      callToAction: {
+        text: '<code>#mindovermachine:<br/>matrix.org</code>',
+        href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+        target: '_blank',
+      },
+      icon: 'tabler:calendar-user',
+    },
+  ]}
+/>
+:::
+
+Matrix is an open protocol for real-time communication. It is not a product or a server itself. Like email, it connects services run by different providers, but Matrix is designed for chats, private messages, groups, and voice and video calls. Matrix supports end-to-end encryption (E2EE) in supported conversations, and clients can help you verify the devices you communicate with.
+
+### Homeservers projects
+
+To make use of Matrix, you need a homeserver implementation. Several FOSS projects implement the Matrix homeserver specification; _Synapse_, _Dendrite_, and _Conduit_ are some of the best-known examples. Just as email services such as Outlook, Gmail, and Proton Mail can exchange messages, homeservers using different implementations can communicate with each other.
+
+### The service providers
+
+You need an actual server on the internet that runs a Matrix homeserver implementation. Several service providers run Matrix _homeservers_ for you, and you can choose one that fits your needs. [matrix.org](https://matrix.org) and [disroot.org](https://disroot.org) are two examples. You can also host your own homeserver if you want more control over your data and administration.
+
+### The clients
+
+With the protocol, homeserver software, and service provider in place, you have the infrastructure — _like the roads_. You also need a client to connect to that infrastructure — _like the car_. Some popular clients are Element and FluffyChat, but there are many others. Clients can be web-based, desktop-based, or mobile apps. Just as with email, you can choose the client you like best, independently of the homeserver underneath.
+
+## Why is this good?
+
+- **Federated**: Matrix can connect homeservers run by different providers, so the network is not controlled by one central service. Individual providers can still have outages, policies, and moderation rules.
+- **Choice**: You can choose among many homeservers and clients, and you can host your own homeserver.
+- **Encryption**: Matrix supports end-to-end encryption (E2EE) in supported conversations. Device verification helps you confirm that you are communicating with the intended devices.
+- **Open standard**: The Matrix protocol is part of the digital commons and is stewarded by the _Matrix.org Foundation_, a non-profit organization that acts as a neutral custodian for the standard.
+- **Open source**: There are many FOSS implementations of the Matrix protocol on both the server and client sides. Their licences and features can differ, so check the project details when that matters to you.
+
+## Why is this bad?
+
+Well — it's not bad! But it _is_ different. And while the protocol and backend are invisible to you and out of your hands, **you will still have to choose** a service provider and a client. And sometimes choices make us uneasy; _"What if I choose the wrong one?"_.
+
+## Choices
+
+Go to the [Try Matrix](https://matrix.org/try-matrix/) guide on `matrix.org` and follow the instructions. You will be prompted to choose a client.
+
+Element has apps for major platforms plus a web client. It will suggest creating an account on `matrix.org`.
+
+<CallToAction
+  actions={[
+    {
+      variant: 'secondary',
+      text: 'Join the Mind Over Machine space on Matrix',
+      href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+      target: '_blank',
+    },
+    {
+      variant: 'secondary',
+      text: "Join MoM's General room on Matrix",
+      href: 'https://matrix.to/#/#mom-general:matrix.org',
+      target: '_blank',
+    },
+  ]}
+  title="Meet the Mind Over Machine community on Matrix"
+  subtitle="When you have chosen your client and set up your account, come and meet us on Matrix!"
+/>
