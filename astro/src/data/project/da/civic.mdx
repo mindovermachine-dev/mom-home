@@ -1,0 +1,95 @@
+---
+publishDate: 2026-09-22T00:00:00Z
+title: Civic
+excerpt: En europæisk FOSS-infrastruktur, hvor mennesker kan kommunikere, deltage og få adgang til betroede tjenester uden at blive gjort til produkter af den software, de bruger.
+draft: false
+project:
+  status: explore
+  tags:
+    - FOSS
+    - Digital suverænitet
+    - Europæisk infrastruktur
+    - Matrix
+    - ActivityPub
+    - Interoperabilitet
+  references:
+    - name: 'Digital suverænitet i den offentlige sektor'
+      url: 'https://digst.dk/digital-transformation/digital-suveraenitet/'
+    - name: 'MoM FOSS Development Stack'
+      url: /da/projects/mom-foss-dev-stack/
+    - name: 'Shift-left: Tag kontrol over din udviklingsstak'
+      url: /da/writings/shift-left/
+  participants:
+    leads:
+      - lakruzz
+---
+
+## Problemet
+
+Software skal tjene mennesker. Alt for ofte sker det modsatte: Mennesker bliver gjort til profiler, der skal målrettes, kunder, der skal fastholdes, eller konti, der skal flyttes mellem adskilte tjenester.
+
+Hverdagen er fuld af små eksempler. En borger har én indbakke til banken, en anden til en forening og en tredje til et forsikringsselskab. Kommunikationen med det offentlige foregår i Digital Post eller e-Boks, dertil kommer Aula, hvis man er forælder, og måske et læringssystem, hvis man er studerende. En social platform beslutter, hvad der er værd at se. En tjeneste beder om flere personoplysninger, end opgaven kræver. En organisation eller virksomhed bygger endnu en isoleret, GDPR-kompatibel beskedboks, fordi der ikke findes et fælles alternativ.
+
+Resultatet er en digital offentlighed, der formes af kommercielle og organisatoriske grænser i stedet for af de mennesker, der skal leve med den. Europa har brug for mere end endnu en app. Vi har brug for åben infrastruktur, der giver borgerne reelle valgmuligheder og gør det muligt for institutioner at levere tjenester uden at låse alle fast til én leverandør.
+
+## Løsningen
+
+Civic er en foreslået paneuropæisk digital infrastruktur, der sætter borgeren i centrum og bygger på principper fra participatory design. Det er et fælles univers af servere og klienter, bygget på åbne protokoller som Matrix og ActivityPub, hvor mennesker og institutioner kan kommunikere på tværs af organisatoriske og nationale grænser uden at skulle tilslutte sig den samme kommercielle platform.
+
+**Civic er fødereret fra grunden.** Det er et netværk af uafhængigt drevne servere, der kommunikerer gennem åbne protokoller, ligesom Mastodon, Matrix og e-mail. Der findes ingen enkelt Civic-server, database eller organisation, som skal hoste alle borgere, opbevare alle beskeder eller bestemme, hvad hele netværket må gøre. En kommune, et universitet eller en nation kan drive sin egen server og stadig kommunikere med mennesker på andre Civic-servere.
+
+Det er grundlæggende anderledes end en centralt drevet tjeneste som DigitalPost, Aula, Signal eller Instagram. Tjenesterne har forskellige ejerskabsmodeller og formål, men deres brugere er i sidste ende afhængige af én operatørs infrastruktur, regler, tilgængelighed og tekniske beslutninger. Civic skal fortsat være nyttigt, selv når leverandørerne er forskellige, og gøre det muligt for mennesker og institutioner at skifte leverandør uden at forlade det større netværk.
+
+Idéen er bevidst delt i tre dele:
+
+- **En minimal kerne:** FOSS-infrastruktur til identitet, validering, beskeder og åbne grænseflader. Kernen har ikke én obligatorisk brugergrænseflade og kan understøtte europæiske identitetsstandarder som EU's digitale identitetstegnebog.
+- **Neutral drift:** Uafhængige servere drevet af kommuner, stater, universiteter eller betroede non-profit-udbydere. En person kan bruge `civic.eu`, `civic.kk.dk`, `civic.berlin.de` eller en anden udbyder og stadig være en del af det samme fødererede netværk.
+- **Et modulært økosystem:** Profiler, opslag, artikler, grupper, kommentarer og beskeder leveret som stabile, genanvendelige funktioner. Organisationer, fonde, virksomheder og enkeltpersoner kan bygge udvidelser og klienter uden at skulle genskabe den underliggende infrastruktur.
+
+### Byg videre på det, der allerede virker
+
+Civic behøver ikke bygge et nyt netværk eller en ny platform fra bunden. En stor del af kernefunktionaliteten er allerede fuldt understøttet af Matrix- og ActivityPub-økosystemerne: fødererede servere, identiteter, rum, samtaler, opslag, følgeskaber, moderation og klienter, der fungerer på tværs af uafhængigt drevne tjenester. Føderation er ikke en valgfri installationsmulighed eller en senere udvidelse; det er den grundlæggende arkitektur, der gør Civic til et netværk i stedet for én samlet platform.
+
+Der findes modne FOSS-projekter til homeservere og klienter, som gør en tidlig MVP realistisk. Matrix-projekter som Synapse, Dendrite og Conduit kan levere et fundament for homeservere, mens klienter som Element, FluffyChat og Cinny kan levere brugeroplevelser. ActivityPub-projekter som Mastodon, Lemmy og PeerTube viser forskellige former for fødereret publicering og deltagelse. Civic kan begynde med at sammensætte og afprøve disse byggesten og derefter bidrage med det, der mangler: en sammenhængende borgerrettet oplevelse, europæisk identitetsintegration, fælles udvidelsespunkter, migrationsveje og langsigtet FOSS-forvaltning.
+
+Målet er derfor ikke at erstatte et sundt økosystem med endnu en monolit. Målet er at gøre de eksisterende åbne teknologier lettere at bruge sammen, drive ansvarligt og udvide over tid.
+
+Systemet skal møde mennesker, hvor de er. Det kan tilbyde et velkendt feed med personer, organisationer og emner, som de selv vælger at følge, samtidig med at det understøtter sikre samtaler, lokale grupper, offentlige artikler og verificeret kommunikation fra institutioner. Eksisterende systemer som e-mail, kalendere, Aula eller banktjenester behøver ikke at blive bekæmpet: Åbne _bridges_ og udvidelser kan forbinde til dem og gøre migration gradvis. Også læringsplatforme og andre undervisningssystemer kan integreres, så elever og lærere kan bruge de samme værktøjer til både formel og uformel læring.
+
+## En offentlighed, ikke en opmærksomhedsmaskine
+
+Civic er ikke tænkt som en erstatning for TikTok, Facebook, Instagram, X eller LinkedIn. De platforme er bygget til at konkurrere om opmærksomhed, og Civic er ikke. Uden en algoritme, der optimerer engagement, en influencer-økonomi eller et antal følgere at jagte, vil Civic ikke være særligt attraktivt for mennesker, hvis primære mål er at omsætte opmærksomhed til status eller indtjening. Det er en styrke, ikke en fejl.
+
+Ambitionen er en anden: at skabe en digital udgave af et fælles offentligt rum. Visionen trækker på Habermas' idé om den borgerlige offentlighed og muligheden for en samtale, der ikke dikteres af kommercielle eller bureaukratiske interesser. Samtidig tager den Foucaults kritik af idéen om en fuldstændig magtfri samtale alvorligt. Ingen samtale er uden magt. Det ansvarlige svar er at gøre magten synlig, give mennesker reel kontrol og kræve, at de, der har autoritet, tager ansvar for en meningsfuld dialog.
+
+Civic beslutter derfor ikke, hvad mennesker skal se. Der er ingen skjult algoritme, der sammensætter et feed for at maksimere tiden på platformen. Mennesker abonnerer bevidst på rum, emner, hashtags og konti, og deres klienter viser dem det, de har valgt at følge. Et fællesskab kan stadig moderere sine rum, institutioner kan publicere med en verificeret identitet, og den enkelte kan vælge de kilder og samtaler, som vedkommende har tillid til.
+
+Civic vil ikke tælle følgere eller likes som det primære mål for værdi. Et muligt eksperiment er en gennemsigtig **Civic-score**: et fællesskabsdefineret vurderingsskema, der kan beskrive, om et opslag er relevant, kildebaseret, konstruktivt eller passende for et bestemt rum. Scoren skal ikke være en universel dom, som platformen afsiger. Mennesker og fællesskaber skal kunne se, hvordan den er fremkommet, og bruge den i deres egne filtre, for eksempel: "Vis mig ikke opslag med en Civic-score under 7". Forskellige fællesskaber kan vælge forskellige vurderingskriterier, og brugerne bestemmer selv, om de vil anvende dem.
+
+En høj score giver ikke automatisk et opslag et boost. Men deltagerne vil vide, at andre bruger civic-score som filter og at deres posts har større udbredelse hvis deres civic-score er høj, og de har skrevet noget, der er relevant og passende. På den måde bliver scoren et gennemsigtigt redskab for brugerne, ikke en skjult belønning fra platformen.
+
+## Værdi
+
+Civic skal gøre digital suverænitet konkret i hverdagen. En borger kan få ét betroet sted til offentlig kommunikation, deltagelse i fællesskaber og samtaler med organisationer uden at acceptere reklamer eller afgive kontrollen over sine data som prisen for adgang. En verificeret identitet kan gøre det lettere at have tillid til, hvem der taler, mens ikke-verificerede identiteter fortsat kan være mulige, når anonymitet er vigtig.
+
+For institutioner tilbyder Civic en måde at bygge tjenester som en del af en fælles europæisk standard i stedet for at bestille endnu en isoleret monolit. Indholdet forbliver hos skaberen eller den valgte udbyder. Åbne grænseflader gør det muligt at flytte mellem udbydere, migrere fra eksisterende platforme og holde nyttige tjenester forbundne, når organisationer ændrer sig.
+
+Projektet er også en praktisk model for FOSS-forvaltning. Mind Over Machine kan forvalte den minimale kerne og dens udvidelsespunkter, mens uafhængige operatører driver tjenesterne, og et bredt økosystem bygger de oplevelser, som mennesker faktisk bruger. Denne adskillelse beskytter softwarefællesskabet mod at blive endnu en leverandør, samtidig med at infrastrukturen kan drives professionelt.
+
+## Forvaltning og fællesskab
+
+Mind Over Machine vil fungere som open source-forvalter for Civic-kernen og de projekter, der gør økosystemet anvendeligt. MoM vil vedligeholde referenceimplementeringer, dokumentation, udvidelsespunkter, sikkerhedspraksisser og en fælles køreplan, samtidig med at udviklings- og fællesskabsplatformen hostes, så bidragydere kan samarbejde åbent. Forvaltning betyder ikke, at MoM ejer eller driver alle Civic-servere centralt. Netværket forbliver fødereret, og operatørerne forbliver uafhængige.
+
+Fællesskabet omkring projektet skal bygges gennem praktisk deltagelse: hackathons, build-in-public-arrangementer, konferencer, workshops og særlige interessegrupper med fokus på områder som identitet, uddannelse, demokratisk deltagelse, tilgængelighed, sikkerhed og føderationsdrift. Aktiviteterne skaber steder, hvor mennesker kan møde teknologien ved at bruge den, forbedre den ved at arbejde på den og påvirke dens retning ved at tage ansvar for virkelige dele af systemet.
+
+MoM vil også engagere universiteter, professionshøjskoler, erhvervsakademier og andre undervisningsinstitutioner gennem et praksisfællesskab. Modellen er inspireret af Lave og Wenger's idé om legitim perifer deltagelse: Nye deltagere skal kunne begynde med meningsfulde bidrag med lav risiko og gradvist bevæge sig mod et dybere teknisk, organisatorisk og styringsmæssigt ansvar. En studerende kan begynde med at forbedre dokumentation, teste en klient eller drive en udviklingsinstans og senere bidrage med kode, designe en udvidelse eller hjælpe en anden institution med at tage platformen i brug.
+
+På den måde bliver Civic både et levende læringsmiljø og et softwareprojekt. Undervisningsinstitutioner kan bruge en virkelig paneuropæisk FOSS-infrastruktur til at øve de fire grundlæggende aktiviteter i et åbent softwarefællesskab: **studere, bruge, ændre og dele**. Studerende og undervisere lærer ikke kun om open source i teorien; de deltager i et projekt, hvis kode, infrastruktur, beslutninger og sociale praksisser kan undersøges og forbedres.
+
+Endelig vil fællesskabet udvikle og vedligeholde de driftsmæssige byggesten, der gør føderation praktisk. Det omfatter Helm charts og tilsvarende deployment-pakker, referencekonfigurationer, opgraderingsveje, overvågning, vejledning om sikkerhedskopiering og sikkerhedshærdning. En ny Civic-server skal være økonomisk overkommelig og håndterbar for en kommune, et universitet, en forening eller et fællesskab at implementere, drive, opdatere og senere flytte. Det er afgørende at sænke den driftsmæssige barriere: Føderation skaber kun reelle valgmuligheder, når mange forskellige organisationer kan blive udbydere.
+
+## Status
+
+Civic er i den undersøgende fase. Vi definerer de første anvendelsesområder, driftsmodellen og den mindste nyttige kombination af Matrix- og ActivityPub-tjenester. Et tidligt pilotprojekt kan fokusere på et afgrænset fællesskab eller en region, demonstrere den grundlæggende oplevelse og vise en troværdig vej mod en fælles europæisk infrastruktur.
+
+Den første nyttige udgave skal være beskeden og pålidelig: profiler, offentlige opslag og artikler, kommentarer, grupper samt direkte beskeder og gruppebeskeder på tværs af flere uafhængigt drevne servere. Derefter kan udvidelser tilføje specialiserede behov som institutionel kommunikation, fællesskabstjenester, professionelle profiler, migrationsværktøjer og bridges til eksisterende e-mail- og kalendersystemer.

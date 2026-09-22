@@ -1,0 +1,93 @@
+---
+publishDate: 2026-09-22T00:00:00Z
+title: Civic
+excerpt: A European FOSS infrastructure where people can communicate, participate, and access trusted services without becoming products of the software they use.
+draft: false
+project:
+  status: explore
+  tags:
+    - FOSS
+    - Digital sovereignty
+    - European infrastructure
+    - Matrix
+    - ActivityPub
+    - Interoperability
+  references:
+    - name: 'Digital sovereignty in the public sector'
+      url: 'https://digst.dk/digital-transformation/digital-suveraenitet/'
+    - name: 'MoM FOSS Development Stack'
+      url: /projects/mom-foss-dev-stack/
+    - name: 'Shift-left: Take control of your development stack'
+      url: /writings/shift-left/
+  participants:
+    leads:
+      - lakruzz
+---
+
+## The Problem
+
+Software is supposed to serve people. Too often, it does the opposite: it turns people into profiles to target, customers to retain, or accounts to move between disconnected services.
+
+Everyday life is full of small examples. A citizen has one inbox for a bank, another for an association, another for a public institution, and yet another for a school or employer. A social platform decides what is worth seeing. A service asks for more personal data than the task requires. A municipality or organisation builds another isolated, GDPR-compliant message box because there is no shared alternative.
+
+The result is a digital public sphere shaped by commercial and organisational boundaries rather than by the people who have to live with it. Europe needs more than a new app. It needs open infrastructure that gives citizens real choice and lets institutions provide services without locking everyone into a single supplier.
+
+## Solution
+
+Civic is a proposed pan-European digital infrastructure for first-class citizens. It is a shared universe of servers and clients built on open protocols such as Matrix and ActivityPub, where people and institutions can communicate across organisational and national borders without having to join the same commercial platform.
+
+**Civic is federated by design.** It is a network of independently operated servers that communicate through open protocols, much like Mastodon, Matrix, and email. There is no single Civic server, database, or organisation that has to host every citizen, store every message, or decide what the entire network can do. A municipality, university, or nation can operate its own server and still communicate with people on other Civic servers.
+
+This is fundamentally different from a centrally operated service such as DigitalPost, Aula, Signal, or Instagram. Those services may have different ownership models and purposes, but their users ultimately depend on one service operator's infrastructure, rules, availability, and technical decisions. Civic is intended to remain useful even when providers differ, and to let people and institutions change provider without leaving the wider network.
+
+The idea is deliberately split into three parts:
+
+- **A minimal core:** FOSS infrastructure for identity, validation, messaging, and open interfaces. The core has no single mandatory user interface and can support European identity standards such as the EU Digital Identity Wallet.
+- **Neutral operation:** independent servers operated by municipalities, states, universities, or trusted non-profit providers. A person might use `civic.eu`, `civic.kk.dk`, `civic.berlin.de`, or another provider while remaining part of the same federated network.
+- **A modular ecosystem:** profiles, posts, articles, groups, comments, and messages provided as stable, reusable features. Organisations, foundations, companies, and individuals can build extensions and clients without having to recreate the underlying infrastructure.
+
+### Build on What Already Works
+
+Civic does not need to build a new internet from scratch. A large majority of the core functionality is already fully supported by the Matrix and ActivityPub ecosystems: federated servers, identities, rooms, conversations, posts, follows, moderation, and clients that work across independently operated services. Federation is not an optional deployment feature or a later enhancement; it is the basic architecture that makes Civic a network rather than a single platform.
+
+There are mature FOSS homeserver projects and clients that make an early MVP realistic. Matrix projects such as Synapse, Dendrite, and Conduit can provide homeserver foundations, with clients such as Element, FluffyChat, and Cinny. ActivityPub projects such as Mastodon, Lemmy, and PeerTube demonstrate different forms of federated publishing and participation. Civic can start by composing and testing these building blocks, then contribute the missing pieces: a coherent civic experience, European identity integration, shared extension points, migration paths, and long-term FOSS stewardship.
+
+The goal is therefore not to replace a healthy ecosystem with one new monolith. It is to make the existing open technologies easier for citizens and institutions to use together, operate responsibly, and extend over time.
+
+The system should meet people where they are. It can offer a familiar feed of people, organisations, and topics they choose to follow, while also supporting secure conversations, local groups, public articles, and verified institutional communication. Existing systems such as email, calendars, Aula, or bank services do not need to be defeated: open bridges and extensions can connect to them and make migration gradual. Even LMS and other learning platforms can be integrated, so that students and teachers can use the same tools for both formal and informal learning.
+
+## A Public Sphere, Not an Attention Machine
+
+Civic is not intended to replace TikTok, Facebook, Instagram, X, or LinkedIn. Those platforms are built to compete for attention, and Civic is not. Without an engagement-optimising algorithm, influencer economy, or follower count to chase, Civic will not be especially attractive to people whose main goal is to turn attention into status or income. That is a feature, not a failure.
+
+The ambition is different: to create a digital version of a shared civic space. The vision draws on Habermas's idea of the public sphere and the possibility of a conversation not dictated by commercial or bureaucratic interests. It also takes seriously Foucault's criticism of the idea of a completely power-free conversation. No public space is without power. The responsible response is to make power visible, give people meaningful control, and require those who hold authority to take responsibility for the conditions of dialogue.
+
+Civic therefore does not decide what people should see. There is no hidden algorithm assembling a feed to maximise time on site. People subscribe deliberately to rooms, topics, hashtags, and accounts, and their clients show them what they have chosen to follow. A community can still moderate its spaces, institutions can publish with a verified identity, and individuals can choose the sources and conversations they trust.
+
+Civic will not count followers or likes as the primary measure of worth. One possible experiment is a transparent **Civic Context Score**: a community-defined rubric that can describe whether a post is relevant, sourced, constructive, or appropriate for a particular room. The score would not be a universal judgement handed down by the platform. People and communities could inspect how it was produced and use it in their own filters, for example: do not show posts with a context score below 7. Different communities could choose different rubrics, and users could always decide whether to apply them.
+
+## Value
+
+Civic aims to make digital sovereignty tangible in everyday life. A citizen could have one trusted place for public communication, community participation, and conversations with organisations, without accepting advertising or surrendering control of their data as the price of access. Verified identity could make it easier to trust who is speaking, while unverified identities could remain possible where anonymity matters.
+
+For institutions, Civic offers a way to build services as part of a shared European standard instead of commissioning another isolated monolith. Content remains with its creator or chosen provider. Open interfaces make it possible to move between providers, migrate from existing platforms, and keep useful services connected as organisations change.
+
+The project is also a practical model for FOSS stewardship. Mind Over Machine can steward the minimal core and its extension points, while independent operators run the services and a broad ecosystem builds the experiences people actually use. That separation protects the software commons from becoming another vendor while still allowing the infrastructure to be operated professionally.
+
+## Stewardship and Community
+
+Mind Over Machine will serve as an open-source steward for the Civic core and the projects that make the ecosystem usable. MoM will maintain the reference implementations, documentation, extension points, security practices, and shared roadmap, while hosting the development and community platform where contributors can collaborate in the open. Stewardship does not mean owning or centrally operating every Civic server. The network remains federated, and its operators remain independent.
+
+The community around the project will be built through practical participation: hackathons, build-in-public events, conferences, workshops, and Special Interest Groups focused on areas such as identity, education, civic participation, accessibility, security, and federation operations. These activities create places where people can meet the technology by using it, improve it by working on it, and influence its direction by taking responsibility for real parts of the system.
+
+MoM will also engage universities, vocational schools, and other teaching institutions through a Community of Practice. Inspired by Lave and Wenger's idea of legitimate peripheral participation, newcomers should be able to begin with meaningful, low-risk contributions and gradually move toward deeper technical, organisational, and governance responsibilities. A student might start by improving documentation, testing a client, or operating a development instance, then progress to contributing code, designing an extension, or helping another institution adopt the platform.
+
+This makes Civic a living learning environment as well as a software project. Teaching institutions can use a real pan-European FOSS infrastructure to practice the four basic activities of an open software commons: **study, use, modify, and share**. Students and educators are not only learning about open source in theory; they are participating in a project whose code, infrastructure, decisions, and social practices can be inspected and improved.
+
+Finally, the community will develop and maintain the operational building blocks needed to make federation practical. This includes Helm charts and comparable deployment packages, reference configurations, upgrade paths, monitoring, backup guidance, and security hardening. A new Civic server should be affordable and manageable for a municipality, university, association, or community to deploy, operate, update, and eventually move. Lowering that operational barrier is essential: federation only creates real choice when many different organisations can become providers.
+
+## Status
+
+Civic is in the exploratory phase. We are defining the first use cases, the operating model, and the smallest useful combination of Matrix and ActivityPub services. An early pilot could focus on a bounded community or region, demonstrate the core experience, and provide a credible path toward a shared European infrastructure.
+
+The first useful release should be modest and dependable: profiles, public posts and articles, comments, groups, and direct or group messaging across more than one independently operated server. From there, extensions can add specialised needs such as institutional communication, community services, professional profiles, migration tools, and bridges to existing email and calendar systems.
