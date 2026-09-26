@@ -10,7 +10,7 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
-  localeFallback?: 'da';
+  localeFallback?: 'da' | 'en';
 }
 
 const { metadata, localeFallback } = Astro.props;
@@ -18,7 +18,12 @@ const originPath = Astro.originPathname;
 const isDanishRoot = originPath === '/da' || originPath === '/da/';
 const isDanishFallbackRewrite =
   originPath.startsWith('/da/') && !Astro.url.pathname.startsWith('/da/') && !isDanishRoot;
-const showFallbackInitially = localeFallback === 'da' || isDanishFallbackRewrite;
+const fallbackLocale = localeFallback ?? (isDanishFallbackRewrite ? 'da' : undefined);
+const showFallbackInitially = fallbackLocale === 'da' || fallbackLocale === 'en';
+const fallbackText =
+  fallbackLocale === 'en'
+    ? "This page isn't yet translated to English, you see the Danish version."
+    : 'Denne side er endnu ikke oversat til dansk. Du ser den engelske version.';
 ---
 
 <Layout metadata={metadata}>
@@ -34,7 +39,7 @@ const showFallbackInitially = localeFallback === 'da' || isDanishFallbackRewrite
     const updateLocaleFallbackBanner = () => {
       const fallbackBanner = document.getElementById('locale-fallback-banner');
       const initialLocaleFallback = fallbackBanner?.getAttribute('data-initial-locale-fallback') ?? '';
-      const showFallback = initialLocaleFallback === 'da';
+      const showFallback = ['da', 'en'].includes(initialLocaleFallback);
 
       if (fallbackBanner) {
         fallbackBanner.classList.toggle('hidden', !showFallback);
@@ -48,11 +53,11 @@ const showFallbackInitially = localeFallback === 'da' || isDanishFallbackRewrite
   <main>
     <div
       id="locale-fallback-banner"
-      data-initial-locale-fallback={showFallbackInitially ? 'da' : ''}
+      data-initial-locale-fallback={fallbackLocale ?? ''}
       class:list={['mx-auto mt-8 px-6 sm:px-6 max-w-3xl', { hidden: !showFallbackInitially }]}
     >
       <p class="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        Denne side er endnu ikke oversat til dansk. Du ser den engelske version.
+        {fallbackText}
       </p>
     </div>
     <slot />

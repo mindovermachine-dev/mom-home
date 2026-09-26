@@ -225,7 +225,8 @@ export const getStaticPathsBlogList = async ({
 }: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
 
-  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+  const effectiveFallbackLocale = fallbackLocale ?? (locale === 'en' ? 'da' : undefined);
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale: effectiveFallbackLocale });
 
   return paginate(posts, {
     params: { blog: BLOG_BASE || undefined },
@@ -237,7 +238,9 @@ export const getStaticPathsBlogList = async ({
 export const getStaticPathsBlogPost = async ({ locale = 'en', fallbackLocale }: BlogPathLocaleOptions = {}) => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
 
-  return getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale }).flatMap((post) => ({
+  const effectiveFallbackLocale = fallbackLocale ?? (locale === 'en' ? 'da' : undefined);
+
+  return getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale: effectiveFallbackLocale }).flatMap((post) => ({
     params: {
       blog: post.permalink,
     },
@@ -253,7 +256,8 @@ export const getStaticPathsBlogCategory = async ({
 }: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
-  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+  const effectiveFallbackLocale = fallbackLocale ?? (locale === 'en' ? 'da' : undefined);
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale: effectiveFallbackLocale });
   const categories: Record<string, { slug: string; title: string }> = {};
   posts.map((post) => {
     if (post.category?.slug) {
@@ -281,7 +285,8 @@ export const getStaticPathsBlogTag = async ({
 }: { paginate: PaginateFunction } & BlogPathLocaleOptions) => {
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
-  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale });
+  const effectiveFallbackLocale = fallbackLocale ?? (locale === 'en' ? 'da' : undefined);
+  const posts = getLocalizedPosts(await fetchPosts(), { locale, fallbackLocale: effectiveFallbackLocale });
   const tags: Record<string, { slug: string; title: string }> = {};
   posts.map((post) => {
     if (Array.isArray(post.tags)) {
