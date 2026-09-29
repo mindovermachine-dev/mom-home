@@ -16,7 +16,7 @@ tags:
 import MomImage from '~/components/common/MomImage.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
-The EU [Cyber Resilience Act (CRA)](https://www.cyberresilienceact.eu/), changes the conversation from "best practice" to "expected practice" or even "required practice" for products with digital elements.
+The EU [Cyber Resilience Act (CRA)](https://www.cyberresilienceact.eu/) and [CRA | Updates, Compliance](https://www.european-cyber-resilience-act.com/), changes the conversation from "best practice" to "expected practice" or even "required practice" for products with digital elements.
 
 And for organizations and companies that rely on Free and Open Source Software (FOSS) in commercial products, this is not only about security engineering. It is _also_ about operating model, accountability, and the sustainability and viability of the FOSS projects they have dependencies on.
 
@@ -57,31 +57,49 @@ Most FOSS projects are not born as enterprise-ready systems. They usually start 
 
 That is a strength in early phases, but it can become fragile when the same project is used in commercial products at scale.
 
-In the future, FOSS projects like this must start scouting for _stewardship_ by a legal entity that is registered as _not-for-profit_. Until such an OSS Stewardship is established, that particular FOSS project cannot be used as a dependency in commercial products traded within the EU.
+The CRA introduces three different roles that are relevant to FOSS projects, and the commercial use of them:
 
-Under CRA pressure, organizations increasingly need to ask:
+- **"The OSS Hobbyist Developer"**, who build stuff for fun, and with no expectation of commercial use.
+- **"The Manufacturer"**, a company that produces a product with digital elements and places it on the EU market.
+- **"The "OSS Steward"**, a legal not-for-profit entity that provides sustained support for specific FOSS products and ensures those products remain viable.
 
-- Who sustains vulnerability handling over time?
-- Who maintains documentation and governance continuity?
-- Who can demonstrate viable support and stewardship posture?
+The hobbyist developers are not subject to CRA obligations. In the first draft of the CRA, there was some discussion about whether hobbyist developers should be included, but the final version of the CRA explicitly excludes them. If a manufacturer choses to use a hobbyist's code, then the manufacturer becomes entirely reliable for the entire codebase. The original developers may have ceased the project and started at universtity. They remain full relieved from any liability.
 
-This is where project viability becomes as important as source-code availability.
+But the second the hobbyist developer starts commercializing the product, either with a paid license, embedded in a commercial product or with a paid support contract, then they become a "manufacturer" and are subject to CRA obligations.
 
-## The role of the OSS Steward
+**Manufacturer responsibilities**
 
-CRA Article 3(14) defines an open-source software steward as a legal entity, other than a manufacturer, that provides sustained support for specific FOSS products intended for commercial activities and ensures those products remain viable.
+- Technical Documentation (Article 31)
+  - SBOM (Software Bill Of Materials)
+  - Cybersecurity Risk Assessment
+  - Test Reports & Verification Data
+  - Evidence of secure-by-design
+  - Architectural design
+  - Vulnerability scans
+- EU Declaration of Conformity (Article 28)
+- CE Marking (Articles 29 & 30)
+- Mandatory Vulnerability & Incident Reports (Article 14)
 
-Under the CRA definition, that legal entity must be a:
+The OSS Steward is a new role introduced by the CRA. The FOSS world has always known this role: Linux Foundation, Matrix Foundation, Free Software Foundation, Apache Software Foundation etc. CRA definition insists, that the OSS Steward role must be placed with a...
 
 > Not-for-profit organization, set up in such a way that it ensures that all earnings after costs are used to achieve not-for-profit objectives.
 
-In short: the OSS Steward role exists to create continuity and credible support around FOSS projects that matter in commercial contexts.
+## The role (and the use) of the OSS Steward
+
+In short: the OSS Steward role exists to create continuity and credible support around FOSS projects that matter in commercial contexts. I handles the SDLC — Software Development Lifecycle obligations and the QA — Quality Assurance obligations for the FOSS project, and it provides a single point of contact for contributors and manufacturers alike to interact with.
 
 Why does it matter that the OSS Steward is a not-for-profit organization? Well, it ensures that the steward is not a commercial competitor to the manufacturer, and that the current de facto stewards; the maintainers and contributors are not merely _employees_ under the manufacturer; a construct that is known to jeopardize manufacturer-led FOSS project in the event that stewards are no longer employed and then suddenly forcefully locked out of their stewardship role in the FOSS project[^hudson]. It calls for a long-term commitment to the project and a governance model that promotes long-term sustainability, rather than short-term profit.
 
 [^hudson]: The story of Hudson vs Jenkins serves as a scholarly example: Kohsuke Kawaguchi developed and led the Hudson CI FOSS project while employed by Sun Microsystems. When Oracle bought Sun (2010), Kohsuke didn't move to Oracle. Oracle declared its intention to trademark the Hudson name and began development on a commercial version (2011). The majority of the development community, including Kawaguchi, decided to continue the project under the name Jenkins CI in early 2011. Oracle maintained that Hudson was continuing development and that Jenkins was a fork; the Jenkins developers considered Hudson to be the fork. Today, Jenkins is stewarded by the Linux Foundation and is fully CRA compliant, while Hudson is retired. [source: Wikipedia](<https://en.wikipedia.org/wiki/Hudson_(software)>)
 
 CRA Article 24 adds concrete obligations for OSS stewards, including a verifiable cybersecurity policy and cooperation with market surveillance authorities. The EU Commission's guidance clarifies that a FOSS project is considered a commercial activity—and thus subject to CRA obligations as a product—when it involves charging a price, monetizing through other services, requiring personal data for non-essential reasons, or accepting donations that function as a de facto price for access or exclusive benefits.
+
+**OSS Steward responsibilities**
+
+- Verifiable Cybersecurity Policy (Article 24(1))
+- Policy Documentation for Authorities (Article 24(2))
+- Targeted Infrastructure Incident Reports (Article 24(3) &Article 14)
+- Voluntary Security Attestations (Article 25)
 
 <MomImage
   src="~/assets/images/posts/oss-steward/cra-oss-steward-flow.png"
@@ -91,6 +109,10 @@ CRA Article 24 adds concrete obligations for OSS stewards, including a verifiabl
   size="large"
   url="https://www.law.co.il/media/computer-law/cra_draft_guidance.pdf"
 />
+
+In reality the OSS Stewards are the ones who will be responsible for the day-to-day operations and in a relationship where the stewardship is partly funded by the manufacturer, by donations, alliance fees, or other forms of support. There will often exist an agreement between the manufacturer and the OSS Steward, the the stewardship produces _all_ the necessary documentation, that the manufacturers can _consume_ to produce their obligatory reports and compliance outputs.
+
+An example could be that the manufacturer _must_ present SBOMs and test reports — but it's the steward who — by agreement — produces them. This is a practical way to ensure that the FOSS project is maintained and supported, while also ensuring that the manufacturer can meet its CRA obligations. The manufacturer can focus on the core business commercial success, while the steward focuses on the FOSS SDLC, QA, Community organization, academia engagement, and often also additional funding, since non-proft organizations are ofte better eligible to external funding than what commercially run projects can attract.
 
 ## Key roadmap dates
 
