@@ -3,17 +3,17 @@ title: Mind over Machine — Office Hours
 sortorder: 1
 dates:
   - date: Every Tuesday
-    time: 8:15 CET
+    time: 08:15 CET
     duration: 1:00h
 location:
-  venue: Online (Slack Huddle)
+  venue: Online (@mom-office-hours:matrix.org)
   address: ''
   mapurl: ''
-excerpt: Office Hours is a recurring event where we open up the floor for anyone to pitch an idea, ask for help, or just share something interesting.
+excerpt: Office Hours is a recurring weekly event where we open the door for anyone who wants to pitch an idea, ask for help, share something interesting, or just get to know us.
 signup:
-  signupurl: https://app.slack.com/huddle/T09DW7D2W4Q/C0B4SUYJW4R
-  caption: Join the huddle on Slack
-  icon: ~/assets/images/events/slack-icon.png
+  signupurl: https://matrix.to/#/#mom-office-hours:matrix.org
+  caption: Join video room on Matrix
+  icon: ~/assets/images/events/matrix-logo.png
   repeat: true
 image: ~/assets/images/events/mom-officehours.png
 ---
@@ -21,88 +21,70 @@ image: ~/assets/images/events/mom-officehours.png
 import Steps from '~/components/widgets/Steps.astro';
 import Button from '~/components/ui/Button.astro';
 
-## This is MoM's weekly Office Hour meeting
+## This is MoM's weekly Office Hours meeting
 
-The meeting is run as a [huddle](https://app.slack.com/huddle/T09DW7D2W4Q/C0B4SUYJW4R) in our slack channel [`#mom-office-hours`](https://mindovermachine-dk.slack.com/archives/C0B4SUYJW4R) and is open to anyone who wants to join.
+The meeting is run as a Matrix [video call](https://matrix.to/#/#mom-office-hours:matrix.org) in our room [`#mom-office-hours:matrix.org`](https://matrix.to/#/#mom-office-hours:matrix.org) and is open to anyone who wants to join.
 
-This meeting is an integrated part of our _Community of Practice_. We advocate full transparency and _Legitimate Peripheral Participation_. In short: no matter what you interest or incentive is: You are so welcome 🤩.
+This meeting is an integrated part of our _Community of Practice_. It's open to _everyone_; We advocate full transparency and _Legitimate Peripheral Participation_. In short: no matter what your interest or incentive is — You are so welcome 🤩.
+
+At this meeting we discuss everything under the sun: the week that was, tech news, and the tasks ahead of us. The agenda is set by whoever shows up.
 
 **You should join if:**
 
-- You have an idea you want to pitch and get feedback on
-- You want to ask for help on a project you are working on
+- You have an idea you want to share or get feedback on
 - You are already in one of the MoM circles and want to share your progress or get feedback
-- You don't get what regenerative software is or why it matters — and want to learn more
+- You want to understand what regenerative software is or why it matters
 - You are just curious and don't want anything in particular — just curious...
+- You are new here and would like a tour of our community and to get to know us
 
-### Lean Coffee style
+## 👉 If this is your first meeting 👈
 
-The meeting is are run in a [Lean Coffee](https://leancoffee.org/) style. This means that we will start with a blank agenda and the participants will propose topics to discuss. The topics will be voted on and the most popular ones will be discussed first. Each topic will have a timebox of 8 minutes and we will use a timer to keep track of time. If a topic is not finished within the timebox, we will vote on whether to continue or move on to the next topic.
-
-### If this is your first meeting
-
-We have set up a few tools to support the logistices of the meeting. If this is your first time joining, we recommend that you do the following:
+Here's the onboarding process. It will probably take a minute — perhaps two — to complete, so we recommend that you do it **NOW!** so you're ready when the meeting starts.
 
 <Steps
-  title="Prepare for the meeting"
-  subtitle="We have set up a few tools to support the logistices of the meeting, we recommend that you do the following beforehand"
+  title="Join us on Matrix"
+  subtitle="Our public online presence is on Matrix."
   items={[
     {
-      title: 'Step 1: <span class="font-medium">Join our Slack</span>',
-      description: 'Create an account on our slack workspace. There is an open invitation waiting for you.',
+      title: 'Step 1: <span class="font-medium">Create an account on Matrix</span>',
+      description:
+        'You already have one? OOOh a Matrix savvy fellow! Then skip this step, you can reuse it. You are on to the next step.',
       callToAction: {
-        text: 'Create account on&nbsp;<code>mindovermachine-dk.slack.com</code>',
-        href: 'https://slack.mindovermachine.dk',
+        text: 'Create account — read all about it!',
+        href: '/writings/new-to-matrix',
         target: '_blank',
       },
       icon: 'tabler:check',
     },
     {
-      title: 'Step 2: <span class="font-medium">Visit and join the <code>#mom-office-hours</code> channel</span>',
+      title: 'Step 2: <span class="font-medium">Join our "Mind over Machine" space on Matrix</span>',
       description:
-        'The <code>#mom-office-hours</code> channel is dedicated to discussing the office hours. Also in-between scheduled meetings. If you join the channel you will also get notifications when the next office hour is started. Visit the channel and click the "Join channel" button.',
+        'A space is equivalent to a <em>space</em> on Slack or a <em>server</em> on Discord. In this space we have several rooms (equivalent to <em>channels</em>). All the rooms are public, feel free to join any that interest you.',
       callToAction: {
-        text: 'Go to&nbsp;<code>#mom-office-hours</code>&nbsp;channel',
-        href: 'https://mindovermachine-dk.slack.com/archives/C0B4SUYJW4R',
+        text: 'Join space&nbsp;<code>#mindovermachine:matrix.org</code>',
+        href: 'https://matrix.to/#/#mindovermachine:matrix.org',
         target: '_blank',
       },
       icon: 'tabler:check',
     },
     {
-      title: 'Step 3: <span class="font-medium">Join the Miro board "MoM Office Hours"</span>',
+      title:
+        'Step 3: <span class="font-medium">Signup for calendar invites to the "Office Hours" invitation group</span>',
       description:
-        'This is where we execute the Lean Coffee meeting. The board is open to all for viewing, but you need to join the board to get write access; an open invitation is waiting for you.',
+        'Signing up to the public mail-group will mean that the invitations for the Mind over Machine events will show up in your own calendar. If any event is cancelled, moved, shortened, extended or has an agenda update, then you will know instantly. You can unsubscribe — and resubscribe — at any time.',
       callToAction: {
-        text: 'Join "MoM Office Hours" Miro board',
-        href: 'https://www.google.com/url?q=https://miro.com/welcomeonboard/UjdVMi9HUi9ENWkxVzJxaUk2WC9RTitieDdiL0JaUTYxSDYwM2dUZ3ZIQ1o4K3B1ZmkvS2hYbHUvZG9mUG9IK1pVQjh4a3lLc0pJM2d5UytXbURwcDZ0azVkT0cxTGh3dTg5N25HZjQwc1Jnbmo1cGFOZVkzcWJtRVcweUJpcE9yVmtkMG5hNDA3dVlncnBvRVB2ZXBnPT0hdjE%3D?share_link_id%3D129103624326&sa=D&source=calendar&ust=1782900242352325&usg=AOvVaw0fYF_etV6aaUVy4Ixf89NO',
+        text: 'Join&nbsp;<code>office-hours@mindovermachine.dk</code>',
+        href: 'https://groups.google.com/a/mindovermachine.dk/g/office-hours',
         target: '_blank',
       },
-      icon: 'tabler:check',
+      icon: 'tabler:calendar',
     },
   ]}
 />
 
-### Dont miss a beat - get the Office Hours invites in your calendar!
+:::note[Joining a google group (step 3) requires a google account]
 
-We have set up a open google group [`office-hours@mindovermachine.dk`](https://office-hours.mindovermachine.dk) which is invited to all office hour meetings. If you join the group, you will see the invites along with all your other calendar events. You can ignore or reject the invites if you don't want to attend a specific meeting.
-
-<div class="not-prose mt-6">
-  <Button
-    text="Join the open google group"
-    href="https://office-hours.mindovermachine.dk"
-    target="_blank"
-    icon="tabler:calendar"
-    variant="secondary"
-  />
-</div>
-
-Visit the group and click the "Join group" button. You will be asked to sign in with your google account and then you will be added to the group.
-
-**NOTE: Joining a google group requires a google account.**
-
-If you would like to get the invites set to an email address which is _not_ a google account. You can contact us at [hey@mindovermachine.dk](mailto:hey@mindovermachine.dk?subject=Office%20Hours%20Invites&body=I%20would%20like%20to%20receive%20invites%20for%20the%20office%20hours%20meetings.%20Please%20add%20me%20to%20the%20list).
-
-Or you can help yourself: Simply 'wrap' on your current email address is a free google account. It's harmless and non-intrusive, it simply allows you to use Google's OAuth and services with any email address you have (not email obviously, but stuff like _drive, photos, groups, gemini_ etc...).
+If the account you want to receive the calendar invites to is not currently a Google account, you can simply 'wrap' your current email address in a free google account. It's harmless and non-intrusive, it allows you to use Google's free services like _drive, photos, groups, gemini, OAuth_ ...etc with any email address you have.
 
 <div class="not-prose mt-6">
   <Button
@@ -113,3 +95,4 @@ Or you can help yourself: Simply 'wrap' on your current email address is a free 
     variant="secondary"
   />
 </div>
+:::

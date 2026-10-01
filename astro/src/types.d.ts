@@ -18,12 +18,21 @@ export interface Post {
   /** Optional summary of post content. */
   excerpt?: string;
   image?: ImageMetadata | string;
+  /** Optional caption rendered under the post image. */
+  imageText?: string;
 
   category?: Taxonomy;
   tags?: Taxonomy[];
   author?: string;
   coauthor?: string;
   reviewers?: string[];
+
+  /** Optional links to syndicated discussions (POSSE strategy). */
+  debate?: {
+    mastodon?: string;
+    linkedin?: string;
+    bluesky?: string;
+  };
 
   metadata?: MetaData;
 

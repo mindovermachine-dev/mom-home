@@ -86,12 +86,21 @@ const postCollection = defineCollection({
     title: z.string(),
     excerpt: z.string().optional(),
     image: z.string().optional(),
+    'image-text': z.string().optional(),
 
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
     coauthor: z.string().optional(),
     reviewers: z.array(z.string()).optional(),
+
+    debate: z
+      .object({
+        mastodon: z.string().url().optional(),
+        linkedin: z.string().url().optional(),
+        bluesky: z.string().url().optional(),
+      })
+      .optional(),
 
     metadata: metadataDefinition(),
   }),
