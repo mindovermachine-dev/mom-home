@@ -2,6 +2,8 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Om Os',
@@ -41,5 +43,35 @@ const metadata = {
           'Facilitering af et praksisfællesskab <em>(Community of Practice)</em> for praktikere, forskere, studerende og beslutningstagere med henblik på at fremme regenerativ software, softwareudvikling og teknologiforståelse.',
       },
     ]}
+  />
+
+  <Features
+    id="community-of-practice"
+    title="Praksisfællesskab"
+    columns={1}
+    items={[
+      {
+        title: 'At lære et håndværk ved at være tæt på dem, der udøver det',
+        description:
+          'Vi bygger på Lave og Wengers arbejde: man lærer et håndværk ved at være tæt på de mennesker, der udøver det. De kalder måden, nytilkomne begynder på, <em>legitim perifær deltagelse</em> (<em>legitimate peripheral participation</em>). At hænge ud i udkanten er en legitim måde at være her på.',
+      },
+    ]}
+  />
+  <Features
+    columns={3}
+    items={[
+      {
+        title: 'Du behøver ikke være udvikler',
+        description: 'Skribenter, facilitatorer, organisatorer og reviewere er velkomne.',
+      },
+      { title: 'Du behøver ikke binde dig til noget', description: 'Kom når du kan, gå når du skal.' },
+      { title: 'Alt er åbent', description: 'Diskussioner, dokumenter og kode er offentlige som udgangspunkt.' },
+    ]}
+  />
+
+  <CallToAction
+    actions={[{ variant: 'primary', text: 'Kom med', href: getPermalink('/da/get-involved/') }]}
+    title="Lyst til at være med?"
+    subtitle="Start med at dukke op."
   />
 </Layout>

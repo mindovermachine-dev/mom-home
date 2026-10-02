@@ -2,6 +2,8 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'About',
@@ -42,5 +44,35 @@ const metadata = {
           'Facilitation of a community of practice for practitioners, researchers, students and decision-makers with the aim of promoting regenerative software, software development and socio-technological understanding.',
       },
     ]}
+  />
+
+  <Features
+    id="community-of-practice"
+    title="Community of Practice"
+    columns={1}
+    items={[
+      {
+        title: 'Learning a craft by being close to people who practise it',
+        description:
+          'We build on the work of Lave and Wenger: you learn a craft by being close to the people who practise it. They call the way newcomers begin <em>legitimate peripheral participation</em>. Hanging around at the edge is a legitimate way to be here.',
+      },
+    ]}
+  />
+  <Features
+    columns={3}
+    items={[
+      {
+        title: "You don't have to be a developer",
+        description: 'Writers, facilitators, organisers and reviewers are welcome.',
+      },
+      { title: "You don't have to commit to anything", description: 'Come when you can, leave when you need to.' },
+      { title: 'Everything is open', description: 'Discussions, documents and code are public by default.' },
+    ]}
+  />
+
+  <CallToAction
+    actions={[{ variant: 'primary', text: 'Get involved', href: getPermalink('/get-involved/') }]}
+    title="Want to be part of it?"
+    subtitle="Start by showing up."
   />
 </Layout>

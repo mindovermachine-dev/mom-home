@@ -1,0 +1,204 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Kom med',
+  description:
+    'Start med at dukke op. Din første uge hos Mind over Machine, flere veje ind og hvordan man vokser i vores fællesskab.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Kom med"
+    title="Start med at dukke op"
+    subtitle="Hver tirsdag morgen mødes vi online til Office Hours. Ingen tilmelding, ingen forberedelse. Kom bare."
+    callToAction={{ text: 'Deltag i ugentlige Office Hours', href: getPermalink('/da/events/mom-officehours/') }}
+  />
+
+  <Steps
+    id="first-week"
+    tagline="Dine første skridt"
+    title="Bliv en del af praksisfællesskabet"
+    subtitle="Et <em>praksisfællesskab</em> (Community of Practice) kendetegnes ved, at det understøtter <em>legitim perifer deltagelse</em>. Kort sagt: Din deltagelse bestemmes af din interesse — ikke af profession eller kunnen. Du kan starte med at hænge ud og lytte med, eller du kan tage dit eksisterende FOSS-projekt med 10 brugere og få glæde af stewardship i MoM FOSS Alliance.<br/>Uanset hvad er du hjerteligt ♥️ velkommen."
+    items={[
+      {
+        title: 'Trin 0: <span class="font-medium">Kom på Matrix</span>',
+        description:
+          'Matrix er der, hvor vores fællesskab snakker sammen. Det kan sammenlignes med Slack, Discord, Teams, Signal (...osv). Vi bruger det, fordi det passer til vores værdier: Open Source, åbne standarder, fødereret, decentraliseret og under troværdigt stewardship af en non-profit fond.<br/>Har du allerede en Matrix-konto, kan du bruge den – gå direkte videre til næste trin. Hvis ikke, kan du oprette en på få minutter.',
+        callToAction: {
+          text: 'Ny på Matrix?',
+          href: getPermalink('/da/writings/new-to-matrix/'),
+        },
+        icon: 'tabler:message-circle',
+      },
+
+      {
+        title:
+          'Trin 1: <span class="font-medium">Tilslut dig vores Matrix-space og sig \'Hej👋\' i General-rummet</span>',
+        description: `Tilslut dig vores åbne space: <code>#mindovermachine:matrix.org</code> med din Matrix-konto. Find derefter General-rummet <code>#mom‑general:matrix.org</code> og sig bare 'Hej👋'<br/>Eller noget lidt mere uddybende i stil med:<br/>
+<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hej👋, jeg hedder [navn]. Jeg arbejder med [det du laver].<br />Jeg fandt MoM gennem [person/begivenhed/artikel].<br />Jeg er nysgerrig på [noget], og jeg kunne forestille mig at hjælpe med [noget, eller "ved ikke endnu"].</blockquote>`,
+        callToAction: {
+          text: 'Åbn space',
+          href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+          target: '_blank',
+        },
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Trin 2: <span class="font-medium">Kom til Office Hours</span>',
+        description:
+          'Hver tirsdag morgen går vi online og checker ind hos hinanden. Det er en mulighed for at forbinde, samarbejde og bidrage. Det er et frit rum til diskussion og idéudvikling.',
+        callToAction: {
+          text: 'Få det i din kalender',
+          href: getPermalink('/da/events/mom-officehours/'),
+        },
+        icon: 'tabler:coffee',
+      },
+      {
+        title: 'Trin 3: <span class="font-medium">Udforsk</span>',
+        description: `Der sker meget i vores udgivne skriverier. Her kan du lære om vores arbejde og idéer. Vi udgiver essays, briefs, kommentarer og journaler.`,
+        callToAction: {
+          text: 'Dyk ned i det',
+          href: getPermalink('/da/writings/'),
+        },
+        icon: 'tabler:book',
+      },
+    ]}
+  />
+
+  <Features
+    id="ways-in"
+    tagline="Flere veje ind"
+    title="Vælg den dør, der passer dig"
+    columns={2}
+    items={[
+      {
+        title: 'Kom på Matrix',
+        description: 'Vores fællesskabschat. Den fører ind i fællesskabet.',
+        icon: 'tabler:message-circle',
+        callToAction: { text: 'Tilslut dig space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
+      },
+      {
+        title: 'Mød op i virkeligheden',
+        description:
+          'Mød os ansigt til ansigt til en begivenhed. Det fører ind i think tanken, laboratoriet og fællesskabet.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/') },
+      },
+      {
+        title: 'Deltag i ugentlige online Office Hours',
+        description: 'Hver tirsdag morgen holder vi et online møde. Det fører ind i think tanken og fællesskabet.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/mom-officehours') },
+      },
+      {
+        title: 'Gå i gang med at hacke',
+        description: 'Åben kode, idéer og diskussioner på GitHub. Det fører ind i laboratoriet.',
+        icon: 'tabler:brand-github',
+        callToAction: { text: 'Besøg GitHub', href: 'https://github.com/mindovermachine-dev' },
+      },
+      {
+        title: 'Deltag i ugentlige online Tech Talks',
+        description:
+          'Hver torsdag eftermiddag holder vi et teknisk online møde om vores igangværende FOSS-projekter. Det fører ind i think tanken og laboratoriet.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/mom-techtalks') },
+      },
+      {
+        title: 'Vores skriverier',
+        description:
+          'Essays, briefs, kommentarer og journaler. Det fører ind i think tanken, laboratoriet og fællesskabet.',
+        icon: 'tabler:book',
+        callToAction: { text: 'Dyk ned i vores skriverier', href: getPermalink('/da/writings/') },
+      },
+    ]}
+  />
+
+  <Features2
+    id="grow"
+    tagline="Sådan vokser man her"
+    title="Fire stadier, ingen niveauer"
+    columns={4}
+    items={[
+      {
+        title: 'Hæng ud',
+        description:
+          'Du læser med, kommer til Office Hours en gang imellem og lytter. Næste skridt: sig hej og stil ét spørgsmål.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Mød op',
+        description:
+          'Du deltager i diskussioner, kommenterer på idéer og kommer nogenlunde regelmæssigt. Næste skridt: tag et emne med til Office Hours.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Hjælp til',
+        description:
+          'Du tager en lille, afgrænset opgave: gennemse en tekst, test et værktøj, hjælp med at afvikle en begivenhed, skriv en brief, ret en issue. Næste skridt: spørg "hvad kunne jeg hjælpe med i denne uge?" på Matrix eller til Office Hours.',
+        icon: 'tabler:hand-grab',
+      },
+      {
+        title: 'Bær',
+        description:
+          'Du ejer noget over tid: et projekt, en begivenhedsrække, et skriveri, en cirkel. Næste skridt: tal med os om at blive en del af Initiativcirklen.',
+        icon: 'tabler:flag',
+      },
+    ]}
+  />
+  <p class="max-w-3xl mx-auto px-6 pb-8 text-center text-muted">
+    Der er ingen niveauer, badges eller adgangsprøver. Det er helt fint at gå tilbage til at hænge ud, og ingen vil bede
+    dig forklare dig.
+  </p>
+
+  <Features2
+    id="where-things-live"
+    tagline="Hvor tingene findes"
+    title="Find rundt"
+    columns={3}
+    items={[
+      {
+        title: 'Dokumentation',
+        description:
+          'Interne dokumenter, slet ikke hemmelige, men ofte meget detaljerede, specifikke og somme tider lidt rodede — men du er velkommen til at udforske dem.',
+        icon: 'tabler:books',
+        callToAction: { text: 'Åbn dokumentationen', href: 'https://docs.mindovermachine.dk/da/' },
+      },
+      {
+        title: 'Kom på opdateringslisten',
+        description:
+          'Nyheder og opdateringer om begivenheder, essays, projekter, udgivelser osv. sendes jævnligt på mail.',
+        icon: 'tabler:mail',
+        callToAction: { text: 'Gå ikke glip af noget', href: getPermalink('/da/writings/dont-miss-a-beat/') },
+      },
+      {
+        title: 'Email',
+        description: 'Foretrækker du at skrive en mail? Så gør endelig det!',
+        icon: 'tabler:at',
+        callToAction: { text: 'hey@mindovermachine.dk', href: 'mailto:hey@mindovermachine.dk' },
+      },
+    ]}
+  />
+
+  <Features2
+    id="organisations"
+    tagline="For organisationer"
+    title="Vil du tilmelde din organisation?"
+    columns={1}
+    items={[
+      {
+        title: 'Bliv en del af MoM FOSS Alliance',
+        description:
+          'Organisationer kan blive en del af MoM FOSS Alliance, som understøtter de FOSS-projekter, vi har stewardship for i overensstemmelse med Cyber Resilience Act (CRA).<br/>Men det indebærer også en lang række andre fordele...',
+        callToAction: { text: 'Medlemskab', href: '/da/membership/' },
+        icon: 'tabler:building',
+      },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,201 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Get involved',
+  description:
+    'Start by showing up. Your first week at Mind over Machine, four ways in, and how people grow in our community.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Get involved"
+    title="Start by showing up"
+    subtitle="Every Tuesday morning we meet online for Office Hours. No sign-up, no preparation. Just come."
+    callToAction={{ text: 'Join the weekly Office Hours', href: getPermalink('/events/mom-officehours/') }}
+  />
+
+  <Steps
+    id="first-week"
+    tagline="Your first steps"
+    title="Join the Community of Practice"
+    subtitle="A <em>Community of Practice</em> is recognized by the charactaristic that it facilitates <em>legitimate peripheral participation</em>. In short: Your participation is qualified by your interest — not by profession or skill. You can start by hanging around and listening in, our you can take your existing 10 people FOSS project and enjoy the stewardship of the MoM FOSS Alliance.<br/>Either way you are heartly ♥️ welcome."
+    items={[
+      {
+        title: 'Step 0: <span class="font-medium">Get onto Matrix</span>',
+        description:
+          'Matrix is where our community talks. It´s comparable to Slack, Discord, Teams, Signal (...etc). We use it because it speaks to our values; Open Source, Open Standard, federated, decentralized, under trust-worthy stewardship by a non-profit foundation.<br/>If you already have a Matrix account, you can use it – jump stright to next step. If not, you can create one in a few minutes.',
+        callToAction: {
+          text: 'New to Matrix?',
+          href: getPermalink('/writings/new-to-matrix/'),
+        },
+        icon: 'tabler:message-circle',
+      },
+
+      {
+        title: 'Step 1: <span class="font-medium">Join our Matrix space, say \'Hi👋\' in the General room</span>',
+        description: `Join our open space: <code>#mindovermachine:matrix.org</code> with your matrix account. Then look up the General room <code>#mom‑general:matrix.org</code> and just say 'Hi👋'<br/>Or something more elaborate along the lines of:<br/>
+<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hi👋, I'm [name]. I work with [what you do].<br />I found MoM through [person/event/article].<br />I'm curious about [something], and I could imagine helping with [something, or "not sure yet"].</blockquote>`,
+        callToAction: {
+          text: 'Open the space',
+          href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+          target: '_blank',
+        },
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Come to Office Hours</span>',
+        description:
+          "Every Tuesday morning we get online and check in with each other. It's an opportunity to connect, collaborate, and contribute. It's a free space for discussion and idea generation.",
+        callToAction: {
+          text: 'Get it in your calendar',
+          href: getPermalink('/events/mom-officehours/'),
+        },
+        icon: 'tabler:coffee',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Explore</span>',
+        description: `A lot goes on in our published writings. You can learn about our work and ideas. We issue Essays, Briefs, Comments, and Journals`,
+        callToAction: {
+          text: 'Deep dive',
+          href: getPermalink('/writings'),
+        },
+        icon: 'tabler:book',
+      },
+    ]}
+  />
+
+  <Features
+    id="ways-in"
+    tagline="Multiple ways in"
+    title="Pick the door that suits you"
+    columns={2}
+    items={[
+      {
+        title: 'Join Matrix',
+        description: 'Our community chat. It leads into the community.',
+        icon: 'tabler:message-circle',
+        callToAction: { text: 'Join the space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
+      },
+      {
+        title: 'Show up in real life',
+        description: 'Meet us in person at an event. It leads into the think tank, the Laboratory and the community.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/') },
+      },
+      {
+        title: 'Join the weekly online Office Hours',
+        description: 'Each Tuesday morning we run an online meeting. It leads into the think tank and the community.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/mom-officehours') },
+      },
+      {
+        title: 'Start hacking',
+        description: 'Open code, ideas and discussions on GitHub. It leads into the laboratory.',
+        icon: 'tabler:brand-github',
+        callToAction: { text: 'Visit GitHub', href: 'https://github.com/mindovermachine-dev' },
+      },
+      {
+        title: 'Join the weekly online Tech Talks',
+        description:
+          'Each Thursday afternoon we run a technical online meeting on our ongoing FOSS projects. It leads into the think tank and the Laboratory.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/mom-techtalks') },
+      },
+      {
+        title: 'Our utterings',
+        description:
+          'Essays, Briefs, Comments, and Journals. It leads into the think tank, tha Laboartory and the community.',
+        icon: 'tabler:book',
+        callToAction: { text: 'Dive into our writings', href: getPermalink('/writings') },
+      },
+    ]}
+  />
+
+  <Features2
+    id="grow"
+    tagline="How people grow here"
+    title="Four stages, no levels"
+    columns={4}
+    items={[
+      {
+        title: 'Hang around',
+        description:
+          'You read along, come to Office Hours now and then, and listen. Next step: say hi and ask one question.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Show up',
+        description:
+          'You join discussions, comment on ideas and come fairly regularly. Next step: bring a topic to Office Hours.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Pitch in',
+        description:
+          'You take a small, bounded task: review a text, test a tool, help run an event, write a brief, fix an issue. Next step: ask "what could I help with this week?" in Matrix or at Office Hours.',
+        icon: 'tabler:hand-grab',
+      },
+      {
+        title: 'Carry',
+        description:
+          'You own something over time: a project, an event series, a piece of writing, a circle. Next step: talk to us about joining the Initiative Circle.',
+        icon: 'tabler:flag',
+      },
+    ]}
+  />
+  <p class="max-w-3xl mx-auto px-6 pb-8 text-center text-muted">
+    There are no levels, badges or entry tests. Moving back to hanging around is fine, and nobody will ask you to
+    explain.
+  </p>
+
+  <Features2
+    id="where-things-live"
+    tagline="Where things live"
+    title="Find your way around"
+    columns={3}
+    items={[
+      {
+        title: 'Docs',
+        description:
+          'Internal documents, not at all secret, but often very detailed, specific and sometimes also a bit messy — but you are welcome to explore them.',
+        icon: 'tabler:books',
+        callToAction: { text: 'Open the docs', href: 'https://docs.mindovermachine.dk/' },
+      },
+      {
+        title: 'Get on the updates list mail lists',
+        description: 'News and updates on events, essays, projects, releases etc are frequently sent outby mail.',
+        icon: 'tabler:mail',
+        callToAction: { text: 'Don\u2019t miss a beat', href: getPermalink('/writings/dont-miss-a-beat/') },
+      },
+      {
+        title: 'Email',
+        description: 'Prefer to write to an email? Please do!',
+        icon: 'tabler:at',
+        callToAction: { text: 'hey@mindovermachine.dk', href: 'mailto:hey@mindovermachine.dk' },
+      },
+    ]}
+  />
+
+  <Features2
+    id="organisations"
+    tagline="For organisations"
+    title="Looking to sign up your organization?"
+    columns={1}
+    items={[
+      {
+        title: 'Become part of the MoM FOSS Alliance',
+        description:
+          'Organisations can join the MoM FOSS Alliance it supports the FOSS projects that we Steward in accordance to the Cyber Resilience Act (CRA).<br/>But it include at lot of other benefits too...',
+        callToAction: { text: 'Membership', href: '/membership' },
+        icon: 'tabler:building',
+      },
+    ]}
+  />
+</Layout>
