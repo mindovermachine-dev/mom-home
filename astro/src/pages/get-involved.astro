@@ -4,7 +4,6 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
@@ -19,28 +18,30 @@ const metadata = {
     tagline="Get involved"
     title="Start by showing up"
     subtitle="Every Tuesday morning we meet online for Office Hours. No sign-up, no preparation. Just come."
-    callToAction={{ text: 'About Office Hours', href: getPermalink('/events/mom-officehours/') }}
+    callToAction={{ text: 'Join the weekly Office Hours', href: getPermalink('/events/mom-officehours/') }}
   />
 
   <Steps
     id="first-week"
-    tagline="Your first week"
-    title="Four small steps, about an hour in total"
-    subtitle="You don't have to be a developer. Writers, facilitators, organisers, reviewers and translators between tech and the rest of the world are all welcome."
+    tagline="Your first steps"
+    title="Join the Community of Practice"
+    subtitle="A <em>Community of Practice</em> is recognized by the charactaristic that it facilitates <em>legitimate peripheral participation</em>. In short: Your participation is qualified by your interest — not by profession or skill. You can start by hanging around and listening in, our you can take your existing 10 people FOSS project and enjoy the stewardship of the MoM FOSS Alliance.<br/>Either way you are heartly ♥️ welcome."
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Get onto Matrix</span>',
-        description: `Matrix is where our community talks. Create an account if you don't have one, then join our space <code>#mindovermachine:matrix.org</code>. Not sure why Matrix? Read <a class="underline" href="${getPermalink('/writings/new-to-matrix/#why-is-this-good')}">why we use it</a>.`,
+        title: 'Step 0: <span class="font-medium">Get onto Matrix</span>',
+        description:
+          'Matrix is where our community talks. It´s comparable to Slack, Discord, Teams, Signal (...etc). We use it because it speaks to our values; Open Source, Open Standard, federated, decentralized, under trust-worthy stewardship by a non-profit foundation.<br/>If you already have a Matrix account, you can use it – jump stright to next step. If not, you can create one in a few minutes.',
         callToAction: {
           text: 'New to Matrix?',
           href: getPermalink('/writings/new-to-matrix/'),
         },
         icon: 'tabler:message-circle',
       },
+
       {
-        title: 'Step 2: <span class="font-medium">Say hi in the General room</span>',
-        description: `Copy this, fill in the blanks and post it:
-<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hi, I'm [name]. I work with [what you do].<br />I found MoM through [person/event/article].<br />I'm curious about [something], and I could imagine helping with [something, or "not sure yet"].</blockquote>`,
+        title: 'Step 1: <span class="font-medium">Join our Matrix space, say \'Hi👋\' in the General room</span>',
+        description: `Join our open space: <code>#mindovermachine:matrix.org</code> with your matrix account. Then look up the General room <code>#mom‑general:matrix.org</code> and just say 'Hi👋'<br/>Or something more elaborate along the lines of:<br/>
+<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hi👋, I'm [name]. I work with [what you do].<br />I found MoM through [person/event/article].<br />I'm curious about [something], and I could imagine helping with [something, or "not sure yet"].</blockquote>`,
         callToAction: {
           text: 'Open the space',
           href: 'https://matrix.to/#/#mindovermachine:matrix.org',
@@ -49,18 +50,22 @@ const metadata = {
         icon: 'tabler:hand-stop',
       },
       {
-        title: 'Step 3: <span class="font-medium">Come to Office Hours</span>',
+        title: 'Step 2: <span class="font-medium">Come to Office Hours</span>',
         description:
-          'We use the Lean Coffee format: a blank agenda, everyone suggests topics, we vote, and each topic gets eight minutes. Time and place are on the event page.',
+          "Every Tuesday morning we get online and check in with each other. It's an opportunity to connect, collaborate, and contribute. It's a free space for discussion and idea generation.",
         callToAction: {
-          text: 'Office Hours',
+          text: 'Get it in your calendar',
           href: getPermalink('/events/mom-officehours/'),
         },
         icon: 'tabler:coffee',
       },
       {
-        title: 'Step 4: <span class="font-medium">Read two short pages</span>',
-        description: `Our <a class="underline" href="https://docs.mindovermachine.dk/da/vision/manifesto/">manifesto</a> and our <a class="underline" href="https://docs.mindovermachine.dk/da/vision/crowd-values/">C.R.O.W.D. values</a>. Pay attention to Dorith. She will come up. Want updates in your inbox as well? Join the <a class="underline" href="${getPermalink('/writings/dont-miss-a-beat/')}">updates group</a>.`,
+        title: 'Step 3: <span class="font-medium">Explore</span>',
+        description: `A lot goes on in our published writings. You can learn about our work and ideas. We issue Essays, Briefs, Comments, and Journals`,
+        callToAction: {
+          text: 'Deep dive',
+          href: getPermalink('/writings'),
+        },
         icon: 'tabler:book',
       },
     ]}
@@ -68,7 +73,7 @@ const metadata = {
 
   <Features
     id="ways-in"
-    tagline="Four ways in"
+    tagline="Multiple ways in"
     title="Pick the door that suits you"
     columns={2}
     items={[
@@ -79,23 +84,36 @@ const metadata = {
         callToAction: { text: 'Join the space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
       },
       {
-        title: 'Join the huddle',
-        description:
-          'Office Hours is our weekly open meeting, on Tuesdays. The best way in, and a good place to pitch ideas for the think tank or the laboratory.',
-        icon: 'tabler:coffee',
-        callToAction: { text: 'Office Hours', href: getPermalink('/events/mom-officehours/') },
-      },
-      {
-        title: 'Join IRL',
-        description: 'Meet us in person at an event. It leads into the think tank and the community.',
+        title: 'Show up in real life',
+        description: 'Meet us in person at an event. It leads into the think tank, the Laboratory and the community.',
         icon: 'tabler:calendar-event',
         callToAction: { text: 'See events', href: getPermalink('/events/') },
+      },
+      {
+        title: 'Join the weekly online Office Hours',
+        description: 'Each Tuesday morning we run an online meeting. It leads into the think tank and the community.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/mom-officehours') },
       },
       {
         title: 'Start hacking',
         description: 'Open code, ideas and discussions on GitHub. It leads into the laboratory.',
         icon: 'tabler:brand-github',
         callToAction: { text: 'Visit GitHub', href: 'https://github.com/mindovermachine-dev' },
+      },
+      {
+        title: 'Join the weekly online Tech Talks',
+        description:
+          'Each Thursday afternoon we run a technical online meeting on our ongoing FOSS projects. It leads into the think tank and the Laboratory.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/mom-techtalks') },
+      },
+      {
+        title: 'Our utterings',
+        description:
+          'Essays, Briefs, Comments, and Journals. It leads into the think tank, tha Laboartory and the community.',
+        icon: 'tabler:book',
+        callToAction: { text: 'Dive into our writings', href: getPermalink('/writings') },
       },
     ]}
   />
@@ -138,20 +156,6 @@ const metadata = {
   </p>
 
   <Features2
-    id="initiative-circle"
-    tagline="Where contributing leads"
-    title="The Initiative Circle"
-    columns={1}
-    items={[
-      {
-        title: 'The active core of the community',
-        description: `The Initiative Circle is self-organising and advisory, with a real say in the foundation. It is consulted before major changes to the statutes and can nominate up to two board members. Participation is free and based on documented, voluntary activity: organising events or meetups, editorial work, reviewing, facilitating, open-source contributions or coordinating the community. <a class="underline" href="https://docs.mindovermachine.dk/da/governance/initiative-circle/">Read how the Initiative Circle works</a>.`,
-        icon: 'tabler:circles',
-      },
-    ]}
-  />
-
-  <Features2
     id="where-things-live"
     tagline="Where things live"
     title="Find your way around"
@@ -159,19 +163,20 @@ const metadata = {
     items={[
       {
         title: 'Docs',
-        description: 'Vision, values and governance.',
+        description:
+          'Internal documents, not at all secret, but often very detailed, specific and sometimes also a bit messy — but you are welcome to explore them.',
         icon: 'tabler:books',
-        callToAction: { text: 'Open the docs', href: 'https://docs.mindovermachine.dk/da/' },
+        callToAction: { text: 'Open the docs', href: 'https://docs.mindovermachine.dk/' },
       },
       {
-        title: 'Updates',
-        description: 'Events, essays and releases by mail.',
+        title: 'Get on the updates list mail lists',
+        description: 'News and updates on events, essays, projects, releases etc are frequently sent outby mail.',
         icon: 'tabler:mail',
         callToAction: { text: 'Don\u2019t miss a beat', href: getPermalink('/writings/dont-miss-a-beat/') },
       },
       {
         title: 'Email',
-        description: 'Prefer to write to a person? Send us a note.',
+        description: 'Prefer to write to an email? Please do!',
         icon: 'tabler:at',
         callToAction: { text: 'hey@mindovermachine.dk', href: 'mailto:hey@mindovermachine.dk' },
       },
@@ -181,28 +186,15 @@ const metadata = {
   <Features2
     id="organisations"
     tagline="For organisations"
-    title="Looking to involve your organisation?"
+    title="Looking to sign up your organization?"
     columns={1}
     items={[
       {
-        title: 'See Membership',
-        description: `Organisations can support the foundation through <a class="underline" href="${getPermalink('/membership/')}">Membership</a>. You are also welcome to <a class="underline" href="${getPermalink('/contact/')}">get in touch</a>.`,
+        title: 'Become part of the MoM FOSS Alliance',
+        description:
+          'Organisations can join the MoM FOSS Alliance it supports the FOSS projects that we Steward in accordance to the Cyber Resilience Act (CRA).<br/>But it include at lot of other benefits too...',
+        callToAction: { text: 'Membership', href: '/membership' },
         icon: 'tabler:building',
-      },
-    ]}
-  />
-
-  <p class="max-w-3xl mx-auto px-6 pt-8 text-center text-xl">
-    If you are wondering whether you are "technical enough", "senior enough" or "committed enough" to be here: you are.
-    Come as you are, and see what happens. See you on Tuesday. 🌱
-  </p>
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Join Office Hours',
-        href: getPermalink('/events/mom-officehours/'),
       },
     ]}
   />

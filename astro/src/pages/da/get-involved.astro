@@ -4,13 +4,12 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Kom med',
   description:
-    'Start med at dukke op. Din første uge hos Mind over Machine, fire veje ind og hvordan man vokser i vores fællesskab.',
+    'Start med at dukke op. Din første uge hos Mind over Machine, flere veje ind og hvordan man vokser i vores fællesskab.',
 };
 ---
 
@@ -19,28 +18,31 @@ const metadata = {
     tagline="Kom med"
     title="Start med at dukke op"
     subtitle="Hver tirsdag morgen mødes vi online til Office Hours. Ingen tilmelding, ingen forberedelse. Kom bare."
-    callToAction={{ text: 'Om Office Hours', href: getPermalink('/da/events/mom-officehours/') }}
+    callToAction={{ text: 'Deltag i ugentlige Office Hours', href: getPermalink('/da/events/mom-officehours/') }}
   />
 
   <Steps
     id="first-week"
-    tagline="Din første uge"
-    title="Fire små trin, cirka en time i alt"
-    subtitle="Du behøver ikke være udvikler. Skribenter, facilitatorer, organisatorer, reviewere og tolke mellem tech og resten af verden er alle velkomne."
+    tagline="Dine første skridt"
+    title="Bliv en del af praksisfællesskabet"
+    subtitle="Et <em>praksisfællesskab</em> (Community of Practice) kendetegnes ved, at det understøtter <em>legitim perifer deltagelse</em>. Kort sagt: Din deltagelse bestemmes af din interesse — ikke af profession eller kunnen. Du kan starte med at hænge ud og lytte med, eller du kan tage dit eksisterende FOSS-projekt med 10 brugere og få glæde af stewardship i MoM FOSS Alliance.<br/>Uanset hvad er du hjerteligt ♥️ velkommen."
     items={[
       {
-        title: 'Trin 1: <span class="font-medium">Kom på Matrix</span>',
-        description: `Matrix er der, hvor vores fællesskab snakker sammen. Opret en konto, hvis du ikke har en, og tilslut dig vores space <code>#mindovermachine:matrix.org</code>. Er du i tvivl om hvorfor Matrix? Læs <a class="underline" href="${getPermalink('/da/writings/new-to-matrix/#why-is-this-good')}">hvorfor vi bruger det</a> (på engelsk).`,
+        title: 'Trin 0: <span class="font-medium">Kom på Matrix</span>',
+        description:
+          'Matrix er der, hvor vores fællesskab snakker sammen. Det kan sammenlignes med Slack, Discord, Teams, Signal (...osv). Vi bruger det, fordi det passer til vores værdier: Open Source, åbne standarder, fødereret, decentraliseret og under troværdigt stewardship af en non-profit fond.<br/>Har du allerede en Matrix-konto, kan du bruge den – gå direkte videre til næste trin. Hvis ikke, kan du oprette en på få minutter.',
         callToAction: {
           text: 'Ny på Matrix?',
           href: getPermalink('/da/writings/new-to-matrix/'),
         },
         icon: 'tabler:message-circle',
       },
+
       {
-        title: 'Trin 2: <span class="font-medium">Sig hej i General-rummet</span>',
-        description: `Kopiér dette, udfyld felterne og send det:
-<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hej, jeg hedder [navn]. Jeg arbejder med [hvad du laver].<br />Jeg fandt MoM gennem [person/event/artikel].<br />Jeg er nysgerrig på [noget], og jeg kunne forestille mig at hjælpe med [noget, eller "ved ikke endnu"].</blockquote>`,
+        title:
+          'Trin 1: <span class="font-medium">Tilslut dig vores Matrix-space og sig \'Hej👋\' i General-rummet</span>',
+        description: `Tilslut dig vores åbne space: <code>#mindovermachine:matrix.org</code> med din Matrix-konto. Find derefter General-rummet <code>#mom‑general:matrix.org</code> og sig bare 'Hej👋'<br/>Eller noget lidt mere uddybende i stil med:<br/>
+<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hej👋, jeg hedder [navn]. Jeg arbejder med [det du laver].<br />Jeg fandt MoM gennem [person/begivenhed/artikel].<br />Jeg er nysgerrig på [noget], og jeg kunne forestille mig at hjælpe med [noget, eller "ved ikke endnu"].</blockquote>`,
         callToAction: {
           text: 'Åbn space',
           href: 'https://matrix.to/#/#mindovermachine:matrix.org',
@@ -49,18 +51,22 @@ const metadata = {
         icon: 'tabler:hand-stop',
       },
       {
-        title: 'Trin 3: <span class="font-medium">Kom til Office Hours</span>',
+        title: 'Trin 2: <span class="font-medium">Kom til Office Hours</span>',
         description:
-          'Vi bruger Lean Coffee-formatet: en blank dagsorden, alle foreslår emner, vi stemmer, og hvert emne får otte minutter. Tid og sted står på begivenhedssiden.',
+          'Hver tirsdag morgen går vi online og checker ind hos hinanden. Det er en mulighed for at forbinde, samarbejde og bidrage. Det er et frit rum til diskussion og idéudvikling.',
         callToAction: {
-          text: 'Office Hours',
+          text: 'Få det i din kalender',
           href: getPermalink('/da/events/mom-officehours/'),
         },
         icon: 'tabler:coffee',
       },
       {
-        title: 'Trin 4: <span class="font-medium">Læs to korte sider</span>',
-        description: `Vores <a class="underline" href="https://docs.mindovermachine.dk/da/vision/manifesto/">manifest</a> og vores <a class="underline" href="https://docs.mindovermachine.dk/da/vision/crowd-values/">C.R.O.W.D.-værdier</a>. Hold øje med Dorith. Hun dukker op. Vil du også have nyt i din indbakke? Tilmeld dig <a class="underline" href="${getPermalink('/da/writings/dont-miss-a-beat/')}">opdateringsgruppen</a>.`,
+        title: 'Trin 3: <span class="font-medium">Udforsk</span>',
+        description: `Der sker meget i vores udgivne skriverier. Her kan du lære om vores arbejde og idéer. Vi udgiver essays, briefs, kommentarer og journaler.`,
+        callToAction: {
+          text: 'Dyk ned i det',
+          href: getPermalink('/da/writings/'),
+        },
         icon: 'tabler:book',
       },
     ]}
@@ -68,34 +74,48 @@ const metadata = {
 
   <Features
     id="ways-in"
-    tagline="Fire veje ind"
+    tagline="Flere veje ind"
     title="Vælg den dør, der passer dig"
     columns={2}
     items={[
       {
         title: 'Kom på Matrix',
-        description: 'Vores community-chat. Den fører ind i fællesskabet.',
+        description: 'Vores fællesskabschat. Den fører ind i fællesskabet.',
         icon: 'tabler:message-circle',
-        callToAction: { text: 'Tilslut space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
+        callToAction: { text: 'Tilslut dig space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
       },
       {
-        title: 'Kom til huddle',
+        title: 'Mød op i virkeligheden',
         description:
-          'Office Hours er vores ugentlige åbne møde om tirsdagen. Den bedste vej ind og et godt sted at pitche idéer til tænketanken eller laboratoriet.',
-        icon: 'tabler:coffee',
-        callToAction: { text: 'Office Hours', href: getPermalink('/da/events/mom-officehours/') },
-      },
-      {
-        title: 'Kom IRL',
-        description: 'Mød os fysisk til et event. Det fører ind i tænketanken og fællesskabet.',
+          'Mød os ansigt til ansigt til en begivenhed. Det fører ind i think tanken, laboratoriet og fællesskabet.',
         icon: 'tabler:calendar-event',
         callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/') },
       },
       {
-        title: 'Start med at hacke',
+        title: 'Deltag i ugentlige online Office Hours',
+        description: 'Hver tirsdag morgen holder vi et online møde. Det fører ind i think tanken og fællesskabet.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/mom-officehours') },
+      },
+      {
+        title: 'Gå i gang med at hacke',
         description: 'Åben kode, idéer og diskussioner på GitHub. Det fører ind i laboratoriet.',
         icon: 'tabler:brand-github',
         callToAction: { text: 'Besøg GitHub', href: 'https://github.com/mindovermachine-dev' },
+      },
+      {
+        title: 'Deltag i ugentlige online Tech Talks',
+        description:
+          'Hver torsdag eftermiddag holder vi et teknisk online møde om vores igangværende FOSS-projekter. Det fører ind i think tanken og laboratoriet.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'Se begivenheder', href: getPermalink('/da/events/mom-techtalks') },
+      },
+      {
+        title: 'Vores skriverier',
+        description:
+          'Essays, briefs, kommentarer og journaler. Det fører ind i think tanken, laboratoriet og fællesskabet.',
+        icon: 'tabler:book',
+        callToAction: { text: 'Dyk ned i vores skriverier', href: getPermalink('/da/writings/') },
       },
     ]}
   />
@@ -113,21 +133,21 @@ const metadata = {
         icon: 'tabler:eye',
       },
       {
-        title: 'Dukk op',
+        title: 'Mød op',
         description:
-          'Du deltager i diskussioner, kommenterer idéer og kommer nogenlunde regelmæssigt. Næste skridt: tag et emne med til Office Hours.',
+          'Du deltager i diskussioner, kommenterer på idéer og kommer nogenlunde regelmæssigt. Næste skridt: tag et emne med til Office Hours.',
         icon: 'tabler:users',
       },
       {
         title: 'Hjælp til',
         description:
-          'Du tager en lille, afgrænset opgave: gennemgå en tekst, test et værktøj, hjælp med at afvikle et event, skriv et brief, ret en fejl. Næste skridt: spørg "hvad kan jeg hjælpe med i denne uge?" på Matrix eller til Office Hours.',
+          'Du tager en lille, afgrænset opgave: gennemse en tekst, test et værktøj, hjælp med at afvikle en begivenhed, skriv en brief, ret en issue. Næste skridt: spørg "hvad kunne jeg hjælpe med i denne uge?" på Matrix eller til Office Hours.',
         icon: 'tabler:hand-grab',
       },
       {
         title: 'Bær',
         description:
-          'Du ejer noget over tid: et projekt, en eventserie, et stykke skrivning, en cirkel. Næste skridt: snak med os om at blive en del af Initiative Circle.',
+          'Du ejer noget over tid: et projekt, en begivenhedsrække, et skriveri, en cirkel. Næste skridt: tal med os om at blive en del af Initiativcirklen.',
         icon: 'tabler:flag',
       },
     ]}
@@ -138,40 +158,28 @@ const metadata = {
   </p>
 
   <Features2
-    id="initiative-circle"
-    tagline="Hvor bidrag fører hen"
-    title="Initiative Circle"
-    columns={1}
-    items={[
-      {
-        title: 'Fællesskabets aktive kerne',
-        description: `Initiative Circle er selvorganiserende og rådgivende og har reel indflydelse i fonden. Den høres før større ændringer i vedtægterne og kan indstille op til to bestyrelsesmedlemmer. Deltagelse er gratis og bygger på dokumenteret, frivillig aktivitet: at arrangere events eller meetups, redaktionelt arbejde, review, facilitering, open source-bidrag eller koordinering af fællesskabet. <a class="underline" href="https://docs.mindovermachine.dk/da/governance/initiative-circle/">Læs om hvordan Initiative Circle fungerer</a>.`,
-        icon: 'tabler:circles',
-      },
-    ]}
-  />
-
-  <Features2
     id="where-things-live"
-    tagline="Hvor tingene bor"
+    tagline="Hvor tingene findes"
     title="Find rundt"
     columns={3}
     items={[
       {
-        title: 'Docs',
-        description: 'Vision, værdier og governance.',
+        title: 'Dokumentation',
+        description:
+          'Interne dokumenter, slet ikke hemmelige, men ofte meget detaljerede, specifikke og somme tider lidt rodede — men du er velkommen til at udforske dem.',
         icon: 'tabler:books',
-        callToAction: { text: 'Åbn docs', href: 'https://docs.mindovermachine.dk/da/' },
+        callToAction: { text: 'Åbn dokumentationen', href: 'https://docs.mindovermachine.dk/da/' },
       },
       {
-        title: 'Opdateringer',
-        description: 'Events, essays og releases på mail.',
+        title: 'Kom på opdateringslisten',
+        description:
+          'Nyheder og opdateringer om begivenheder, essays, projekter, udgivelser osv. sendes jævnligt på mail.',
         icon: 'tabler:mail',
         callToAction: { text: 'Gå ikke glip af noget', href: getPermalink('/da/writings/dont-miss-a-beat/') },
       },
       {
         title: 'Email',
-        description: 'Vil du hellere skrive til et menneske? Send os en besked.',
+        description: 'Foretrækker du at skrive en mail? Så gør endelig det!',
         icon: 'tabler:at',
         callToAction: { text: 'hey@mindovermachine.dk', href: 'mailto:hey@mindovermachine.dk' },
       },
@@ -181,28 +189,15 @@ const metadata = {
   <Features2
     id="organisations"
     tagline="For organisationer"
-    title="Vil I involvere jeres organisation?"
+    title="Vil du tilmelde din organisation?"
     columns={1}
     items={[
       {
-        title: 'Se Medlemskab',
-        description: `Organisationer kan støtte fonden gennem <a class="underline" href="${getPermalink('/da/membership/')}">Medlemskab</a>. I er også velkomne til at <a class="underline" href="${getPermalink('/da/contact/')}">tage kontakt</a>.`,
+        title: 'Bliv en del af MoM FOSS Alliance',
+        description:
+          'Organisationer kan blive en del af MoM FOSS Alliance, som understøtter de FOSS-projekter, vi har stewardship for i overensstemmelse med Cyber Resilience Act (CRA).<br/>Men det indebærer også en lang række andre fordele...',
+        callToAction: { text: 'Medlemskab', href: '/da/membership/' },
         icon: 'tabler:building',
-      },
-    ]}
-  />
-
-  <p class="max-w-3xl mx-auto px-6 pt-8 text-center text-xl">
-    Hvis du er i tvivl om, hvorvidt du er "teknisk nok", "senior nok" eller "engageret nok" til at være her: det er du.
-    Kom som du er, og se hvad der sker. Vi ses på tirsdag. 🌱
-  </p>
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Kom til Office Hours',
-        href: getPermalink('/da/events/mom-officehours/'),
       },
     ]}
   />
