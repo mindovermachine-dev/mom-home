@@ -92,12 +92,12 @@ const localizedActions = actions.map((action) => ({
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-3 px-3 lg:px-6 mx-auto w-full',
+      'relative text-default py-3 px-3 min-[900px]:px-6 mx-auto w-full',
       {
-        'lg:flex lg:justify-between': position !== 'center',
+        'min-[900px]:flex min-[900px]:justify-between': position !== 'center',
       },
       {
-        'lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center': position === 'center',
+        'min-[900px]:grid min-[900px]:grid-cols-[auto_1fr_auto] min-[900px]:items-center': position === 'center',
       },
       {
         'max-w-7xl': !isFullWidth,
@@ -108,16 +108,16 @@ const localizedActions = actions.map((action) => ({
       <a class="flex items-center" href={getHomePermalink()}>
         <Logo />
       </a>
-      <div class="flex items-center lg:hidden">
+      <div class="flex items-center min-[900px]:hidden">
         <ToggleMenu />
       </div>
     </div>
     <nav
-      class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-visible lg:justify-self-center"
+      class="items-center w-full min-[900px]:w-auto hidden min-[900px]:flex min-[900px]:mx-5 text-default overflow-y-auto overflow-x-hidden min-[900px]:overflow-visible min-[900px]:justify-self-center"
       aria-label="Main navigation"
     >
       <ul
-        class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center"
+        class="flex flex-col min-[900px]:flex-row min-[900px]:self-center w-full min-[900px]:w-auto text-xl min-[900px]:text-[0.9375rem] tracking-[0.01rem] font-medium min-[900px]:justify-center"
       >
         {
           links.map(({ text, translations, href, links }) => {
@@ -129,15 +129,15 @@ const localizedActions = actions.map((action) => ({
                   <>
                     <button
                       type="button"
-                      class="hover:text-link dark:hover:text-white px-3 xl:px-4 py-3 flex items-center whitespace-nowrap"
+                      class="hover:text-link dark:hover:text-white px-2 lg:px-3 xl:px-4 py-3 flex items-center whitespace-nowrap"
                     >
                       {getLocalizedLabel(text, translations)}{' '}
                       <Icon
                         name="tabler:chevron-down"
-                        class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden lg:inline"
+                        class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden min-[900px]:inline"
                       />
                     </button>
-                    <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-dark rounded lg:absolute pl-4 lg:pl-0 lg:hidden font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl">
+                    <ul class="dropdown-menu min-[900px]:backdrop-blur-md dark:min-[900px]:bg-dark rounded min-[900px]:absolute pl-4 min-[900px]:pl-0 min-[900px]:hidden font-medium min-[900px]:bg-white/90 min-[900px]:min-w-[200px] drop-shadow-xl">
                       {links.map(({ text: text2, translations: translations2, href: href2 }) => {
                         const localizedHref2 = localizeHref(href2);
 
@@ -145,7 +145,7 @@ const localizedActions = actions.map((action) => ({
                           <li>
                             <a
                               class:list={[
-                                'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                                'first:rounded-t last:rounded-b min-[900px]:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
                                 { 'aw-link-active': localizedHref2 === currentPath },
                               ]}
                               href={localizedHref2}
@@ -160,7 +160,7 @@ const localizedActions = actions.map((action) => ({
                 ) : (
                   <a
                     class:list={[
-                      'hover:text-link dark:hover:text-white px-3 xl:px-4 py-3 flex items-center whitespace-nowrap',
+                      'hover:text-link dark:hover:text-white px-2 lg:px-3 xl:px-4 py-3 flex items-center whitespace-nowrap',
                       { 'aw-link-active': localizedHref === currentPath },
                     ]}
                     href={localizedHref}
@@ -177,10 +177,10 @@ const localizedActions = actions.map((action) => ({
     <div
       class:list={[
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end',
+        'hidden min-[900px]:self-center min-[900px]:flex items-center min-[900px]:mb-0 fixed w-full min-[900px]:w-auto min-[900px]:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 min-[900px]:p-0 min-[900px]:justify-self-end',
       ]}
     >
-      <div class="items-center flex justify-between w-full lg:w-auto">
+      <div class="items-center flex justify-between w-full min-[900px]:w-auto">
         <div class="flex">
           <a
             class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
@@ -190,11 +190,15 @@ const localizedActions = actions.map((action) => ({
           >
             {localeToggleText}
           </a>
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
+          {
+            showToggleTheme && (
+              <ToggleTheme iconClass="w-6 h-6 min-[900px]:w-5 min-[900px]:h-5 min-[900px]:inline-block" />
+            )
+          }
           {
             showRssFeed && (
               <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                class="min-[900px]:max-lg:hidden text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
@@ -207,7 +211,10 @@ const localizedActions = actions.map((action) => ({
           localizedActions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
               {localizedActions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 lg:px-6 font-semibold shadow-none text-sm w-auto" />
+                <Button
+                  {...btnProps}
+                  class="ml-2 py-2.5 px-5.5 min-[900px]:px-6 font-semibold shadow-none text-sm w-auto"
+                />
               ))}
             </span>
           ) : (
