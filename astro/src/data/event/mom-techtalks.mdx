@@ -18,6 +18,9 @@ signup:
 image: ~/assets/images/mom-tech-talk.png
 ---
 
+import Steps from '~/components/widgets/Steps.astro';
+import Button from '~/components/ui/Button.astro';
+
 ## This is MoM's weekly Tech Talk meeting
 
 The meeting is run as a matrix [video call](https://matrix.to/#/#mom-tech-talks:matrix.org) in in our room [`#mom-tech-talks:matrix.org`](https://matrix.to/#/#mom-tech-talks:matrix.org) it is open to anyone who wants to join.
@@ -32,6 +35,57 @@ On this meeting we discuss technical content related to [our projects](/projects
 - You would like to _join_ one of our FOSS projects and want to be onboarded
 - You see a fantastic potential or perspective in one of our projects and would like to discuss it with the team
 
-## 👉 If this is your first meeting 👈
+<Steps
+  title="Prepare for the first meeting"
+  subtitle="Our public online presence is on Matrix.<br/><b>👇 If this is your first meeting 👇</b>"
+  items={[
+    {
+      title: 'Step 1: <span class="font-medium">Create an account on Matrix</span>',
+      description: 'You already have one? Then you can reuse it. You are on to the next step.',
+      callToAction: {
+        text: 'Create account — read all about it!',
+        href: '/writings/new-to-matrix',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title: 'Step 2: <span class="font-medium">Join our "Mind over Machine" space on Matrix</span>',
+      description:
+        'In this space we have several rooms. All the rooms are public, feel free to join any that interest you.',
+      callToAction: {
+        text: 'Join space&nbsp;<code>#mindovermachine:matrix.org</code>',
+        href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title:
+        'Step 3: <span class="font-medium">Signup for calendar invites to the "Tech Talks" invitation group</span>',
+      description:
+        'Signing up to the public mail-group will mean that the invitations for the Mind over Machine events will show up in your own calendar, including updates if anyting changes. You can unsubscribe at any time.',
+      callToAction: {
+        text: 'Join&nbsp;<code>tech-talks@mindovermachine.dk</code>',
+        href: 'https://groups.google.com/a/mindovermachine.dk/g/tech-talks',
+        target: '_blank',
+      },
+      icon: 'tabler:calendar',
+    },
+  ]}
+/>
 
-New to MoM? [Start here](/get-involved/). To get set up on Matrix, follow the [first-meeting steps on the Office Hours page](/events/mom-officehours/). To get calendar invites for Tech Talks, join [`tech-talks@mindovermachine.dk`](https://groups.google.com/a/mindovermachine.dk/g/tech-talks).
+:::note[Joining a google group (step 3) requires a google account]
+
+If the account you want to receive the calendar invites to, is not currently a Google account then you can simply 'wrap' on your current email address in a free google account. It's harmless and non-intrusive, it allows you to use Google's free services like _drive, photos, groups, gemini, OAuth_ ...etc with any email address you have.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Wrap your email address in a free google account"
+    href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+:::

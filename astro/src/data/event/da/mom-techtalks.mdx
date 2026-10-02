@@ -18,6 +18,9 @@ signup:
 image: ~/assets/images/mom-tech-talk.png
 ---
 
+import Steps from '~/components/widgets/Steps.astro';
+import Button from '~/components/ui/Button.astro';
+
 ## Dette er MoM's ugentlige Tech Talk møde
 
 Mødet afvikles som et Matrix [videoopkald](https://matrix.to/#/#mom-tech-talks:matrix.org) i vores rum [`#mom-tech-talks:matrix.org`](https://matrix.to/#/#mom-tech-talks:matrix.org) og er åbent for alle, der ønsker at deltage.
@@ -32,6 +35,57 @@ På dette møde diskuterer vi teknisk indhold relateret til [vores projekter](/d
 - Du gerne vil _deltage_ i et af vores FOSS-projekter og vil onboardes
 - Du ser et fantastisk potentiale eller perspektiv i et af vores projekter og gerne vil diskutere det med teamet
 
-## 👉 Hvis dette er dit første møde 👈
+<Steps
+  title="Forberedelse til første møde"
+  subtitle="Vores offentlige online tilstedeværelse er på Matrix.<br/><b>👇 Hvis dette er dit første møde 👇</b>"
+  items={[
+    {
+      title: 'Trin 1: <span class="font-medium">Opret en konto på Matrix</span>',
+      description: 'Har du allerede en? Så kan du bruge den. Går videre til næste trin.',
+      callToAction: {
+        text: 'Opret konto — læs alt om det!',
+        href: '/da/writings/new-to-matrix',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title: 'Trin 2: <span class="font-medium">Tilslut dig vores "Mind over Machine" space på Matrix</span>',
+      description:
+        'I dette space har vi flere rum. Alle rummene er offentlige, så du er velkommen til at tilslutte dig dem, der interesserer dig.',
+      callToAction: {
+        text: 'Tilslut dig space&nbsp;<code>#mindovermachine:matrix.org</code>',
+        href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+        target: '_blank',
+      },
+      icon: 'tabler:check',
+    },
+    {
+      title:
+        'Trin 3: <span class="font-medium">Tilmeld dig kalenderinvitationer til "Tech Talks" invitationsgruppen</span>',
+      description:
+        'Invitationerne til Mind over Machines Tech Talks dukker op i din egen kalender, og du får opdateinger hvis der er ændringer. Du kan afmelde dig til enhver tid.',
+      callToAction: {
+        text: 'Tilmeld dig&nbsp;<code>tech-talks@mindovermachine.dk</code>',
+        href: 'https://groups.google.com/a/mindovermachine.dk/g/tech-talks',
+        target: '_blank',
+      },
+      icon: 'tabler:calendar',
+    },
+  ]}
+/>
 
-Ny hos MoM? [Start her](/da/get-involved/). For at komme på Matrix, følg [trinnene til dit første møde på Office Hours-siden](/da/events/mom-officehours/). For at få kalenderinvitationer til Tech Talks, tilmeld dig [`tech-talks@mindovermachine.dk`](https://groups.google.com/a/mindovermachine.dk/g/tech-talks).
+:::note[At tilmelde sig en google gruppe (trin 3) kræver en google-konto]
+
+Hvis den konto, du ønsker at modtage kalenderinvitationerne på, ikke allerede er en Google-konto, kan du blot 'wrappe' din nuværende e-mailadresse i en gratis google-konto. Det er harmløst og uforstyrrende, og det giver dig mulighed for at bruge Googles gratis tjenester som _drive, photos, groups, gemini, OAuth_ ...m.m. med enhver e-mailadresse, du har.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Wrap din e-mailadresse i en gratis google-konto"
+    href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+:::
