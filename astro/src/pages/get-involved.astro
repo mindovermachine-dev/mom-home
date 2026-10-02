@@ -1,0 +1,209 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Get involved',
+  description:
+    'Start by showing up. Your first week at Mind over Machine, four ways in, and how people grow in our community.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Get involved"
+    title="Start by showing up"
+    subtitle="Every Tuesday morning we meet online for Office Hours. No sign-up, no preparation. Just come."
+    callToAction={{ text: 'About Office Hours', href: getPermalink('/events/mom-officehours/') }}
+  />
+
+  <Steps
+    id="first-week"
+    tagline="Your first week"
+    title="Four small steps, about an hour in total"
+    subtitle="You don't have to be a developer. Writers, facilitators, organisers, reviewers and translators between tech and the rest of the world are all welcome."
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Get onto Matrix</span>',
+        description: `Matrix is where our community talks. Create an account if you don't have one, then join our space <code>#mindovermachine:matrix.org</code>. Not sure why Matrix? Read <a class="underline" href="${getPermalink('/writings/new-to-matrix/#why-is-this-good')}">why we use it</a>.`,
+        callToAction: {
+          text: 'New to Matrix?',
+          href: getPermalink('/writings/new-to-matrix/'),
+        },
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Say hi in the General room</span>',
+        description: `Copy this, fill in the blanks and post it:
+<blockquote class="mt-3 border-l-4 border-gray-400 pl-4 italic">Hi, I'm [name]. I work with [what you do].<br />I found MoM through [person/event/article].<br />I'm curious about [something], and I could imagine helping with [something, or "not sure yet"].</blockquote>`,
+        callToAction: {
+          text: 'Open the space',
+          href: 'https://matrix.to/#/#mindovermachine:matrix.org',
+          target: '_blank',
+        },
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Come to Office Hours</span>',
+        description:
+          'We use the Lean Coffee format: a blank agenda, everyone suggests topics, we vote, and each topic gets eight minutes. Time and place are on the event page.',
+        callToAction: {
+          text: 'Office Hours',
+          href: getPermalink('/events/mom-officehours/'),
+        },
+        icon: 'tabler:coffee',
+      },
+      {
+        title: 'Step 4: <span class="font-medium">Read two short pages</span>',
+        description: `Our <a class="underline" href="https://docs.mindovermachine.dk/da/vision/manifesto/">manifesto</a> and our <a class="underline" href="https://docs.mindovermachine.dk/da/vision/crowd-values/">C.R.O.W.D. values</a>. Pay attention to Dorith. She will come up. Want updates in your inbox as well? Join the <a class="underline" href="${getPermalink('/writings/dont-miss-a-beat/')}">updates group</a>.`,
+        icon: 'tabler:book',
+      },
+    ]}
+  />
+
+  <Features
+    id="ways-in"
+    tagline="Four ways in"
+    title="Pick the door that suits you"
+    columns={2}
+    items={[
+      {
+        title: 'Join Matrix',
+        description: 'Our community chat. It leads into the community.',
+        icon: 'tabler:message-circle',
+        callToAction: { text: 'Join the space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
+      },
+      {
+        title: 'Join the huddle',
+        description:
+          'Office Hours is our weekly open meeting, on Tuesdays. The best way in, and a good place to pitch ideas for the think tank or the laboratory.',
+        icon: 'tabler:coffee',
+        callToAction: { text: 'Office Hours', href: getPermalink('/events/mom-officehours/') },
+      },
+      {
+        title: 'Join IRL',
+        description: 'Meet us in person at an event. It leads into the think tank and the community.',
+        icon: 'tabler:calendar-event',
+        callToAction: { text: 'See events', href: getPermalink('/events/') },
+      },
+      {
+        title: 'Start hacking',
+        description: 'Open code, ideas and discussions on GitHub. It leads into the laboratory.',
+        icon: 'tabler:brand-github',
+        callToAction: { text: 'Visit GitHub', href: 'https://github.com/mindovermachine-dev' },
+      },
+    ]}
+  />
+
+  <Features2
+    id="grow"
+    tagline="How people grow here"
+    title="Four stages, no levels"
+    columns={4}
+    items={[
+      {
+        title: 'Hang around',
+        description:
+          'You read along, come to Office Hours now and then, and listen. Next step: say hi and ask one question.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Show up',
+        description:
+          'You join discussions, comment on ideas and come fairly regularly. Next step: bring a topic to Office Hours.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Pitch in',
+        description:
+          'You take a small, bounded task: review a text, test a tool, help run an event, write a brief, fix an issue. Next step: ask "what could I help with this week?" in Matrix or at Office Hours.',
+        icon: 'tabler:hand-grab',
+      },
+      {
+        title: 'Carry',
+        description:
+          'You own something over time: a project, an event series, a piece of writing, a circle. Next step: talk to us about joining the Initiative Circle.',
+        icon: 'tabler:flag',
+      },
+    ]}
+  />
+  <p class="max-w-3xl mx-auto px-6 pb-8 text-center text-muted">
+    There are no levels, badges or entry tests. Moving back to hanging around is fine, and nobody will ask you to
+    explain.
+  </p>
+
+  <Features2
+    id="initiative-circle"
+    tagline="Where contributing leads"
+    title="The Initiative Circle"
+    columns={1}
+    items={[
+      {
+        title: 'The active core of the community',
+        description: `The Initiative Circle is self-organising and advisory, with a real say in the foundation. It is consulted before major changes to the statutes and can nominate up to two board members. Participation is free and based on documented, voluntary activity: organising events or meetups, editorial work, reviewing, facilitating, open-source contributions or coordinating the community. <a class="underline" href="https://docs.mindovermachine.dk/da/governance/initiative-circle/">Read how the Initiative Circle works</a>.`,
+        icon: 'tabler:circles',
+      },
+    ]}
+  />
+
+  <Features2
+    id="where-things-live"
+    tagline="Where things live"
+    title="Find your way around"
+    columns={3}
+    items={[
+      {
+        title: 'Docs',
+        description: 'Vision, values and governance.',
+        icon: 'tabler:books',
+        callToAction: { text: 'Open the docs', href: 'https://docs.mindovermachine.dk/da/' },
+      },
+      {
+        title: 'Updates',
+        description: 'Events, essays and releases by mail.',
+        icon: 'tabler:mail',
+        callToAction: { text: 'Don\u2019t miss a beat', href: getPermalink('/writings/dont-miss-a-beat/') },
+      },
+      {
+        title: 'Email',
+        description: 'Prefer to write to a person? Send us a note.',
+        icon: 'tabler:at',
+        callToAction: { text: 'hey@mindovermachine.dk', href: 'mailto:hey@mindovermachine.dk' },
+      },
+    ]}
+  />
+
+  <Features2
+    id="organisations"
+    tagline="For organisations"
+    title="Looking to involve your organisation?"
+    columns={1}
+    items={[
+      {
+        title: 'See Membership',
+        description: `Organisations can support the foundation through <a class="underline" href="${getPermalink('/membership/')}">Membership</a>. You are also welcome to <a class="underline" href="${getPermalink('/contact/')}">get in touch</a>.`,
+        icon: 'tabler:building',
+      },
+    ]}
+  />
+
+  <p class="max-w-3xl mx-auto px-6 pt-8 text-center text-xl">
+    If you are wondering whether you are "technical enough", "senior enough" or "committed enough" to be here: you are.
+    Come as you are, and see what happens. See you on Tuesday. 🌱
+  </p>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Join Office Hours',
+        href: getPermalink('/events/mom-officehours/'),
+      },
+    ]}
+  />
+</Layout>
