@@ -17,6 +17,10 @@ interface Link {
 
 interface Links {
   title?: string;
+  translations?: {
+    en?: string;
+    da?: string;
+  };
   links: Array<Link>;
 }
 
@@ -78,9 +82,9 @@ const getLocalizedLabel = (text?: string, translations?: { en?: string; da?: str
         </div>
       </div>
       {
-        links.map(({ title, links }) => (
+        links.map(({ title, translations, links }) => (
           <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
+            <div class="dark:text-gray-300 font-medium mb-2">{getLocalizedLabel(title, translations)}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
                 {links.map(({ text, translations, href, ariaLabel }) => (
