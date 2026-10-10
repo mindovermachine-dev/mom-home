@@ -24,9 +24,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Deploy artifact
-        uses: devx-cafe/takt-actions/deploy-artifact@v1
+      - name: Deploy with takt action
+        uses: devx-cafe/takt-actions/deploy-to-repo@v1
         with:
+          target_repository: mindovermachine-dev/stage.mindovermachine.dk
           artifact_name: github-pages-${{ github.sha }}
-          artifact_path: astro/dist
-          # status_context: # default "deploy:pages"
+          user_name: "Production Deployer"
+          user_email: "deploy@mindovermachine.dk"
+          cname: "www.mindovermachine.dk"
+          token: ${{ secrets.READY_PUSHER }}
+          artifact_path: astro/dist # Default: "_site"
+          # target_branch: # Default: "main"
+          # status_context: # Default: "deploy:repo"
+          # commit_message: # Default: "Deploy artifact from $GITHUB_REPOSITORY@$GITHUB_REF_NAME"

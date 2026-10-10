@@ -3,7 +3,11 @@ export default {
   //theme: "mindovermachine-dev/mom-doc-theme@main",
   theme: "file:../../localhome/GitHub/mindovermachine-dev/mom-doc-theme",
   // Raw Astro config, merged over the theme's astro.config.mjs.
-  astro: { server: { host: true } },
+  astro: {
+    site: "https://docs.mindovermachine.dev",
+    base: "/mom-home",
+    server: { host: true },
+  },
   title: "mom-home developer docs",
   // null (not undefined) so the theme's default "/da/" redirect is overridden.
   rootRedirect: null,
