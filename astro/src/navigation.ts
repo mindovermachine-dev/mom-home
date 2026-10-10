@@ -68,8 +68,20 @@ export const footerData = {
     {
       title: 'Community',
       links: [
-        { text: 'LinkedIn', href: 'https://www.linkedin.com/company/mindovermachine/' },
         { text: 'GitHub', href: 'https://github.com/mindovermachine-dev' },
+        { text: 'Matrix', href: 'https://matrix.to/#/#mindovermachine:matrix.org' },
+        { text: 'Office Hours', translations: { da: 'Office Hours' }, href: getPermalink('/events/mom-officehours') },
+        { text: 'Tech Talks', translations: { da: 'Tech Talks' }, href: getPermalink('/events/mom-techtalks') },
+        { text: 'Events', translations: { da: 'Begivenheder' }, href: getPermalink('/events') },
+      ],
+    },
+    {
+      title: 'Social Media',
+      translations: { da: 'Sociale medier' },
+      links: [
+        { text: 'LinkedIn', href: 'https://www.linkedin.com/company/mindovermachine/' },
+        { text: 'Mastodon', href: 'https://mastodon.social/@mindovermachine' },
+        { text: 'Bluesky', href: 'https://bsky.app/profile/mindovermachine.dk' },
       ],
     },
   ],
