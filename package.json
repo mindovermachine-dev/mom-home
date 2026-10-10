@@ -21,11 +21,11 @@
     "docs:preview": "remote-astro-theme preview --host 0.0.0.0"
   },
   "devDependencies": {
+    "@mindovermachine-dev/remote-astro-theme": "^0.1.0",
     "cspell": "^6.28.0",
     "linkinator": "^7.6.1",
     "markdownlint-cli2": "^0.11.0",
     "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "remote-astro-theme": "github:mindovermachine-dev/remote-astro-theme#main"
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

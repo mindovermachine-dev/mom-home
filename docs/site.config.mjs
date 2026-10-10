@@ -1,7 +1,7 @@
 // Steering config for remote-astro-theme: builds docs/content with the theme below.
 export default {
   //theme: "mindovermachine-dev/mom-doc-theme@main",
-  theme: "file:../../localhome/GitHub/mindovermachine-dev/mom-doc-theme",
+  theme: "mindovermachine-dev/mom-doc-theme@main",
   // Raw Astro config, merged over the theme's astro.config.mjs.
   astro: {
     site: "https://docs.mindovermachine.dev",
