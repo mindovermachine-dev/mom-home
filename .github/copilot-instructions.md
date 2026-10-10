@@ -7,7 +7,7 @@ This repository now powers the main website for Mind over Machine:
 - Live site: https://www.mindovermachine.dk
 - Stack: Astro 6 + AstroWind + Tailwind CSS 4
 - Output: static site generated to astro/dist
-- Deployment: GitHub Pages, with the production artifact deployed to `mindovermachine-dev.github.io`
+- Deployment: GitHub Pages, with the production artifact deployed to `www.mindovermachine.dk`
 - Runtime constraint: this is a static site. Do not add SSR, an Astro adapter, server endpoints, or a database for page features.
 
 The repository was originally a docs/Starlight setup. It has been repurposed to a marketing/editorial site (blog/essays/events/services/about/contact).

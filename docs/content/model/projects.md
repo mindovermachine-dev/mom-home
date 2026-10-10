@@ -1,4 +1,7 @@
-# Projects frontmatter reference
+---
+title: "Projects frontmatter reference"
+description: "Frontmatter reference for project content entries."
+---
 
 Project content lives in `astro/src/data/project/*.md` and `*.mdx` and is validated by the `project` collection in `astro/src/content.config.ts`.
 

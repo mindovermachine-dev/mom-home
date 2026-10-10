@@ -1,4 +1,7 @@
-# Build Drafts Reference
+---
+title: "Build Drafts Reference"
+description: "How draft content is included or excluded via Astro mode switching."
+---
 
 ## Goal
 

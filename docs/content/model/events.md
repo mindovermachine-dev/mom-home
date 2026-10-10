@@ -1,4 +1,7 @@
-# Events Frontmatter Reference
+---
+title: "Events Frontmatter Reference"
+description: "Frontmatter contract for event content entries."
+---
 
 ## Purpose
 

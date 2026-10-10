@@ -3,6 +3,12 @@
     {
       "path": ".",
     },
+    {
+      "path": "../../localhome/GitHub/mindovermachine-dev/mom-doc-theme",
+    },
+    {
+      "path": "../../localhome/GitHub/mindovermachine-dev/remote-astro-theme",
+    },
   ],
   "settings": {
     "chat.tools.terminal.autoApprove": {

@@ -1,4 +1,7 @@
-# MomImage Reference Manual
+---
+title: "MomImage Reference Manual"
+description: "Reference manual for the MomImage content image component."
+---
 
 ## Purpose
 

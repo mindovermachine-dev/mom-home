@@ -1,4 +1,9 @@
-# Profiles in `mom-home`
+---
+title: "Profiles in mom-home"
+description: "How profiles work, connect to posts and projects, and how to add them."
+sidebar:
+  label: Profiles
+---
 
 This document explains how the profile system works in this repository, how it is connected to blog posts, and how to add and use new profiles (including portrait images).
 
