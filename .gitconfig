@@ -10,10 +10,6 @@
 
 [commit]
 	gpgsign = false
-
-[cname]
-  stage = stage.leancrowd.dk
-  production = www.leancrowd.dk
   
 [alias]
   undo-commit = reset --soft HEAD^
