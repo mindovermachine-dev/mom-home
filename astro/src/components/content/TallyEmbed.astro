@@ -1,0 +1,38 @@
+---
+interface Props {
+  formId: string;
+  title: string;
+}
+
+const { formId, title } = Astro.props;
+const tallySrc = `https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
+---
+
+<iframe
+  data-tally-src={tallySrc}
+  loading="lazy"
+  width="100%"
+  height="1849"
+  frameborder="0"
+  marginheight="0"
+  marginwidth="0"
+  title={title}></iframe>
+<script is:inline>
+  var d = document;
+  var w = 'https://tally.so/widgets/embed.js';
+  var v = function () {
+    if (typeof Tally !== 'undefined') Tally.loadEmbeds();
+    else
+      d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+        e.src = e.dataset.tallySrc;
+      });
+  };
+  if (typeof Tally !== 'undefined') v();
+  else if (d.querySelector('script[src="' + w + '"]') == null) {
+    var s = d.createElement('script');
+    s.src = w;
+    s.onload = v;
+    s.onerror = v;
+    d.body.appendChild(s);
+  }
+</script>
