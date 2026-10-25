@@ -1,6 +1,6 @@
 ---
-title: "Events Frontmatter Reference"
-description: "Frontmatter contract for event content entries."
+title: "Events"
+description: "Frontmatter and content contract for event entries."
 ---
 
 ## Purpose
@@ -9,7 +9,11 @@ This document defines the event content frontmatter contract for files in:
 
 - `astro/src/data/event/*.mdx`
 
-These files are validated by the `event` content collection schema in:
+The Danish version is optional. If you create it the it must have the same slug and extension and it shall sit in the `da`folder:
+
+- `astro/src/data/event/da/*.mdx`
+
+These files are validated by the `event` content collection schema defined in:
 
 - `astro/src/content.config.ts`
 
@@ -25,31 +29,50 @@ location: Online
 ---
 ```
 
-## Full Example
+## One time event example
 
-```mdx
+```yaml
+---
+title: "CRA — Policy made easy"
+dates:
+  - date: 2026-10-7
+    time: 16:30 CET
+    duration: 3:00h
+location:
+  venue: Workbar, Matrikel 1
+  address: Gammel Strand 26, Copenhagen
+  mapurl: https://maps.app.goo.gl/Sh7Vv4ydkALD98Ym6
+excerpt: "Policy System A FOSS product, you can install for free already today"
+signup:
+  signupurl: https://luma.com/m9rkuuqc
+  icon: ~/assets/images/events/register.svg
+  caption: Signup
+  repeat: true
+image: ~/assets/images/events/mom-cra-consequences.png
+---
+```
+
+## Recurring event example
+
+```yaml
 ---
 title: Mind over Machine — Office Hours
-sortorder: 2
+sortorder: 1
 dates:
   - date: Every Tuesday
-    time: 8:15 CEST
+    time: 08:15 CET
     duration: 1:00h
 location:
-  venue: Online (Slack Huddle)
+  venue: Online (@mom-office-hours:matrix.org)
   address: ""
   mapurl: ""
-excerpt: Office Hours is a recurring event where we open up the floor.
+excerpt: Office Hours is a recurring weekly event where we open the door for anyone who wants to pitch an idea, ask for help, share something interesting, or just get to know us.
 signup:
-  signupurl: https://app.slack.com/huddle/T09DW7D2W4Q/C0B4SUYJW4R
-  caption: Join the huddle on Slack
-  icon: ~/assets/images/events/slack-icon.png
+  signupurl: https://matrix.to/#/#mom-office-hours:matrix.org
+  caption: Join video room on Matrix
+  icon: ~/assets/images/events/matrix-logo.png
   repeat: true
 image: ~/assets/images/events/mom-officehours.png
-draft: false
-metadata:
-  title: Office Hours
-  description: Weekly open office hour session.
 ---
 ```
 
