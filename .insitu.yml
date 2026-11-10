@@ -105,7 +105,19 @@ waves:
       - "repo-gitconfig"
       - "astro-install"
       - "repo-install"
-      - "install-browser"
+
+  # Nix image bakes tools and gh extensions in; only per-workspace setup remains.
+  - id: "post-create-nix"
+    name: "Nix Dev Container Post Create"
+    parallel: true
+    checks:
+      - "gh-auth"
+      - "install-takt"
+      - "install-takt-shortcuts"
+      - "safe-repo"
+      - "repo-gitconfig"
+      - "astro-install"
+      - "repo-install"
 
   - id: "prep-runner"
     name: "Run to prepare GitHub runner"
@@ -116,7 +128,6 @@ waves:
       - "repo-install"
       - "repo-gitconfig"
       - "install-lint-tools"
-      - "install-browser"
 
   - id: "build"
     name: "Build site"
