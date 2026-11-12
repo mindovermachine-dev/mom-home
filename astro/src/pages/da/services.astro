@@ -3,38 +3,210 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { fetchServices } from '~/utils/services';
-import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Tjenester',
 };
-
-const services = await fetchServices({ locale: 'da', fallbackLocale: 'en' });
 ---
 
 <Layout metadata={metadata}>
   <HeroText
     tagline="Tjenester"
-    title="Tænketank og Laboratorium tjenester i regenerativ software"
-    subtitle="Rådgivning, inspiration og praksis for teams, der vil have bedre softwareresultater på lang sigt."
+    title="Et samlet tilbud til en mere regenerativ softwarebranche"
+    subtitle="Alliancemedlemskab er det strategiske fundament for organisationer. Herfra kan de få stewardship, en suveræn udviklingsstak, vidensdeling og praktisk eksekvering."
   />
 
+  <section class="px-6 py-12 sm:py-16 mx-auto max-w-6xl">
+    <ol class="grid gap-4 md:grid-cols-5" aria-label="Vores ydelsesmodel">
+      <li class="border-t-2 border-primary pt-4">
+        <span class="text-sm font-semibold text-muted">01</span><h2 class="mt-2 text-lg font-bold">
+          Alliancemedlemskab
+        </h2><p class="mt-2 text-sm text-muted">Strategisk retning, netværk, synlighed og medlemspriser.</p>
+      </li>
+      <li class="border-t-2 border-primary pt-4">
+        <span class="text-sm font-semibold text-muted">02</span><h2 class="mt-2 text-lg font-bold">
+          Product Stewardship
+        </h2><p class="mt-2 text-sm text-muted">Uafhængig governance og standarder for FOSS-produkter.</p>
+      </li>
+      <li class="border-t-2 border-primary pt-4">
+        <span class="text-sm font-semibold text-muted">03</span><h2 class="mt-2 text-lg font-bold">
+          Suveræn dev stack
+        </h2><p class="mt-2 text-sm text-muted">Europæisk forankret FOSS-infrastruktur til udvikling.</p>
+      </li>
+      <li class="border-t-2 border-primary pt-4">
+        <span class="text-sm font-semibold text-muted">04</span><h2 class="mt-2 text-lg font-bold">
+          Viden og rådgivning
+        </h2><p class="mt-2 text-sm text-muted">Kurser, workshops, talks og strategisk sparring.</p>
+      </li>
+      <li class="border-t-2 border-primary pt-4">
+        <span class="text-sm font-semibold text-muted">05</span><h2 class="mt-2 text-lg font-bold">Eksekvering</h2><p
+          class="mt-2 text-sm text-muted"
+        >
+          Timer, forudbetalte bundter og løbende retainers.
+        </p>
+      </li>
+    </ol>
+  </section>
+
   <Features2
-    title="Hvordan vi kan hjælpe"
+    title="Udforsk vores tilbud"
+    subtitle="Vælg det område, der passer til jeres behov, og gå videre til de relevante muligheder."
     columns={2}
-    items={services.map((service) => ({
-      title: service.title,
-      description: service.excerpt,
-      callToAction: {
-        variant: 'secondary',
-        text: 'Læs mere',
-        href: getPermalink(`da/services/${service.slug}`),
-        class:
-          '!mt-3 !inline-flex !rounded-md !px-3 !py-1.5 !text-sm !font-medium border border-gray-300 hover:!bg-gray-50 dark:border-slate-600 dark:hover:!bg-slate-800',
+    items={[
+      {
+        title: 'MoM FOSS Alliance',
+        description:
+          'Vær med til at sætte retning for laboratoriets FOSS-arbejde, og få adgang til netværk og medlemsfordele.',
+        callToAction: { variant: 'secondary', text: 'Se alliancemedlemskab', href: '/da/membership/' },
       },
-    }))}
+      {
+        title: 'Product Stewardship',
+        description:
+          'Skab en holdbar ramme for governance, kvalitet og fællesskabsdrevet udvikling af et FOSS-produkt.',
+        callToAction: { variant: 'secondary', text: 'Se stewardship', href: '#stewardship' },
+      },
+      {
+        title: 'MoM FOSS Dev Stack',
+        description: 'Undersøg mulighederne for en europæisk forankret udviklingsstak baseret på FOSS-værktøjer.',
+        callToAction: { variant: 'secondary', text: 'Se udviklingsstakken', href: '#dev-stack' },
+      },
+      {
+        title: 'Viden og rådgivning',
+        description:
+          'Få strategisk sparring, talks og vidensdage om FOSS, digital suverænitet og regenerativ software.',
+        callToAction: { variant: 'secondary', text: 'Se mulighederne', href: '#viden' },
+      },
+      {
+        title: 'Kurser og workshops',
+        description: 'Praksisnære forløb om digital handlekraft, FOSS, AI, udviklingspraksis og suveræn infrastruktur.',
+        callToAction: { variant: 'secondary', text: 'Udforsk kurserne', href: '/da/courses/' },
+      },
+      {
+        title: 'Eksekvering og kapacitet',
+        description:
+          'Få hjælp til at føre planer ud i livet med forudbetalte timepakker eller løbende kapacitetsaftaler.',
+        callToAction: {
+          variant: 'secondary',
+          text: 'Se eksempler på kapacitet',
+          href: '/da/membership/#kapacitet',
+        },
+      },
+    ]}
   />
+
+  <section class="px-6 py-10 sm:py-14 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="medlemskab">
+    <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-start">
+      <div>
+        <p class="text-sm font-semibold text-primary">01 / Det strategiske fundament</p>
+        <h2 class="mt-2 text-3xl font-bold font-heading">MoM FOSS Alliance</h2>
+        <p class="mt-4 max-w-3xl text-muted dark:text-slate-300">
+          For organisationer, der vil bakke op om en regenerativ softwarebranche og være med til at sætte retning for
+          laboratoriets FOSS-arbejde. Medlemsindtægter går til udvikling, facilitering og drift af FOSS i laboratoriet.
+        </p>
+      </div>
+      <a class="btn-primary" href="/da/membership/">Se alliancemedlemskab og priser</a>
+    </div>
+    <ul class="mt-6 grid gap-3 text-muted sm:grid-cols-2">
+      <li>Kvartalsvis MoM-FOSS Alliance-samling</li>
+      <li>Profil, logo og reference i offentlig kommunikation</li>
+      <li>Deltagelse i Community of Practice og mulighed for eventværtskab</li>
+      <li>Alliancemedlemmer får 40% rabat på alle billetter til den årlige MoM-konference</li>
+      <li>Mulighed for at slå opgaver og stillinger op på medlemsplatformen</li>
+      <li>Klækkelige medlemsrabatter på timepakker og løbende kapacitetsaftaler</li>
+    </ul>
+  </section>
+
+  <section
+    class="px-6 py-10 sm:py-14 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700"
+    id="stewardship"
+  >
+    <p class="text-sm font-semibold text-primary">02 / Standarder og governance</p>
+    <h2 class="mt-2 text-3xl font-bold font-heading">Product Stewardship</h2>
+    <p class="mt-4 max-w-3xl text-muted dark:text-slate-300">
+      Et FOSS-produkt forankres under MoM’s uvildige stewardship med klare standarder, sporbarhed og en holdbar
+      driftsmodel. Basisforløbet forudsætter, at produktets initiativorganisation stiller med Tech Lead og
+      udviklingsteam til den løbende kodning.
+    </p>
+    <ul class="mt-5 grid gap-3 text-muted sm:grid-cols-2">
+      <li>Dev Containers, agent-ready arbejdsgange, Detroit School-testing, SemVer og trunk-based development</li>
+      <li>Ugentlige Tech Talks og løbende sparring med initiativorganisationens team</li>
+      <li>Åben issue- og discussion-håndtering, så community kan bidrage</li>
+      <li>Maintainer- eller Driver-kapacitet kan tilkøbes, hvis teamet mangler hænder</li>
+    </ul>
+    <p class="mt-5 font-semibold">Basis Stewardship: 10.000 kr. pr. produkt pr. år. Forudsætter alliancemedlemskab.</p>
+  </section>
+
+  <section class="px-6 py-10 sm:py-14 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="dev-stack">
+    <p class="text-sm font-semibold text-primary">03 / Digital suverænitet</p>
+    <h2 class="mt-2 text-3xl font-bold font-heading">MoM FOSS Dev Stack</h2>
+    <p class="mt-4 max-w-3xl text-muted dark:text-slate-300">
+      En udviklingsstak baseret på FOSS-værktøjer med europæisk forankring og fokus på digital suverænitet og
+      datauafhængighed. Den kan bruges som produktplatform for stewardship eller som en isoleret privat stak til jeres
+      egen organisation.
+    </p>
+    <div class="mt-6 grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 class="text-xl font-bold">FOSS Product Stack</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">
+          Dedikeret udviklingsmiljø til et konkret produkt under MoM Stewardship. Kan omfatte Forgejo til kode, CI/CD og
+          issues, Matrix til kommunikation og lokale OSS-sprogmodeller.
+        </p>
+        <p class="mt-3 font-semibold">10.000 kr. pr. produkt pr. år. Compute og GPU-forbrug afregnes separat.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold">Private Enterprise Stack</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">
+          En selvstændig, isoleret stak til intern udvikling med fast pris uanset antal udviklere. Inkluderer en
+          basis-SLA for serverdrift, infrastruktursovervågning og kritiske sikkerhedsopdateringer.
+        </p>
+        <p class="mt-3 font-semibold">35.000-60.000 kr. pr. år afhængigt af størrelse, ekskl. rå serverhosting.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-10 sm:py-14 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="viden">
+    <p class="text-sm font-semibold text-primary">04 / Kompetencer og perspektiv</p>
+    <h2 class="mt-2 text-3xl font-bold font-heading">Vidensdeling, kurser og Trusted Advisory</h2>
+    <p class="mt-4 max-w-3xl text-muted dark:text-slate-300">
+      Vi hjælper ledere, organisationer og udviklere med at navigere i FOSS, digital suverænitet og regenerativ
+      softwarepraksis.
+    </p>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div>
+        <h3 class="text-lg font-bold">Rådgivning</h3><p class="mt-2 text-muted dark:text-slate-300">
+          FOSS-strategi og governance, suveræn infrastruktur samt regenerativ arkitektur og arbejdsgange.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold">Talks og vidensdage</h3><p class="mt-2 text-muted dark:text-slate-300">
+          Skræddersyede keynotes og vidensdage om fremtidens softwareudvikling og socio-teknologisk balance.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold">Kurser og workshops</h3><p class="mt-2 text-muted dark:text-slate-300">
+          Digital handlekraft, FOSS-økosystemet, AI og LLM’er, trunk-based development med collaborative agents samt MoM
+          FOSS Dev Stack i praksis.
+        </p>
+        <a class="mt-3 inline-flex font-semibold hover:underline" href="/da/courses/"
+          >Se alle kurser og workshops <span aria-hidden="true">→</span></a
+        >
+      </div>
+    </div>
+    <p class="mt-5 text-sm text-muted dark:text-slate-300">
+      Rådgivning, vidensdage og workshops afregnes til medlemspris eller via forudbetalte timebundter.
+    </p>
+  </section>
+
+  <section class="px-6 py-10 sm:py-14 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="priser">
+    <p class="text-sm font-semibold text-primary">05 / Fra plan til praksis</p>
+    <h2 class="mt-2 text-3xl font-bold font-heading">Eksekvering og løbende kapacitet</h2>
+    <p class="mt-4 max-w-3xl text-muted dark:text-slate-300">
+      Vi hjælper med rådgivning, arkitektur, workshops, Value Stream Mapping og direkte arbejde på FOSS-projekter.
+      Alliancemedlemmer får klækkelige rabatter ved større køb af kapacitet, både på forudbetalte timepakker (også
+      kaldet klippekort) og på løbende kapacitetsaftaler med fast månedlig kapacitet.
+    </p>
+    <a class="btn-secondary mt-6 inline-flex" href="/da/membership/#kapacitet">Se eksempler på kapacitetsaftaler</a>
+  </section>
 
   <CallToAction
     actions={[

@@ -1,169 +1,129 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Medlemskab',
+  title: 'MoM FOSS Alliance',
 };
 ---
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Medlemskab"
-    title="Medlemskab for organisationer, der bygger langsigtet softwarekapacitet"
-    subtitle="Medlemskab samler strategisk indflydelse, community-synlighed, praktisk leverancestøtte og stewardship-parathed i en samlet samarbejdsmodel."
+    tagline="For organisationer"
+    title="Bliv en del af MoM FOSS Alliance"
+    subtitle="Alliancemedlemskab samler organisationer, der vil støtte og præge udviklingen af Free Open Source Software i Mind over Machines laboratorium."
   />
 
-  <section class="px-6 sm:px-6 pt-12 sm:pt-16 lg:pt-20 mx-auto max-w-6xl">
-    <div
-      class="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-    >
-      <h2 class="text-2xl md:text-3xl font-bold font-heading">Fordele</h2>
-      <p class="mt-4 text-muted dark:text-slate-300">
-        Medlemskab er koordinationsmodellen for, hvordan organisationer præger laboratoriet, får adgang til praktisk
-        støtte, styrker synlighed og samarbejder på tværs af community, akademia og industri.
-      </p>
-      <div class="mt-6 grid gap-4 md:grid-cols-2 text-muted dark:text-slate-300">
-        <ul class="space-y-3 list-disc pl-5">
-          <li>Kvartalsvis alliance-deltagelse med direkte indflydelse på prioriteter</li>
-          <li>Fordelagtige priser på ad-hoc arbejde, bundles og retainers</li>
-          <li>Synlighed i community og akademia gennem events og samarbejde</li>
-        </ul>
-        <ul class="space-y-3 list-disc pl-5">
-          <li>Synlighed via medlemsprofil, logo-placering og værtskab på events</li>
-          <li>Rekrutteringskanal for opgaver og stillingsopslag</li>
-          <li>Stewardship-parathed for projekter med behov for en formel driftsmodel</li>
+  <section class="px-6 pt-12 sm:pt-16 mx-auto max-w-6xl">
+    <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold font-heading">En alliance med indflydelse</h2>
+        <p class="mt-4 text-muted dark:text-slate-300">
+          Alliancemedlemmer er organisationer, der støtter et socio-teknologisk fællesskab omkring regenerative metoder,
+          teknikker og redskaber. Alliancemedlemskab er en betalt aftale med Mind over Machine, ikke et medlemskab af
+          fonden. Indtægter fra alliancemedlemskaber og laboratorieydelser er øremærket udvikling, facilitering og drift
+          af FOSS i laboratoriet.
+        </p>
+        <ul class="mt-6 grid gap-x-8 gap-y-3 text-muted dark:text-slate-300 sm:grid-cols-2">
+          <li>
+            Kvartalsvis invitation til MoM-FOSS Alliance, hvor laboratoriets retning og næste FOSS-indsats prioriteres
+          </li>
+          <li>Logo og profilbio i medlemsregistret på mindovermachine.dk og reference i offentlig kommunikation</li>
+          <li>Deltagelse i Community of Practice på tværs af akademia, fagfolk og frivillige</li>
+          <li>Mulighed for at være vært for CoP-events hos jer</li>
+          <li>Alliancemedlemmer får 40% rabat på alle billetter til den årlige MoM-konference</li>
+          <li>Mulighed for at slå opgaver og ledige stillinger op på medlemsplatformen</li>
         </ul>
       </div>
+      <aside class="border-l-2 border-primary pl-6">
+        <h2 class="text-xl font-bold font-heading">Medlemspriser</h2>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Alliancemedlemmer får klækkelige rabatter på ad hoc-timer, forudbetalte timepakker og løbende
+          kapacitetsaftaler. Alliancemedlemskab forudsættes for Product Stewardship og løbende kapacitetsaftaler.
+        </p>
+        <a class="mt-4 inline-flex font-semibold hover:underline" href="/da/services/#priser"
+          >Se ydelser og kapacitet <span aria-hidden="true">→</span></a
+        >
+      </aside>
     </div>
   </section>
 
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
-    <div class="grid gap-6 md:grid-cols-2">
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-      >
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Årligt medlemskab</p>
-        <div class="mt-3 flex items-end gap-2">
-          <span class="text-5xl font-bold font-heading">10,000</span>
-          <span class="pb-1 text-muted">DKK / år ekskl. moms</span>
-        </div>
-        <ul class="mt-6 space-y-3 text-muted">
-          <li>Kvartalsvis deltagelse i MoM-FOSS Alliance</li>
-          <li>Offentlig medlemsprofil og logo-placering</li>
-          <li>Mulighed for værtskab på events og community-synlighed</li>
-          <li>Medlemspriser på ekstra timer og retainers</li>
-        </ul>
+  <section class="px-6 py-12 sm:py-16 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700">
+    <h2 class="text-2xl md:text-3xl font-bold font-heading">Vælg medlemsperiode</h2>
+    <div class="mt-6 grid gap-8 sm:grid-cols-2">
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-lg font-semibold">Årligt medlemskab</h3>
+        <p class="mt-2 text-3xl font-bold font-heading">
+          10.000 kr. <span class="text-base font-normal text-muted">/ år</span>
+        </p>
       </article>
-
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-      >
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Månedligt medlemskab</p>
-        <div class="mt-3 flex items-end gap-2">
-          <span class="text-5xl font-bold font-heading">1,000</span>
-          <span class="pb-1 text-muted">DKK / måned ekskl. moms</span>
-        </div>
-        <ul class="mt-6 space-y-3 text-muted">
-          <li>Samme stewardship-deltagelse og medlemsfordele</li>
-          <li>Fleksibelt for organisationer, der ønsker en lettere indgang</li>
-          <li>Direkte støtte til FOSS-vedligeholdelse og udvikling</li>
-          <li>Kan kombineres med retainers på aktive projekter</li>
-        </ul>
+      <article class="border-t-2 border-gray-300 pt-5 dark:border-slate-600">
+        <h3 class="text-lg font-semibold">Månedligt medlemskab</h3>
+        <p class="mt-2 text-3xl font-bold font-heading">
+          1.000 kr. <span class="text-base font-normal text-muted">/ måned</span>
+        </p>
       </article>
     </div>
-
-    <div
-      class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-    >
-      <h3 class="text-xl md:text-2xl font-bold font-heading">Prisoverblik</h3>
-      <p class="mt-2 text-muted dark:text-slate-300">
-        Medlemspriserne er designet til at gøre aktivt stewardship-arbejde økonomisk realistisk, når projekter bevæger
-        sig fra eksperimentering til stabil drift.
-      </p>
-      <div class="mt-6 grid gap-6 md:grid-cols-3 text-muted dark:text-slate-300">
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Ad-hoc timepris</p>
-          <p class="mt-1 text-2xl font-bold font-heading">1,120 DKK</p>
-          <p class="text-sm">vs. 1,600 DKK ikke-medlem</p>
-        </div>
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Forudbetalte bundles</p>
-          <p class="mt-1 text-2xl font-bold font-heading">op til 37% rabat</p>
-          <p class="text-sm">på 30t og 50t bundles</p>
-        </div>
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Retainers</p>
-          <p class="mt-1 text-2xl font-bold font-heading">40-49% rabat</p>
-          <p class="text-sm">afhængigt af månedlig pakkestørrelse</p>
-        </div>
-      </div>
-    </div>
+    <p class="mt-4 text-sm text-muted dark:text-slate-300">Alle priser er ekskl. moms.</p>
   </section>
 
-  <Features2
-    title="Derfor bliver organisationer medlemmer"
-    columns={2}
-    items={[
-      {
-        title: 'Strategisk retning og indflydelse',
-        description:
-          'Medlemskab inkluderer deltagelse i kvartalsvise alliancesessioner, hvor medlemsorganisationer præger den næste bølge af laboratoriets fokus og FOSS-arbejde.',
-      },
-      {
-        title: 'Synlighed og værtskabsmuligheder',
-        description:
-          'Medlemmer profileres på websitet og kan være vært for Community of Practice-events med tydelig synlighed over for praktikere, forskere og beslutningstagere.',
-      },
-      {
-        title: 'Netværk og talentpipeline',
-        description:
-          'Modellen forbinder virksomheder med akademia, frivillige og professionelle og skaber en praktisk flade for rekruttering via medlemsrettede kanaler.',
-      },
-      {
-        title: 'Konference- og deltagelsesfordele',
-        description:
-          'Medlemskab inkluderer en fuld konferencebillet og rabatteret adgang for yderligere deltagere, så bredere teams lettere kan involveres.',
-      },
-      {
-        title: 'Kommerciel fordel gennem medlemspriser',
-        description:
-          'Medlemmer får lavere effektive priser på ad-hoc leverancer, forudbetalte bundles og retainers, hvilket holder momentum efter strategi og pilots.',
-      },
-      {
-        title: 'Stewardship når det er nødvendigt',
-        description:
-          'For projekter med behov for en stærkere driftsmodel giver medlemskab en tydelig vej ind i OSS stewardship transition og vedvarende kvalitetsgovernance.',
-        callToAction: {
-          variant: 'link',
-          text: 'Se OSS Stewardship Transition',
-          href: '/da/services/oss-stewardship/',
-        },
-      },
-      {
-        title: 'Dybere ledelsesperspektiv',
-        description:
-          'For teams der har brug for den fulde argumentation om governance, kvalitet, CRA-kontekst og alliance-dynamikker, har vi samlet det i et essay.',
-        callToAction: {
-          variant: 'link',
-          text: 'Læs vores brief om OSS Stewardship Transition',
-          href: '/da/writings/why-oss-stewardship/',
-        },
-      },
-    ]}
-  />
+  <section class="px-6 py-12 sm:py-16 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="kapacitet">
+    <div class="max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-bold font-heading">Løbende kapacitetsaftaler</h2>
+      <p class="mt-3 text-muted dark:text-slate-300">
+        En aftale om fast månedlig kapacitet sikrer løbende tilgængelighed til et FOSS-produkt eller internt initiativ.
+        Aftalerne forudsætter alliancemedlemskab og kan tilpasses eller deles mellem flere alliancemedlemmer.
+      </p>
+      <p class="mt-3 text-muted dark:text-slate-300">
+        Timeantal og priser nedenfor er eksempler, ikke faste pakker. Efter en analyse af jeres behov og projektets
+        ambitionsniveau aftaler vi den kapacitet, der passer til opgaven. Aftalen kan derfor indeholde det antal timer,
+        I har brug for.
+      </p>
+    </div>
+    <div class="mt-8 grid gap-8 md:grid-cols-3">
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Maintainer</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">10 timer/måned</p>
+        <p class="mt-1 text-2xl font-bold font-heading">9.600 kr./måned</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">960 kr./time · 40% besparelse</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Eksempel: Stewardship, PR-reviews, release management og community-ledelse.
+        </p>
+      </article>
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Driver</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">25 timer/måned</p>
+        <p class="mt-1 text-2xl font-bold font-heading">21.600 kr./måned</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">864 kr./time · 46% besparelse</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Eksempel: Kodning, arkitektur, refaktorering, kvalitetssikring og koordinering.
+        </p>
+      </article>
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Core Driver</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">50 timer/måned</p>
+        <p class="mt-1 text-2xl font-bold font-heading">40.800 kr./måned</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">816 kr./time · 49% besparelse</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Eksempel: Dedikeret halvtidskapacitet til intensiv fremdrift på projektet.
+        </p>
+      </article>
+    </div>
+    <p class="mt-6 text-sm text-muted dark:text-slate-300">
+      Besparelser er beregnet i forhold til standard ad hoc-timepris på 1.600 kr. Alle priser er ekskl. moms.
+    </p>
+  </section>
 
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Tal om medlemskab',
+        text: 'Tal om alliancemedlemskab',
         href: '/da/contact/',
       },
     ]}
-    title="Har I brug for medlemskab til et projekt eller en organisation?"
-    subtitle="Vi kan hjælpe jer med at vurdere, om medlemskab, stewardship eller en direkte serviceaftale er det rigtige match."
+    title="Overvejer I alliancemedlemskab for jeres organisation?"
+    subtitle="Vi kan hjælpe jer med at vurdere, om alliancemedlemskab, stewardship eller en direkte serviceaftale er det rigtige match."
   />
 </Layout>

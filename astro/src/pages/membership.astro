@@ -1,176 +1,129 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Membership',
+  title: 'MoM FOSS Alliance',
 };
 ---
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Membership"
-    title="Membership for organizations building long-term software capability"
-    subtitle="Membership combines strategic influence, community visibility, practical delivery support, and stewardship readiness in one relationship model."
+    tagline="For organizations"
+    title="Join the MoM FOSS Alliance"
+    subtitle="Alliance membership brings organizations together to support and shape Free Open Source Software in the Mind over Machine laboratory."
   />
 
-  <section class="px-6 sm:px-6 pt-12 sm:pt-16 lg:pt-20 mx-auto max-w-6xl">
-    <div
-      class="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-    >
-      <h2 class="text-2xl md:text-3xl font-bold font-heading">Benefits</h2>
-      <p class="mt-4 text-muted dark:text-slate-300">
-        Membership is the coordination model for how organizations influence the laboratory, access practical support,
-        strengthen visibility, and collaborate across community, academia, and industry.
-      </p>
-      <div class="mt-6 grid gap-4 md:grid-cols-2 text-muted dark:text-slate-300">
-        <ul class="space-y-3 list-disc pl-5">
-          <li>Quarterly alliance participation with direct influence on priorities</li>
-          <li>Discounted pricing on ad-hoc work, bundles, and retainers</li>
-          <li>Community and academia exposure through events and collaboration</li>
-          <li>Access to exclusive the MoM FOSS Development Stack</li>
-        </ul>
-        <ul class="space-y-3 list-disc pl-5">
-          <li>Visibility via member profile, logo placement, and hosted events</li>
-          <li>Recruitment channel for tasks and open roles</li>
-          <li>Stewardship readiness for projects that need formal operating posture</li>
-          <li>Complimentary support for FOSS maintenance and development</li>
+  <section class="px-6 pt-12 sm:pt-16 mx-auto max-w-6xl">
+    <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold font-heading">An alliance with a say</h2>
+        <p class="mt-4 text-muted dark:text-slate-300">
+          Alliance members are organizations that support a socio-technical community exploring regenerative methods,
+          tools and practices. Alliance membership is a paid agreement with Mind over Machine; it is not membership of
+          the foundation. Alliance membership and laboratory service income is earmarked for developing, facilitating
+          and operating FOSS in the laboratory.
+        </p>
+        <ul class="mt-6 grid gap-x-8 gap-y-3 text-muted dark:text-slate-300 sm:grid-cols-2">
+          <li>
+            Join quarterly MoM-FOSS Alliance sessions to help set priorities and shape the laboratory’s next FOSS
+            initiatives
+          </li>
+          <li>Receive a member profile and logo on mindovermachine.dk, with a place in our public communications</li>
+          <li>Take part in the Community of Practice, bringing together academia, professionals and volunteers</li>
+          <li>Host Community of Practice events at your organization</li>
+          <li>Get 40% off all tickets to the annual MoM conference</li>
+          <li>Post project opportunities and open roles on the member platform</li>
         </ul>
       </div>
+      <aside class="border-l-2 border-primary pl-6">
+        <h2 class="text-xl font-bold font-heading">Member rates</h2>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Alliance members receive substantial discounts on ad-hoc work, prepaid hour bundles and ongoing capacity
+          agreements. Alliance membership is required for Product Stewardship and ongoing capacity agreements.
+        </p>
+        <a class="mt-4 inline-flex font-semibold hover:underline" href="/services/#capacity">
+          Explore services and capacity <span aria-hidden="true">→</span>
+        </a>
+      </aside>
     </div>
   </section>
 
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
-    <div class="grid gap-6 md:grid-cols-2">
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-      >
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Annual membership</p>
-        <div class="mt-3 flex items-end gap-2">
-          <span class="text-5xl font-bold font-heading">10,000</span>
-          <span class="pb-1 text-muted">DKK / year excl. VAT</span>
-        </div>
-        <ul class="mt-6 space-y-3 text-muted">
-          <li>Quarterly MoM-FOSS Alliance participation</li>
-          <li>Public member profile and logo placement</li>
-          <li>Access to event hosting and community visibility</li>
-          <li>Membership pricing on extra hours and retainers</li>
-        </ul>
+  <section class="px-6 py-12 sm:py-16 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700">
+    <h2 class="text-2xl md:text-3xl font-bold font-heading">Choose your membership term</h2>
+    <div class="mt-6 grid gap-8 sm:grid-cols-2">
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-lg font-semibold">Annual membership</h3>
+        <p class="mt-2 text-3xl font-bold font-heading">
+          DKK 10,000 <span class="text-base font-normal text-muted">/ year</span>
+        </p>
       </article>
-
-      <article
-        class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-      >
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Monthly membership</p>
-        <div class="mt-3 flex items-end gap-2">
-          <span class="text-5xl font-bold font-heading">1,000</span>
-          <span class="pb-1 text-muted">DKK / month excl. VAT</span>
-        </div>
-        <ul class="mt-6 space-y-3 text-muted">
-          <li>Same stewardship participation and member benefits</li>
-          <li>Flexible for organizations that want a lighter entry point</li>
-          <li>Direct support for FOSS maintenance and development</li>
-          <li>Can be combined with retainers for active projects</li>
-        </ul>
+      <article class="border-t-2 border-gray-300 pt-5 dark:border-slate-600">
+        <h3 class="text-lg font-semibold">Monthly membership</h3>
+        <p class="mt-2 text-3xl font-bold font-heading">
+          DKK 1,000 <span class="text-base font-normal text-muted">/ month</span>
+        </p>
       </article>
     </div>
-
-    <div
-      class="mt-8 rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm dark:border-slate-700 dark:bg-slate-900"
-    >
-      <h3 class="text-xl md:text-2xl font-bold font-heading">Pricing snapshot</h3>
-      <p class="mt-2 text-muted dark:text-slate-300">
-        Membership pricing is designed to make active stewardship work economically realistic once projects move from
-        exploratory to sustained operation.
-      </p>
-      <div class="mt-6 grid gap-6 md:grid-cols-3 text-muted dark:text-slate-300">
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Ad-hoc hourly</p>
-          <p class="mt-1 text-2xl font-bold font-heading">1,120 DKK</p>
-          <p class="text-sm">vs. 1,600 DKK non-member</p>
-        </div>
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Prepaid bundles</p>
-          <p class="mt-1 text-2xl font-bold font-heading">up to 37% off</p>
-          <p class="text-sm">on 30h and 50h bundles</p>
-        </div>
-        <div>
-          <p class="text-sm uppercase tracking-[0.16em]">Retainers</p>
-          <p class="mt-1 text-2xl font-bold font-heading">40-49% off</p>
-          <p class="text-sm">based on monthly package size</p>
-        </div>
-      </div>
-    </div>
+    <p class="mt-4 text-sm text-muted dark:text-slate-300">All prices exclude VAT.</p>
   </section>
 
-  <Features2
-    title="Why organizations join"
-    columns={2}
-    items={[
-      {
-        title: 'MoM FOSS Development Stack access',
-        description:
-          'Membership includes access to the MoM FOSS Development Stack, a practical alternative built from FOSS tools.',
-      },
-      {
-        title: 'Strategic direction and influence',
-        description:
-          'Membership includes participation in quarterly alliance sessions where member organizations help shape the next wave of laboratory focus and FOSS work.',
-      },
-      {
-        title: 'Visibility and hosting opportunities',
-        description:
-          'Members are featured on the website and can host Community of Practice events with clear visibility to practitioners, researchers, and decision-makers.',
-      },
-      {
-        title: 'Network and talent pipeline',
-        description:
-          'The model connects companies with academia, volunteers, and professionals, and creates a practical surface for recruitment through member-facing channels.',
-      },
-      {
-        title: 'Conference and participation benefits',
-        description:
-          'Membership includes one full conference ticket and discounted access for additional participants, making it easier to involve broader teams.',
-      },
-      {
-        title: 'Commercial leverage through member pricing',
-        description:
-          'Members get lower effective rates across ad-hoc delivery, prepaid bundles, and retainer models, which helps maintain momentum after strategy and pilots.',
-      },
-      {
-        title: 'Stewardship when you need it',
-        description:
-          'For projects that need a stronger operating posture, membership provides a clear path into OSS stewardship transition and sustained quality governance.',
-        callToAction: {
-          variant: 'link',
-          text: 'See OSS Stewardship Transition',
-          href: '/services/oss-stewardship/',
-        },
-      },
-      {
-        title: 'Long-form management rationale',
-        description:
-          'For teams that need the full argumentation around governance, quality, CRA context, and alliance dynamics, we keep the deeper narrative as an essay.',
-        callToAction: {
-          variant: 'link',
-          text: 'Read the essay',
-          href: '/essays/why-oss-stewardship/',
-        },
-      },
-    ]}
-  />
+  <section class="px-6 py-12 sm:py-16 mx-auto max-w-6xl border-t border-gray-200 dark:border-slate-700" id="capacity">
+    <div class="max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-bold font-heading">Ongoing capacity agreements</h2>
+      <p class="mt-3 text-muted dark:text-slate-300">
+        An ongoing monthly agreement reserves capacity for a FOSS product or internal initiative. Alliance membership is
+        required; agreements can be tailored or shared by several member organizations.
+      </p>
+      <p class="mt-3 text-muted dark:text-slate-300">
+        The hours and prices below are examples, not fixed packages. After reviewing your needs and ambitions, we agree
+        on the amount of capacity that fits the work. That can be any number of hours.
+      </p>
+    </div>
+    <div class="mt-8 grid gap-8 md:grid-cols-3">
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Maintainer</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">Example: 10 hours/month</p>
+        <p class="mt-1 text-2xl font-bold font-heading">DKK 9,600/month</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">DKK 960/hour · 40% below the standard hourly rate</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Example work: stewardship, pull request reviews, releases and community coordination.
+        </p>
+      </article>
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Driver</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">Example: 25 hours/month</p>
+        <p class="mt-1 text-2xl font-bold font-heading">DKK 21,600/month</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">DKK 864/hour · 46% below the standard hourly rate</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Example work: coding, architecture, refactoring, quality and coordination.
+        </p>
+      </article>
+      <article class="border-t-2 border-primary pt-5">
+        <h3 class="text-xl font-bold">Core Driver</h3>
+        <p class="mt-2 text-muted dark:text-slate-300">Example: 50 hours/month</p>
+        <p class="mt-1 text-2xl font-bold font-heading">DKK 40,800/month</p>
+        <p class="mt-2 text-sm text-muted dark:text-slate-300">DKK 816/hour · 49% below the standard hourly rate</p>
+        <p class="mt-3 text-muted dark:text-slate-300">
+          Example work: dedicated half-time capacity for intensive product progress.
+        </p>
+      </article>
+    </div>
+    <p class="mt-6 text-sm text-muted dark:text-slate-300">
+      Discounts are compared with the standard ad-hoc rate of DKK 1,600/hour. All prices exclude VAT.
+    </p>
+  </section>
 
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Talk about membership',
+        text: 'Talk about joining the Alliance',
         href: '/contact',
       },
     ]}
-    title="Need membership for a project or an organization?"
-    subtitle="We can help you decide whether membership, stewardship, or a direct service engagement is the right fit."
+    title="Considering Alliance membership for your organization?"
+    subtitle="Let’s work out whether Alliance membership, stewardship or a direct service agreement is the right starting point."
   />
 </Layout>

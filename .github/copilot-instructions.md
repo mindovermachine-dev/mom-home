@@ -114,6 +114,10 @@ Direct Astro CLI via root script:
 
 This is required because AI edits bypass editor format-on-save.
 
+## Reviews
+
+For review requests, read and follow `docs/content/review/website-review.md`. Unless an extended review is explicitly requested, limit the review to the change set against `origin/main`, tracked working-tree changes and non-ignored untracked files as described in that guide.
+
 ## CI And Pipeline Notes
 
 - Keep runner compatibility with ubuntu-latest

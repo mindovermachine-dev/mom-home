@@ -7,7 +7,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
-  title: 'Get involved',
+  title: 'Join the Community of Practice',
   description:
     'Start by showing up. Your first week at Mind over Machine, four ways in, and how people grow in our community.',
 };
@@ -15,22 +15,22 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Get involved"
+    tagline="Community of Practice"
     title="Start by showing up"
-    subtitle="Every Tuesday morning we meet online for Office Hours. No sign-up, no preparation. Just come."
-    callToAction={{ text: 'Join the weekly Office Hours', href: getPermalink('/events/mom-officehours/') }}
+    subtitle="Community members participate as individuals, whether they are academics, professionals, volunteers or simply curious. Participation is free; joining our Matrix space is a great place to start."
+    callToAction={{ text: 'Join our Matrix space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' }}
   />
 
   <Steps
     id="first-week"
     tagline="Your first steps"
     title="Join the Community of Practice"
-    subtitle="A <em>Community of Practice</em> is recognized by the charactaristic that it facilitates <em>legitimate peripheral participation</em>. In short: Your participation is qualified by your interest — not by profession or skill. You can start by hanging around and listening in, our you can take your existing 10 people FOSS project and enjoy the stewardship of the MoM FOSS Alliance.<br/>Either way you are heartly ♥️ welcome."
+    subtitle="A <em>Community of Practice</em> makes room for <em>legitimate peripheral participation</em>: your interest is enough, whatever your profession or experience. Listen in, ask questions or contribute when you are ready. Everyone is welcome; Community membership is free and does not make you a member of the foundation."
     items={[
       {
         title: 'Step 0: <span class="font-medium">Get onto Matrix</span>',
         description:
-          'Matrix is where our community talks. It´s comparable to Slack, Discord, Teams, Signal (...etc). We use it because it speaks to our values; Open Source, Open Standard, federated, decentralized, under trust-worthy stewardship by a non-profit foundation.<br/>If you already have a Matrix account, you can use it – jump stright to next step. If not, you can create one in a few minutes.',
+          'Matrix is where our community talks. It´s comparable to Slack, Discord, Teams, Signal (...etc). We use it because it speaks to our values; Open Source, Open Standard, federated, decentralized, under trust-worthy stewardship by a non-profit foundation.<br/>If you already have a Matrix account, you can use it – jump straight to next step. If not, you can create one in a few minutes.',
         callToAction: {
           text: 'New to Matrix?',
           href: getPermalink('/writings/new-to-matrix/'),
@@ -111,7 +111,7 @@ const metadata = {
       {
         title: 'Our utterings',
         description:
-          'Essays, Briefs, Comments, and Journals. It leads into the think tank, tha Laboartory and the community.',
+          'Essays, Briefs, Comments, and Journals. It leads into the think tank, the Laboratory and the community.',
         icon: 'tabler:book',
         callToAction: { text: 'Dive into our writings', href: getPermalink('/writings') },
       },
@@ -170,7 +170,7 @@ const metadata = {
       },
       {
         title: 'Get on the updates list mail lists',
-        description: 'News and updates on events, essays, projects, releases etc are frequently sent outby mail.',
+        description: 'News and updates on events, essays, projects, releases etc are frequently sent out by mail.',
         icon: 'tabler:mail',
         callToAction: { text: 'Don\u2019t miss a beat', href: getPermalink('/writings/dont-miss-a-beat/') },
       },
@@ -193,7 +193,7 @@ const metadata = {
         title: 'Become part of the MoM FOSS Alliance',
         description:
           'Organisations can join the MoM FOSS Alliance it supports the FOSS projects that we Steward in accordance to the Cyber Resilience Act (CRA).<br/>But it include at lot of other benefits too...',
-        callToAction: { text: 'Membership', href: '/membership' },
+        callToAction: { text: 'Explore Alliance membership', href: '/membership' },
         icon: 'tabler:building',
       },
     ]}

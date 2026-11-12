@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import { fetchCourses } from '~/utils/courses';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const [courses, translations] = await Promise.all([fetchCourses('en'), fetchCourses('da')]);
+
+  return await Promise.all(
+    courses.map(async (course) => {
+      const { Content } = await render(course);
+      return {
+        params: { slug: course.id.slice('en/'.length) },
+        props: {
+          course,
+          Content,
+          hasTranslation: translations.some((translation) => translation.id === `da/${course.data.translationSlug}`),
+        },
+      };
+    })
+  );
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { course, Content, hasTranslation } = Astro.props as Props;
+const slug = course.id.slice('en/'.length);
+
+const metadata = {
+  title: course.data.title,
+  description: course.data.excerpt,
+  canonical: String(getCanonical(getPermalink(`courses/${slug}`))),
+  openGraph: {
+    images: [{ url: course.data.ogImage ?? '~/assets/images/courses/course-og-default-en.png' }],
+  },
+};
+---
+
+<Layout
+  metadata={metadata}
+  showLanguageToggle={hasTranslation}
+  languageToggleHref={hasTranslation ? getPermalink(`da/courses/${course.data.translationSlug}`) : undefined}
+  languageToggleText="Dansk"
+>
+  <article class="px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <a class="inline-flex text-sm hover:underline" href={getPermalink('courses')}>← All courses and workshops</a>
+    <header class="mt-5">
+      <p class="text-sm font-semibold text-primary">Course and workshop</p>
+      <h1 class="mt-2 text-4xl md:text-5xl font-bold leading-tight font-heading">{course.data.title}</h1>
+      <p class="mt-4 text-lg text-muted dark:text-slate-300">{course.data.excerpt}</p>
+      <dl class="mt-8 grid gap-5 border-y border-gray-200 py-5 dark:border-slate-700 sm:grid-cols-3">
+        <div>
+          <dt class="text-sm font-semibold">Audience</dt>
+          <dd class="mt-1 text-sm text-muted dark:text-slate-300">{course.data.audience}</dd>
+        </div>
+        <div>
+          <dt class="text-sm font-semibold">Format</dt>
+          <dd class="mt-1 text-sm text-muted dark:text-slate-300">{course.data.format}</dd>
+        </div>
+        <div>
+          <dt class="text-sm font-semibold">Duration</dt>
+          <dd class="mt-1 text-sm text-muted dark:text-slate-300">{course.data.duration}</dd>
+        </div>
+      </dl>
+    </header>
+
+    <div class="prose prose-md lg:prose-xl mt-10 dark:prose-invert">
+      <Content />
+    </div>
+
+    <footer class="mt-12 border-t border-gray-200 pt-8 dark:border-slate-700">
+      <p class="text-muted dark:text-slate-300">
+        We tailor each course to your goals and participants. Courses are available at member rates or through prepaid
+        hour bundles.
+      </p>
+      <a class="btn-primary mt-5 inline-flex" href="/contact/">Talk to us about a course</a>
+    </footer>
+  </article>
+</Layout>

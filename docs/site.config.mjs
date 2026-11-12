@@ -33,5 +33,6 @@ export default {
       items: [{ autogenerate: { directory: "components" } }],
     },
     { label: "Build", items: [{ autogenerate: { directory: "build" } }] },
+    { label: "Review", items: [{ autogenerate: { directory: "review" } }] },
   ],
 };

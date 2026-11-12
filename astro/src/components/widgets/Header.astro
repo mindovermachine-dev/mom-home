@@ -31,6 +31,9 @@ export interface Props {
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
+  showLanguageToggle?: boolean;
+  languageToggleHref?: string;
+  languageToggleText?: string;
   showToggleTheme?: boolean;
   showRssFeed?: boolean;
   position?: string;
@@ -43,6 +46,9 @@ const {
   isSticky = false,
   isDark = false,
   isFullWidth = false,
+  showLanguageToggle = true,
+  languageToggleHref: languageToggleHrefOverride,
+  languageToggleText: languageToggleTextOverride,
   showToggleTheme = false,
   showRssFeed = false,
   position = 'center',
@@ -50,10 +56,11 @@ const {
 
 const currentPath = `/${trimSlash(Astro.originPathname)}`;
 const isDanishRoute = currentPath === '/da' || currentPath.startsWith('/da/');
-const localeToggleHref = isDanishRoute
+const defaultLocaleToggleHref = isDanishRoute
   ? currentPath.replace(/^\/da(?=\/|$)/, '') || '/'
   : `/da${currentPath === '/' ? '' : currentPath}`;
-const localeToggleText = isDanishRoute ? 'English' : 'Dansk';
+const localeToggleHref = languageToggleHrefOverride ?? defaultLocaleToggleHref;
+const localeToggleText = languageToggleTextOverride ?? (isDanishRoute ? 'English' : 'Dansk');
 
 const localizeHref = (href?: string | URL | null) => {
   if (!href || !isDanishRoute) return href;
@@ -182,14 +189,18 @@ const localizedActions = actions.map((action) => ({
     >
       <div class="items-center flex justify-between w-full min-[900px]:w-auto">
         <div class="flex">
-          <a
-            class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-            href={localeToggleHref}
-            aria-label="Switch language"
-            data-astro-reload
-          >
-            {localeToggleText}
-          </a>
+          {
+            showLanguageToggle && (
+              <a
+                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                href={localeToggleHref}
+                aria-label="Switch language"
+                data-astro-reload
+              >
+                {localeToggleText}
+              </a>
+            )
+          }
           {
             showToggleTheme && (
               <ToggleTheme iconClass="w-6 h-6 min-[900px]:w-5 min-[900px]:h-5 min-[900px]:inline-block" />

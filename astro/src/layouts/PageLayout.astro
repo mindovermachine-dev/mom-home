@@ -11,9 +11,12 @@ import type { MetaData } from '~/types';
 export interface Props {
   metadata?: MetaData;
   localeFallback?: 'da' | 'en';
+  showLanguageToggle?: boolean;
+  languageToggleHref?: string;
+  languageToggleText?: string;
 }
 
-const { metadata, localeFallback } = Astro.props;
+const { metadata, localeFallback, showLanguageToggle = true, languageToggleHref, languageToggleText } = Astro.props;
 const originPath = Astro.originPathname;
 const isDanishRoot = originPath === '/da' || originPath === '/da/';
 const isDanishFallbackRewrite =
@@ -33,7 +36,15 @@ const fallbackText =
     </slot>
   </div>
   <slot name="header">
-    <Header {...headerData} isSticky showRssFeed showToggleTheme />
+    <Header
+      {...headerData}
+      isSticky
+      showRssFeed
+      showToggleTheme
+      showLanguageToggle={showLanguageToggle}
+      languageToggleHref={languageToggleHref}
+      languageToggleText={languageToggleText}
+    />
   </slot>
   <script is:inline>
     const updateLocaleFallbackBanner = () => {

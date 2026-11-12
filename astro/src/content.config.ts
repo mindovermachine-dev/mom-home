@@ -176,6 +176,23 @@ const serviceCollection = defineCollection({
   }),
 });
 
+const courseCollection = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/course' }),
+  schema: z.object({
+    title: z.string(),
+    excerpt: z.string(),
+    icon: z.string(),
+    translationSlug: z.string().optional(),
+    ogImage: z.string().optional(),
+    audience: z.string(),
+    duration: z.string(),
+    format: z.string(),
+    order: z.number().int(),
+    draft: z.boolean().optional(),
+    metadata: metadataDefinition(),
+  }),
+});
+
 const projectCollection = defineCollection({
   loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: 'src/data/project' }),
   schema: z.object({
@@ -222,5 +239,6 @@ export const collections = {
   profile: profileCollection,
   event: eventCollection,
   service: serviceCollection,
+  course: courseCollection,
   project: projectCollection,
 };

@@ -20,17 +20,33 @@ export const headerData = {
     {
       text: 'Services',
       translations: { da: 'Tjenester' },
-      href: getPermalink('/services'),
+      links: [
+        {
+          text: 'Services overview',
+          translations: { da: 'Alle ydelser' },
+          href: getPermalink('/services'),
+        },
+        {
+          text: 'Courses',
+          translations: { da: 'Kurser' },
+          href: getPermalink('/courses'),
+        },
+      ],
     },
     {
       text: 'Get involved',
       translations: { da: 'Kom med' },
-      href: getPermalink('/get-involved'),
-    },
-    {
-      text: 'Membership',
-      translations: { da: 'Medlemskab' },
-      href: getPermalink('/membership'),
+      links: [
+        {
+          text: 'MoM FOSS Alliance',
+          href: getPermalink('/membership'),
+        },
+        {
+          text: 'Community of Practice',
+          translations: { da: 'Praksisfællesskab' },
+          href: getPermalink('/get-involved'),
+        },
+      ],
     },
     {
       text: 'About',
@@ -51,8 +67,12 @@ export const footerData = {
         { text: 'Events', translations: { da: 'Begivenheder' }, href: getPermalink('/events') },
         { text: 'Projects', translations: { da: 'Projekter' }, href: getPermalink('/projects') },
         { text: 'Services', translations: { da: 'Tjenester' }, href: getPermalink('/services') },
-        { text: 'Get involved', translations: { da: 'Kom med' }, href: getPermalink('/get-involved') },
-        { text: 'Membership', translations: { da: 'Medlemskab' }, href: getPermalink('/membership') },
+        {
+          text: 'Community of Practice',
+          translations: { da: 'Praksisfællesskab' },
+          href: getPermalink('/get-involved'),
+        },
+        { text: 'MoM FOSS Alliance', href: getPermalink('/membership') },
       ],
     },
     {

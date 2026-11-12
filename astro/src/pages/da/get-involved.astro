@@ -7,7 +7,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
-  title: 'Kom med',
+  title: 'Bliv en del af praksisfællesskabet',
   description:
     'Start med at dukke op. Din første uge hos Mind over Machine, flere veje ind og hvordan man vokser i vores fællesskab.',
 };
@@ -15,17 +15,17 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Kom med"
+    tagline="Praksisfællesskabet"
     title="Start med at dukke op"
-    subtitle="Hver tirsdag morgen mødes vi online til Office Hours. Ingen tilmelding, ingen forberedelse. Kom bare."
-    callToAction={{ text: 'Deltag i ugentlige Office Hours', href: getPermalink('/da/events/mom-officehours/') }}
+    subtitle="Fællesskabets medlemmer deltager som privatpersoner, hvad enten de er akademikere, fagfolk, frivillige eller blot nysgerrige. Det er gratis at deltage, og vores Matrix-space er et godt sted at begynde."
+    callToAction={{ text: 'Tilslut dig vores Matrix-space', href: 'https://matrix.to/#/#mindovermachine:matrix.org' }}
   />
 
   <Steps
     id="first-week"
     tagline="Dine første skridt"
     title="Bliv en del af praksisfællesskabet"
-    subtitle="Et <em>praksisfællesskab</em> (Community of Practice) kendetegnes ved, at det understøtter <em>legitim perifer deltagelse</em>. Kort sagt: Din deltagelse bestemmes af din interesse — ikke af profession eller kunnen. Du kan starte med at hænge ud og lytte med, eller du kan tage dit eksisterende FOSS-projekt med 10 brugere og få glæde af stewardship i MoM FOSS Alliance.<br/>Uanset hvad er du hjerteligt ♥️ velkommen."
+    subtitle="Et <em>praksisfællesskab</em> (Community of Practice) giver plads til <em>legitim perifer deltagelse</em>: Din interesse er nok, uanset profession eller erfaring. Lyt med, stil spørgsmål eller bidrag, når du er klar. Alle er velkomne; deltagelse i fællesskabet er gratis og indebærer ikke medlemskab af fonden."
     items={[
       {
         title: 'Trin 0: <span class="font-medium">Kom på Matrix</span>',
@@ -196,7 +196,7 @@ const metadata = {
         title: 'Bliv en del af MoM FOSS Alliance',
         description:
           'Organisationer kan blive en del af MoM FOSS Alliance, som understøtter de FOSS-projekter, vi har stewardship for i overensstemmelse med Cyber Resilience Act (CRA).<br/>Men det indebærer også en lang række andre fordele...',
-        callToAction: { text: 'Medlemskab', href: '/da/membership/' },
+        callToAction: { text: 'Se alliancemedlemskab', href: '/da/membership/' },
         icon: 'tabler:building',
       },
     ]}
