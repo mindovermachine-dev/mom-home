@@ -14,7 +14,10 @@ export const prerender = true;
 export const getStaticPaths = (async () => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
   return [
-    { params: { blog: BLOG_BASE || undefined, page: undefined }, props: { posts: await fetchPosts({ locale: 'en' }) } },
+    {
+      params: { blog: BLOG_BASE || undefined, page: undefined },
+      props: { posts: await fetchPosts({ locale: 'en', fallbackLocale: 'da' }) },
+    },
   ];
 }) satisfies GetStaticPaths;
 
