@@ -2,31 +2,35 @@
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
+import GalleryItem from '~/components/blog/GalleryItem.astro';
 import Headline from '~/components/blog/Headline.astro';
-import Pagination from '~/components/blog/Pagination.astro';
-// import PostTags from "~/components/blog/Tags.astro";
+import StatusTagFilter from '~/components/filters/StatusTagFilter.astro';
 
-import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+import { blogListRobots, fetchPosts, isBlogEnabled, isBlogListRouteEnabled } from '~/utils/blog';
+import { BLOG_BASE, getPermalink } from '~/utils/permalinks';
 
 export const prerender = true;
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return await getStaticPathsBlogList({ paginate });
+export const getStaticPaths = (async () => {
+  if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
+  return [
+    { params: { blog: BLOG_BASE || undefined, page: undefined }, props: { posts: await fetchPosts({ locale: 'en' }) } },
+  ];
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page } = Astro.props as Props;
-const currentPage = page.currentPage ?? 1;
-
-// const allCategories = await findCategories();
-// const allTags = await findTags();
+const { posts } = Astro.props as Props;
+const tagOptions = Array.from(
+  new Map(
+    posts.flatMap((post) => (post.tags ?? []).map((tag) => [tag.slug, { value: tag.slug, label: tag.title }]))
+  ).values()
+).sort((a, b) => a.label.localeCompare(b.label));
 
 const metadata = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: 'Blog',
   robots: {
-    index: blogListRobots?.index && currentPage === 1,
+    index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
@@ -36,17 +40,23 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="All our writings listed chronologically. You can split on <a href='/category/briefs' style='text-decoration: underline;'>briefs</a> og <a href='/category/essays' style='text-decoration: underline;'>essays</a>"
-    >
-      Writings
-    </Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <!--
-      <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
-      <PostTags tags={allTags}  title="Search by Tags:" />
-    -->
+  <section class="px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
+    <Headline>Writings</Headline>
+    <p class="text-center text-lg text-muted dark:text-slate-400">
+      All our writings listed chronologically. Browse <a class="underline" href={getPermalink('briefs', 'category')}
+        >briefs</a
+      >
+      or <a class="underline" href={getPermalink('essays', 'category')}>essays</a>.
+    </p>
+    <StatusTagFilter listId="writings-list" itemSelector="li[data-filter-item]" statusOptions={[]} {tagOptions} />
+    <ul id="writings-list" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post) => (
+          <li data-filter-item data-filter-tags={(post.tags ?? []).map((tag) => tag.slug).join(',')} class="min-w-0">
+            <GalleryItem {post} />
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>

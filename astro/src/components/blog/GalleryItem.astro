@@ -1,0 +1,61 @@
+---
+import Image from '~/components/common/Image.astro';
+import PostTags from '~/components/blog/Tags.astro';
+import type { Post } from '~/types';
+import { findImage } from '~/utils/images';
+import { getPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+
+const { post } = Astro.props as { post: Post };
+const image = await findImage(post.image);
+const link = getPermalink(post.permalink, 'post');
+---
+
+<article
+  class="h-full overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-900"
+>
+  {
+    image && (
+      <a href={link} tabindex="-1" aria-hidden="true">
+        <Image
+          src={image}
+          class="aspect-video w-full object-cover"
+          widths={[400, 900]}
+          width={900}
+          height={506}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          alt=""
+          format="webp"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+    )
+  }
+  <div class="p-5">
+    <p class="text-sm text-muted dark:text-slate-400">
+      <time datetime={post.publishDate.toISOString()}>{getFormattedDate(post.publishDate)}</time>
+      {
+        post.category && (
+          <>
+            {' · '}
+            <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
+              {post.category.title}
+            </a>
+          </>
+        )
+      }
+    </p>
+    <h2 class="mt-2 text-xl font-bold leading-tight font-heading">
+      <a class="hover:underline" href={link}>{post.title}</a>
+    </h2>
+    {post.excerpt && <p class="mt-3 text-muted dark:text-slate-400">{post.excerpt}</p>}
+    {
+      post.tags && (
+        <footer class="mt-4">
+          <PostTags tags={post.tags} />
+        </footer>
+      )
+    }
+  </div>
+</article>
