@@ -12,16 +12,63 @@ tags:
 import MomImage from '~/components/common/MomImage.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Button from '~/components/ui/Button.astro';
+import TallyEmbed from '~/components/content/TallyEmbed.astro';
 
 ## Dont miss a beat - stay updated with MoM!
 
-We have set up a open google group <a href="https://groups.google.com/a/mindovermachine.dk/g/updates" target="_blank">`updates@mindovermachine.dk`</a>. The group receives an email when new stuff is published. Join the group and you will get instant updates in your inbox on new events, essays, briefs, software releases, member news and other MoM stuff.
+We have set up a handful of open google groups, they serve different purposes and you can join one or more of them to stay updated on different aspects of MoM's activities.
 
-You can adjust your group settings to receive each update, a daily digest or you can silence it, so you don't get any emails, but just occasionally check in on the group yourself. You can unsubscribe at any time.
+👇[If your email address is not a Google account](#wrap-email)👇
+
+### Office-hours
+
+Every Tuesday at 8\:15 AM in the morning we join a video call on Matrix and discuss the world, politics, current affairs, this and that, ongoing projects, upcoming events, and any other relevant topics related to MoM. It is open to anyone interested in participating. The mail group `office-hours@mindovermachine.dk` receives calendar invites. So if you join the group, the events will appear in your calendar automatically. You can unsubscribe at any time.
 
 <div class="not-prose mt-6">
   <Button
-    text="Visit and join the group"
+    text="Visit and join office-hours@mindovermachine.dk"
+    href="https://groups.google.com/a/mindovermachine.dk/g/office-hours"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+
+### Tech Talks
+
+Every Thursday at 13\:00 PM in the afternoon we join a video call on Matrix and discuss the ongoing software projects in the FOSS alliance and laboratory. It is open to anyone interested in participating. The mail group `tech-talks@mindovermachine.dk` receives calendar invites. So if you join the group, the events will appear in your calendar automatically. You can unsubscribe at any time.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Visit and join tech-talks@mindovermachine.dk"
+    href="https://groups.google.com/a/mindovermachine.dk/g/tech-talks"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+
+### Event calendar
+
+Every Thursday at 13\:00 PM in the afternoon we join a video call on Matrix and discuss various technical topics, ongoing projects, and upcoming events related to MoM. It is open to anyone interested in participating. The mail group `event-calendar@mindovermachine.dk` receives calendar invites to all the events announced on the [events listing](/events). So if you join the group, the events will appear in your calendar automatically. You can unsubscribe at any time.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Visit and join event-calendar@mindovermachine.dk"
+    href="https://groups.google.com/a/mindovermachine.dk/g/event-calendar"
+    target="_blank"
+    icon="tabler:brand-google"
+    variant="secondary"
+  />
+</div>
+
+## Updates
+
+The `updates@mindovermachine.dk` group is used to keep everyone informed about new events, essays, briefs, software releases, member news, and other MoM-related updates. By joining this group, you will receive email notifications whenever new content is published. The mail group `updates@mindovermachine.dk` receives these notifications, so if you join the group, you will get instant updates in your inbox. You can unsubscribe at any time.
+
+<div class="not-prose mt-6">
+  <Button
+    text="Visit and join updates@mindovermachine.dk"
     href="https://groups.google.com/a/mindovermachine.dk/g/updates"
     target="_blank"
     icon="tabler:brand-google"
@@ -29,11 +76,12 @@ You can adjust your group settings to receive each update, a daily digest or you
   />
 </div>
 
-If you don't see the "Join group" option on th page,it's because you are not signed in 🤷‍♂️.
+If you don't see the "Join group" option on the page, it's because you are not signed in with a Google account 🤷‍♂️.
 
 If you want to receive updates to an email address that is not a google account, you can click the action below to wrap your email address in a free google account and then revisit the group and join.
 
 <CallToAction
+  id="wrap-email"
   actions={[
     {
       variant: 'secondary',
@@ -46,8 +94,6 @@ If you want to receive updates to an email address that is not a google account,
   subtitle="Google allows you to use their services with any email address you have (not <em>email</em> obviously, but stuff like <em>drive, photos, groups, gemini</em> etc)."
 />
 
-If you insist on joining the group with an email address that is not a google account, we need to add you to the group manually. You can contact us at
+If you want to join one or more groups using an email address that is not a google account, and you don't want to wrap it in a free google account, you can use the form below and we will add you to the groups manually.
 
-<a href="mailto:hey@mindovermachine.dk" target="_blank">
-  hey@mindovermachine.dk
-</a>
+<TallyEmbed formId="Z9EyJv" title="Sign up for updates and event invites in your calendar" />
