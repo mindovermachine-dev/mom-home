@@ -3,12 +3,12 @@ import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import type { Post } from '~/types';
 import { findImage } from '~/utils/images';
-import { getPermalink } from '~/utils/permalinks';
+import { CATEGORY_BASE, getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
 
-const { post } = Astro.props as { post: Post };
+const { post, locale = 'en' } = Astro.props as { post: Post; locale?: 'en' | 'da' };
 const image = await findImage(post.image);
-const link = getPermalink(post.permalink, 'post');
+const link = getPermalink(`${locale === 'da' ? 'da/' : ''}${post.permalink}`, 'post');
 ---
 
 <article
@@ -40,7 +40,14 @@ const link = getPermalink(post.permalink, 'post');
         post.category && (
           <>
             {' · '}
-            <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
+            <a
+              class="hover:underline"
+              href={
+                locale === 'da'
+                  ? getPermalink(`da/${CATEGORY_BASE}/${post.category.slug}`)
+                  : getPermalink(post.category.slug, 'category')
+              }
+            >
               {post.category.title}
             </a>
           </>
@@ -54,7 +61,7 @@ const link = getPermalink(post.permalink, 'post');
     {
       post.tags && (
         <footer class="mt-4">
-          <PostTags tags={post.tags} />
+          <PostTags tags={post.tags} {locale} />
         </footer>
       )
     }

@@ -2,9 +2,8 @@
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 import Layout from '~/layouts/PageLayout.astro';
-import GalleryItem from '~/components/blog/GalleryItem.astro';
+import Gallery from '~/components/blog/Gallery.astro';
 import Headline from '~/components/blog/Headline.astro';
-import StatusTagFilter from '~/components/filters/StatusTagFilter.astro';
 
 import { blogListRobots, fetchPosts, isBlogEnabled, isBlogListRouteEnabled } from '~/utils/blog';
 import { BLOG_BASE, getPermalink } from '~/utils/permalinks';
@@ -24,12 +23,6 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { posts } = Astro.props as Props;
-const tagOptions = Array.from(
-  new Map(
-    posts.flatMap((post) => (post.tags ?? []).map((tag) => [tag.slug, { value: tag.slug, label: tag.title }]))
-  ).values()
-).sort((a, b) => a.label.localeCompare(b.label));
-
 const metadata = {
   title: 'Blog',
   robots: {
@@ -51,15 +44,6 @@ const metadata = {
       >
       or <a class="underline" href={getPermalink('essays', 'category')}>essays</a>.
     </p>
-    <StatusTagFilter listId="writings-list" itemSelector="li[data-filter-item]" statusOptions={[]} {tagOptions} />
-    <ul id="writings-list" class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        posts.map((post) => (
-          <li data-filter-item data-filter-tags={(post.tags ?? []).map((tag) => tag.slug).join(',')} class="min-w-0">
-            <GalleryItem {post} />
-          </li>
-        ))
-      }
-    </ul>
+    <Gallery {posts} />
   </section>
 </Layout>
