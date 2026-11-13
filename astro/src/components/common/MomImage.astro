@@ -2,10 +2,11 @@
 import type { ImageMetadata } from 'astro';
 import type { HTMLAttributes } from 'astro/types';
 import Image from '~/components/common/Image.astro';
+import { getExternalLinkAttrs } from '~/utils/external-links';
 import { findImage } from '~/utils/images';
 
 type Position = 'left' | 'center' | 'right';
-type Size = 'tiny' | 'small' | 'medium' | 'large' | 'full';
+type WidthPreset = 'tiny' | 'small' | 'medium' | 'large' | 'full';
 type Mode = 'static' | 'flow';
 
 export interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'height' | 'class'> {
@@ -13,8 +14,10 @@ export interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'he
   alt: string;
   caption?: string;
   position?: Position;
-  size?: Size;
+  width?: string;
+  height?: string;
   mode?: Mode;
+  url?: string;
   class?: string;
   imageClass?: string;
   captionClass?: string;
@@ -25,15 +28,21 @@ const {
   alt,
   caption,
   position = 'center',
-  size = 'large',
+  width,
+  height,
   mode = 'static',
+  url,
   class: figureClass,
   imageClass,
   captionClass,
   ...rest
 } = Astro.props;
 
-const sizeConfig: Record<Size, { width?: number; widths?: number[]; sizes: string }> = {
+if ('size' in Astro.props) {
+  throw new Error('MomImage: `size` has been removed; use `width` for presets or `height` for a CSS height.');
+}
+
+const sizeConfig: Record<WidthPreset, { width: number; widths: number[]; sizes: string }> = {
   tiny: {
     width: 320,
     widths: [240, 320, 480],
@@ -61,12 +70,30 @@ const sizeConfig: Record<Size, { width?: number; widths?: number[]; sizes: strin
   },
 };
 
-const imgConfig = sizeConfig[size];
+const isPreset = (value: string): value is WidthPreset => Object.hasOwn(sizeConfig, value);
+const isLength = (value: string) => /^(?:\d+(?:\.\d+)?|\.\d+)(?:px|vh|vw)$/.test(value);
+if (width !== undefined && !isPreset(width) && !isLength(width)) {
+  throw new Error(`MomImage: invalid width "${width}"; use a preset or a CSS length in px, vh, or vw.`);
+}
+if (height !== undefined && !isLength(height)) {
+  throw new Error(`MomImage: invalid height "${height}"; use a CSS length in px, vh, or vw.`);
+}
+
+const preset = width && isPreset(width) ? width : width || height ? undefined : 'large';
+const imgConfig = sizeConfig[preset ?? 'large'];
 const resolved = await findImage(src);
 const sourceWidth = resolved && typeof resolved === 'object' && 'width' in resolved ? resolved.width : undefined;
 const contentWidth =
   sourceWidth && imgConfig.width ? Math.min(sourceWidth, imgConfig.width) : (sourceWidth ?? imgConfig.width);
-const contentStyle = contentWidth ? `--mom-image-content-width:min(100%, ${contentWidth}px)` : undefined;
+const customDimensions = !preset || height !== undefined;
+const contentStyle =
+  !customDimensions && contentWidth ? `--mom-image-content-width:min(100%, ${contentWidth}px)` : undefined;
+const figureStyle = customDimensions
+  ? `width:${preset ? `min(100%, ${imgConfig.width}px)` : width ? `min(100%, ${width})` : 'fit-content'};max-width:100%`
+  : undefined;
+const imageStyle = customDimensions
+  ? `width:${width ? '100%' : 'auto'};height:${height ?? 'auto'};max-width:100%;object-fit:contain${rest.style ? `;${rest.style}` : ''}`
+  : rest.style;
 ---
 
 <figure
@@ -74,20 +101,41 @@ const contentStyle = contentWidth ? `--mom-image-content-width:min(100%, ${conte
     'mom-image',
     `mom-image--${mode}`,
     `mom-image--position-${position}`,
-    `mom-image--size-${size}`,
+    preset && `mom-image--size-${preset}`,
     figureClass,
   ]}
+  style={figureStyle}
 >
   <div class="mom-image__content" style={contentStyle}>
-    <Image
-      src={src}
-      alt={alt}
-      width={imgConfig.width}
-      widths={imgConfig.widths}
-      sizes={imgConfig.sizes}
-      class:list={['mom-image__img', imageClass]}
-      {...rest}
-    />
+    {
+      url ? (
+        <a href={url} {...getExternalLinkAttrs(url)}>
+          <Image
+            src={src}
+            alt={alt}
+            width={imgConfig.width}
+            widths={imgConfig.widths}
+            sizes={imgConfig.sizes}
+            layout={customDimensions ? 'responsive' : 'constrained'}
+            class:list={['mom-image__img', imageClass]}
+            {...rest}
+            style={imageStyle}
+          />
+        </a>
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={imgConfig.width}
+          widths={imgConfig.widths}
+          sizes={imgConfig.sizes}
+          layout={customDimensions ? 'responsive' : 'constrained'}
+          class:list={['mom-image__img', imageClass]}
+          {...rest}
+          style={imageStyle}
+        />
+      )
+    }
     {caption && <figcaption class:list={['mom-image-caption', captionClass]}>{caption}</figcaption>}
   </div>
 </figure>

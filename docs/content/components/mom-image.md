@@ -8,8 +8,9 @@ description: "Reference manual for the MomImage content image component."
 `MomImage` is a project-level content image component that wraps the lower-level `Image` component in this codebase and provides:
 
 - Position presets: `left`, `center`, `right`
-- Size presets: `tiny`, `small`, `medium`, `large`, `full`
+- Width presets: `tiny`, `small`, `medium`, `large`, `full`, or explicit width and height values
 - Layout behavior mode: `static` or `flow`
+- Optional link around the image
 - Optional caption rendering with centralized style control in SCSS
 
 This component is intended for editorial/content usage (for example in MDX posts), where authors need consistent image treatment with minimal inline styling.
@@ -54,7 +55,7 @@ Defined in `MomImage.astro`:
 
 ```ts
 type Position = "left" | "center" | "right";
-type Size = "tiny" | "small" | "medium" | "large" | "full";
+type WidthPreset = "tiny" | "small" | "medium" | "large" | "full";
 type Mode = "static" | "flow";
 
 interface Props {
@@ -62,8 +63,10 @@ interface Props {
   alt: string;
   caption?: string;
   position?: Position;
-  size?: Size;
+  width?: WidthPreset | string;
+  height?: string;
   mode?: Mode;
+  url?: string;
   class?: string;
   imageClass?: string;
   captionClass?: string;
@@ -79,18 +82,22 @@ interface Props {
 
 - `caption`: `string`
 - `position`: `'left' | 'center' | 'right'` (default: `'center'`)
-- `size`: `'tiny' | 'small' | 'medium' | 'large' | 'full'` (default: `'large'`)
+- `width`: `'tiny' | 'small' | 'medium' | 'large' | 'full'`, or a CSS length in `px`, `vh`, or `vw`
+- `height`: a CSS length in `px`, `vh`, or `vw`
 - `mode`: `'static' | 'flow'` (default: `'static'`)
+- `url`: link destination; the image becomes a link when provided. HTTP(S) links open in a new tab, including links to this site; relative links stay in the current tab.
 - `class`: additional classes on outer `<figure>`
 - `imageClass`: additional classes on rendered `<img>`
 - `captionClass`: additional classes on `<figcaption>`
+
+When neither dimension is specified, `width` defaults to `large`. Specify just one dimension to preserve the image's aspect ratio. When both are provided, the image fits within the specified box without cropping. Percentage dimensions are not supported. The former `size` prop is no longer supported; use `width` for presets.
 
 ## Rendering Contract
 
 `MomImage` renders:
 
 1. `<figure>` with base and modifier classes
-2. Nested project `Image` component (`~/components/common/Image.astro`)
+2. Nested project `Image` component (`~/components/common/Image.astro`), wrapped in a link when `url` is provided
 3. Optional `<figcaption>` only when `caption` is provided
 
 Example class output:
@@ -106,9 +113,19 @@ Example class output:
 
 ## Behavior Matrix
 
-### Size Mapping
+### Width Presets
 
-From component logic:
+Presets set the maximum width of the figure. The image keeps its original aspect ratio, so there is no corresponding preset height. Images do not exceed their source width with a preset. The figure also shrinks to fit its container.
+
+| Preset   | Figure width                                   | Image optimization width |
+| -------- | ---------------------------------------------- | ------------------------ |
+| `tiny`   | Up to `20rem` (320px at a 16px root font size) | 320px                    |
+| `small`  | Up to `30rem` (480px at a 16px root font size) | 480px                    |
+| `medium` | Up to `40rem` (640px at a 16px root font size) | 640px                    |
+| `large`  | Up to `48rem` (768px at a 16px root font size) | 768px                    |
+| `full`   | 100% of its container                          | 1600px                   |
+
+The image wrapper also provides these responsive image variants:
 
 - `tiny`
   - width: `320`
@@ -182,7 +199,7 @@ import MomImage from '~/components/common/MomImage.astro';
   caption="Right floating image"
   mode="flow"
   position="right"
-  size="tiny"
+  width="tiny"
 />
 ```
 
@@ -192,9 +209,20 @@ import MomImage from '~/components/common/MomImage.astro';
 <MomImage
   src="~/assets/images/posts/example.png"
   alt="Example"
-  size="full"
+  width="full"
   position="center"
 />
+```
+
+### Linked logos in a row
+
+Use a flex container to arrange images side by side. `flow` controls text wrapping around a single image, not the arrangement of multiple images.
+
+```astro
+<div class="not-prose flex flex-wrap items-center justify-center gap-6">
+  <MomImage src="~/assets/images/events/logo.png" alt="Partner" height="40px" url="https://example.com/" class="!m-0" />
+  <MomImage src="~/assets/images/events/logo-2.png" alt="Another partner" height="40px" url="https://example.org/" class="!m-0" />
+</div>
 ```
 
 ## Copying MomImage to Another Astro Project

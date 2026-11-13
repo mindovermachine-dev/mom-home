@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,42 +12,22 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 import remarkDirective from 'remark-directive';
 import rehypeExternalLinks from 'rehype-external-links';
-import yaml from 'js-yaml';
 
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, remarkAttrClassPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
 import { calloutDirectiveRemarkPlugin } from './src/utils/callouts';
+import { isExternalUrl } from './src/utils/external-links';
 import { collectFrontmatterRedirects } from './src/lib/integrations/frontmatter-redirects';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const siteConfig = yaml.load(readFileSync(path.resolve(__dirname, './src/config.yaml'), 'utf8')) as {
-  site?: { site?: string };
-};
-const siteOrigin = (() => {
-  try {
-    return new URL(siteConfig.site?.site ?? '').origin;
-  } catch {
-    return undefined;
-  }
-})();
-
-// Only links that leave our own origin should open in a new tab.
 const externalLinksRehypePlugin: [typeof rehypeExternalLinks, Record<string, unknown>] = [
   rehypeExternalLinks,
   {
     target: '_blank',
     rel: ['noopener', 'noreferrer'],
-    test: (node: { properties?: { href?: string } }) => {
-      const href = node.properties?.href;
-      if (!href || !/^https?:\/\//i.test(href)) return false;
-      try {
-        return new URL(href).origin !== siteOrigin;
-      } catch {
-        return false;
-      }
-    },
+    test: (node: { properties?: { href?: string } }) => isExternalUrl(node.properties?.href),
   },
 ];
 
