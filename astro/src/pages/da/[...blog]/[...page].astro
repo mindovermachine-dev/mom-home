@@ -2,45 +2,50 @@
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
+import Gallery from '~/components/blog/Gallery.astro';
 import Headline from '~/components/blog/Headline.astro';
-import Pagination from '~/components/blog/Pagination.astro';
 
-import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+import { blogListRobots, fetchPosts, isBlogEnabled, isBlogListRouteEnabled } from '~/utils/blog';
+import { BLOG_BASE, CATEGORY_BASE, getPermalink } from '~/utils/permalinks';
 
 export const prerender = true;
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return await getStaticPathsBlogList({ paginate, locale: 'da', fallbackLocale: 'en' });
+export const getStaticPaths = (async () => {
+  if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
+  return [
+    {
+      params: { blog: BLOG_BASE || undefined, page: undefined },
+      props: { posts: await fetchPosts({ locale: 'da', fallbackLocale: 'en' }) },
+    },
+  ];
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page } = Astro.props as Props;
-const currentPage = page.currentPage ?? 1;
+const { posts } = Astro.props as Props;
 
 const metadata = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: 'Skriverier',
   robots: {
-    index: blogListRobots?.index && currentPage === 1,
+    index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'blog',
+    type: 'website',
   },
 };
 ---
 
-<Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="Alle vores skriverier listet chronologisk. Du kan filtrere på <a href='/da/category/briefs' style='text-decoration: underline;'>briefs</a> og <a href='/da/category/essays' style='text-decoration: underline;'>essays</a><br/>
-       <span style='font-size: 0.85em;font-style:italic;'>Hvis et skriveri ikke er tilgængeligt på dansk bliver det vist på engelsk.</span>"
-    >
-      Skriverier
-    </Headline>
-
-    <BlogList posts={page.data} locale="da" />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+<Layout metadata={metadata} languageToggleHref={getPermalink('', 'blog')}>
+  <section class="px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
+    <Headline>Skriverier</Headline>
+    <p class="text-center text-lg text-muted dark:text-slate-400">
+      Alle vores skriverier listet kronologisk. Se <a
+        class="underline"
+        href={getPermalink(`da/${CATEGORY_BASE}/briefs`)}>briefs</a
+      > eller <a class="underline" href={getPermalink(`da/${CATEGORY_BASE}/essays`)}>essays</a>. Skriverier, der ikke er
+      tilgængelige på dansk, vises på engelsk.
+    </p>
+    <Gallery {posts} locale="da" />
   </section>
 </Layout>

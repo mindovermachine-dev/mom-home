@@ -41,18 +41,29 @@ const {
   data-tags-param={tagsParam}
   data-summary-label={summaryLabel}
 >
-  <div class="grid gap-4 md:grid-cols-[minmax(0,220px)_1fr_auto] md:items-start">
-    <label class="text-sm font-medium" for={`${listId}-status`}>
-      {statusLabel}
-      <select
-        id={`${listId}-status`}
-        class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-900"
-        data-filter-status
-      >
-        <option value="">All</option>
-        {statusOptions.map((option) => <option value={option.value}>{option.label}</option>)}
-      </select>
-    </label>
+  <div
+    class:list={[
+      'grid gap-4 md:items-start',
+      statusOptions.length ? 'md:grid-cols-[minmax(0,220px)_1fr_auto]' : 'md:grid-cols-[1fr_auto]',
+    ]}
+  >
+    {
+      statusOptions.length > 0 && (
+        <label class="text-sm font-medium" for={`${listId}-status`}>
+          {statusLabel}
+          <select
+            id={`${listId}-status`}
+            class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm dark:border-slate-600 dark:bg-slate-900"
+            data-filter-status
+          >
+            <option value="">All</option>
+            {statusOptions.map((option) => (
+              <option value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+      )
+    }
 
     <fieldset class="min-w-0">
       <legend class="text-sm font-medium">{tagsLegend}</legend>
@@ -148,9 +159,9 @@ const {
       if (updateUrl) {
         const updatedParams = withUpdatedFilterSearchParams({
           existing: new URLSearchParams(window.location.search),
-          managedKeys: [statusParam, tagsParam],
+          managedKeys: statusValues.size ? [statusParam, tagsParam] : [tagsParam],
           next: {
-            [statusParam]: state.status,
+            ...(statusValues.size ? { [statusParam]: state.status } : {}),
             [tagsParam]: state.tags.length > 0 ? state.tags.join(',') : undefined,
           },
         });

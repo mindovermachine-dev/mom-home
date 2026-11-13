@@ -1,0 +1,16 @@
+---
+import GalleryItem from '~/components/blog/GalleryItem.astro';
+import type { Post } from '~/types';
+
+const { posts, locale = 'en' } = Astro.props as { posts: Post[]; locale?: 'en' | 'da' };
+---
+
+<ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    posts.map((post) => (
+      <li class="min-w-0">
+        <GalleryItem {post} {locale} />
+      </li>
+    ))
+  }
+</ul>
