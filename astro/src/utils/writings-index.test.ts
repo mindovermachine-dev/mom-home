@@ -8,7 +8,11 @@ import slugify from 'limax';
 
 const astroDir = fileURLToPath(new URL('../../', import.meta.url));
 const postDir = join(astroDir, 'src/data/post');
-const outputDir = join(astroDir, 'dist/writings');
+const cleanSlug = (value: string) =>
+  value
+    .split('/')
+    .map((part) => slugify(part))
+    .join('/');
 
 const postFiles = (dir: string): string[] =>
   readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -27,6 +31,7 @@ const publishedPosts = () =>
         draft?: boolean;
         publishDate: Date;
         title: string;
+        tags?: string[];
       };
       const locale = id.startsWith('da/') ? 'da' : 'en';
       const slug = id
@@ -55,68 +60,74 @@ const titleFromCard = (card: string) =>
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>');
 
-test('built writings gallery includes both locales, preferring English, newest first', () => {
-  const expected = expectedPosts('en');
-  const html = readFileSync(join(outputDir, 'index.html'), 'utf8');
-  const cards = [...html.matchAll(/<li\b[^>]*\bdata-filter-item\b[^>]*>([\s\S]*?)<\/article>\s*<\/li>/g)].map(
-    (match) => match[1]
-  );
-  const links = cards.map((card) => card.match(/<h2\b[^>]*><a href="([^"]+)"/)?.[1]);
-  const dates = cards.map((card) => Date.parse(card.match(/<time datetime="([^"]+)"/)?.[1] ?? ''));
+const galleryCards = (html: string) =>
+  [...html.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)].map((match) => match[0]);
 
-  assert.deepEqual(
-    links.map((link) => link?.replace(/^.*\/writings\//, '').replace(/\/$/, '')).sort(),
-    expected.map((post) => post.slug).sort()
-  );
-  assert.ok(dates.every((date) => Number.isFinite(date)));
-  assert.deepEqual(
-    dates,
-    [...dates].sort((a, b) => b - a)
-  );
-  assert.ok(links.every((link) => link && existsSync(join(astroDir, 'dist', link, 'index.html'))));
-  assert.doesNotMatch(html, /Older posts|Newer posts/);
-  assert.ok(!existsSync(join(outputDir, '2', 'index.html')));
-  assert.match(html, /href="\/category\/briefs/);
-  assert.match(html, /href="\/category\/essays/);
-  assert.match(html, /data-filter-tag/);
-  cards.forEach((card, index) => {
-    const slug = links[index]?.replace(/^.*\/writings\//, '').replace(/\/$/, '');
-    const post = expected.find((post) => post.slug === slug);
-    assert.equal(dates[index], post?.publishDate.valueOf());
-    assert.equal(titleFromCard(card), post?.title);
-    assert.match(card, new RegExp(`<article\\b[^>]*\\blang="${post?.locale}"`));
+for (const locale of ['en', 'da'] as const) {
+  test(`${locale} writings gallery includes both locales, newest first`, () => {
+    const expected = expectedPosts(locale);
+    const prefix = locale === 'da' ? '/da' : '';
+    const outputDir = join(astroDir, 'dist', prefix, 'writings');
+    const html = readFileSync(join(outputDir, 'index.html'), 'utf8');
+    const cards = galleryCards(html);
+    const links = cards.map((card) => card.match(/<h2\b[^>]*><a href="([^"]+)"/)?.[1]);
+    const dates = cards.map((card) => Date.parse(card.match(/<time datetime="([^"]+)"/)?.[1] ?? ''));
+
+    assert.deepEqual(
+      links.map((link) => link?.replace(/^.*\/writings\//, '').replace(/\/$/, '')).sort(),
+      expected.map((post) => post.slug).sort()
+    );
+    assert.ok(dates.every((date) => Number.isFinite(date)));
+    assert.deepEqual(
+      dates,
+      [...dates].sort((a, b) => b - a)
+    );
+    assert.ok(links.every((link) => link && existsSync(join(astroDir, 'dist', link, 'index.html'))));
+    assert.doesNotMatch(html, /Older posts|Newer posts/);
+    assert.ok(!existsSync(join(outputDir, '2', 'index.html')));
+    assert.ok(html.includes(`href="${prefix}/category/briefs`));
+    assert.ok(html.includes(`href="${prefix}/category/essays`));
+    assert.doesNotMatch(html, /data-status-tag-filter|data-filter-tag/);
+    cards.forEach((card, index) => {
+      const slug = links[index]?.replace(/^.*\/writings\//, '').replace(/\/$/, '');
+      const post = expected.find((post) => post.slug === slug);
+      assert.equal(dates[index], post?.publishDate.valueOf());
+      assert.equal(titleFromCard(card), post?.title);
+      assert.match(card, new RegExp(`<article\\b[^>]*\\blang="${post?.locale}"`));
+      assert.ok(links[index]?.startsWith(`${prefix}/writings/`));
+      for (const tag of post?.tags ?? []) {
+        const tagLink = `${prefix}/tag/${cleanSlug(tag)}`;
+        assert.ok(
+          card.includes(`href="${tagLink}"`) || card.includes(`href="${tagLink}/"`),
+          `${post?.slug}: missing ${tagLink}`
+        );
+        assert.ok(existsSync(join(astroDir, 'dist', tagLink, 'index.html')));
+      }
+    });
   });
-});
 
-test('Danish listing includes both locales, preferring Danish', () => {
-  const expected = expectedPosts('da');
-  const danishDir = join(astroDir, 'dist/da/writings');
-  const pages = [join(danishDir, 'index.html')];
-  for (let page = 2; existsSync(join(danishDir, String(page), 'index.html')); page++) {
-    pages.push(join(danishDir, String(page), 'index.html'));
-  }
-  const cards = pages.flatMap((page) =>
-    [...readFileSync(page, 'utf8').matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)].map((match) => match[1])
-  );
-  const links = cards.map((card) => card.match(/<h2\b[^>]*><a href="([^"]+)"/)?.[1]);
-  const dates = cards.map((card) => Date.parse(card.match(/<time\b[^>]*datetime="([^"]+)"/)?.[1] ?? ''));
-  assert.deepEqual(
-    links.map((link) => link?.replace(/^.*\/writings\//, '').replace(/\/$/, '')).sort(),
-    expected.map((post) => post.slug).sort()
-  );
-  assert.deepEqual(
-    dates,
-    expected.map((post) => post.publishDate.valueOf())
-  );
-  cards.forEach((card, index) => {
-    const slug = links[index]?.replace(/^.*\/writings\//, '').replace(/\/$/, '');
-    assert.equal(titleFromCard(card), expected.find((post) => post.slug === slug)?.title);
+  test(`${locale} tag pages use the gallery and include matching posts from both locales`, () => {
+    const prefix = locale === 'da' ? '/da' : '';
+    const posts = expectedPosts(locale);
+    const tags = new Set(posts.flatMap((post) => (post.tags ?? []).map(cleanSlug)));
+    for (const tag of tags) {
+      const directory = join(astroDir, 'dist', prefix, 'tag', tag);
+      const pages = [join(directory, 'index.html')];
+      for (let page = 2; existsSync(join(directory, String(page), 'index.html')); page++) {
+        pages.push(join(directory, String(page), 'index.html'));
+      }
+      const cards = pages.flatMap((page) => galleryCards(readFileSync(page, 'utf8')));
+      const titles = cards.map(titleFromCard);
+      const expected = posts.filter((post) => (post.tags ?? []).some((value) => cleanSlug(value) === tag));
+      assert.deepEqual(
+        titles,
+        expected.map((post) => post.title)
+      );
+      for (const card of cards) {
+        const link = card.match(/<h2\b[^>]*><a href="([^"]+)"/)?.[1];
+        assert.ok(link?.startsWith(`${prefix}/writings/`));
+        assert.ok(link && existsSync(join(astroDir, 'dist', link, 'index.html')));
+      }
+    }
   });
-  assert.ok(links.every((link) => link && existsSync(join(astroDir, 'dist', link, 'index.html'))));
-});
-
-test('the Danish paginated index links back to the continuous English index', () => {
-  const danishPage = readFileSync(join(astroDir, 'dist/da/writings/2/index.html'), 'utf8');
-  assert.doesNotMatch(danishPage, /href="\/writings\/2\/?"/);
-  assert.match(danishPage, /href="\/writings\/?"/);
-});
+}

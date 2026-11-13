@@ -25,13 +25,13 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { posts } = Astro.props as Props;
 
 const metadata = {
-  title: 'Blog',
+  title: 'Skriverier',
   robots: {
     index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'blog',
+    type: 'website',
   },
 };
 ---
