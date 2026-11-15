@@ -2,51 +2,48 @@
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
 import Layout from '~/layouts/PageLayout.astro';
-import BlogList from '~/components/blog/List.astro';
+import Gallery from '~/components/blog/Gallery.astro';
 import Headline from '~/components/blog/Headline.astro';
-import Pagination from '~/components/blog/Pagination.astro';
-// import PostTags from "~/components/blog/Tags.astro";
 
-import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+import { blogListRobots, fetchPosts, isBlogEnabled, isBlogListRouteEnabled } from '~/utils/blog';
+import { BLOG_BASE, getPermalink } from '~/utils/permalinks';
 
 export const prerender = true;
 
-export const getStaticPaths = (async ({ paginate }) => {
-  return await getStaticPathsBlogList({ paginate });
+export const getStaticPaths = (async () => {
+  if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
+  return [
+    {
+      params: { blog: BLOG_BASE || undefined, page: undefined },
+      props: { posts: await fetchPosts({ locale: 'en', fallbackLocale: 'da' }) },
+    },
+  ];
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page } = Astro.props as Props;
-const currentPage = page.currentPage ?? 1;
-
-// const allCategories = await findCategories();
-// const allTags = await findTags();
-
+const { posts } = Astro.props as Props;
 const metadata = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: 'Writings',
   robots: {
-    index: blogListRobots?.index && currentPage === 1,
+    index: blogListRobots?.index,
     follow: blogListRobots?.follow,
   },
   openGraph: {
-    type: 'Essays',
+    type: 'website',
   },
 };
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="All our writings listed chronologically. You can split on <a href='/category/briefs' style='text-decoration: underline;'>briefs</a> og <a href='/category/essays' style='text-decoration: underline;'>essays</a>"
-    >
-      Writings
-    </Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <!--
-      <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
-      <PostTags tags={allTags}  title="Search by Tags:" />
-    -->
+  <section class="px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-6xl">
+    <Headline>Writings</Headline>
+    <p class="text-center text-lg text-muted dark:text-slate-400">
+      All our writings listed chronologically. Browse <a class="underline" href={getPermalink('briefs', 'category')}
+        >briefs</a
+      >
+      or <a class="underline" href={getPermalink('essays', 'category')}>essays</a>.
+    </p>
+    <Gallery {posts} />
   </section>
 </Layout>
