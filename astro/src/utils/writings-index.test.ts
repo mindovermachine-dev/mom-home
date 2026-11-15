@@ -32,6 +32,7 @@ const publishedPosts = () =>
         publishDate: Date;
         title: string;
         tags?: string[];
+        category?: string;
       };
       const locale = id.startsWith('da/') ? 'da' : 'en';
       const slug = id
@@ -128,6 +129,36 @@ for (const locale of ['en', 'da'] as const) {
         assert.ok(link?.startsWith(`${prefix}/writings/`));
         assert.ok(link && existsSync(join(astroDir, 'dist', link, 'index.html')));
       }
+    }
+  });
+
+  test(`${locale} category pages use the gallery and include matching posts from both locales`, () => {
+    const prefix = locale === 'da' ? '/da' : '';
+    const posts = expectedPosts(locale);
+    const categories = new Set(posts.flatMap((post) => (post.category ? [cleanSlug(post.category)] : [])));
+    assert.ok(categories.size > 0);
+    for (const category of categories) {
+      const directory = join(astroDir, 'dist', prefix, 'category', category);
+      const pages = [join(directory, 'index.html')];
+      for (let page = 2; existsSync(join(directory, String(page), 'index.html')); page++) {
+        pages.push(join(directory, String(page), 'index.html'));
+      }
+      const cards = pages.flatMap((page) => {
+        const html = readFileSync(page, 'utf8');
+        assert.match(html, /<ul[^>]*class="[^"]*\bgrid\b[^"]*"/);
+        return galleryCards(html);
+      });
+      const expected = posts.filter((post) => post.category && cleanSlug(post.category) === category);
+      assert.deepEqual(
+        cards.map(titleFromCard),
+        expected.map((post) => post.title)
+      );
+      cards.forEach((card, index) => {
+        assert.match(card, new RegExp(`<article\\b[^>]*\\blang="${expected[index].locale}"`));
+        const link = card.match(/<h2\b[^>]*><a href="([^"]+)"/)?.[1];
+        assert.ok(link?.startsWith(`${prefix}/writings/`));
+        assert.ok(link && existsSync(join(astroDir, 'dist', link, 'index.html')));
+      });
     }
   });
 }
