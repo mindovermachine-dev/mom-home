@@ -2,6 +2,7 @@
 import Image from '~/components/common/Image.astro';
 import MomImage from '~/components/common/MomImage.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import { getExternalLinkAttrs } from '~/utils/external-links';
 
 import type { Event, MetaData } from '~/types';
 
@@ -24,6 +25,8 @@ const {
   localeFallback,
   locale = 'en',
 } = Astro.props;
+
+const signupLinkAttrs = getExternalLinkAttrs(event.signup?.signupurl);
 
 const dateTimeFormatter = new Intl.DateTimeFormat(locale === 'da' ? 'da-DK' : 'en-GB', {
   dateStyle: 'full',
@@ -74,12 +77,7 @@ const formatOccurrenceDate = (occurrence: { date: Date | string; time?: string; 
       {
         event.signup?.signupurl && (
           <div class="mt-6">
-            <a
-              href={event.signup.signupurl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary inline-flex items-center gap-2"
-            >
+            <a href={event.signup.signupurl} {...signupLinkAttrs} class="btn-primary inline-flex items-center gap-2">
               {event.signup.icon && (
                 <Image
                   src={event.signup.icon}
@@ -121,12 +119,7 @@ const formatOccurrenceDate = (occurrence: { date: Date | string; time?: string; 
     {
       event.signup?.signupurl && event.signup.repeat && (
         <div class="mt-10 border-t border-gray-200 dark:border-slate-700 pt-8">
-          <a
-            href={event.signup.signupurl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary inline-flex items-center gap-2"
-          >
+          <a href={event.signup.signupurl} {...signupLinkAttrs} class="btn-primary inline-flex items-center gap-2">
             {event.signup.icon && (
               <Image
                 src={event.signup.icon}

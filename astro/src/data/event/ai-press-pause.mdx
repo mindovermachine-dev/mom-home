@@ -1,0 +1,82 @@
+---
+title: 'The AI Doc - or How I Became an Apocaloptimist'
+dates:
+  - date: 2026-12-07
+    time: 16:30 CET
+    duration: 2:30h
+location:
+  venue: 'Meeting room "Henningsen" 1st floor, Matrikel 1'
+  address: Gammel Strand 28, Copenhagen
+  mapurl: https://maps.app.goo.gl/GZtgX25rt7z1xCFR8
+excerpt: 'Bookclub style "press-pause" screening of documentary "The AI Doc" - We will discuss and reflect on its themes and implications.'
+signup:
+  signupurl: '#signup'
+  icon: ~/assets/images/events/register.svg
+  caption: Signup
+  repeat: false
+image: ~/assets/images/events/the-ai-doc-horizontal.jpeg
+# cspell:ignore Apocaloptimist Amodei Bengio Gebru Harari Hassabis Sutskever Timnit Yoshua Yuval Noah Roher Daniel Daniela
+---
+
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import TallyEmbed from '~/components/content/TallyEmbed.astro';
+
+The AI Doc is a documentary that explores the impact of artificial intelligence on society. It's framed around filmmaker Daniel Roher preparing for fatherhood, and his quest to understand the implications of AI for his unborn child and humanity's future.
+
+<div class="my-6 aspect-video overflow-hidden rounded-lg">
+  <iframe
+    class="h-full w-full"
+    src="https://www.youtube-nocookie.com/embed/xkPbV3IRe4Y"
+    title="The AI Doc trailer"
+    loading="lazy"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</div>
+
+The film features conversations with major AI executives, researchers, and critics, including Sam Altman, Dario and Daniela Amodei, Demis Hassabis, Yoshua Bengio, Ilya Sutskever, Tristan Harris, Timnit Gebru, and Yuval Noah Harari.
+
+## Pot-luck snacks 🍿
+
+Feel free to bring your favorite snacks to the communal table where everyone can place their contributions and shamelessly indulge — it ends when it ends.🤷‍♂️
+
+**DISCLAIMER:** This is not a feel-good film — it tackles serious and sometimes unsettling topics around AI and its impact on society. Feel free to bring drinks to the pot-luck table too. 🥃🍺🍷
+
+<Steps
+  title="Two-step signup procedure"
+  subtitle="Due to the limited seating capacity of the venue and the licensing issues surrounding the documentary, this is a by-invitation-only event. So the signup procedure is really a request for an invitation."
+  items={[
+    {
+      title: '1: Ask for an invite',
+      description: '👇 Use the form at the bottom of this page, argue your case for an invite - show some effort!',
+      icon: 'tabler:pray',
+      callToAction: {
+        text: 'Please🙏',
+        href: '#signup',
+      },
+    },
+    {
+      title: '2: Get a calendar invite',
+      description: 'You seat is solid when you get a proper calendar invite and you have accepted it.',
+      icon: 'tabler:calendar-user',
+    },
+  ]}
+/>
+
+We will keep a waiting list for those who are interested but couldn't secure an invite.
+
+<TallyEmbed id="signup" formId="e5rQbo" title="Beg for an invite and keep an eye on your calendar" />
+
+<CallToAction
+  actions={[
+    {
+      variant: 'secondary',
+      text: 'Join the mail list',
+      href: '/writings/dont-miss-a-beat',
+    },
+  ]}
+  title="Don't miss a beat - stay updated with MoM!"
+  subtitle="Join our mail list and get instant updates on new events, essays, briefs, software releases, member news and other MoM stuff"
+/>
